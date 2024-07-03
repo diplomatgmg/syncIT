@@ -31,9 +31,11 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Libraries
     "rest_framework",
+    "rest_framework_simplejwt",
     "corsheaders",
     # Custom apps
     "apps.job",
+    "apps.users",
 ]
 
 MIDDLEWARE = [
