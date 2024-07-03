@@ -32,7 +32,6 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
     # Custom apps
-    "apps.example_app",
 ]
 
 MIDDLEWARE = [
@@ -104,9 +103,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "ru"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Europe/Moscow"
 
 USE_I18N = True
 
