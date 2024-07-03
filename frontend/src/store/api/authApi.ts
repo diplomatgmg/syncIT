@@ -1,7 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react"
 import baseQuery from "./baseApi.ts"
 
-interface TokenResponse {
+export interface TokenResponse {
   access: string
   refresh: string
 }
@@ -24,8 +24,11 @@ const authApi = createApi({
         body: credentials,
       }),
     }),
+    test: builder.query({
+      query: () => "test/",
+    }),
   }),
 })
 
-export const { useLoginMutation, useRegisterMutation } = authApi
+export const { useLoginMutation, useRegisterMutation, useTestQuery } = authApi
 export default authApi

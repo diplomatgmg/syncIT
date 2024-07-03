@@ -1,7 +1,7 @@
 import useAuth from "./store/hooks/useAuth.ts"
 import { SubmitHandler, useForm } from "react-hook-form"
 import useAppDispatch from "./store/hooks/useAppDispatch.ts"
-import { useLoginMutation } from "./store/api/authApi.ts"
+import { useLoginMutation, useTestQuery } from "./store/api/authApi.ts"
 import { logout, setTokens } from "./store/slice/authSlice.ts"
 
 interface Inputs {
@@ -11,6 +11,7 @@ interface Inputs {
 
 function App() {
   const { isAuthenticated } = useAuth()
+  const { data } = useTestQuery({ skip: !isAuthenticated })
 
   const {
     register,
@@ -35,7 +36,8 @@ function App() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h1>is auth - {String(isAuthenticated)}</h1>
+      <h1>isAuthenticated - {String(isAuthenticated)}</h1>
+      <p>data - {JSON.stringify(data)}</p>
       <div>
         <label>Username</label>
         <input
