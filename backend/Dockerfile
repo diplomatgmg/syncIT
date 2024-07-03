@@ -1,4 +1,4 @@
-FROM python:alpine as base
+FROM python:3.12-slim as base
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
