@@ -1,0 +1,68 @@
+services:
+  frontend:
+    container_name: frontend
+    build: ./frontend
+    volumes:
+      - ./frontend:/project/frontend
+      - /project/frontend/node_modules
+    ports:
+      - "3000:3000"
+    command: sh -c "bun dev"
+    networks:
+      - app-network
+
+  backend:
+    container_name: backend
+    build:
+      context: ./backend
+      target: ${BUILD_TARGET}
+    volumes:
+      - ./backend:/project/backend
+      - static_volume:/project/backend/django_static/
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  nginx:
+    container_name: nginx
+    build:
+      context: ./nginx
+      target: ${BUILD_TARGET}
+    volumes:
+      - static_volume:/project/backend/django_static/
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - app-network
+
+  postgres:
+    container_name: postgres
+    image: postgres:alpine
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    healthcheck:
+      test: pg_isready -h ${POSTGRES_HOST} -p ${POSTGRES_PORT} -d ${POSTGRES_DB}
+      interval: 3s
+      timeout: 1s
+      retries: 5
+    networks:
+      - app-network
+
+
+volumes:
+  static_volume:
+
+networks:
+  app-network:
+    driver: bridge
