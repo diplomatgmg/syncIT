@@ -1,13 +1,13 @@
 import { BaseQueryFn, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import { RootState } from "../store.ts"
 import { BASE_URL } from "../../constants.ts"
-import { logout, setTokens } from "../slice/authSlice.ts"
-import { TokenResponse } from "./authApi.ts"
+import { logout, setCredentials } from "../slice/authSlice.ts"
+import { LoginResponse } from "./authApi.ts"
 
 const baseQuery = fetchBaseQuery({
   baseUrl: BASE_URL,
   prepareHeaders: (headers, { getState }) => {
-    const accessToken = (getState() as RootState).auth.access
+    const accessToken = (getState() as RootState).auth.token.access
 
     if (accessToken) {
       headers.set("Authorization", `Bearer ${accessToken}`)
@@ -24,7 +24,7 @@ const baseQueryWithReauth: BaseQueryFn = async (args, api, extraOptions) => {
     return result
   }
 
-  const refreshToken = (api.getState() as RootState).auth.refresh
+  const refreshToken = (api.getState() as RootState).auth.token.refresh
 
   if (!refreshToken) {
     api.dispatch(logout())
@@ -42,7 +42,7 @@ const baseQueryWithReauth: BaseQueryFn = async (args, api, extraOptions) => {
   )
 
   if (refreshResult.data) {
-    api.dispatch(setTokens(refreshResult.data as TokenResponse))
+    api.dispatch(setCredentials(refreshResult.data as LoginResponse))
     result = await baseQuery(args, api, extraOptions)
   } else {
     api.dispatch(logout())

@@ -1,7 +1,7 @@
 import { useLoginMutation } from "../../store/api/authApi.ts"
 import useAppDispatch from "../../store/hooks/useAppDispatch.ts"
 import { SubmitHandler, useForm } from "react-hook-form"
-import { setTokens } from "../../store/slice/authSlice.ts"
+import { setCredentials } from "../../store/slice/authSlice.ts"
 
 interface Inputs {
   email: string
@@ -19,8 +19,8 @@ function Login() {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
-      const { access, refresh } = await login(data).unwrap()
-      dispatch(setTokens({ access, refresh }))
+      const response = await login(data).unwrap()
+      dispatch(setCredentials(response))
     } catch (err) {
       console.error("Ошибка входа: ", err)
     }

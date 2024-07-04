@@ -1,31 +1,36 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { RegisterResponse, TokenResponse } from "../api/authApi.ts"
+import { RegisterResponse, LoginResponse } from "../api/authApi.ts"
 
 interface AuthState {
   isAuthenticated: boolean
-  access: string | null
-  refresh: string | null
   email: string | null
+  token: {
+    access: string | null
+    refresh: string | null
+  }
 }
 
 const initialState: AuthState = {
   isAuthenticated: localStorage.getItem("accessToken") !== null,
-  access: localStorage.getItem("accessToken"),
-  refresh: localStorage.getItem("refreshToken"),
   email: localStorage.getItem("email"),
+  token: {
+    access: localStorage.getItem("accessToken"),
+    refresh: localStorage.getItem("refreshToken"),
+  },
 }
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setTokens: (state, action: PayloadAction<TokenResponse>) => {
-      const { access, refresh } = action.payload
+    setCredentials: (state, action: PayloadAction<LoginResponse>) => {
+      const { email, token } = action.payload
       state.isAuthenticated = true
-      state.access = access
-      state.refresh = refresh
-      localStorage.setItem("accessToken", access)
-      localStorage.setItem("refreshToken", refresh)
+      state.email = email
+      state.token = token
+      localStorage.setItem("email", email)
+      localStorage.setItem("accessToken", token.access)
+      localStorage.setItem("refreshToken", token.refresh)
     },
     setEmail: (state, action: PayloadAction<RegisterResponse>) => {
       const { email } = action.payload
@@ -34,13 +39,15 @@ const authSlice = createSlice({
     },
     logout: (state) => {
       state.isAuthenticated = false
-      state.access = null
-      state.refresh = null
+      state.token.access = null
+      state.token.refresh = null
+      localStorage.removeItem("email")
       localStorage.removeItem("accessToken")
       localStorage.removeItem("refreshToken")
+      window.location.reload() // TODO мб можно лучше сделать
     },
   },
 })
 
-export const { setTokens, setEmail, logout } = authSlice.actions
+export const { setCredentials, setEmail, logout } = authSlice.actions
 export default authSlice.reducer

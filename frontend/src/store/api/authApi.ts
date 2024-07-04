@@ -1,9 +1,12 @@
 import { createApi } from "@reduxjs/toolkit/query/react"
 import baseQuery from "./baseApi.ts"
 
-export interface TokenResponse {
-  access: string
-  refresh: string
+export interface LoginResponse {
+  email: string
+  token: {
+    access: string
+    refresh: string
+  }
 }
 
 export interface RegisterResponse {
@@ -14,7 +17,7 @@ const authApi = createApi({
   reducerPath: "authApi",
   baseQuery,
   endpoints: (builder) => ({
-    login: builder.mutation<TokenResponse, unknown>({
+    login: builder.mutation<LoginResponse, unknown>({
       query: (credentials) => ({
         url: "token/",
         method: "POST",
