@@ -1,5 +1,7 @@
 body {
-    margin: 0;
+    margin: 1rem;
+    font-size: 1.5rem;
     background-color: #000;
     color: #fff
 }
+

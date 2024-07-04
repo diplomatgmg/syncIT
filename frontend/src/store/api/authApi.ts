@@ -6,6 +6,10 @@ export interface TokenResponse {
   refresh: string
 }
 
+export interface RegisterResponse {
+  email: string
+}
+
 const authApi = createApi({
   reducerPath: "authApi",
   baseQuery,
@@ -17,7 +21,7 @@ const authApi = createApi({
         body: credentials,
       }),
     }),
-    register: builder.mutation<TokenResponse, unknown>({
+    register: builder.mutation<RegisterResponse, unknown>({
       query: (credentials) => ({
         url: "register/",
         method: "POST",
