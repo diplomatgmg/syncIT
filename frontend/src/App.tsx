@@ -11,7 +11,7 @@ interface Inputs {
 
 function App() {
   const { isAuthenticated } = useAuth()
-  const { data } = useTestQuery({ skip: !isAuthenticated })
+  const { data } = useTestQuery(undefined, { skip: !isAuthenticated })
 
   const {
     register,
