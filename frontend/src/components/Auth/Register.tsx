@@ -6,6 +6,7 @@ import { setEmail } from "../../store/slice/authSlice.ts"
 interface Inputs {
   email: string
   password: string
+  re_password: string
 }
 
 function Register() {
@@ -13,6 +14,7 @@ function Register() {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm<Inputs>()
   const dispatch = useAppDispatch()
   const [registerUser] = useRegisterMutation()
@@ -46,6 +48,20 @@ function Register() {
           {...register("password", { required: true })}
         />
         {errors.password && <span>This field is required</span>}
+      </div>
+
+      <div>
+        <label>Password repeat</label>
+        <input
+          type="password"
+          autoComplete="new-password"
+          {...register("re_password", {
+            required: true,
+            validate: (value) =>
+              value === watch("password") || "Пароли не совпадают",
+          })}
+        />
+        {errors.re_password && <span>{errors.re_password.message}</span>}
       </div>
 
       <button type="submit">Register</button>
