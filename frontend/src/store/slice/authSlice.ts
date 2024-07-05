@@ -39,12 +39,12 @@ const authSlice = createSlice({
     },
     logout: (state) => {
       state.isAuthenticated = false
+      state.email = null
       state.token.access = null
       state.token.refresh = null
       localStorage.removeItem("email")
       localStorage.removeItem("accessToken")
       localStorage.removeItem("refreshToken")
-      window.location.reload() // TODO мб можно лучше сделать
     },
   },
 })
