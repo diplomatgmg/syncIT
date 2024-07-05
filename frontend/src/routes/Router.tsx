@@ -1,12 +1,13 @@
 import { Route, Routes } from "react-router-dom"
 import routes from "./routes"
+import map from "lodash/map"
 
 const AppRouter = () => {
   return (
     <Routes>
-      <Route path={routes.home.path} element={routes.home.element} />
-      <Route path={routes.login.path} element={routes.login.element} />
-      <Route path={routes.register.path} element={routes.register.element} />
+      {map(routes, ({ path, element }) => (
+        <Route path={path} element={element} />
+      ))}
     </Routes>
   )
 }

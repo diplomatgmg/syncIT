@@ -2,6 +2,7 @@ import { useLoginMutation } from "../../store/api/authApi.ts"
 import useAppDispatch from "../../store/hooks/useAppDispatch.ts"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { setCredentials } from "../../store/slice/authSlice.ts"
+import useAuth from "../../store/hooks/useAuth.ts"
 
 interface Inputs {
   email: string
@@ -9,6 +10,7 @@ interface Inputs {
 }
 
 function Login() {
+  const { isAuthenticated } = useAuth()
   const {
     register,
     handleSubmit,
@@ -28,6 +30,7 @@ function Login() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <h3>is auth - {String(isAuthenticated)}</h3>
       <div>
         <label>Email</label>
         <input
