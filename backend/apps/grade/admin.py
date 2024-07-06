@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from ..models.Grade import Grade
+from .models import Grade
 
 
 @admin.register(Grade)

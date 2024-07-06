@@ -36,8 +36,12 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt.token_blacklist",
     "corsheaders",
     # Custom apps
-    "apps.job",
-    "apps.users",
+    "apps.user",
+    "apps.hard_skill",
+    "apps.company",
+    "apps.grade",
+    "apps.user_profile",
+    # "apps.vacancy",
 ]
 
 MIDDLEWARE = [
@@ -142,4 +146,5 @@ STATIC_ROOT = BASE_DIR / "django_static"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-AUTH_USER_MODEL = "users.User"
+
+AUTH_USER_MODEL = "user.User"
