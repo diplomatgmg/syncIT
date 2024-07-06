@@ -1,33 +1,13 @@
 import { type ReactElement } from "react"
-import routes from "../../../routes/routes.tsx"
-import {
-  HeaderItemStyle,
-  HeaderLinkStyle,
-  HeaderListStyle,
-  HeaderLogoStyle,
-  HeaderStyle,
-} from "./HeaderStyles.ts"
+import { HeaderStyle } from "./HeaderStyles.ts"
+import HeaderLogo from "./HeaderLogo.tsx"
+import HeaderNavigation from "./HeaderNavigation.tsx"
 
 const Header = (): ReactElement => {
   return (
     <HeaderStyle>
-      <HeaderLogoStyle>Header Logo</HeaderLogoStyle>
-      <HeaderListStyle style={{ margin: "0" }}>
-        <HeaderItemStyle>
-          <HeaderLinkStyle href={routes.home.path}>Home</HeaderLinkStyle>
-        </HeaderItemStyle>
-        <HeaderItemStyle>
-          <HeaderLinkStyle href={routes.login.path}>Login</HeaderLinkStyle>
-        </HeaderItemStyle>
-        <HeaderItemStyle>
-          <HeaderLinkStyle href={routes.register.path}>
-            Register
-          </HeaderLinkStyle>
-        </HeaderItemStyle>
-        <HeaderItemStyle>
-          <HeaderLinkStyle href={routes.profile.path}>Profile</HeaderLinkStyle>
-        </HeaderItemStyle>
-      </HeaderListStyle>
+      <HeaderLogo />
+      <HeaderNavigation />
     </HeaderStyle>
   )
 }
