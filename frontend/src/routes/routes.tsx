@@ -1,8 +1,8 @@
 import { ReactElement } from "react"
-import HomePage from "../pages/Home/HomePage.tsx"
-import LoginPage from "../pages/Login/LoginPage.tsx"
-import RegisterPage from "../pages/Register/RegisterPage.tsx"
-import ProfilePage from "../pages/Profile/ProfilePage.tsx"
+import HomePage from "../pages/HomePage.tsx"
+import LoginPage from "../pages/LoginPage.tsx"
+import RegisterPage from "../pages/RegisterPage.tsx"
+import ProfilePage from "../pages/ProfilePage.tsx"
 
 export enum RouteKeys {
   HOME = "home",
