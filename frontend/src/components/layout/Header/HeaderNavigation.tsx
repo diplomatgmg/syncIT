@@ -23,9 +23,11 @@ const HeaderNavigation = (): ReactElement => {
         <HeaderLinkStyle href={routes.home.path}>Home</HeaderLinkStyle>
       </HeaderItemStyle>
 
-      <HeaderItemStyle>
-        <HeaderLinkStyle href={routes.profile.path}>Profile</HeaderLinkStyle>
-      </HeaderItemStyle>
+      {isAuthenticated && (
+        <HeaderItemStyle>
+          <HeaderLinkStyle href={routes.profile.path}>Profile</HeaderLinkStyle>
+        </HeaderItemStyle>
+      )}
 
       {isAuthenticated && (
         <HeaderItemStyle>
@@ -34,16 +36,17 @@ const HeaderNavigation = (): ReactElement => {
       )}
 
       {!isAuthenticated && (
-        <>
-          <HeaderItemStyle>
-            <HeaderLinkStyle href={routes.login.path}>Login</HeaderLinkStyle>
-          </HeaderItemStyle>
-          <HeaderItemStyle>
-            <HeaderLinkStyle href={routes.register.path}>
-              Register
-            </HeaderLinkStyle>
-          </HeaderItemStyle>
-        </>
+        <HeaderItemStyle>
+          <HeaderLinkStyle href={routes.login.path}>Login</HeaderLinkStyle>
+        </HeaderItemStyle>
+      )}
+
+      {!isAuthenticated && (
+        <HeaderItemStyle>
+          <HeaderLinkStyle href={routes.register.path}>
+            Register
+          </HeaderLinkStyle>
+        </HeaderItemStyle>
       )}
     </HeaderListStyle>
   )
