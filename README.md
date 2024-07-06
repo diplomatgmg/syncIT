@@ -1,3 +1,5 @@
+<a href="https://codeclimate.com/github/diplomatgmg/it_job_aggregator/maintainability"><img src="https://api.codeclimate.com/v1/badges/ba7e9ae9f4e9079c7b77/maintainability" /></a>
+
 # Агрегатор it вакансий
 
 Сайт для анализа всех вакансий и приведения к одному общему стилю.  
