@@ -1,17 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react"
-import baseQuery from "./baseApi.ts"
-
-export interface LoginResponse {
-  email: string
-  token: {
-    access: string
-    refresh: string
-  }
-}
-
-export interface RegisterResponse {
-  email: string
-}
+import { LoginResponse, RegisterResponse } from "@/types/authTypes.ts"
+import baseQuery from "@/store/api/baseQuery.ts"
 
 const authApi = createApi({
   reducerPath: "authApi",
@@ -31,11 +20,8 @@ const authApi = createApi({
         body: credentials,
       }),
     }),
-    test: builder.query({
-      query: () => "test/",
-    }),
   }),
 })
 
-export const { useLoginMutation, useRegisterMutation, useTestQuery } = authApi
+export const { useLoginMutation, useRegisterMutation } = authApi
 export default authApi

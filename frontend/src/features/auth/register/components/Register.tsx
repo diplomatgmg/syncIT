@@ -1,5 +1,5 @@
 import { type ReactElement } from "react"
-import RegisterForm from "./RegisterForm.tsx"
+import RegisterForm from "@/features/auth/register/components/RegisterForm.tsx"
 
 const Register = (): ReactElement => {
   return <RegisterForm />

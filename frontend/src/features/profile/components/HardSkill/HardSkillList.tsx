@@ -1,9 +1,9 @@
 import { FC, type ReactElement } from "react"
-import { HardSkill } from "../../../../types/hardSkill.ts"
-import HardSkillItem from "./HardSkillItem.tsx"
+import { HardSkillTypes } from "@/types/hardSkillTypes.ts"
+import HardSkillItem from "@/features/profile/components/HardSkill/HardSkillItem.tsx"
 
 interface HardSkillListProps {
-  hardSkills: HardSkill[]
+  hardSkills: HardSkillTypes[]
 }
 
 const HardSkillList: FC<HardSkillListProps> = ({

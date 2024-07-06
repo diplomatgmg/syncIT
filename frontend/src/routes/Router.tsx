@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom"
-import routes from "./routes"
-import ProtectedRoute from "./ProtectedRoute.tsx"
+import routes from "@/routes/routes.tsx"
+import ProtectedRoute from "@/routes/ProtectedRoute.tsx"
 
 const AppRouter = () => {
   return (

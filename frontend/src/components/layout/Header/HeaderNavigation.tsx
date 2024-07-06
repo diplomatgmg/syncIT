@@ -1,13 +1,13 @@
 import { type ReactElement } from "react"
-import routes from "../../../routes/routes.tsx"
+import useAuth from "@/store/hooks/useAuth.ts"
+import useAppDispatch from "@/store/hooks/useAppDispatch.ts"
+import { logout } from "@/store/slice/authSlice.ts"
 import {
   HeaderItemStyle,
   HeaderLinkStyle,
   HeaderListStyle,
-} from "./HeaderStyles.ts"
-import useAuth from "../../../store/hooks/useAuth.ts"
-import useAppDispatch from "../../../store/hooks/useAppDispatch.ts"
-import { logout } from "../../../store/slice/authSlice.ts"
+} from "@/components/layout/Header/HeaderStyles.ts"
+import routes from "@/routes/routes.tsx"
 
 const HeaderNavigation = (): ReactElement => {
   const { isAuthenticated } = useAuth()

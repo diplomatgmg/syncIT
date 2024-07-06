@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit"
-import authApi from "./api/authApi.ts"
-import hardSkillApi from "./api/hardSkillApi.ts"
-import authReducer from "./slice/authSlice.ts"
+import authApi from "@/store/api/authApi.ts"
+import hardSkillApi from "@/store/api/hardSkillApi.ts"
+import authReducer from "@/store/slice/authSlice.ts"
 
 const store = configureStore({
   reducer: {

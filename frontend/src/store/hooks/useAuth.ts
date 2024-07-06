@@ -1,5 +1,5 @@
-import { RootState } from "../store.ts"
-import useAppSelector from "./useAppSelector.ts"
+import { RootState } from "@/store/store.ts"
+import useAppSelector from "@/store/hooks/useAppSelector.ts"
 
 const useAuth = (): RootState["auth"] => {
   return useAppSelector((state: RootState) => state.auth)

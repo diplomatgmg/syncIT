@@ -2,7 +2,7 @@ import { type ReactElement, type FormEvent, useState } from "react"
 import { HARD_SKILLS } from "../../../constants.ts"
 import xorBy from "lodash/xorBy"
 
-const HardSkillList = (): ReactElement => {
+const HardSkillListOld = (): ReactElement => {
   const [selected, setSelected] = useState<{ id: number; name: string }[]>([])
   const [searchTerm, setSearchTerm] = useState("")
 
@@ -49,4 +49,4 @@ const HardSkillList = (): ReactElement => {
   )
 }
 
-export default HardSkillList
+export default HardSkillListOld

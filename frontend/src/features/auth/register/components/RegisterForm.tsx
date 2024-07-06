@@ -1,8 +1,8 @@
 import { SubmitHandler, useForm } from "react-hook-form"
-import useAppDispatch from "../../../../store/hooks/useAppDispatch.ts"
-import { useRegisterMutation } from "../../../../store/api/authApi.ts"
-import { setEmail } from "../../../../store/slice/authSlice.ts"
-import Input from "../../../../components/common/Input/Input.tsx"
+import useAppDispatch from "@/store/hooks/useAppDispatch.ts"
+import { useRegisterMutation } from "@/store/api/authApi.ts"
+import { setEmail } from "@/store/slice/authSlice.ts"
+import Input from "@/components/common/Input/Input.tsx"
 
 interface Inputs {
   email: string

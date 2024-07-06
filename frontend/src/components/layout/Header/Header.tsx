@@ -1,7 +1,7 @@
 import { type ReactElement } from "react"
-import { HeaderStyle } from "./HeaderStyles.ts"
-import HeaderLogo from "./HeaderLogo.tsx"
-import HeaderNavigation from "./HeaderNavigation.tsx"
+import { HeaderStyle } from "@/components/layout/Header/HeaderStyles.ts"
+import HeaderLogo from "@/components/layout/Header/HeaderLogo.tsx"
+import HeaderNavigation from "@/components/layout/Header/HeaderNavigation.tsx"
 
 const Header = (): ReactElement => {
   return (

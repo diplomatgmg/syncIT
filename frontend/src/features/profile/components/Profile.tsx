@@ -1,6 +1,6 @@
 import { type ReactElement } from "react"
-import useAuth from "../../../store/hooks/useAuth.ts"
-import HardSkill from "./HardSkill/HardSkill.tsx"
+import HardSkill from "@/features/profile/components/HardSkill/HardSkill.tsx"
+import useAuth from "@/store/hooks/useAuth.ts"
 
 const Profile = (): ReactElement => {
   const { email } = useAuth()

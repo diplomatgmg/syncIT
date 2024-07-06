@@ -1,8 +1,8 @@
 import { BaseQueryFn, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import { RootState } from "../store.ts"
-import { BASE_URL } from "../../constants.ts"
-import { logout, setCredentials } from "../slice/authSlice.ts"
-import { LoginResponse } from "./authApi.ts"
+import { BASE_URL } from "@/constants.ts"
+import { RootState } from "@/store/store.ts"
+import { logout, setCredentials } from "@/store/slice/authSlice.ts"
+import { LoginResponse } from "@/types/authTypes.ts"
 
 const baseQuery = fetchBaseQuery({
   baseUrl: BASE_URL,
