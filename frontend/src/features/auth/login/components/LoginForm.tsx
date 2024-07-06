@@ -27,8 +27,6 @@ function LoginForm() {
     }
   }
 
-  console.log(errors)
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
