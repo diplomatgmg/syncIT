@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import index
+
+from .views.HardSkillListAPIView import HardSkillListAPIView
 
 urlpatterns = [
-    path("test/", index),
+    path("hard_skills/", HardSkillListAPIView.as_view()),
 ]

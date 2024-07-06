@@ -12,7 +12,7 @@ class Vacancy(models.Model):
     company = models.ForeignKey("Company", on_delete=models.CASCADE)
     grades = models.ManyToManyField("Grade", related_name="vacancies")
     format = models.CharField(max_length=16, choices=FORMAT_CHOICES)
-    hard_skills = models.ManyToManyField("HardSkill", related_name="jobs")
+    hard_skills = models.ManyToManyField("HardSkill", related_name="vacancies")
 
     def __str__(self):
         return self.name
