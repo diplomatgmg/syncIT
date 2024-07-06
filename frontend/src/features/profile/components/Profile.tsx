@@ -1,6 +1,6 @@
 import { type ReactElement } from "react"
-import HardSkillList from "./HardSkillList.tsx"
 import useAuth from "../../../store/hooks/useAuth.ts"
+import HardSkill from "./HardSkill/HardSkill.tsx"
 
 const Profile = (): ReactElement => {
   const { email } = useAuth()
@@ -8,7 +8,7 @@ const Profile = (): ReactElement => {
   return (
     <div>
       <p>email - {email}</p>
-      <HardSkillList />
+      <HardSkill />
     </div>
   )
 }
