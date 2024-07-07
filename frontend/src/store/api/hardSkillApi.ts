@@ -7,7 +7,7 @@ const hardSkillApi = createApi({
   baseQuery,
   endpoints: (builder) => ({
     getHardSkills: builder.query<HardSkillTypes[], void>({
-      query: () => "hard_skills/",
+      query: () => "user/hard_skills/",
     }),
   }),
 })
