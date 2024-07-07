@@ -1,57 +1,81 @@
-import { ChangeEvent, FC, FormEvent, type ReactElement, useState } from "react"
+import { FC, FormEvent, ReactElement, useEffect, useState } from "react"
 import { HardSkillTypes } from "@/types/hardSkillTypes.ts"
 import xorBy from "lodash/xorBy"
+import { useSetHardSkillsMutation } from "@/store/api/profileApi.ts"
 
 interface HardSkillListProps {
   hardSkills: HardSkillTypes[]
+  userHardSkills: HardSkillTypes["id"][]
 }
 
 const HardSkillList: FC<HardSkillListProps> = ({
   hardSkills,
+  userHardSkills,
 }): ReactElement => {
-  const [selected, setSelected] = useState<{ id: number }[]>([])
-  const [searchTerm, setSearchTerm] = useState("")
+  const [selectedHardSkills, setSelectedHardSkills] = useState(userHardSkills)
+  const [searchHardSkill, setSearchHardSkill] = useState("")
+  const [setHardSkills] = useSetHardSkillsMutation()
+  const [message, setMessage] = useState("")
 
-  const filteredSkills = hardSkills.filter((skill) =>
-    skill.name.toLowerCase().includes(searchTerm.toLowerCase())
-  )
+  useEffect(() => {
+    setSelectedHardSkills(userHardSkills)
+  }, [userHardSkills])
 
   const handleCheckboxChange = (id: number) => {
-    setSelected((prevSelected) => xorBy(prevSelected, [{ id }], "id"))
+    const skill = hardSkills.find((hardSkill) => hardSkill.id === id)
+
+    if (skill) {
+      setSelectedHardSkills((prevSelected) =>
+        xorBy(prevSelected, [id], (item) => item)
+      )
+    }
+
+    setSearchHardSkill("")
   }
 
-  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value)
-  }
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(selected)
+
+    try {
+      await setHardSkills(selectedHardSkills).unwrap()
+      setMessage("Hard skills successfully saved!")
+      setTimeout(() => setMessage(""), 3000)
+    } catch (err) {
+      console.error("Ошибка входа: ", err)
+    }
   }
+
+  const filteredHardSkills = hardSkills.filter(({ name }) =>
+    name.toLowerCase().includes(searchHardSkill.toLowerCase())
+  )
 
   return (
     <form onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Search hard skills"
-        value={searchTerm}
-        onChange={handleSearchChange}
+        value={searchHardSkill}
+        onChange={(e) => setSearchHardSkill(e.target.value)}
       />
 
-      {filteredSkills.map(({ id, name }) => (
-        <li key={id}>
-          <label>
-            <input
-              type="checkbox"
-              onChange={() => handleCheckboxChange(id)}
-              checked={selected.some((item) => item.id === id)}
-            />
-            {name}
-          </label>
-        </li>
-      ))}
+      <ul>
+        {filteredHardSkills.map(({ id, name }) => (
+          <li key={id}>
+            <label>
+              <input
+                type="checkbox"
+                checked={selectedHardSkills.some((skillId) => skillId === id)}
+                onChange={() => handleCheckboxChange(id)}
+              />
+              {name}
+            </label>
+          </li>
+        ))}
+      </ul>
 
       <button type="submit">Save</button>
+
+      {message && <p>{message}</p>}
     </form>
   )
 }

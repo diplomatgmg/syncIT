@@ -1,21 +1,32 @@
-import { type ReactElement, type FormEvent, useState } from "react"
-import { HARD_SKILLS } from "../../../constants.ts"
+import { ChangeEvent, FC, FormEvent, type ReactElement, useState } from "react"
+import { HardSkillTypes } from "@/types/hardSkillTypes.ts"
 import xorBy from "lodash/xorBy"
 
-const HardSkillListOld = (): ReactElement => {
-  const [selected, setSelected] = useState<{ id: number; name: string }[]>([])
+interface HardSkillListProps {
+  hardSkills: HardSkillTypes[]
+  userHardSkills: HardSkillTypes[]
+}
+
+const HardSkillList: FC<HardSkillListProps> = ({
+  hardSkills,
+  userHardSkills,
+}): ReactElement => {
+  const [selected, setSelected] = useState<HardSkillTypes[]>([
+    ...userHardSkills,
+  ])
+
   const [searchTerm, setSearchTerm] = useState("")
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value)
-  }
-
-  const filteredSkills = HARD_SKILLS.filter((skill) =>
+  const filteredSkills = hardSkills.filter((skill) =>
     skill.name.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
-  const handleCheckboxChange = (id: number, name: string) => {
-    setSelected((prevSelected) => xorBy(prevSelected, [{ id, name }], "id"))
+  const handleCheckboxChange = (id: number) => {
+    setSelected((prevSelected) => xorBy(prevSelected, [{ id }], "id"))
+  }
+
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value)
   }
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -31,12 +42,13 @@ const HardSkillListOld = (): ReactElement => {
         value={searchTerm}
         onChange={handleSearchChange}
       />
+
       {filteredSkills.map(({ id, name }) => (
         <li key={id}>
           <label>
             <input
               type="checkbox"
-              onChange={() => handleCheckboxChange(id, name)}
+              onChange={() => handleCheckboxChange(id)}
               checked={selected.some((item) => item.id === id)}
             />
             {name}
@@ -49,4 +61,4 @@ const HardSkillListOld = (): ReactElement => {
   )
 }
 
-export default HardSkillListOld
+export default HardSkillList

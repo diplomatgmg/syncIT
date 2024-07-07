@@ -1,16 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit"
 import authApi from "@/store/api/authApi.ts"
-import hardSkillApi from "@/store/api/hardSkillApi.ts"
+import profileApi from "@/store/api/profileApi.ts"
 import authReducer from "@/store/slice/authSlice.ts"
 
 const store = configureStore({
   reducer: {
     [authApi.reducerPath]: authApi.reducer,
-    [hardSkillApi.reducerPath]: hardSkillApi.reducer,
+    [profileApi.reducerPath]: profileApi.reducer,
     auth: authReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(authApi.middleware, hardSkillApi.middleware),
+    getDefaultMiddleware().concat(authApi.middleware, profileApi.middleware),
 })
 
 export type RootState = ReturnType<typeof store.getState>

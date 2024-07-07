@@ -23,3 +23,5 @@ DEBUG_TOOLBAR_CONFIG = {
 MIDDLEWARE += [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
+
+SIMPLE_JWT["ACCESS_TOKEN_LIFETIME"] = timedelta(days=365)
