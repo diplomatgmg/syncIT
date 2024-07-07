@@ -3,6 +3,8 @@ import useAppDispatch from "@/store/hooks/useAppDispatch.ts"
 import { useLoginMutation } from "@/store/api/authApi.ts"
 import { setEmail, setTokens } from "@/store/slice/authSlice.ts"
 import Input from "@/components/common/Input/Input.tsx"
+import { useNavigate } from "react-router-dom"
+import routes from "@/routes/routes.tsx"
 
 interface Inputs {
   email: string
@@ -17,12 +19,14 @@ function LoginForm() {
   } = useForm<Inputs>()
   const dispatch = useAppDispatch()
   const [login] = useLoginMutation()
+  const navigate = useNavigate()
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
       const response = await login(data).unwrap()
       dispatch(setTokens(response))
-      dispatch(setEmail(response)) // TODO сделать отдельный endpoint /api/users/me
+      dispatch(setEmail(response))
+      navigate(routes.home.path)
     } catch (err) {
       console.error("Ошибка входа: ", err)
     }

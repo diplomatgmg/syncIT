@@ -3,6 +3,8 @@ import useAppDispatch from "@/store/hooks/useAppDispatch.ts"
 import { useRegisterMutation } from "@/store/api/authApi.ts"
 import { setEmail } from "@/store/slice/authSlice.ts"
 import Input from "@/components/common/Input/Input.tsx"
+import { useNavigate } from "react-router-dom"
+import routes from "@/routes/routes.tsx"
 
 interface Inputs {
   email: string
@@ -19,11 +21,13 @@ function RegisterForm() {
   } = useForm<Inputs>()
   const dispatch = useAppDispatch()
   const [registerUser] = useRegisterMutation()
+  const navigate = useNavigate()
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
       const { email } = await registerUser(data).unwrap()
       dispatch(setEmail({ email }))
+      navigate(routes.login.path)
     } catch (err) {
       console.error("Ошибка входа: ", err)
     }
