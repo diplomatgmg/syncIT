@@ -27,7 +27,7 @@ const HardSkillList: FC<HardSkillListProps> = ({
     setSelectedHardSkills((prevSelected) =>
       xorBy(prevSelected, [id], (item) => item)
     )
-    setSearchHardSkill("")
+    setSearchHardSkill("") // TODO Возможно, пользователю не удобно сбрасывать input без авто сохранения
   }
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
