@@ -1,8 +1,8 @@
 import {
   type FC,
-  type ReactElement,
-  type HTMLInputTypeAttribute,
   type HTMLInputAutoCompleteAttribute,
+  type HTMLInputTypeAttribute,
+  type ReactElement,
   useId,
 } from "react"
 import { Controller, type FieldValues } from "react-hook-form"
@@ -11,16 +11,16 @@ interface InputProps {
   label: string
   name: string
   type?: HTMLInputTypeAttribute
-  autocomplete?: HTMLInputAutoCompleteAttribute
+  autoComplete?: HTMLInputAutoCompleteAttribute
   control?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  rules: FieldValues
+  rules?: FieldValues
 }
 
 const Input: FC<InputProps> = ({
   label,
   name,
   type,
-  autocomplete,
+  autoComplete,
   control,
   rules,
 }): ReactElement => {
@@ -36,7 +36,7 @@ const Input: FC<InputProps> = ({
           <input
             id={inputId}
             type={type ?? "text"}
-            autoComplete={autocomplete ?? "off"}
+            autoComplete={autoComplete ?? "off"}
             {...field}
             value={field.value ?? ""}
           />

@@ -37,7 +37,7 @@ function LoginForm() {
       <div>
         <Input
           type={"email"}
-          autocomplete={"email"}
+          autoComplete={"email"}
           label={"Email"}
           name={"email"}
           control={control}
@@ -49,7 +49,7 @@ function LoginForm() {
       <div>
         <Input
           type={"password"}
-          autocomplete={"current-password"}
+          autoComplete={"current-password"}
           label={"Password"}
           name={"password"}
           control={control}

@@ -1,6 +1,6 @@
-import { FC, type ReactElement } from "react"
+import { ChangeEvent, FC, FormEvent, type ReactElement, useState } from "react"
 import { HardSkillTypes } from "@/types/hardSkillTypes.ts"
-import HardSkillItem from "@/features/profile/components/HardSkill/HardSkillItem.tsx"
+import xorBy from "lodash/xorBy"
 
 interface HardSkillListProps {
   hardSkills: HardSkillTypes[]
@@ -9,12 +9,50 @@ interface HardSkillListProps {
 const HardSkillList: FC<HardSkillListProps> = ({
   hardSkills,
 }): ReactElement => {
+  const [selected, setSelected] = useState<{ id: number }[]>([])
+  const [searchTerm, setSearchTerm] = useState("")
+
+  const filteredSkills = hardSkills.filter((skill) =>
+    skill.name.toLowerCase().includes(searchTerm.toLowerCase())
+  )
+
+  const handleCheckboxChange = (id: number) => {
+    setSelected((prevSelected) => xorBy(prevSelected, [{ id }], "id"))
+  }
+
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value)
+  }
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    console.log(selected)
+  }
+
   return (
-    <ul>
-      {hardSkills.map(({ id, name }) => (
-        <HardSkillItem key={id} name={name} />
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        placeholder="Search hard skills"
+        value={searchTerm}
+        onChange={handleSearchChange}
+      />
+
+      {filteredSkills.map(({ id, name }) => (
+        <li key={id}>
+          <label>
+            <input
+              type="checkbox"
+              onChange={() => handleCheckboxChange(id)}
+              checked={selected.some((item) => item.id === id)}
+            />
+            {name}
+          </label>
+        </li>
       ))}
-    </ul>
+
+      <button type="submit">Save</button>
+    </form>
   )
 }
 

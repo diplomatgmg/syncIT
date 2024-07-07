@@ -38,7 +38,7 @@ function RegisterForm() {
       <div>
         <Input
           type={"email"}
-          autocomplete={"email"}
+          autoComplete={"email"}
           label={"Email"}
           name={"email"}
           control={control}
@@ -50,7 +50,7 @@ function RegisterForm() {
       <div>
         <Input
           type={"password"}
-          autocomplete={"current-password"}
+          autoComplete={"current-password"}
           label={"Password"}
           name={"password"}
           control={control}
@@ -62,7 +62,7 @@ function RegisterForm() {
       <div>
         <Input
           type={"password"}
-          autocomplete={"new-password"}
+          autoComplete={"new-password"}
           label={"Repeat password"}
           name={"re_password"}
           control={control}
