@@ -1,9 +1,9 @@
 from rest_framework.generics import CreateAPIView
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework.request import Request
 from rest_framework.response import Response
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-from .serializers import UserSerializer
+from .serializers import UserCreateSerializer
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):
@@ -22,4 +22,4 @@ class CustomTokenRefreshView(TokenRefreshView):
 
 
 class UserCreateAPIView(CreateAPIView):
-    serializer_class = UserSerializer
+    serializer_class = UserCreateSerializer
