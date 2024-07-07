@@ -1,13 +1,13 @@
 import { FC, FormEvent, ReactElement, useEffect, useState } from "react"
-import { HardSkillTypes } from "@/types/hardSkillTypes.ts"
 import xorBy from "lodash/xorBy"
-import { useSetHardSkillsMutation } from "@/store/api/profileApi.ts"
 import HardSkillSearchInput from "@/features/profile/components/HardSkill/HardSkillSearchInput.tsx"
 import HardSkillCheckbox from "@/features/profile/components/HardSkill/HardSkillCheckbox.tsx"
+import { HardSkill } from "@/types/hardSkillTypes.ts"
+import { useSetUserHardSkillsMutation } from "@/store/api/profileApi.ts"
 
 interface HardSkillListProps {
-  hardSkills: HardSkillTypes[]
-  userHardSkills: HardSkillTypes["id"][]
+  hardSkills: HardSkill[]
+  userHardSkills: HardSkill[]
 }
 
 const HardSkillList: FC<HardSkillListProps> = ({
@@ -16,7 +16,7 @@ const HardSkillList: FC<HardSkillListProps> = ({
 }): ReactElement => {
   const [selectedHardSkills, setSelectedHardSkills] = useState(userHardSkills)
   const [searchHardSkill, setSearchHardSkill] = useState("")
-  const [setHardSkills] = useSetHardSkillsMutation()
+  const [setHardSkills] = useSetUserHardSkillsMutation()
   const [message, setMessage] = useState("")
 
   useEffect(() => {
@@ -24,9 +24,13 @@ const HardSkillList: FC<HardSkillListProps> = ({
   }, [userHardSkills])
 
   const handleCheckboxChange = (id: number) => {
-    setSelectedHardSkills((prevSelected) =>
-      xorBy(prevSelected, [id], (item) => item)
-    )
+    const skill = hardSkills.find((hardSkill) => hardSkill.id === id)
+
+    if (skill) {
+      setSelectedHardSkills((prevSelected) =>
+        xorBy(prevSelected, [skill], "id")
+      )
+    }
     setSearchHardSkill("") // TODO Возможно, пользователю не удобно сбрасывать input без авто сохранения
   }
 
@@ -64,7 +68,7 @@ const HardSkillList: FC<HardSkillListProps> = ({
             key={id}
             id={id}
             name={name}
-            isSelected={selectedHardSkills.includes(id)}
+            isSelected={selectedHardSkills.some((skill) => skill.id === id)}
             handleCheckboxChange={handleCheckboxChange}
           />
         ))}
