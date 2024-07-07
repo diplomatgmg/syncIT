@@ -1,30 +1,34 @@
 from django.contrib.auth import get_user_model
+from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
-from rest_framework.views import APIView
 
 from .models import Profile
+from ..hard_skill.serializers import HardSkillSerializer
 
 User = get_user_model()
 
 
-class ProfileAPIView(APIView):
+class ProfileAPIView(GenericAPIView):
+    queryset = Profile.objects.all()
     permission_classes = [IsAuthenticated]
+    serializer_class = HardSkillSerializer
 
     def get(self, request: Request) -> Response:
-        profile = Profile.objects.get(user=request.user)
-        hard_skill_ids = profile.hard_skills.values_list("id", flat=True)
+        profile = self.get_queryset().get(user=request.user)
+        hard_skills = profile.hard_skills.all()
 
-        return Response(hard_skill_ids)
+        serialized_data = self.get_serializer(hard_skills, many=True)
+        return Response(serialized_data.data)
 
     def patch(self, request: Request) -> Response:
-        hard_skills = request.data.get("hard_skills", [])
+        hard_skills_ids = map(lambda x: x["id"], request.data)
+        user = request.user
 
-        user = User.objects.get(email=request.user.email)
         profile, _ = Profile.objects.get_or_create(user=user)
-
         profile.hard_skills.clear()
-        profile.hard_skills.set(hard_skills)
+        profile.hard_skills.set(hard_skills_ids)
 
-        return Response({"hard_skills": profile.hard_skills.values()})
+        serialized_data = self.get_serializer(profile.hard_skills.all(), many=True)
+        return Response({"hard_skills": serialized_data.data})
