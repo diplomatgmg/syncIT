@@ -1,7 +1,7 @@
 import { BaseQueryFn, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import { BASE_URL } from "@/constants.ts"
 import { RootState } from "@/store/store.ts"
-import { logout, setCredentials } from "@/store/slice/authSlice.ts"
+import { logout, setTokens } from "@/store/slice/authSlice.ts"
 import { LoginResponse } from "@/types/authTypes.ts"
 
 const baseQuery = fetchBaseQuery({
@@ -42,7 +42,7 @@ const baseQueryWithReauth: BaseQueryFn = async (args, api, extraOptions) => {
   )
 
   if (refreshResult.data) {
-    api.dispatch(setCredentials(refreshResult.data as LoginResponse))
+    api.dispatch(setTokens(refreshResult.data as LoginResponse))
     result = await baseQuery(args, api, extraOptions)
   } else {
     api.dispatch(logout())

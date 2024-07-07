@@ -1,5 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { RegisterResponse, LoginResponse } from "../api/authApi.ts"
+import {
+  LoginResponse,
+  RegisterResponse,
+  TokenRefreshResponse,
+} from "@/types/authTypes.ts"
 
 interface AuthState {
   isAuthenticated: boolean
@@ -23,16 +27,21 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setCredentials: (state, action: PayloadAction<LoginResponse>) => {
-      const { email, token } = action.payload
+    setTokens: (
+      state,
+      action: PayloadAction<LoginResponse | TokenRefreshResponse>
+    ) => {
+      const { token } = action.payload
       state.isAuthenticated = true
-      state.email = email
-      state.token = token
-      localStorage.setItem("email", email)
+      state.token.access = token.access
+      state.token.refresh = token.refresh
       localStorage.setItem("accessToken", token.access)
       localStorage.setItem("refreshToken", token.refresh)
     },
-    setEmail: (state, action: PayloadAction<RegisterResponse>) => {
+    setEmail: (
+      state,
+      action: PayloadAction<RegisterResponse | LoginResponse>
+    ) => {
       const { email } = action.payload
       state.email = email
       localStorage.setItem("email", email)
@@ -49,5 +58,5 @@ const authSlice = createSlice({
   },
 })
 
-export const { setCredentials, setEmail, logout } = authSlice.actions
+export const { setTokens, setEmail, logout } = authSlice.actions
 export default authSlice.reducer

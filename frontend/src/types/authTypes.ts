@@ -9,3 +9,10 @@ export interface LoginResponse {
 export interface RegisterResponse {
   email: string
 }
+
+export interface TokenRefreshResponse {
+  token: {
+    access: string
+    refresh: string
+  }
+}

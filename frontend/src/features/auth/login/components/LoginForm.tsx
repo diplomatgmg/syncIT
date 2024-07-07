@@ -1,7 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form"
 import useAppDispatch from "@/store/hooks/useAppDispatch.ts"
 import { useLoginMutation } from "@/store/api/authApi.ts"
-import { setCredentials } from "@/store/slice/authSlice.ts"
+import { setEmail, setTokens } from "@/store/slice/authSlice.ts"
 import Input from "@/components/common/Input/Input.tsx"
 
 interface Inputs {
@@ -21,7 +21,8 @@ function LoginForm() {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
       const response = await login(data).unwrap()
-      dispatch(setCredentials(response))
+      dispatch(setTokens(response))
+      dispatch(setEmail(response)) // TODO сделать отдельный endpoint /api/users/me
     } catch (err) {
       console.error("Ошибка входа: ", err)
     }
