@@ -2,6 +2,8 @@ import { FC, FormEvent, ReactElement, useEffect, useState } from "react"
 import { HardSkillTypes } from "@/types/hardSkillTypes.ts"
 import xorBy from "lodash/xorBy"
 import { useSetHardSkillsMutation } from "@/store/api/profileApi.ts"
+import HardSkillSearchInput from "@/features/profile/components/HardSkill/HardSkillSearchInput.tsx"
+import HardSkillCheckbox from "@/features/profile/components/HardSkill/HardSkillCheckbox.tsx"
 
 interface HardSkillListProps {
   hardSkills: HardSkillTypes[]
@@ -22,14 +24,9 @@ const HardSkillList: FC<HardSkillListProps> = ({
   }, [userHardSkills])
 
   const handleCheckboxChange = (id: number) => {
-    const skill = hardSkills.find((hardSkill) => hardSkill.id === id)
-
-    if (skill) {
-      setSelectedHardSkills((prevSelected) =>
-        xorBy(prevSelected, [id], (item) => item)
-      )
-    }
-
+    setSelectedHardSkills((prevSelected) =>
+      xorBy(prevSelected, [id], (item) => item)
+    )
     setSearchHardSkill("")
   }
 
@@ -38,10 +35,15 @@ const HardSkillList: FC<HardSkillListProps> = ({
 
     try {
       await setHardSkills(selectedHardSkills).unwrap()
-      setMessage("Hard skills successfully saved!")
+      setMessage("Хард скиллы успешно сохранены")
       setTimeout(() => setMessage(""), 3000)
     } catch (err) {
       console.error("Ошибка входа: ", err)
+      setMessage(
+        "Ошибка при сохранении хард скиллов. " +
+          "Связаться с разработчиком - undefined. " +
+          "Шутка, я уже в курсе об ошибке <3"
+      )
     }
   }
 
@@ -51,25 +53,20 @@ const HardSkillList: FC<HardSkillListProps> = ({
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Search hard skills"
-        value={searchHardSkill}
-        onChange={(e) => setSearchHardSkill(e.target.value)}
+      <HardSkillSearchInput
+        searchHardSkill={searchHardSkill}
+        setSearchHardSkill={setSearchHardSkill}
       />
 
       <ul>
         {filteredHardSkills.map(({ id, name }) => (
-          <li key={id}>
-            <label>
-              <input
-                type="checkbox"
-                checked={selectedHardSkills.some((skillId) => skillId === id)}
-                onChange={() => handleCheckboxChange(id)}
-              />
-              {name}
-            </label>
-          </li>
+          <HardSkillCheckbox
+            key={id}
+            id={id}
+            name={name}
+            isSelected={selectedHardSkills.includes(id)}
+            handleCheckboxChange={handleCheckboxChange}
+          />
         ))}
       </ul>
 
