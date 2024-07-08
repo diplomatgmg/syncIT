@@ -1,4 +1,4 @@
-import { FC, FormEvent, type ReactElement, useEffect, useState } from "react"
+import { FC, type ReactElement, useEffect, useState } from "react"
 import { Grade } from "@/types/gradeTypes.ts"
 import { useSetUserGradesMutation } from "@/store/api/profileApi.ts"
 import xorBy from "lodash/xorBy"
@@ -21,19 +21,16 @@ const GradeList: FC<GradeListProps> = ({
     setSelectedGrades(userGrades)
   }, [userGrades])
 
-  const handleCheckboxChange = (id: number) => {
+  const handleCheckboxChange = async (id: number) => {
     const grade = grades.find((g) => g.id === id)
 
-    if (grade) {
-      setSelectedGrades((prevSelected) => xorBy(prevSelected, [grade], "id"))
-    }
-  }
+    if (!grade) return
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    const updatedGrades = xorBy(selectedGrades, [grade], "id")
+    setSelectedGrades(updatedGrades)
 
     try {
-      await setGrades(selectedGrades).unwrap()
+      await setGrades(updatedGrades).unwrap()
       setMessage("Грейды успешно сохранены")
       setTimeout(() => setMessage(""), 3000)
     } catch (err) {
@@ -47,7 +44,7 @@ const GradeList: FC<GradeListProps> = ({
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div>
       <ul>
         {grades.map(({ id, name }) => (
           <Checkbox
@@ -60,10 +57,8 @@ const GradeList: FC<GradeListProps> = ({
         ))}
       </ul>
 
-      <button type="submit">Save</button>
-
       {message && <p>{message}</p>}
-    </form>
+    </div>
   )
 }
 

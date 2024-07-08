@@ -1,4 +1,4 @@
-import { FC, FormEvent, ReactElement, useEffect, useState } from "react"
+import { FC, ReactElement, useEffect, useState } from "react"
 import xorBy from "lodash/xorBy"
 import HardSkillSearchInput from "@/features/profile/components/HardSkill/HardSkillSearchInput.tsx"
 import { HardSkill } from "@/types/hardSkillTypes.ts"
@@ -23,22 +23,16 @@ const HardSkillList: FC<HardSkillListProps> = ({
     setSelectedHardSkills(userHardSkills)
   }, [userHardSkills])
 
-  const handleCheckboxChange = (id: number) => {
+  const handleCheckboxChange = async (id: number) => {
     const skill = hardSkills.find((hardSkill) => hardSkill.id === id)
 
-    if (skill) {
-      setSelectedHardSkills((prevSelected) =>
-        xorBy(prevSelected, [skill], "id")
-      )
-    }
-    setSearchHardSkill("") // TODO Возможно, пользователю не удобно сбрасывать input без авто сохранения
-  }
+    if (!skill) return
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    const updatedSkills = xorBy(selectedHardSkills, [skill], "id")
+    setSelectedHardSkills(updatedSkills)
 
     try {
-      await setHardSkills(selectedHardSkills).unwrap()
+      await setHardSkills(updatedSkills).unwrap()
       setMessage("Хард скиллы успешно сохранены")
       setTimeout(() => setMessage(""), 3000)
     } catch (err) {
@@ -49,6 +43,8 @@ const HardSkillList: FC<HardSkillListProps> = ({
           "Шутка, я уже в курсе об ошибке <3"
       )
     }
+
+    setSearchHardSkill("")
   }
 
   const filteredHardSkills = hardSkills.filter(({ name }) =>
@@ -56,7 +52,7 @@ const HardSkillList: FC<HardSkillListProps> = ({
   )
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div>
       <HardSkillSearchInput
         searchHardSkill={searchHardSkill}
         setSearchHardSkill={setSearchHardSkill}
@@ -74,10 +70,8 @@ const HardSkillList: FC<HardSkillListProps> = ({
         ))}
       </ul>
 
-      <button type="submit">Save</button>
-
       {message && <p>{message}</p>}
-    </form>
+    </div>
   )
 }
 
