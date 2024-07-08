@@ -6,4 +6,4 @@ from .models import HardSkill
 class HardSkillSerializer(serializers.ModelSerializer):
     class Meta:
         model = HardSkill
-        fields = "__all__"
+        fields = ("id", "name")
