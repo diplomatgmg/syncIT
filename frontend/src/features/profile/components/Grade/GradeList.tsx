@@ -2,7 +2,7 @@ import { FC, FormEvent, type ReactElement, useEffect, useState } from "react"
 import { Grade } from "@/types/gradeTypes.ts"
 import { useSetUserGradesMutation } from "@/store/api/profileApi.ts"
 import xorBy from "lodash/xorBy"
-import GradeCheckBox from "@/features/profile/components/Grade/GradeCheckBox.tsx"
+import Checkbox from "@/components/common/Input/CheckBox.tsx"
 
 interface GradeListProps {
   grades: Grade[]
@@ -50,7 +50,7 @@ const GradeList: FC<GradeListProps> = ({
     <form onSubmit={handleSubmit}>
       <ul>
         {grades.map(({ id, name }) => (
-          <GradeCheckBox
+          <Checkbox
             key={id}
             id={id}
             name={name}

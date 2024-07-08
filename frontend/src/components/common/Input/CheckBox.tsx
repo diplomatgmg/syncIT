@@ -1,13 +1,13 @@
 import { FC, type ReactElement } from "react"
 
-interface HardSkillCheckboxProps {
+interface CheckboxProps {
   id: number
   name: string
   isSelected: boolean
   handleCheckboxChange: (id: number) => void
 }
 
-const HardSkillCheckbox: FC<HardSkillCheckboxProps> = ({
+const Checkbox: FC<CheckboxProps> = ({
   id,
   name,
   isSelected,
@@ -27,4 +27,4 @@ const HardSkillCheckbox: FC<HardSkillCheckboxProps> = ({
   )
 }
 
-export default HardSkillCheckbox
+export default Checkbox

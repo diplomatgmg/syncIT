@@ -1,9 +1,9 @@
 import { FC, FormEvent, ReactElement, useEffect, useState } from "react"
 import xorBy from "lodash/xorBy"
 import HardSkillSearchInput from "@/features/profile/components/HardSkill/HardSkillSearchInput.tsx"
-import HardSkillCheckbox from "@/features/profile/components/HardSkill/HardSkillCheckbox.tsx"
 import { HardSkill } from "@/types/hardSkillTypes.ts"
 import { useSetUserHardSkillsMutation } from "@/store/api/profileApi.ts"
+import Checkbox from "@/components/common/Input/CheckBox.tsx"
 
 interface HardSkillListProps {
   hardSkills: HardSkill[]
@@ -64,7 +64,7 @@ const HardSkillList: FC<HardSkillListProps> = ({
 
       <ul>
         {filteredHardSkills.map(({ id, name }) => (
-          <HardSkillCheckbox
+          <Checkbox
             key={id}
             id={id}
             name={name}
