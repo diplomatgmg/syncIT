@@ -3,6 +3,7 @@ import authApi from "@/store/api/authApi.ts"
 import profileApi from "@/store/api/profileApi.ts"
 import gradeApi from "@/store/api/gradeApi.ts"
 import hardSkillApi from "@/store/api/hardSkillApi.ts"
+import workFormatApi from "@/store/api/workFormatApi.ts"
 import authReducer from "@/store/slice/authSlice.ts"
 
 const store = configureStore({
@@ -11,6 +12,7 @@ const store = configureStore({
     [profileApi.reducerPath]: profileApi.reducer,
     [gradeApi.reducerPath]: gradeApi.reducer,
     [hardSkillApi.reducerPath]: hardSkillApi.reducer,
+    [workFormatApi.reducerPath]: workFormatApi.reducer,
     auth: authReducer,
   },
   middleware: (getDefaultMiddleware) =>
@@ -18,7 +20,8 @@ const store = configureStore({
       authApi.middleware,
       profileApi.middleware,
       gradeApi.middleware,
-      hardSkillApi.middleware
+      hardSkillApi.middleware,
+      workFormatApi.middleware
     ),
 })
 
