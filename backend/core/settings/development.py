@@ -1,8 +1,6 @@
 from .base import *
 import sys
 
-SECRET_KEY = "supersecretkey"
-DEBUG = True
 TESTING = "test" in sys.argv
 
 ALLOWED_HOSTS = ["*"]
