@@ -5,6 +5,9 @@ from apps.hard_skill.serializers import HardSkillSerializer
 from apps.user_profile.mixins import ProfileAttributesMixin
 from rest_framework.generics import GenericAPIView
 
+from apps.work_format.models import WorkFormat
+from apps.work_format.serializers import WorkFormatSerializer
+
 
 class ProfileHardSkillsAPIView(ProfileAttributesMixin, GenericAPIView):
     attribute_model = HardSkill
@@ -16,3 +19,9 @@ class ProfileGradesAPIView(ProfileAttributesMixin, GenericAPIView):
     attribute_model = Grade
     attribute_serializer = GradeSerializer
     attribute_field = "grades"
+
+
+class ProfileWorkFormatsAPIView(ProfileAttributesMixin, GenericAPIView):
+    attribute_model = WorkFormat
+    attribute_serializer = WorkFormatSerializer
+    attribute_field = "work_formats"
