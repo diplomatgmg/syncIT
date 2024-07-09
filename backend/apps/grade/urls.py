@@ -3,5 +3,5 @@ from django.urls import path
 from .views import GradeListAPIView
 
 urlpatterns = [
-    path("grades/", GradeListAPIView.as_view()),
+    path("grades/", GradeListAPIView.as_view(), name="grade-list"),
 ]

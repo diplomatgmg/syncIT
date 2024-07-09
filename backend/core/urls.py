@@ -28,5 +28,6 @@ urlpatterns = [
     path("api/", include("apps.work_format.urls")),
 ]
 
-if settings.DEBUG:
+
+if settings.DEBUG and not settings.TESTING:
     urlpatterns += (path("__debug__/", include("debug_toolbar.urls")),)
