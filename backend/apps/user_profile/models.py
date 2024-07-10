@@ -10,6 +10,7 @@ User = get_user_model()
 
 
 class Profile(models.Model):
+    is_complete = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     hard_skills = models.ManyToManyField(HardSkill, related_name="profiles")
     grades = models.ManyToManyField(Grade, related_name="profiles")
