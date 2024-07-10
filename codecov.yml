@@ -1,0 +1,5 @@
+ignore:
+  - "manage.py"
+  - "*/migrations/*"
+  - "*/asgi.py"
+  - "*/wsgi.py"
