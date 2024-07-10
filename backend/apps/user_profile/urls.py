@@ -9,7 +9,7 @@ from .views import (
 )
 
 urlpatterns = [
-    path("is_complete/", ProfileAPIView.as_view()),
+    path("", ProfileAPIView.as_view(), name="profile"),
     path(
         "hard_skills/",
         ProfileHardSkillsAPIView.as_view(),
