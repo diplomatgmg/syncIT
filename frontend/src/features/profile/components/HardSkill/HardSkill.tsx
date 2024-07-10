@@ -1,7 +1,7 @@
-import { type ReactElement } from "react"
+import { ReactElement } from "react"
+import { useGetHardSkillsQuery } from "@/store/api/hardSkillApi.ts"
 import { useGetUserHardSkillsQuery } from "@/store/api/profileApi.ts"
 import HardSkillList from "@/features/profile/components/HardSkill/HardSkillList.tsx"
-import { useGetHardSkillsQuery } from "@/store/api/hardSkillApi.ts"
 
 const HardSkill = (): ReactElement => {
   const { data: hardSkills } = useGetHardSkillsQuery()
