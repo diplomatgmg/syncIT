@@ -7,11 +7,19 @@ from apps.hard_skill.serializers import HardSkillSerializer
 from apps.profession.models import Profession
 from apps.profession.serializers import ProfessionSerializer
 from apps.user_profile.mixins import ProfileAttributesMixin, ProfileMixin
+from apps.user_profile.serializers import ProfileIsCompletedSerializer
 from apps.work_format.models import WorkFormat
 from apps.work_format.serializers import WorkFormatSerializer
 
 
 class ProfileAPIView(ProfileMixin, RetrieveAPIView):
+    def get_object(self):
+        return self.queryset.get(user=self.request.user)
+
+
+class ProfileIsCompletedAPIView(ProfileMixin, RetrieveAPIView):
+    serializer_class = ProfileIsCompletedSerializer
+
     def get_object(self):
         return self.queryset.get(user=self.request.user)
 

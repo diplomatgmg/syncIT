@@ -2,6 +2,7 @@ from django.urls import path
 
 from .views import (
     ProfileAPIView,
+    ProfileIsCompletedAPIView,
     ProfileHardSkillsAPIView,
     ProfileGradesAPIView,
     ProfileWorkFormatsAPIView,
@@ -10,6 +11,11 @@ from .views import (
 
 urlpatterns = [
     path("", ProfileAPIView.as_view(), name="profile"),
+    path(
+        "is_completed/",
+        ProfileIsCompletedAPIView.as_view(),
+        name="profile-is-completed",
+    ),
     path(
         "hard_skills/",
         ProfileHardSkillsAPIView.as_view(),

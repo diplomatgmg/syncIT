@@ -22,3 +22,9 @@ class ProfileSerializer(serializers.ModelSerializer):
             "work_formats",
             "professions",
         )
+
+
+class ProfileIsCompletedSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ("is_completed",)
