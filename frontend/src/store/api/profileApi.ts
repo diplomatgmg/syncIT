@@ -3,6 +3,7 @@ import baseQuery from "@/store/api/baseQuery.ts"
 import { HardSkill } from "@/types/hardSkillTypes.ts"
 import { Grade } from "@/types/gradeTypes.ts"
 import { WorkFormat } from "@/types/workFormatTypes.ts"
+import { Profession } from "@/types/professionTypes.ts"
 
 const profileApi = createApi({
   reducerPath: "profileApi",
@@ -16,6 +17,9 @@ const profileApi = createApi({
     }),
     getUserWorkFormats: builder.query<WorkFormat[], void>({
       query: () => "profile/work_formats/",
+    }),
+    getUserProfessions: builder.query<Profession[], void>({
+      query: () => "profile/professions/",
     }),
 
     setUserHardSkills: builder.mutation<HardSkill[], HardSkill[]>({
@@ -39,6 +43,13 @@ const profileApi = createApi({
         body: data,
       }),
     }),
+    setUserProfessions: builder.mutation<Profession[], Profession[]>({
+      query: (data) => ({
+        url: "profile/professions/",
+        method: "PATCH",
+        body: data,
+      }),
+    }),
   }),
 })
 
@@ -46,8 +57,10 @@ export const {
   useGetUserHardSkillsQuery,
   useGetUserGradesQuery,
   useGetUserWorkFormatsQuery,
+  useGetUserProfessionsQuery,
   useSetUserHardSkillsMutation,
   useSetUserGradesMutation,
   useSetUserWorkFormatsMutation,
+  useSetUserProfessionsMutation,
 } = profileApi
 export default profileApi
