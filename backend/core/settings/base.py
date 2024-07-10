@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "apps.work_format",
     "apps.profession",
     "apps.user_profile",
+    "apps.vacancy",
 ]
 
 MIDDLEWARE = [
