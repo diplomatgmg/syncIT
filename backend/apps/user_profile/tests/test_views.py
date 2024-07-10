@@ -27,8 +27,7 @@ class ProfileAPIViewTests(TestCase):
         response = view(request)
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data["id"], self.profile.id)
-        self.assertEqual(response.data["is_complete"], self.profile.is_complete)
+        self.assertEqual(response.data["is_completed"], self.profile.is_completed)
 
     def test_profile_api_view_unauthorized(self):
         url = reverse("profile")

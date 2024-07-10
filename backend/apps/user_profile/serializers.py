@@ -1,8 +1,24 @@
-from .models import Profile
 from rest_framework import serializers
+
+from .models import Profile
+from ..grade.serializers import GradeSerializer
+from ..hard_skill.serializers import HardSkillSerializer
+from ..profession.serializers import ProfessionSerializer
+from ..work_format.serializers import WorkFormatSerializer
 
 
 class ProfileSerializer(serializers.ModelSerializer):
+    hard_skills = HardSkillSerializer(many=True)
+    grades = GradeSerializer(many=True)
+    work_formats = WorkFormatSerializer(many=True)
+    professions = ProfessionSerializer(many=True)
+
     class Meta:
         model = Profile
-        fields = ("id", "is_complete")
+        fields = (
+            "is_completed",
+            "hard_skills",
+            "grades",
+            "work_formats",
+            "professions",
+        )

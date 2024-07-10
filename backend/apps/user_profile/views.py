@@ -1,4 +1,4 @@
-from rest_framework.generics import GenericAPIView
+from rest_framework.generics import GenericAPIView, RetrieveAPIView
 
 from apps.grade.models import Grade
 from apps.grade.serializers import GradeSerializer
@@ -9,16 +9,11 @@ from apps.profession.serializers import ProfessionSerializer
 from apps.user_profile.mixins import ProfileAttributesMixin, ProfileMixin
 from apps.work_format.models import WorkFormat
 from apps.work_format.serializers import WorkFormatSerializer
-from rest_framework.request import Request
-from rest_framework.response import Response
 
 
-class ProfileAPIView(ProfileMixin, GenericAPIView):
-    def get(self, request: Request) -> Response:
-        profile = self.get_queryset().get(user=request.user)
-        serializer = self.get_serializer(profile)
-
-        return Response(serializer.data)
+class ProfileAPIView(ProfileMixin, RetrieveAPIView):
+    def get_object(self):
+        return self.queryset.get(user=self.request.user)
 
 
 class ProfileAttributesAPIView(ProfileMixin, ProfileAttributesMixin, GenericAPIView):
