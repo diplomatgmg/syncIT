@@ -1,5 +1,9 @@
 ignore:
-  - "manage.py"
-  - "*/migrations/*"
-  - "*/asgi.py"
-  - "*/wsgi.py"
+  - "**/migrations"
+  - "**/tests"
+  - "**/tests.py"
+  - "**/urls.py"
+  - "**/wsgi.py"
+  - "**/asgi.py"
+  - "**/settings.py"
+  - "**/admin.py"
