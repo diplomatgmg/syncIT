@@ -43,9 +43,9 @@ INSTALLED_APPS = [
     "apps.hard_skill",
     "apps.company",
     "apps.grade",
-    "apps.user_profile",
     "apps.work_format",
     "apps.profession",
+    "apps.user_profile",
 ]
 
 MIDDLEWARE = [
