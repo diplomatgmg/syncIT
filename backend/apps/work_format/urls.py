@@ -3,5 +3,5 @@ from django.urls import path
 from .views import WorkFormatListAPIView
 
 urlpatterns = [
-    path("work_formats/", WorkFormatListAPIView.as_view()),
+    path("work_formats/", WorkFormatListAPIView.as_view(), name="work_format-list"),
 ]
