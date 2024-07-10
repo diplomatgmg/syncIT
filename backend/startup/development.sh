@@ -12,6 +12,7 @@ echo "Database migrated"
 echo "Loading fixtures..."
 python manage.py loaddata $FIXTURES_DIR/hard_skills.json
 python manage.py loaddata $FIXTURES_DIR/grades.json
+python manage.py loaddata $FIXTURES_DIR/work_formats.json
 echo "Fixtures loaded"
 
 echo "Create superuser..."
