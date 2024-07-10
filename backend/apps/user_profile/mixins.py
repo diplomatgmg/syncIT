@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
@@ -8,7 +9,7 @@ from .models import Profile
 User = get_user_model()
 
 
-class ProfileAttributesMixin:
+class ProfileAttributesMixin(GenericAPIView):
     queryset = Profile.objects.all()
     permission_classes = [IsAuthenticated]
     serializer_class = ProfileSerializer

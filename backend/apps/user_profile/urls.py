@@ -8,8 +8,8 @@ from .views import (
 )
 
 urlpatterns = [
-    path("profile/hard_skills/", ProfileHardSkillsAPIView.as_view()),
-    path("profile/grades/", ProfileGradesAPIView.as_view()),
-    path("profile/work_formats/", ProfileWorkFormatsAPIView.as_view()),
-    path("profile/professions/", ProfileProfessionsAPIView.as_view()),
+    path("hard_skills/", ProfileHardSkillsAPIView.as_view()),
+    path("grades/", ProfileGradesAPIView.as_view()),
+    path("work_formats/", ProfileWorkFormatsAPIView.as_view()),
+    path("professions/", ProfileProfessionsAPIView.as_view()),
 ]
