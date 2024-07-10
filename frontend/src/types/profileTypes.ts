@@ -12,5 +12,5 @@ export interface Profile {
   hardSkills: HardSkill[]
   grades: Grade[]
   workFormats: WorkFormat[]
-  profession: Profession[]
+  professions: Profession[]
 }

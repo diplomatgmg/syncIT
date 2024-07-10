@@ -7,7 +7,7 @@ const Profession = (): ReactElement => {
   const { data: professions } = useGetProfessionsQuery()
   const { data: profileData } = useGetProfileDataQuery()
 
-  const userProfessions = profileData?.profession ?? []
+  const userProfessions = profileData?.professions ?? []
 
   return (
     <ProfessionList
