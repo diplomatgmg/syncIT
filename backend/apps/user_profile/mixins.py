@@ -23,7 +23,7 @@ class ProfileAttributesMixin:
 
     def patch(self, request: Request) -> Response:
         user = request.user
-        profile, _ = Profile.objects.get_or_create(user=user)
+        profile = Profile.objects.get(user=user)
 
         attributes_data = request.data or []
         attributes_ids = [attr.get("id") for attr in attributes_data]
