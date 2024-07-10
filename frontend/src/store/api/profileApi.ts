@@ -13,6 +13,9 @@ const profileApi = createApi({
     getProfileData: builder.query<Profile, void>({
       query: () => "profile/",
     }),
+    getProfileIsCompleted: builder.query<{ isCompleted: boolean }, void>({
+      query: () => "profile/is_completed/",
+    }),
 
     setUserHardSkills: builder.mutation<HardSkill[], HardSkill[]>({
       query: (data) => ({
@@ -47,6 +50,7 @@ const profileApi = createApi({
 
 export const {
   useGetProfileDataQuery,
+  useGetProfileIsCompletedQuery,
   useSetUserHardSkillsMutation,
   useSetUserGradesMutation,
   useSetUserWorkFormatsMutation,
