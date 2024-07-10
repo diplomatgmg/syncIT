@@ -4,7 +4,7 @@ import { HardSkill } from "@/types/hardSkillTypes.ts"
 import { Grade } from "@/types/gradeTypes.ts"
 import { WorkFormat } from "@/types/workFormatTypes.ts"
 import { Profession } from "@/types/professionTypes.ts"
-import { Profile } from "@/types/ProfileTypes.ts"
+import { Profile, ProfileStatus } from "@/types/profileTypes.ts"
 
 const profileApi = createApi({
   reducerPath: "profileApi",
@@ -13,7 +13,7 @@ const profileApi = createApi({
     getProfileData: builder.query<Profile, void>({
       query: () => "profile/",
     }),
-    getProfileIsCompleted: builder.query<{ isCompleted: boolean }, void>({
+    getProfileStatus: builder.query<ProfileStatus, void>({
       query: () => "profile/is_completed/",
     }),
 
@@ -50,7 +50,7 @@ const profileApi = createApi({
 
 export const {
   useGetProfileDataQuery,
-  useGetProfileIsCompletedQuery,
+  useGetProfileStatusQuery,
   useSetUserHardSkillsMutation,
   useSetUserGradesMutation,
   useSetUserWorkFormatsMutation,

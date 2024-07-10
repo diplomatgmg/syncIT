@@ -1,7 +1,7 @@
 import { ReactElement, useEffect } from "react"
 import useSelectableList from "@/store/hooks/useSelectableList.ts"
 import Checkbox from "@/components/common/Input/CheckBox.tsx"
-import { useGetProfileIsCompletedQuery } from "@/store/api/profileApi.ts"
+import { useGetProfileStatusQuery } from "@/store/api/profileApi.ts"
 
 interface SelectableListProps<T> {
   items: T[]
@@ -16,14 +16,14 @@ const SelectableList = <T extends { id: number; name: string }>({
   mutation,
   searchComponent,
 }: SelectableListProps<T>): ReactElement => {
-  const { refetch: refetchProfileIsCompleted } = useGetProfileIsCompletedQuery()
+  const { refetch: refetchProfileStatus } = useGetProfileStatusQuery()
   const { selectedItems, setSelectedItems, message, handleCheckboxChange } =
     useSelectableList(userItems, mutation)
 
   useEffect(() => {
     setSelectedItems(userItems)
-    refetchProfileIsCompleted()
-  }, [userItems, setSelectedItems, refetchProfileIsCompleted])
+    refetchProfileStatus()
+  }, [userItems, setSelectedItems, refetchProfileStatus])
 
   return (
     <div>

@@ -4,17 +4,17 @@ import useAuth from "@/store/hooks/useAuth.ts"
 import Grade from "@/features/profile/components/Grade/Grade.tsx"
 import WorkFormat from "@/features/profile/components/WorkFormat/WorkFormat.tsx"
 import Profession from "@/features/profile/components/Profession/Profession.tsx"
-import { useGetProfileIsCompletedQuery } from "@/store/api/profileApi.ts"
+import { useGetProfileStatusQuery } from "@/store/api/profileApi.ts"
 
 const Profile = (): ReactElement => {
   const { email } = useAuth()
-  const { data: profileIsCompleted } = useGetProfileIsCompletedQuery()
+  const { data: profileStatus } = useGetProfileStatusQuery()
 
   return (
     <div>
       <span>email - {email}</span>
       <br />
-      <span>profile completed = {String(profileIsCompleted?.isCompleted)}</span>
+      <span>profile completed = {String(profileStatus?.isCompleted)}</span>
       <br />
       <hr />
       <HardSkill />
