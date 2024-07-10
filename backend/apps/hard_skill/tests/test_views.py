@@ -10,7 +10,7 @@ class HardSkillListAPIViewTestCase(APITestCase):
         """Проверяем, что представление возвращает список всех скиллов"""
         HardSkill.objects.create(name="Python")
         HardSkill.objects.create(name="JavaScript")
-        url = reverse("hard_skill-list")
+        url = reverse("hard-skill-list")
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 2)

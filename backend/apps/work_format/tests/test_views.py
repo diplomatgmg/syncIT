@@ -10,7 +10,7 @@ class WorkFormatListAPIViewTestCase(APITestCase):
         """Проверяем, что представление возвращает список всех форматов работы"""
         WorkFormat.objects.create(name="Офис")
         WorkFormat.objects.create(name="Удаленка")
-        url = reverse("work_format-list")
+        url = reverse("work-format-list")
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 2)
