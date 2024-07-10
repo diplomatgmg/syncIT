@@ -7,3 +7,5 @@ ignore:
   - "**/asgi.py"
   - "**/settings.py"
   - "**/admin.py"
+  - "**/manage.py"
+  - "**/apps.py"
