@@ -1,8 +1,8 @@
-<a href="https://codeclimate.com/github/diplomatgmg/it_job_aggregator/maintainability"><img src="https://api.codeclimate.com/v1/badges/ba7e9ae9f4e9079c7b77/maintainability" /></a>
-<a href="https://codecov.io/github/diplomatgmg/it_job_aggregator"><img src="https://codecov.io/github/diplomatgmg/it_job_aggregator/graph/badge.svg?token=U3Z5D4VE22"/></a>
-
-<a href="https://wakatime.com/badge/user/018edcf0-2b06-4a99-805c-3bc4df0185a4/project/3542e25e-1be2-4f0e-88a1-bb2342b4431c"><img src="https://wakatime.com/badge/user/018edcf0-2b06-4a99-805c-3bc4df0185a4/project/3542e25e-1be2-4f0e-88a1-bb2342b4431c.svg" alt="wakatime"></a>
-
+<div align="center">
+    <a href="https://codeclimate.com/github/diplomatgmg/it_job_aggregator/maintainability"><img src="https://api.codeclimate.com/v1/badges/ba7e9ae9f4e9079c7b77/maintainability" /></a>
+    <a href="https://codecov.io/github/diplomatgmg/it_job_aggregator"><img src="https://codecov.io/github/diplomatgmg/it_job_aggregator/graph/badge.svg?token=U3Z5D4VE22"/></a>
+    <a href="https://wakatime.com/badge/github/diplomatgmg/it_job_aggregator"><img src="https://wakatime.com/badge/github/diplomatgmg/it_job_aggregator.svg"></a>
+</div>
 
 
 # Агрегатор it вакансий
