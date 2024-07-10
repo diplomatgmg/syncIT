@@ -4,22 +4,14 @@ import { HardSkill } from "@/types/hardSkillTypes.ts"
 import { Grade } from "@/types/gradeTypes.ts"
 import { WorkFormat } from "@/types/workFormatTypes.ts"
 import { Profession } from "@/types/professionTypes.ts"
+import { Profile } from "@/types/ProfileTypes.ts"
 
 const profileApi = createApi({
   reducerPath: "profileApi",
   baseQuery,
   endpoints: (builder) => ({
-    getUserHardSkills: builder.query<HardSkill[], void>({
-      query: () => "profile/hard_skills/",
-    }),
-    getUserGrades: builder.query<Grade[], void>({
-      query: () => "profile/grades/",
-    }),
-    getUserWorkFormats: builder.query<WorkFormat[], void>({
-      query: () => "profile/work_formats/",
-    }),
-    getUserProfessions: builder.query<Profession[], void>({
-      query: () => "profile/professions/",
+    getProfileData: builder.query<Profile, void>({
+      query: () => "profile/",
     }),
 
     setUserHardSkills: builder.mutation<HardSkill[], HardSkill[]>({
@@ -54,10 +46,7 @@ const profileApi = createApi({
 })
 
 export const {
-  useGetUserHardSkillsQuery,
-  useGetUserGradesQuery,
-  useGetUserWorkFormatsQuery,
-  useGetUserProfessionsQuery,
+  useGetProfileDataQuery,
   useSetUserHardSkillsMutation,
   useSetUserGradesMutation,
   useSetUserWorkFormatsMutation,

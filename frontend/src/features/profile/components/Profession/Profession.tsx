@@ -1,16 +1,18 @@
 import { type ReactElement } from "react"
-import { useGetUserProfessionsQuery } from "@/store/api/profileApi.ts"
+import { useGetProfileDataQuery } from "@/store/api/profileApi.ts"
 import { useGetProfessionsQuery } from "@/store/api/professionApi.ts"
 import ProfessionList from "@/features/profile/components/Profession/ProfessionList.tsx"
 
 const Profession = (): ReactElement => {
   const { data: professions } = useGetProfessionsQuery()
-  const { data: userProfessions } = useGetUserProfessionsQuery()
+  const { data: profileData } = useGetProfileDataQuery()
+
+  const userProfessions = profileData?.profession ?? []
 
   return (
     <ProfessionList
       professions={professions ?? []}
-      userProfessions={userProfessions ?? []}
+      userProfessions={userProfessions}
     />
   )
 }
