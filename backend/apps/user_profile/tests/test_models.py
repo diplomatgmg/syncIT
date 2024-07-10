@@ -19,7 +19,7 @@ class ProfileModelTests(TestCase):
 
     def test_is_complete_flag(self):
         """
-        Тестирует, что флаг is_complete устанавливается в True, если все условия выполнены.
+        Тестирует, что флаг is_completed устанавливается в True, если все условия выполнены.
         В данном случае, все связанные поля имеют значения и hard_skills содержит минимум три элемента.
         """
         self.profile.hard_skills.set(
@@ -30,11 +30,11 @@ class ProfileModelTests(TestCase):
         self.profile.professions.set([self.profession])
         self.profile.refresh_from_db()
 
-        self.assertTrue(self.profile.is_complete)
+        self.assertTrue(self.profile.is_completed)
 
     def test_is_complete_flag_incomplete(self):
         """
-        Тестирует, что флаг is_complete устанавливается в False, если хотя бы одно условие не выполнено.
+        Тестирует, что флаг is_completed устанавливается в False, если хотя бы одно условие не выполнено.
         В данном случае, grades пуст и hard_skills содержит менее трех элементов.
         """
         self.profile.hard_skills.set([self.hard_skill1])
@@ -43,4 +43,4 @@ class ProfileModelTests(TestCase):
         self.profile.professions.set([self.profession])
         self.profile.refresh_from_db()
 
-        self.assertFalse(self.profile.is_complete)
+        self.assertFalse(self.profile.is_completed)

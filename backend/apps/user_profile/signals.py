@@ -23,11 +23,13 @@ def update_is_complete(sender, instance, **kwargs):
     work_formats_count = instance.work_formats.count()
     professions_count = instance.professions.count()
 
-    instance.is_complete = (
+    is_completed = (
         hard_skills_count >= 3
         and grades_count > 0
         and work_formats_count > 0
         and professions_count > 0
     )
+
+    instance.is_completed = is_completed
 
     instance.save()
