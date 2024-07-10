@@ -1,0 +1,23 @@
+[
+  {
+    "model": "profession.profession",
+    "pk": 1,
+    "fields": {
+      "name": "Frontend-разработчик"
+    }
+  },
+  {
+    "model": "profession.profession",
+    "pk": 2,
+    "fields": {
+      "name": "Backend-разработчик"
+    }
+  },
+  {
+    "model": "profession.profession",
+    "pk": 3,
+    "fields": {
+      "name": "Fullstack-разработчик"
+    }
+  }
+]

@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "apps.grade",
     "apps.user_profile",
     "apps.work_format",
+    "apps.profession",
 ]
 
 MIDDLEWARE = [

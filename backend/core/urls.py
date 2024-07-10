@@ -26,6 +26,7 @@ urlpatterns = [
     path("api/", include("apps.grade.urls")),
     path("api/", include("apps.user_profile.urls")),
     path("api/", include("apps.work_format.urls")),
+    path("api/", include("apps.profession.urls")),
 ]
 
 
