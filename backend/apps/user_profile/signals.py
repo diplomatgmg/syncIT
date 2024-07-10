@@ -18,9 +18,6 @@ def create_profile(sender, instance, created, **kwargs):
 @receiver(m2m_changed, sender=Profile.work_formats.through)
 @receiver(m2m_changed, sender=Profile.professions.through)
 def update_is_complete(sender, instance, **kwargs):
-    if not isinstance(instance, Profile):
-        return
-
     hard_skills_count = instance.hard_skills.count()
     grades_count = instance.grades.count()
     work_formats_count = instance.work_formats.count()
