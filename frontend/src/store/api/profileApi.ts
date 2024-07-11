@@ -9,12 +9,14 @@ import { Profile, ProfileStatus } from "@/types/profileTypes.ts"
 const profileApi = createApi({
   reducerPath: "profileApi",
   baseQuery,
+  tagTypes: ["Profile"],
   endpoints: (builder) => ({
     getProfileData: builder.query<Profile, void>({
       query: () => "profile/",
     }),
     getProfileStatus: builder.query<ProfileStatus, void>({
       query: () => "profile/is_completed/",
+      providesTags: ["Profile"],
     }),
 
     setUserHardSkills: builder.mutation<HardSkill[], HardSkill[]>({
@@ -23,12 +25,14 @@ const profileApi = createApi({
         method: "PATCH",
         body: data,
       }),
+      invalidatesTags: ["Profile"],
     }),
     setUserGrades: builder.mutation<Grade[], Grade[]>({
       query: (data) => ({
         url: "profile/grades/",
         method: "PATCH",
         body: data,
+        invalidatesTags: ["Profile"],
       }),
     }),
     setUserWorkFormats: builder.mutation<WorkFormat[], WorkFormat[]>({
@@ -36,6 +40,7 @@ const profileApi = createApi({
         url: "profile/work_formats/",
         method: "PATCH",
         body: data,
+        invalidatesTags: ["Profile"],
       }),
     }),
     setUserProfessions: builder.mutation<Profession[], Profession[]>({
@@ -43,6 +48,7 @@ const profileApi = createApi({
         url: "profile/professions/",
         method: "PATCH",
         body: data,
+        invalidatesTags: ["Profile"],
       }),
     }),
   }),
