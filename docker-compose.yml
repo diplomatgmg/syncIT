@@ -26,6 +26,8 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+      redis:
+        condition: service_healthy
     networks:
       - app-network
 
@@ -49,13 +51,74 @@ services:
     image: postgres:alpine
     ports:
       - "5432:5432"
+    expose:
+      - 5432
     env_file:
       - .env
     healthcheck:
       test: pg_isready -h ${POSTGRES_HOST} -p ${POSTGRES_PORT} -d ${POSTGRES_DB}
-      interval: 3s
-      timeout: 1s
+      interval: 10s
+      timeout: 10s
       retries: 5
+    networks:
+      - app-network
+
+  redis:
+    container_name: redis
+    image: redis:7.2.5-alpine
+    hostname: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    networks:
+      - app-network
+
+  celery:
+    container_name: celery
+    build:
+      context: ./backend
+      target: ${BUILD_TARGET}
+    env_file:
+      - .env
+    command: celery -A core.celery.app worker -l debug
+    depends_on:
+      - redis
+      - backend
+    networks:
+      - app-network
+
+  celery-beat:
+    container_name: celery-beat
+    build:
+      context: ./backend
+    env_file:
+      - .env
+    command: celery -A core.celery.app beat -l debug
+    depends_on:
+      - backend
+      - redis
+      - celery
+    networks:
+      - app-network
+
+  flower:
+    container_name: flower
+    build:
+      context: ./backend
+    command: celery -A core.celery.app flower -l debug
+    env_file:
+      - .env
+    ports:
+      - "5555:5555"
+    depends_on:
+      - backend
+      - redis
+      - celery
     networks:
       - app-network
 
