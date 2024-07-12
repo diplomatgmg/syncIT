@@ -1,8 +1,6 @@
 from .base import *
 import sys
 
-TESTING = "test" in sys.argv
-
 ALLOWED_HOSTS = ["*"]
 
 CORS_ALLOWED_ORIGINS = [
