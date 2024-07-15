@@ -1,4 +1,4 @@
-FROM python:3.12-slim as base
+FROM python:3.12-slim AS base
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
@@ -9,7 +9,7 @@ RUN pip install --upgrade pip
 
 
 # DEVELOPMENT
-FROM base as development
+FROM base AS development
 
 COPY ./requirements/base.txt ./requirements/base.txt
 COPY ./requirements/development.txt ./requirements/development.txt
@@ -22,7 +22,7 @@ CMD ["sh", "startup/development.sh"]
 
 
 # PRODUCTION
-FROM base as production
+FROM base AS production
 
 COPY ./requirements/base.txt ./requirements/base.txt
 COPY ./requirements/production.txt ./requirements/production.txt
