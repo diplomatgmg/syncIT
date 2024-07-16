@@ -1,1 +1,58 @@
-[{"model": "grade.grade", "pk": 1, "fields": {"name": "Junior"}}, {"model": "grade.grade", "pk": 2, "fields": {"name": "Middle"}}, {"model": "grade.grade", "pk": 3, "fields": {"name": "Senior"}}]
+[
+  {
+    "model": "grade.grade",
+    "pk": 1,
+    "fields": {
+      "name": "Junior"
+    }
+  },
+  {
+    "model": "grade.grade",
+    "pk": 2,
+    "fields": {
+      "name": "Middle"
+    }
+  },
+  {
+    "model": "grade.grade",
+    "pk": 3,
+    "fields": {
+      "name": "Senior"
+    }
+  },
+  {
+    "model": "grade.grade",
+    "pk": 4,
+    "fields": {
+      "name": "Junior/Middle"
+    }
+  },
+  {
+    "model": "grade.grade",
+    "pk": 5,
+    "fields": {
+      "name": "Middle/Senior"
+    }
+  },
+  {
+    "model": "grade.grade",
+    "pk": 6,
+    "fields": {
+      "name": "Lead"
+    }
+  },
+  {
+    "model": "grade.grade",
+    "pk": 7,
+    "fields": {
+      "name": "Senior/Lead"
+    }
+  },
+  {
+    "model": "grade.grade",
+    "pk": 8,
+    "fields": {
+      "name": "Стажер"
+    }
+  }
+]

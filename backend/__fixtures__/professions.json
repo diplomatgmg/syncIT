@@ -19,5 +19,19 @@
     "fields": {
       "name": "Fullstack-разработчик"
     }
+  },
+  {
+    "model": "profession.profession",
+    "pk": 4,
+    "fields": {
+      "name": "Неизвестно"
+    }
+  },
+  {
+    "model": "profession.profession",
+    "pk": 5,
+    "fields": {
+      "name": "Тестировщик"
+    }
   }
 ]
