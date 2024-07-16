@@ -1,13 +1,8 @@
 from django.contrib import admin
 
-from .models import HardSkill, UnknownHardSkill
+from .models import HardSkill
 
 
 @admin.register(HardSkill)
 class HardSkillAdmin(admin.ModelAdmin):
-    pass
-
-
-@admin.register(UnknownHardSkill)
-class UnknownHardSkillAdmin(admin.ModelAdmin):
     pass
