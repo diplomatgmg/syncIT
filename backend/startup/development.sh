@@ -14,6 +14,7 @@ python manage.py loaddata $FIXTURES_DIR/hard_skills.json
 python manage.py loaddata $FIXTURES_DIR/grades.json
 python manage.py loaddata $FIXTURES_DIR/work_formats.json
 python manage.py loaddata $FIXTURES_DIR/professions.json
+python manage.py loaddata $FIXTURES_DIR/companies.json
 echo "Fixtures loaded"
 
 echo "Create superuser..."
