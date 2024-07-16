@@ -111,6 +111,7 @@ services:
     container_name: flower
     build:
       context: ./backend
+      target: ${BUILD_TARGET}
     command: celery -A core.celery.app flower -l debug
     env_file:
       - .env
