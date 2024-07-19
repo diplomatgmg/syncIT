@@ -68,6 +68,7 @@ class HHParser(BaseParser):
             vacancy_gpt_result = get_chat_gpt_completion(vacancy_prompt)
             parsed_vacancy = self.parse_vacancy(vacancy_gpt_result)
 
+            # TODO Сделать пропмт 5 раз, чтобы получить наибольшее количество полезной инфа
             while parsed_vacancy is None:
                 print("=== Повторяю запрос ===")
                 vacancy_gpt_result = get_chat_gpt_completion(vacancy_prompt)

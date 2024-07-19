@@ -2,7 +2,7 @@ import re
 from datetime import datetime
 from django.apps import apps
 
-from utils.parsers.normalize_grade import normalize_grade
+from utils.parsers.normalize_profession import normalize_profession
 from utils.parsers.normalize_hard_skill import normalize_hard_skill
 
 
@@ -51,11 +51,11 @@ class BaseParser:
 
         company_model, _ = self.company_model.objects.get_or_create(name=company_name)
 
-        normalized_grade = normalize_grade(grade_name)
         try:
-            grade_model = self.grade_model.objects.get(name=normalized_grade)
+            grade_model = self.grade_model.objects.get(name=grade_name)
         except self.grade_model.DoesNotExist:
-            raise Exception(f"Неизвестный грейд: {normalized_grade}")
+            print(f"Неизвестный грейд: {grade_name}")
+            return
 
         work_format_models = self.work_format_model.objects.filter(
             name__in=work_format_names
@@ -76,7 +76,10 @@ class BaseParser:
         )
 
         try:
-            profession_model = self.profession_model.objects.get(name=profession)
+            normalized_profession = normalize_profession(profession)
+            profession_model = self.profession_model.objects.get(
+                name=normalized_profession
+            )
         except self.profession_model.DoesNotExist:
             print(f"Неизвестная профессия: {profession}")
             profession_model = self.profession_model.objects.get(name="Неизвестно")

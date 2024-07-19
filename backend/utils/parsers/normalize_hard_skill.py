@@ -11,12 +11,16 @@ def normalize_hard_skill(skill: str):
             return "1С-Битрикс"
         case "asp net" | "aspnet" | "asp.net":
             return "ASP.NET"
-        case "angular":
+        case "angular" | "angular js" | "angular.js":
             return "Angular"
         case "ansible":
             return "Ansible"
         case "assembly":
             return "Assembly"
+        case "agile":
+            return "Agile"
+        case "aws":
+            return "AWS"
         case "babel":
             return "Babel"
         case "bash":
@@ -25,8 +29,12 @@ def normalize_hard_skill(skill: str):
             return "Bitrix24"
         case "Bootstrap":
             return "Bootstrap"
+        case "битрикс24" | "битрикс 24":
+            return "Битрикс24"
         case "css" | "css3" | "css 3":
             return "CSS"
+        case "scss" | "sass":
+            return "SASS"
         case "c":
             return "C"
         case "c#":
@@ -99,7 +107,7 @@ def normalize_hard_skill(skill: str):
             return "Haskell"
         case "jquery":
             return "JQuery"
-        case "js" | "javascript":
+        case "js" | "javascript" | "java script":
             return "JavaScript"
         case "java":
             return "Java"
@@ -107,24 +115,32 @@ def normalize_hard_skill(skill: str):
             return "Jenkins"
         case "jira":
             return "Jira"
+        case "jest":
+            return "Jest"
         case "kafka":
             return "Kafka"
         case "kotlin":
             return "Kotlin"
-        case "kubernetes":
+        case "kubernetes" | "k8s":
             return "Kubernetes"
+        case "kanban":
+            return "Kanban"
         case "laravel":
             return "Laravel"
         case "linux":
             return "Linux"
         case "lua":
             return "Lua"
+        case "less":
+            return "Less"
         case "mongodb":
             return "MongoDB"
         case "meteor":
             return "Meteor"
         case "mysql":
             return "MySQL"
+        case "macos" | "mac os":
+            return "macOS"
         case "nginx":
             return "Nginx"
         case "node.js":
@@ -135,15 +151,27 @@ def normalize_hard_skill(skill: str):
             return "Nuxt.js"
         case "nestjs" | "nest.js" | "nest js":
             return "NestJS"
+        case "nosql" | "no sql":
+            return "NoSQL"
+        case "oop" | "ооп":
+            return "ООП"
+        case "oracle":
+            return "Oracle"
         case "php":
             return "PHP"
-        case "postgresql":
+        case "postgresql" | "postgres" | "postgre sql" | "postgres sql" | "postgresql sql" | "psql":
             return "PostgreSQL"
-        case "python":
+        case "python" | "python3" | "python 3":
             return "Python"
+        case "pytorch":
+            return "PyTorch"
         case "perl":
             return "Perl"
-        case "rest" | "restapi" | "rest api" | "restful" | "restful api":
+        case "pandas":
+            return "Pandas"
+        case "qa":
+            return "QA"
+        case "rest" | "restapi" | "rest api" | "restful" | "restful api" | "rest-api":
             return "REST API"
         case "rabbit" | "rabbit mq" | "rabbitmq":
             return "RabbitMQ"
@@ -155,6 +183,10 @@ def normalize_hard_skill(skill: str):
             return "Redis"
         case "redux":
             return "Redux"
+        case "redux toolkit":
+            return "Redux Toolkit"
+        case "react testing library":
+            return "React Testing Library"
         case "ruby":
             return "Ruby"
         case "rust":
@@ -175,18 +207,38 @@ def normalize_hard_skill(skill: str):
             return "Symfony"
         case "swift":
             return "Swift"
+        case "spa":
+            return "SPA"
+        case "scrum":
+            return "Scrum"
+        case "slack":
+            return "Slack"
+        case "shell":
+            return "Shell"
         case "tcp/ip":
             return "TCP/IP"
         case "tailwind" | "tailwindcss" | "tailwind css":
             return "Tailwind"
         case "terraform":
             return "Terraform"
-        case "typescript":
+        case "ts" | "typescript" | "type script":
             return "TypeScript"
+        case "tensorflow":
+            return "TensorFlow"
+        case "unit testing":
+            return "Unit Testing"
+        case "unix":
+            return "Unix"
+        case "ubuntu":
+            return "Ubuntu"
+        case "unity":
+            return "Unity"
         case "vue" | "vue3" | "vue3" | "vue js" | "vuejs" | "vue.js":
             return "Vue"
         case "webpack":
             return "Webpack"
+        case "windows":
+            return "Windows"
         case "zabbix":
             return "Zabbix"
         case "jquery":
