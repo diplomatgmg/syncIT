@@ -10,273 +10,301 @@
     "model": "hard_skill.hardskill",
     "pk": 2,
     "fields": {
-      "name": "React"
+      "name": "JavaScript"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 3,
     "fields": {
-      "name": "JavaScript"
+      "name": "TypeScript"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 4,
     "fields": {
-      "name": "TypeScript"
+      "name": "PostgreSQL"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 5,
     "fields": {
-      "name": "Next.js"
+      "name": "Node.js"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 6,
     "fields": {
-      "name": "Nuxt.js"
+      "name": "Linux"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 7,
     "fields": {
-      "name": "RTK-Query"
+      "name": "C++"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 8,
     "fields": {
-      "name": "Redux"
+      "name": "Bash"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 9,
     "fields": {
-      "name": "Django"
+      "name": "SQL"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 10,
     "fields": {
-      "name": "Django REST"
+      "name": "Redis"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 11,
     "fields": {
-      "name": "FastAPI"
+      "name": "Kafka"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 12,
     "fields": {
-      "name": "Flask"
+      "name": "ClickHouse"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 13,
     "fields": {
-      "name": "Git"
+      "name": "Java"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 14,
     "fields": {
-      "name": "GitHub"
+      "name": "Angular"
+    }
+  },
+  {
+    "model": "hard_skill.hardskill",
+    "pk": 15,
+    "fields": {
+      "name": "CI/CD"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 16,
     "fields": {
-      "name": "Linux"
+      "name": "Terraform"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 17,
     "fields": {
-      "name": "PostgreSQL"
+      "name": "Kubernetes"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 18,
     "fields": {
-      "name": "KVM"
+      "name": "Jenkins"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 19,
     "fields": {
-      "name": "Ansible"
+      "name": "Git"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 20,
     "fields": {
-      "name": "Bash"
+      "name": "Redux"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 21,
     "fields": {
-      "name": "Docker"
+      "name": "Webpack"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 22,
     "fields": {
-      "name": "Java"
+      "name": "Jira"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 23,
     "fields": {
-      "name": "Spring Boot"
+      "name": "PHP"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 24,
     "fields": {
-      "name": "REST API"
+      "name": "Laravel"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 25,
     "fields": {
-      "name": "SQL"
+      "name": "MySQL"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 26,
     "fields": {
-      "name": "Maven"
+      "name": "C#"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 27,
     "fields": {
-      "name": "Gradle"
+      "name": "Docker"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 28,
     "fields": {
-      "name": "Junit"
+      "name": "Ansible"
+    }
+  },
+  {
+    "model": "hard_skill.hardskill",
+    "pk": 29,
+    "fields": {
+      "name": "jquery"
+    }
+  },
+  {
+    "model": "hard_skill.hardskill",
+    "pk": 30,
+    "fields": {
+      "name": "GitHub"
+    }
+  },
+  {
+    "model": "hard_skill.hardskill",
+    "pk": 31,
+    "fields": {
+      "name": "Django"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 32,
     "fields": {
-      "name": "Fast API"
+      "name": "Grafana"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 33,
     "fields": {
-      "name": "GitLab CI"
+      "name": "C"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 34,
     "fields": {
-      "name": "Elasticsearch"
+      "name": "SOAP"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 35,
     "fields": {
-      "name": "AWS"
+      "name": "Zabbix"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 36,
     "fields": {
-      "name": "WebSockets"
+      "name": "Nginx"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 37,
     "fields": {
-      "name": "HTML"
+      "name": "GitLab"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 38,
     "fields": {
-      "name": "CSS"
+      "name": "Flask"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 39,
     "fields": {
-      "name": "UX/UI"
+      "name": "MongoDB"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 40,
     "fields": {
-      "name": "HTML5"
+      "name": "TCP/IP"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 41,
     "fields": {
-      "name": "CSS3"
+      "name": "Symfony"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 42,
     "fields": {
-      "name": "jQuery"
+      "name": "GraphQL"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 43,
     "fields": {
-      "name": "Sass"
+      "name": "Swift"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 44,
     "fields": {
-      "name": "BEM"
+      "name": "DevOps"
     }
   },
   {
@@ -290,70 +318,35 @@
     "model": "hard_skill.hardskill",
     "pk": 46,
     "fields": {
-      "name": "MS SQL"
+      "name": "Cucumber"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 47,
     "fields": {
-      "name": "API"
+      "name": "Delphi"
+    }
+  },
+  {
+    "model": "hard_skill.hardskill",
+    "pk": 48,
+    "fields": {
+      "name": "Perl"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 49,
     "fields": {
-      "name": "Gitlab"
+      "name": "Kotlin"
     }
   },
   {
     "model": "hard_skill.hardskill",
     "pk": 50,
     "fields": {
-      "name": "MSSQL"
-    }
-  },
-  {
-    "model": "hard_skill.hardskill",
-    "pk": 51,
-    "fields": {
-      "name": "MSExcel"
-    }
-  },
-  {
-    "model": "hard_skill.hardskill",
-    "pk": 52,
-    "fields": {
-      "name": "Cisco"
-    }
-  },
-  {
-    "model": "hard_skill.hardskill",
-    "pk": 53,
-    "fields": {
-      "name": "MS Exchange Server"
-    }
-  },
-  {
-    "model": "hard_skill.hardskill",
-    "pk": 54,
-    "fields": {
-      "name": "TCP/IP"
-    }
-  },
-  {
-    "model": "hard_skill.hardskill",
-    "pk": 55,
-    "fields": {
-      "name": "VLAN"
-    }
-  },
-  {
-    "model": "hard_skill.hardskill",
-    "pk": 57,
-    "fields": {
-      "name": "AD"
+      "name": "celery"
     }
   }
 ]
