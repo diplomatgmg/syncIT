@@ -16,16 +16,20 @@ class HHParser(BaseParser):
     _vacancies_period = 1  # Показывать вакансии только за последние сутки
     session = None
 
-    def __init__(self, hard_skills):
+    def __init__(self, hard_skills, professions):
         super().__init__()
         self.hard_skills = (skill.name for skill in hard_skills)
+        self.professions = (profession.name for profession in professions)
         self.session = requests.Session()
 
     def build_parse_url(self):
         normalized_hard_skills = " OR ".join(self.hard_skills)
+        normalized_professions = " OR ".join(self.professions)
+
+        normalized_text = " OR ".join([normalized_hard_skills, normalized_professions])
 
         params = {
-            "text": normalized_hard_skills,
+            "text": normalized_text,
             "per_page": self._vacancies_per_page,
             "period": self._vacancies_period,
         }
@@ -41,6 +45,7 @@ class HHParser(BaseParser):
         for vacancy_id in new_vacancies_ids:
             vacancy_url = self.build_vacancy_url(vacancy_id)
             vacancy_data = self.get_http_data(vacancy_url)
+            skip_vacancy = False
 
             for role in vacancy_data["professional_roles"]:
                 if role["id"] not in (
@@ -59,7 +64,12 @@ class HHParser(BaseParser):
                         role["name"],
                         vacancy_url,
                     )
-                    continue
+                    skip_vacancy = True
+
+                else:
+                    skip_vacancy = False
+            if skip_vacancy:
+                continue
 
             print("Сохраняем вакансию", vacancy_data["name"], vacancy_url)
 

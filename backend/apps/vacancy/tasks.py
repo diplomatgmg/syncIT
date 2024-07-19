@@ -10,4 +10,9 @@ def find_vacancies():
 
     for profile in profiles:
         profile_hard_skills = profile.hard_skills.all()
-        HHParser(hard_skills=profile_hard_skills).start()
+        profile_professions = profile.professions.all()
+
+        HHParser(
+            hard_skills=profile_hard_skills,
+            professions=profile_professions,
+        ).start()
