@@ -9,7 +9,7 @@ from utils.parsers.hh_parser.config import HEADERS
 from utils.parsers.open_ai.chat_gpt import get_chat_gpt_completion
 from utils.parsers.open_ai.prompt import make_prompt
 
-
+# TODO Сделать рефакторинг этого говна
 class HHParser(BaseParser):
     _base_url = "https://api.hh.ru/vacancies"
     _vacancies_per_page = 100
@@ -65,14 +65,22 @@ class HHParser(BaseParser):
 
             vacancy_prompt = self.get_prompted_vacancy(vacancy_data)
 
-            vacancy_gpt_result = get_chat_gpt_completion(vacancy_prompt)
-            parsed_vacancy = self.parse_vacancy(vacancy_gpt_result)
+            parsed_vacancy = {}
 
-            # TODO Сделать пропмт 5 раз, чтобы получить наибольшее количество полезной инфа
-            while parsed_vacancy is None:
-                print("=== Повторяю запрос ===")
+            for _ in range(5):
                 vacancy_gpt_result = get_chat_gpt_completion(vacancy_prompt)
                 parsed_vacancy = self.parse_vacancy(vacancy_gpt_result)
+
+                while parsed_vacancy is None:
+                    vacancy_gpt_result = get_chat_gpt_completion(vacancy_prompt)
+                    parsed_vacancy = self.parse_vacancy(vacancy_gpt_result)
+
+                if len(parsed_vacancy) == 0:
+                    parsed_vacancy.update(parsed_vacancy)
+                else:
+                    parsed_vacancy["hard_skill_names"].extend(
+                        parsed_vacancy["hard_skill_names"]
+                    )
 
             if len(parsed_vacancy["hard_skill_names"]) < 5:
                 print("Мало скиллов, скипаем")
