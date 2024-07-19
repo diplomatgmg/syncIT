@@ -3,28 +3,28 @@
     "model": "grade.grade",
     "pk": 1,
     "fields": {
-      "name": "Junior"
+      "name": "Стажер"
     }
   },
   {
     "model": "grade.grade",
     "pk": 2,
     "fields": {
-      "name": "Middle"
+      "name": "Junior"
     }
   },
   {
     "model": "grade.grade",
     "pk": 3,
     "fields": {
-      "name": "Senior"
+      "name": "Junior/Middle"
     }
   },
   {
     "model": "grade.grade",
     "pk": 4,
     "fields": {
-      "name": "Junior/Middle"
+      "name": "Middle"
     }
   },
   {
@@ -38,7 +38,7 @@
     "model": "grade.grade",
     "pk": 6,
     "fields": {
-      "name": "Lead"
+      "name": "Senior"
     }
   },
   {
@@ -52,7 +52,7 @@
     "model": "grade.grade",
     "pk": 8,
     "fields": {
-      "name": "Стажер"
+      "name": "Lead"
     }
   }
 ]
