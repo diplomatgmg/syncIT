@@ -4,6 +4,9 @@ from datetime import datetime
 from urllib.parse import urlencode
 
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+
 from utils.helpers import generate_hash, clear_html
 from utils.parsers.base_parser import BaseParser
 from utils.parsers.hh_parser.config import HEADERS
@@ -22,7 +25,16 @@ class HHParser(BaseParser):
         super().__init__()
         self.hard_skills = (skill.name for skill in hard_skills)
         self.professions = (profession.name for profession in professions)
-        self.session = requests.Session()
+        self.session = self._make_session()
+
+    @staticmethod
+    def _make_session():
+        session = requests.Session()
+        retry = Retry(total=3, backoff_factor=0.5)
+        adapter = HTTPAdapter(pool_connections=30, pool_maxsize=30, max_retries=retry)
+        session.mount("http://", adapter)
+        session.mount("https://", adapter)
+        return session
 
     def build_parse_url(self):
         normalized_hard_skills = " OR ".join(self.hard_skills)
@@ -153,21 +165,25 @@ class HHParser(BaseParser):
         return json.loads(response.text)
 
     def get_vacancies_ids(self, url):
+        print(f"Получение вакансий со страниц.")
+
         vacancies_ids = set()
 
         data = self.get_http_data(url)
         pages = data.get("pages")
 
-        # TODO добавить ThreadPoolExecutor
+        with ThreadPoolExecutor(max_workers=2) as executor:
+            future_to_page = {
+                executor.submit(self.get_http_data, url, params={"page": page}): page
+                for page in range(pages)
+            }
+            for future in as_completed(future_to_page):
+                page_data = future.result()
+                vacancies = page_data.get("items")
+                for vacancy in vacancies:
+                    vacancies_ids.add(vacancy.get("id"))
 
-        for page in range(pages):
-            print(f"Получение вакансий со страницы {page + 1}")
-            data = self.get_http_data(url, params={"page": page})
-
-            vacancies = data.get("items")
-            for vacancy in vacancies:
-                vacancies_ids.add(vacancy.get("id"))
-
+        print(f"Найдено {len(vacancies_ids)} вакансий")
         return vacancies_ids
 
     def get_new_vacancies_ids(self):
