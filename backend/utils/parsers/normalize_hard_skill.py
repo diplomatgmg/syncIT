@@ -35,7 +35,7 @@ def normalize_hard_skill(skill: str):
         case "css", "css3":
             return "css"
         case "celery":
-            return "celery"
+            return "Celery"
         case "clickhouse":
             return "ClickHouse"
         case "cucumber":
@@ -95,7 +95,7 @@ def normalize_hard_skill(skill: str):
         case "haskell":
             return "Haskell"
         case "jquery":
-            return "jquery"
+            return "JQuery"
         case "js", "javascript":
             return "JavaScript"
         case "java":
