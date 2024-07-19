@@ -29,6 +29,8 @@ def normalize_hard_skill(skill: str):
             return "Bitrix24"
         case "Bootstrap":
             return "Bootstrap"
+        case "bitbucket":
+            return "BitBucket"
         case "битрикс24" | "битрикс 24":
             return "Битрикс24"
         case "css" | "css3" | "css 3":
@@ -47,6 +49,8 @@ def normalize_hard_skill(skill: str):
             return "css"
         case "celery":
             return "Celery"
+        case "confluence":
+            return "Confluence"
         case "clickhouse":
             return "ClickHouse"
         case "cucumber":
@@ -65,6 +69,8 @@ def normalize_hard_skill(skill: str):
             return "Docker"
         case "docker compose" | "docker-compose":
             return "Docker Compose"
+        case "dry":
+            return "DRY"
         case "express":
             return "Express"
         case "erlang":
@@ -143,7 +149,7 @@ def normalize_hard_skill(skill: str):
             return "macOS"
         case "nginx":
             return "Nginx"
-        case "node.js":
+        case "node.js" "node js":
             return "Node.js"
         case "nextjs" | "next.js" | "next js":
             return "Next.js"
@@ -169,6 +175,8 @@ def normalize_hard_skill(skill: str):
             return "Perl"
         case "pandas":
             return "Pandas"
+        case "postman":
+            return "Postman"
         case "qa":
             return "QA"
         case "rest" | "restapi" | "rest api" | "restful" | "restful api" | "rest-api":
@@ -183,10 +191,14 @@ def normalize_hard_skill(skill: str):
             return "Redis"
         case "redux":
             return "Redux"
-        case "redux toolkit":
+        case "redux toolkit" | "redux-toolkit":
             return "Redux Toolkit"
         case "react testing library":
             return "React Testing Library"
+        case "react-query" | "react query":
+            return "React Query"
+        case "rtk-query" | "rtk query":
+            return "RTK Query"
         case "ruby":
             return "Ruby"
         case "rust":
@@ -203,6 +215,8 @@ def normalize_hard_skill(skill: str):
             return "SQL"
         case "spring" | "spring boot" | "spring framework":
             return "Spring"
+        case "solid":
+            return "Solid"
         case "symfony":
             return "Symfony"
         case "swift":
@@ -233,6 +247,8 @@ def normalize_hard_skill(skill: str):
             return "Ubuntu"
         case "unity":
             return "Unity"
+        case "unreal engine":
+            return "Unreal Engine"
         case "vue" | "vue3" | "vue3" | "vue js" | "vuejs" | "vue.js":
             return "Vue"
         case "webpack":
