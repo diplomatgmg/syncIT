@@ -1,3 +1,6 @@
+from apps.hard_skill.models import UnknownHardSkill
+
+
 def normalize_hard_skill(skill: str):
     match skill.lower():
         case ".net", ".net core", ".net framework":
@@ -189,4 +192,5 @@ def normalize_hard_skill(skill: str):
         case "jquery":
             return "jQuery"
         case _:
+            UnknownHardSkill.objects.create(name=skill)
             return None

@@ -2,6 +2,7 @@ import re
 from datetime import datetime
 from django.apps import apps
 
+from utils.parsers.normalize_grade import normalize_grade
 from utils.parsers.normalize_hard_skill import normalize_hard_skill
 
 
@@ -49,11 +50,12 @@ class BaseParser:
     ):
 
         company_model, _ = self.company_model.objects.get_or_create(name=company_name)
-        print("model created", company_model)
+
+        normalized_grade = normalize_grade(grade_name)
         try:
-            grade_model = self.grade_model.objects.get(name=grade_name)
+            grade_model = self.grade_model.objects.get(name=normalized_grade)
         except self.grade_model.DoesNotExist:
-            raise Exception(f"Неизвестный грейд: {grade_name}")
+            raise Exception(f"Неизвестный грейд: {normalized_grade}")
 
         work_format_models = self.work_format_model.objects.filter(
             name__in=work_format_names

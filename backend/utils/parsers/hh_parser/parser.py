@@ -16,9 +16,9 @@ class HHParser(BaseParser):
     _vacancies_period = 1  # Показывать вакансии только за последние сутки
     session = None
 
-    def __init__(self):
+    def __init__(self, hard_skills):
         super().__init__()
-        self.hard_skills = (skill.name for skill in self.get_db_hard_skills())
+        self.hard_skills = (skill.name for skill in hard_skills)
         self.session = requests.Session()
 
     def build_parse_url(self):

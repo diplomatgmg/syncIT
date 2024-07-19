@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import HardSkill
+from .models import HardSkill, UnknownHardSkill
 from ..vacancy.models import Vacancy
 
 
@@ -13,3 +13,8 @@ class HardSkillAdmin(admin.ModelAdmin):
     vacancies_with_skill.short_description = "Vacancies with this skill"
 
     list_display = ["name", "vacancies_with_skill"]
+
+
+@admin.register(UnknownHardSkill)
+class UnknownHardSkillAdmin(admin.ModelAdmin):
+    pass

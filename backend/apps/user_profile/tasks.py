@@ -9,15 +9,12 @@ from ..vacancy.models import Vacancy
 
 @shared_task()
 def find_suitable_vacancies():
-    profiles = Profile.objects.all()
+    profiles = Profile.objects.filter(is_completed=True)
     newest_vacancies = Vacancy.objects.filter(
         published_at__gt=datetime.now() - timedelta(days=1)
     )
 
     for profile in profiles:
-        if not profile.is_completed:
-            continue
-
         profile_hard_skills = profile.hard_skills.all()
         profile_work_formats = profile.work_formats.all()
         profile_professions = profile.professions.all()
