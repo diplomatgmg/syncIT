@@ -43,6 +43,8 @@ const Home = (): ReactElement => {
                 Open
               </a>{" "}
               Подходит на {calcSuitable(vacancy.hardSkills)}%
+              <br />
+              {vacancy.hardSkills.map(({ name }) => name).join(", ")}
             </p>
           </li>
         ))}
