@@ -202,7 +202,7 @@ def normalize_hard_skill(skill: str):
         case "sql":
             return "SQL"
         case "spring" | "spring boot" | "spring framework":
-            return "spring"
+            return "Spring"
         case "symfony":
             return "Symfony"
         case "swift":
@@ -244,5 +244,5 @@ def normalize_hard_skill(skill: str):
         case "jquery":
             return "jQuery"
         case _:
-            UnknownHardSkill.objects.create(name=skill)
+            UnknownHardSkill.objects.get_or_create(name=skill)
             return None
