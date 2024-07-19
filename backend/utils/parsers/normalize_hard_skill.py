@@ -3,13 +3,13 @@ from apps.hard_skill.models import UnknownHardSkill
 
 def normalize_hard_skill(skill: str):
     match skill.lower():
-        case ".net", ".net core", ".net framework":
+        case ".net" | ".net core" | ".net framework":
             return ".NET"
-        case "1c", "1c":
+        case "1c" | "1c":
             return "1С"
-        case "1с-битрикс", "1c-битрикс":
+        case "1с-битрикс" | "1c-битрикс":
             return "1С-Битрикс"
-        case "asp net", "aspnet", "asp.net":
+        case "asp net" | "aspnet" | "asp.net":
             return "ASP.NET"
         case "angular":
             return "Angular"
@@ -21,11 +21,11 @@ def normalize_hard_skill(skill: str):
             return "Babel"
         case "bash":
             return "Bash"
-        case "bitrix24", "bitrix":
+        case "bitrix24" | "bitrix":
             return "Bitrix24"
         case "Bootstrap":
             return "Bootstrap"
-        case "css", "css3", "css 3":
+        case "css" | "css3" | "css 3":
             return "CSS"
         case "c":
             return "C"
@@ -35,7 +35,7 @@ def normalize_hard_skill(skill: str):
             return "C++"
         case "ci/cd":
             return "CI/CD"
-        case "css", "css3":
+        case "css" | "css3":
             return "css"
         case "celery":
             return "Celery"
@@ -51,27 +51,27 @@ def normalize_hard_skill(skill: str):
             return "DevOps"
         case "django":
             return "Django"
-        case "django rest", "django framework", "django rest framework":
+        case "django rest" | "django framework" | "django rest framework":
             return "Django REST Framework"
         case "docker":
             return "Docker"
-        case "docker compose", "docker-compose":
+        case "docker compose" | "docker-compose":
             return "Docker Compose"
         case "express":
             return "Express"
         case "erlang":
             return "Erlang"
-        case "emberjs", "ember js", "ember.js":
+        case "emberjs" | "ember js" | "ember.js":
             return "Ember.js"
         case "electron":
             return "Electron"
-        case "elasticsearch", "elastic search":
+        case "elasticsearch" | "elastic search":
             return "Elasticsearch"
         case "elixir":
             return "Elixir"
         case "f#":
             return "F#"
-        case "fastapi", "fast api":
+        case "fastapi" | "fast api":
             return "FastAPI"
         case "figma":
             return "Figma"
@@ -87,19 +87,19 @@ def normalize_hard_skill(skill: str):
             return "GitHub"
         case "gitlab":
             return "GitLab"
-        case "go", "golang", "go lang":
+        case "go" | "golang" | "go lang":
             return "Go"
         case "graphql":
             return "GraphQL"
         case "grafana":
             return "Grafana"
-        case "html", "html5", "html 5":
+        case "html" | "html5" | "html 5":
             return "HTML"
         case "haskell":
             return "Haskell"
         case "jquery":
             return "JQuery"
-        case "js", "javascript":
+        case "js" | "javascript":
             return "JavaScript"
         case "java":
             return "Java"
@@ -129,11 +129,11 @@ def normalize_hard_skill(skill: str):
             return "Nginx"
         case "node.js":
             return "Node.js"
-        case "nextjs", "next.js", "next js":
+        case "nextjs" | "next.js" | "next js":
             return "Next.js"
-        case "nuxtjs", "nuxt.js", "nuxt js":
+        case "nuxtjs" | "nuxt.js" | "nuxt js":
             return "Nuxt.js"
-        case "nestjs", "nest.js", "nest js":
+        case "nestjs" | "nest.js" | "nest js":
             return "NestJS"
         case "php":
             return "PHP"
@@ -143,13 +143,13 @@ def normalize_hard_skill(skill: str):
             return "Python"
         case "perl":
             return "Perl"
-        case "rest", "restapi", "rest api", "restful", "restful api":
+        case "rest" | "restapi" | "rest api" | "restful" | "restful api":
             return "REST API"
-        case "rabbit", "rabbit mq", "rabbitmq":
+        case "rabbit" | "rabbit mq" | "rabbitmq":
             return "RabbitMQ"
-        case "react", "react.js", "react js":
+        case "react" | "react.js" | "react js":
             return "React"
-        case "reactnative", "react native":
+        case "reactnative" | "react native":
             return "React Native"
         case "redis":
             return "Redis"
@@ -163,13 +163,13 @@ def normalize_hard_skill(skill: str):
             return "Svelte"
         case "scala":
             return "Scala"
-        case "seo", "seo оптимизация", "seo-оптимизация":
+        case "seo" | "seo оптимизация" | "seo-оптимизация":
             return "SEO"
         case "soap":
             return "SOAP"
         case "sql":
             return "SQL"
-        case "spring", "spring boot", "spring framework":
+        case "spring" | "spring boot" | "spring framework":
             return "spring"
         case "symfony":
             return "Symfony"
@@ -177,13 +177,13 @@ def normalize_hard_skill(skill: str):
             return "Swift"
         case "tcp/ip":
             return "TCP/IP"
-        case "tailwind", "tailwindcss", "tailwind css":
+        case "tailwind" | "tailwindcss" | "tailwind css":
             return "Tailwind"
         case "terraform":
             return "Terraform"
         case "typescript":
             return "TypeScript"
-        case "vue", "vue3", "vue3", "vue js", "vuejs", "vue.js":
+        case "vue" | "vue3" | "vue3" | "vue js" | "vuejs" | "vue.js":
             return "Vue"
         case "webpack":
             return "Webpack"
