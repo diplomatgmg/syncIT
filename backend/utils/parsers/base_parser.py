@@ -44,7 +44,7 @@ class BaseParser:
         company_name: str,
         grade_name: str,
         work_format_names: list[str],
-        hard_skill_names: list[str],
+        hard_skill_names: set[str],
         profession: str,
         published_at: datetime,
     ):
@@ -69,7 +69,8 @@ class BaseParser:
             self.hard_skill_model.objects.get_or_create(name=normalized_hard_skill)
 
         if len(normalized_hard_skills) < 5:
-            raise Exception(f"Не хватает навыков. Скипаем")
+            print(f"Не хватает навыков. Скипаем {normalized_hard_skills}")
+            return
 
         hard_skill_models = self.hard_skill_model.objects.filter(
             name__in=normalized_hard_skills
@@ -121,7 +122,7 @@ class BaseParser:
 
         return {
             "grade_name": grade_name,
-            "hard_skill_names": hard_skill_names,
+            "hard_skill_names": set(hard_skill_names),
             "work_format_names": work_format_names,
             "profession": profession,
         }

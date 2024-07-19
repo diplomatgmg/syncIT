@@ -1,4 +1,5 @@
 import json
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime
 from urllib.parse import urlencode
 
@@ -41,6 +42,16 @@ class HHParser(BaseParser):
     def build_vacancy_url(self, vacancy_id):
         return f"{self._base_url}/{vacancy_id}"
 
+    def _get_parsed_vacancy(self, prompt):
+        vacancy_gpt_result = get_chat_gpt_completion(prompt)
+        parsed_vacancy = self.parse_vacancy(vacancy_gpt_result)
+
+        while parsed_vacancy is None:
+            vacancy_gpt_result = get_chat_gpt_completion(prompt)
+            parsed_vacancy = self.parse_vacancy(vacancy_gpt_result)
+
+        return parsed_vacancy
+
     def start(self):
         new_vacancies_ids = tuple(self.get_new_vacancies_ids())
 
@@ -61,10 +72,9 @@ class HHParser(BaseParser):
                     "160",
                 ):
                     print(
-                        "Скипнули вакансию",
-                        vacancy_data["name"],
-                        role["name"],
-                        vacancy_url,
+                        f"Скипнули вакансию {vacancy_data['name']}",
+                        f"Название {role['name']}",
+                        f"Url: {vacancy_url}",
                     )
                     skip_vacancy = True
 
@@ -76,23 +86,22 @@ class HHParser(BaseParser):
             print("Сохраняем вакансию", vacancy_data["name"], vacancy_url)
 
             vacancy_prompt = self.get_prompted_vacancy(vacancy_data)
+            parsed_vacancy = {"hard_skill_names": set()}
 
-            parsed_vacancy = {}
+            with ThreadPoolExecutor() as executor:
+                futures = [
+                    executor.submit(self._get_parsed_vacancy, vacancy_prompt)
+                    for _ in range(5)
+                ]
 
-            for _ in range(5):
-                vacancy_gpt_result = get_chat_gpt_completion(vacancy_prompt)
-                parsed_vacancy = self.parse_vacancy(vacancy_gpt_result)
-
-                while parsed_vacancy is None:
-                    vacancy_gpt_result = get_chat_gpt_completion(vacancy_prompt)
-                    parsed_vacancy = self.parse_vacancy(vacancy_gpt_result)
-
-                if len(parsed_vacancy) == 0:
-                    parsed_vacancy.update(parsed_vacancy)
-                else:
-                    parsed_vacancy["hard_skill_names"].extend(
-                        parsed_vacancy["hard_skill_names"]
-                    )
+                for future in as_completed(futures):
+                    result = future.result()
+                    if not parsed_vacancy.get("hard_skill_names"):
+                        parsed_vacancy.update(result)
+                    else:
+                        parsed_vacancy["hard_skill_names"].update(
+                            result["hard_skill_names"]
+                        )
 
             if len(parsed_vacancy["hard_skill_names"]) < 5:
                 print("Мало скиллов, скипаем")
@@ -148,6 +157,8 @@ class HHParser(BaseParser):
 
         data = self.get_http_data(url)
         pages = data.get("pages")
+
+        # TODO добавить ThreadPoolExecutor
 
         for page in range(pages):
             print(f"Получение вакансий со страницы {page + 1}")

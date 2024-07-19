@@ -25,13 +25,11 @@ def normalize_hard_skill(skill: str):
             return "Babel"
         case "bash":
             return "Bash"
-        case "bitrix24" | "bitrix":
-            return "Bitrix24"
         case "Bootstrap":
             return "Bootstrap"
         case "bitbucket":
             return "BitBucket"
-        case "битрикс24" | "битрикс 24":
+        case "битрикс24" | "битрикс 24" | "bitrix24" | "bitrix 24":
             return "Битрикс24"
         case "css" | "css3" | "css 3":
             return "CSS"
