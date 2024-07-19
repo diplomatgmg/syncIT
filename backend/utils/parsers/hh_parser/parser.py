@@ -85,7 +85,9 @@ class HHParser(BaseParser):
                 salary_to = None
 
             published_at_str = vacancy_data["published_at"]
-            published_at = datetime.strptime(published_at_str, "%Y-%m-%dT%H:%M:%S%z")
+            published_at = datetime.strptime(
+                published_at_str, "%Y-%m-%dT%H:%M:%S%z"
+            )  # TODO Использовать timezone
 
             try:
                 self.save_vacancy_to_db(

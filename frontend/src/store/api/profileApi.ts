@@ -5,6 +5,7 @@ import { Grade } from "@/types/gradeTypes.ts"
 import { WorkFormat } from "@/types/workFormatTypes.ts"
 import { Profession } from "@/types/professionTypes.ts"
 import { Profile, ProfileStatus } from "@/types/profileTypes.ts"
+import { PreviewVacancy } from "@/types/vacancyTypes.ts"
 
 const profileApi = createApi({
   reducerPath: "profileApi",
@@ -17,6 +18,9 @@ const profileApi = createApi({
     getProfileStatus: builder.query<ProfileStatus, void>({
       query: () => "profile/is_completed/",
       providesTags: ["Profile"],
+    }),
+    getProfileVacancies: builder.query<PreviewVacancy[], void>({
+      query: () => "profile/vacancies/",
     }),
 
     setUserHardSkills: builder.mutation<HardSkill[], HardSkill[]>({
@@ -57,6 +61,7 @@ const profileApi = createApi({
 export const {
   useGetProfileDataQuery,
   useGetProfileStatusQuery,
+  useGetProfileVacanciesQuery,
   useSetUserHardSkillsMutation,
   useSetUserGradesMutation,
   useSetUserWorkFormatsMutation,

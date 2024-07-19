@@ -7,6 +7,7 @@ from .views import (
     ProfileGradesAPIView,
     ProfileWorkFormatsAPIView,
     ProfileProfessionsAPIView,
+    ProfileVacanciesListAPIView,
 )
 
 urlpatterns = [
@@ -24,4 +25,5 @@ urlpatterns = [
     path("grades/", ProfileGradesAPIView.as_view()),
     path("work_formats/", ProfileWorkFormatsAPIView.as_view()),
     path("professions/", ProfileProfessionsAPIView.as_view()),
+    path("vacancies/", ProfileVacanciesListAPIView.as_view()),
 ]

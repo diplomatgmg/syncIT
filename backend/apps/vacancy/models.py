@@ -24,6 +24,8 @@ class Vacancy(models.Model):
     profession = models.ForeignKey(Profession, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     published_at = models.DateTimeField()
+    # Придумать, как показывать пользователю вакансии, которые он не смотрел.
+    # Которые смотрел - отобразить на фронте снизу
 
     def __str__(self):
         return self.name
