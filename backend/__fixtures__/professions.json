@@ -31,7 +31,7 @@
     "model": "profession.profession",
     "pk": 5,
     "fields": {
-      "name": "DevOps Engineer"
+      "name": "DevOps"
     }
   },
   {
