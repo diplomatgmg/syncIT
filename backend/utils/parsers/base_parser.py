@@ -55,38 +55,29 @@ class BaseParser:
         except self.grade_model.DoesNotExist:
             raise Exception(f"Неизвестный грейд: {grade_name}")
 
-        # TODO добавить обработку, если ГПТ выдаст непонятный формат работы
         work_format_models = self.work_format_model.objects.filter(
             name__in=work_format_names
         )
-        print("work formats filtered", work_format_models)
 
         normalized_hard_skills = tuple(
             filter(lambda x: x, map(normalize_hard_skill, hard_skill_names))
         )
-        print("normalized_hard_skills", normalized_hard_skills)
 
-        for (
-            normalized_hard_skill
-        ) in normalized_hard_skills:  # TODO убрать, когда будут все навыки
+        for normalized_hard_skill in normalized_hard_skills:
             self.hard_skill_model.objects.get_or_create(name=normalized_hard_skill)
-        print("new hard skills created")
 
         if len(normalized_hard_skills) < 5:
             raise Exception(f"Не хватает навыков. Скипаем")
-        print("len skills > 5")
 
         hard_skill_models = self.hard_skill_model.objects.filter(
             name__in=normalized_hard_skills
         )
-        print("hard skills models filtered")
 
         try:
             profession_model = self.profession_model.objects.get(name=profession)
         except self.profession_model.DoesNotExist:
             print(f"Неизвестная профессия: {profession}")
             profession_model = self.profession_model.objects.get(name="Неизвестно")
-        print("profession model created")
 
         created_vacancy_model = self.vacancy_model.objects.create(
             unique_hash=unique_hash,
@@ -101,7 +92,6 @@ class BaseParser:
             profession=profession_model,
             published_at=published_at,
         )
-        print("vacancy model created", created_vacancy_model)
 
         created_vacancy_model.work_formats.add(*work_format_models)
         created_vacancy_model.hard_skills.add(*hard_skill_models)

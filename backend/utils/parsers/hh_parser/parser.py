@@ -58,7 +58,7 @@ class HHParser(BaseParser):
                         vacancy_data["name"],
                         role["name"],
                         vacancy_url,
-                    )  # TODO Убрать print
+                    )
                     continue
 
             print("Сохраняем вакансию", vacancy_data["name"], vacancy_url)
