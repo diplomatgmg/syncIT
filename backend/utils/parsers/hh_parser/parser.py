@@ -9,6 +9,7 @@ from utils.parsers.hh_parser.config import HEADERS
 from utils.parsers.open_ai.chat_gpt import get_chat_gpt_completion
 from utils.parsers.open_ai.prompt import make_prompt
 
+
 # TODO Сделать рефакторинг этого говна
 class HHParser(BaseParser):
     _base_url = "https://api.hh.ru/vacancies"
@@ -32,6 +33,7 @@ class HHParser(BaseParser):
             "text": normalized_text,
             "per_page": self._vacancies_per_page,
             "period": self._vacancies_period,
+            "order_by": "publication_time",
         }
 
         return f"{self._base_url}?{urlencode(params)}"
