@@ -17,7 +17,7 @@ class Profile(models.Model):
     grades = models.ManyToManyField(Grade, related_name="profiles")
     work_formats = models.ManyToManyField(WorkFormat, related_name="profiles")
     professions = models.ManyToManyField(Profession, related_name="profiles")
-    vacancies = models.ManyToManyField(Vacancy, related_name="profiles")
+    vacancies = models.ManyToManyField(Vacancy, related_name="profiles", blank=True)
 
     def __str__(self):
         return f"Profile of user {self.user}"
