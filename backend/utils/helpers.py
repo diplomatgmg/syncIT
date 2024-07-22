@@ -27,9 +27,9 @@ def dict_keys_snake_to_camel(input_dict):
     return convert_dict(input_dict)
 
 
-def generate_hash(value):
+def generate_hash(value: str) -> str:
     return hashlib.sha256(value.encode()).hexdigest()
 
 
-def clear_html(text):
+def clear_html(text: str) -> str:
     return re.sub(r"(<[^>]*>)|(&quot;)", "", text)
