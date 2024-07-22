@@ -54,5 +54,12 @@
     "fields": {
       "name": "Lead"
     }
+  },
+  {
+    "model": "grade.grade",
+    "pk": 9,
+    "fields": {
+      "name": "Неизвестно"
+    }
   }
 ]
