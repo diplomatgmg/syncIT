@@ -4,4 +4,4 @@ def normalize_profession(profession: str):
             return "DevOps"
         case _:
             return profession
-    # TODO добавить нормализатор профессии на основе имени вакансии
+

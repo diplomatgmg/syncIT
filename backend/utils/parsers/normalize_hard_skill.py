@@ -1,262 +1,191 @@
 from apps.hard_skill.models import UnknownHardSkill
 
+HARD_SKILL_MAPPING = {
+    ".net": ".NET",
+    ".net core": ".NET",
+    ".net framework": ".NET",
+    "1c": "1С",
+    "1с-битрикс": "1С-Битрикс",
+    "1c-битрикс": "1С-Битрикс",
+    "asp net": "ASP.NET",
+    "aspnet": "ASP.NET",
+    "asp.net": "ASP.NET",
+    "angular": "Angular",
+    "angular js": "Angular",
+    "angular.js": "Angular",
+    "ansible": "Ansible",
+    "assembly": "Assembly",
+    "aws": "AWS",
+    "babel": "Babel",
+    "bootstrap": "Bootstrap",
+    "bitbucket": "BitBucket",
+    "битрикс24": "Битрикс24",
+    "битрикс 24": "Битрикс24",
+    "bitrix24": "Битрикс24",
+    "bitrix 24": "Битрикс24",
+    "css": "CSS",
+    "css3": "CSS",
+    "css 3": "CSS",
+    "scss": "SASS",
+    "sass": "SASS",
+    "c": "C",
+    "c#": "C#",
+    "c++": "C++",
+    "ci/cd": "CI/CD",
+    "celery": "Celery",
+    "confluence": "Confluence",
+    "clickhouse": "ClickHouse",
+    "cucumber": "Cucumber",
+    "delphi": "Delphi",
+    "dart": "Dart",
+    "devops": "DevOps",
+    "django": "Django",
+    "django rest": "Django REST Framework",
+    "django framework": "Django REST Framework",
+    "django rest framework": "Django REST Framework",
+    "rest framework": "Django REST Framework",
+    "docker": "Docker",
+    "docker compose": "Docker Compose",
+    "docker-compose": "Docker Compose",
+    "express": "Express",
+    "erlang": "Erlang",
+    "emberjs": "Ember.js",
+    "ember js": "Ember.js",
+    "ember.js": "Ember.js",
+    "electron": "Electron",
+    "elasticsearch": "Elasticsearch",
+    "elastic search": "Elasticsearch",
+    "elixir": "Elixir",
+    "f#": "F#",
+    "fastapi": "FastAPI",
+    "fast api": "FastAPI",
+    "figma": "Figma",
+    "flask": "Flask",
+    "flutter": "Flutter",
+    "git": "Git",
+    "grails": "Grails",
+    "github": "GitHub",
+    "gitlab": "GitLab",
+    "go": "Go",
+    "golang": "Go",
+    "go lang": "Go",
+    "graphql": "GraphQL",
+    "grafana": "Grafana",
+    "html": "HTML",
+    "html5": "HTML",
+    "html 5": "HTML",
+    "haskell": "Haskell",
+    "jquery": "JQuery",
+    "js": "JavaScript",
+    "javascript": "JavaScript",
+    "java script": "JavaScript",
+    "java": "Java",
+    "jenkins": "Jenkins",
+    "jira": "Jira",
+    "jest": "Jest",
+    "kafka": "Kafka",
+    "kotlin": "Kotlin",
+    "kubernetes": "Kubernetes",
+    "k8s": "Kubernetes",
+    "laravel": "Laravel",
+    "linux": "Linux",
+    "lua": "Lua",
+    "less": "Less",
+    "mongodb": "MongoDB",
+    "meteor": "Meteor",
+    "mysql": "MySQL",
+    "nginx": "Nginx",
+    "node.js": "Node.js",
+    "node js": "Node.js",
+    "nextjs": "Next.js",
+    "next.js": "Next.js",
+    "next js": "Next.js",
+    "nuxtjs": "Nuxt.js",
+    "nuxt.js": "Nuxt.js",
+    "nuxt js": "Nuxt.js",
+    "nestjs": "NestJS",
+    "nest.js": "NestJS",
+    "nest js": "NestJS",
+    "nosql": "NoSQL",
+    "no sql": "NoSQL",
+    "oop": "ООП",
+    "ооп": "ООП",
+    "oracle": "Oracle",
+    "php": "PHP",
+    "postgresql": "PostgreSQL",
+    "postgres": "PostgreSQL",
+    "postgre sql": "PostgreSQL",
+    "postgres sql": "PostgreSQL",
+    "postgresql sql": "PostgreSQL",
+    "psql": "PostgreSQL",
+    "python": "Python",
+    "python3": "Python",
+    "python 3": "Python",
+    "pytorch": "PyTorch",
+    "perl": "Perl",
+    "pandas": "Pandas",
+    "postman": "Postman",
+    "rest": "REST API",
+    "restapi": "REST API",
+    "rest api": "REST API",
+    "restful": "REST API",
+    "restful api": "REST API",
+    "rest-api": "REST API",
+    "rabbit": "RabbitMQ",
+    "rabbit mq": "RabbitMQ",
+    "rabbitmq": "RabbitMQ",
+    "react": "React",
+    "react.js": "React",
+    "react js": "React",
+    "reactnative": "React Native",
+    "react native": "React Native",
+    "redis": "Redis",
+    "redux": "Redux",
+    "redux toolkit": "Redux Toolkit",
+    "redux-toolkit": "Redux Toolkit",
+    "react testing library": "React Testing Library",
+    "react-query": "React Query",
+    "react query": "React Query",
+    "rtk-query": "RTK Query",
+    "rtk query": "RTK Query",
+    "ruby": "Ruby",
+    "rust": "Rust",
+    "svelte": "Svelte",
+    "seo": "SEO",
+    "seo оптимизация": "SEO",
+    "seo-оптимизация": "SEO",
+    "sql": "SQL",
+    "sqlalchemy": "SQLAlchemy",
+    "sql alchemy": "SQLAlchemy",
+    "spring": "Spring",
+    "spring boot": "Spring",
+    "spring framework": "Spring",
+    "swift": "Swift",
+    "tcp/ip": "TCP/IP",
+    "tailwind": "Tailwind",
+    "tailwindcss": "Tailwind",
+    "tailwind css": "Tailwind",
+    "ts": "TypeScript",
+    "typescript": "TypeScript",
+    "type script": "TypeScript",
+    "tensorflow": "TensorFlow",
+    "vue": "Vue",
+    "vue3": "Vue",
+    "vue js": "Vue",
+    "vuejs": "Vue",
+    "vue.js": "Vue",
+    "webpack": "Webpack",
+    "websocket": "WebSocket",
+}
+
 
 def normalize_hard_skill(skill: str):
-    match skill.lower():
-        case ".net" | ".net core" | ".net framework":
-            return ".NET"
-        case "1c" | "1c":
-            return "1С"
-        case "1с-битрикс" | "1c-битрикс":
-            return "1С-Битрикс"
-        case "asp net" | "aspnet" | "asp.net":
-            return "ASP.NET"
-        case "angular" | "angular js" | "angular.js":
-            return "Angular"
-        case "ansible":
-            return "Ansible"
-        case "assembly":
-            return "Assembly"
-        case "agile":
-            return "Agile"
-        case "aws":
-            return "AWS"
-        case "babel":
-            return "Babel"
-        case "bash":
-            return "Bash"
-        case "Bootstrap":
-            return "Bootstrap"
-        case "bitbucket":
-            return "BitBucket"
-        case "битрикс24" | "битрикс 24" | "bitrix24" | "bitrix 24":
-            return "Битрикс24"
-        case "css" | "css3" | "css 3":
-            return "CSS"
-        case "scss" | "sass":
-            return "SASS"
-        case "c":
-            return "C"
-        case "c#":
-            return "C#"
-        case "c++":
-            return "C++"
-        case "ci/cd":
-            return "CI/CD"
-        case "css" | "css3":
-            return "css"
-        case "celery":
-            return "Celery"
-        case "confluence":
-            return "Confluence"
-        case "clickhouse":
-            return "ClickHouse"
-        case "cucumber":
-            return "Cucumber"
-        case "delphi":
-            return "Delphi"
-        case "dart":
-            return "Dart"
-        case "devops":
-            return "DevOps"
-        case "django":
-            return "Django"
-        case "django rest" | "django framework" | "django rest framework":
-            return "Django REST Framework"
-        case "docker":
-            return "Docker"
-        case "docker compose" | "docker-compose":
-            return "Docker Compose"
-        case "dry":
-            return "DRY"
-        case "express":
-            return "Express"
-        case "erlang":
-            return "Erlang"
-        case "emberjs" | "ember js" | "ember.js":
-            return "Ember.js"
-        case "electron":
-            return "Electron"
-        case "elasticsearch" | "elastic search":
-            return "Elasticsearch"
-        case "elixir":
-            return "Elixir"
-        case "f#":
-            return "F#"
-        case "fastapi" | "fast api":
-            return "FastAPI"
-        case "figma":
-            return "Figma"
-        case "flask":
-            return "Flask"
-        case "flutter":
-            return "Flutter"
-        case "git":
-            return "Git"
-        case "grails":
-            return "Grails"
-        case "github":
-            return "GitHub"
-        case "gitlab":
-            return "GitLab"
-        case "go" | "golang" | "go lang":
-            return "Go"
-        case "graphql":
-            return "GraphQL"
-        case "grafana":
-            return "Grafana"
-        case "html" | "html5" | "html 5":
-            return "HTML"
-        case "haskell":
-            return "Haskell"
-        case "jquery":
-            return "JQuery"
-        case "js" | "javascript" | "java script":
-            return "JavaScript"
-        case "java":
-            return "Java"
-        case "jenkins":
-            return "Jenkins"
-        case "jira":
-            return "Jira"
-        case "jest":
-            return "Jest"
-        case "kafka":
-            return "Kafka"
-        case "kotlin":
-            return "Kotlin"
-        case "kubernetes" | "k8s":
-            return "Kubernetes"
-        case "kanban":
-            return "Kanban"
-        case "laravel":
-            return "Laravel"
-        case "linux":
-            return "Linux"
-        case "lua":
-            return "Lua"
-        case "less":
-            return "Less"
-        case "mongodb":
-            return "MongoDB"
-        case "meteor":
-            return "Meteor"
-        case "mysql":
-            return "MySQL"
-        case "macos" | "mac os":
-            return "macOS"
-        case "nginx":
-            return "Nginx"
-        case "node.js" "node js":
-            return "Node.js"
-        case "nextjs" | "next.js" | "next js":
-            return "Next.js"
-        case "nuxtjs" | "nuxt.js" | "nuxt js":
-            return "Nuxt.js"
-        case "nestjs" | "nest.js" | "nest js":
-            return "NestJS"
-        case "nosql" | "no sql":
-            return "NoSQL"
-        case "oop" | "ооп":
-            return "ООП"
-        case "oracle":
-            return "Oracle"
-        case "php":
-            return "PHP"
-        case "postgresql" | "postgres" | "postgre sql" | "postgres sql" | "postgresql sql" | "psql":
-            return "PostgreSQL"
-        case "python" | "python3" | "python 3":
-            return "Python"
-        case "pytorch":
-            return "PyTorch"
-        case "perl":
-            return "Perl"
-        case "pandas":
-            return "Pandas"
-        case "postman":
-            return "Postman"
-        case "qa":
-            return "QA"
-        case "rest" | "restapi" | "rest api" | "restful" | "restful api" | "rest-api":
-            return "REST API"
-        case "rabbit" | "rabbit mq" | "rabbitmq":
-            return "RabbitMQ"
-        case "react" | "react.js" | "react js":
-            return "React"
-        case "reactnative" | "react native":
-            return "React Native"
-        case "redis":
-            return "Redis"
-        case "redux":
-            return "Redux"
-        case "redux toolkit" | "redux-toolkit":
-            return "Redux Toolkit"
-        case "react testing library":
-            return "React Testing Library"
-        case "react-query" | "react query":
-            return "React Query"
-        case "rtk-query" | "rtk query":
-            return "RTK Query"
-        case "ruby":
-            return "Ruby"
-        case "rust":
-            return "Rust"
-        case "svelte":
-            return "Svelte"
-        case "scala":
-            return "Scala"
-        case "seo" | "seo оптимизация" | "seo-оптимизация":
-            return "SEO"
-        case "soap":
-            return "SOAP"
-        case "sql":
-            return "SQL"
-        case "spring" | "spring boot" | "spring framework":
-            return "Spring"
-        case "solid":
-            return "Solid"
-        case "symfony":
-            return "Symfony"
-        case "swift":
-            return "Swift"
-        case "spa":
-            return "SPA"
-        case "scrum":
-            return "Scrum"
-        case "slack":
-            return "Slack"
-        case "shell":
-            return "Shell"
-        case "tcp/ip":
-            return "TCP/IP"
-        case "tailwind" | "tailwindcss" | "tailwind css":
-            return "Tailwind"
-        case "terraform":
-            return "Terraform"
-        case "ts" | "typescript" | "type script":
-            return "TypeScript"
-        case "tensorflow":
-            return "TensorFlow"
-        case "unit testing":
-            return "Unit Testing"
-        case "unix":
-            return "Unix"
-        case "ubuntu":
-            return "Ubuntu"
-        case "unity":
-            return "Unity"
-        case "unreal engine":
-            return "Unreal Engine"
-        case "vue" | "vue3" | "vue3" | "vue js" | "vuejs" | "vue.js":
-            return "Vue"
-        case "webpack":
-            return "Webpack"
-        case "windows":
-            return "Windows"
-        case "zabbix":
-            return "Zabbix"
-        case "jquery":
-            return "jQuery"
-        case _:
-            UnknownHardSkill.objects.get_or_create(name=skill)
-            return None
+    normalized_skill = HARD_SKILL_MAPPING.get(skill.lower())
+    if normalized_skill:
+        return normalized_skill
+    else:
+        hard_skill, _ = UnknownHardSkill.objects.get_or_create(name=skill)
+        if hard_skill:
+            hard_skill.create_count += 1
+            hard_skill.save()
+        return None
