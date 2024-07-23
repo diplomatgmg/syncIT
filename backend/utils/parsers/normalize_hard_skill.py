@@ -185,7 +185,4 @@ def normalize_hard_skill(skill: str):
         return normalized_skill
     else:
         hard_skill, _ = UnknownHardSkill.objects.get_or_create(name=skill)
-        if hard_skill:
-            hard_skill.create_count += 1
-            hard_skill.save()
         return None
