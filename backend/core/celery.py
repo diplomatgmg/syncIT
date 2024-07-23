@@ -15,10 +15,10 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     "parse_vacancies": {
         "task": "apps.vacancy.tasks.find_vacancies",
-        "schedule": crontab(minute="*/10"),
+        "schedule": crontab(minute="*/5"),
     },
     "find_suitable_vacancies": {
         "task": "apps.user_profile.tasks.find_suitable_vacancies",
-        "schedule": crontab(minute="*/30"),
+        "schedule": crontab(minute="*/10"),
     },
 }

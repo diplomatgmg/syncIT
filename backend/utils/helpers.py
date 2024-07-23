@@ -1,5 +1,6 @@
 import hashlib
 import re
+from datetime import datetime
 
 
 def dict_keys_snake_to_camel(input_dict):
@@ -33,3 +34,18 @@ def generate_hash(value: str) -> str:
 
 def clear_html(text: str) -> str:
     return re.sub(r"(<[^>]*>)|(&quot;)", "", text)
+
+
+def timeit(func):
+    def __normalize_path(code) -> str:
+        return str(code).split('"')[-2]
+
+    def wrapper(*args, **kwargs):
+        start = datetime.now()
+        result = func(*args, **kwargs)
+        end = datetime.now()
+        func_path = __normalize_path(func.__code__)
+        print(f"Функция {func_path} выполнилась за {end - start} секунд")
+        return result
+
+    return wrapper

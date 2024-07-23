@@ -29,3 +29,10 @@ class Vacancy(models.Model):
 
     def __str__(self):
         return self.name
+
+
+# TODO доделать. Собираем все вакансии с ХХ -> добавляем в бд hash -> парсич через GPT
+# class ParsedVacancy(models.Model):
+#     unique_hash = models.CharField(
+#         max_length=64, unique=True, blank=True, null=True, editable=False
+#     )

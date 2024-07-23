@@ -8,7 +8,7 @@ from urllib.parse import urlencode
 import requests
 
 from apps.vacancy.models import Vacancy
-from utils.helpers import generate_hash, clear_html
+from utils.helpers import generate_hash, clear_html, timeit
 from utils.parsers.base_parser import BaseParser
 from utils.parsers.normalize_grade import normalize_grade
 from utils.parsers.normalize_hard_skill import normalize_hard_skill
@@ -233,6 +233,7 @@ class HHParser(BaseParser):
             **parsed_vacancy,
         }
 
+    @timeit
     def start(self):
         last_vacancies_ids = self.get_last_vacancies_ids()
         vacancies_data = self.get_vacancies_data(last_vacancies_ids)
