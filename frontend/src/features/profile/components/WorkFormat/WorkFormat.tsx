@@ -4,15 +4,19 @@ import { useGetWorkFormatsQuery } from "@/store/api/workFormatApi.ts"
 import { useGetProfileDataQuery } from "@/store/api/profileApi.ts"
 
 const WorkFormat = (): ReactElement => {
-  const { data: workFormats } = useGetWorkFormatsQuery()
-  const { data: profileData } = useGetProfileDataQuery()
+  const { data: workFormats, isLoading: workFormatIsLoading } =
+    useGetWorkFormatsQuery()
+  const { data: profileData, isLoading: profileIsLoading } =
+    useGetProfileDataQuery()
 
-  const userWorkFormats = profileData?.workFormats ?? []
+  if (workFormatIsLoading || profileIsLoading) {
+    return <div>Loading...</div>
+  }
 
   return (
     <WorkFormatList
       workFormats={workFormats ?? []}
-      userWorkFormats={userWorkFormats}
+      userWorkFormats={profileData?.workFormats ?? []}
     />
   )
 }
