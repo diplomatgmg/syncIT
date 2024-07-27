@@ -248,10 +248,12 @@ class HHParser(BaseParser):
 
         for vacancy_data, gpt_responses in vacancies_gpt_responses:
             parsed_vacancy = self.parse_gpt_responses(gpt_responses)
+            ParsedVacancy.objects.get_or_create(
+                unique_hash=generate_hash(vacancy_data["id"])
+            )
 
             if len(parsed_vacancy["hard_skill_names"]) < 5:
                 continue
 
             vacancy_result = self.get_vacancy_result(vacancy_data, parsed_vacancy)
-            ParsedVacancy.objects.create(unique_hash=vacancy_result["unique_hash"])
             self.save_vacancy_to_db(vacancy_result)
