@@ -1,9 +1,11 @@
-from rest_framework import generics
+from rest_framework.generics import ListAPIView
 
 from .models import HardSkill
-from .serializers import HardSkillSerializer
+from .serializers import (
+    HardSkillSerializer,
+)
 
 
-class HardSkillListAPIView(generics.ListAPIView):
-    queryset = HardSkill.objects.all()
+class HardSkillAPIView(ListAPIView):
+    queryset = HardSkill.objects.filter(parent__isnull=True)
     serializer_class = HardSkillSerializer
