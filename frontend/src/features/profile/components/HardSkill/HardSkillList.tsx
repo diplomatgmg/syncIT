@@ -1,8 +1,11 @@
 import { HardSkill } from "@/types/hardSkillTypes.ts"
-import { FC, useState } from "react"
-import SelectableList from "@/features/profile/components/Selectable/SelectableList.tsx"
-import { useSetUserHardSkillsMutation } from "@/store/api/profileApi.ts"
-import HardSkillSearchInput from "@/features/profile/components/HardSkill/HardSkillSearchInput.tsx"
+import { FC, useEffect } from "react"
+import HardSkillItem from "@/features/profile/components/HardSkill/HardSkillItem.tsx"
+import {
+  useGetProfileStatusQuery,
+  useSetUserHardSkillsMutation,
+} from "@/store/api/profileApi.ts"
+import useSelectableList from "@/store/hooks/useSelectableList.ts"
 
 interface HardSkillListProps {
   hardSkills: HardSkill[]
@@ -13,24 +16,29 @@ const HardSkillList: FC<HardSkillListProps> = ({
   hardSkills,
   userHardSkills,
 }) => {
-  const [searchHardSkill, setSearchHardSkill] = useState("")
+  const { refetch: refetchProfileStatus } = useGetProfileStatusQuery()
+  const { selectedItems, setSelectedItems, message, handleCheckboxChange } =
+    useSelectableList(userHardSkills, useSetUserHardSkillsMutation)
 
-  const filteredHardSkills = hardSkills.filter(({ name }) =>
-    name.toLowerCase().includes(searchHardSkill.toLowerCase())
-  )
+  useEffect(() => {
+    setSelectedItems(userHardSkills)
+    refetchProfileStatus()
+  }, [userHardSkills, setSelectedItems, refetchProfileStatus])
 
   return (
-    <SelectableList
-      items={filteredHardSkills}
-      userItems={userHardSkills}
-      mutation={useSetUserHardSkillsMutation}
-      searchComponent={
-        <HardSkillSearchInput
-          searchHardSkill={searchHardSkill}
-          setSearchHardSkill={setSearchHardSkill}
+    <ul>
+      {hardSkills.map((hardSkill) => (
+        <HardSkillItem
+          key={hardSkill.id}
+          hardSkill={hardSkill}
+          userHardSkills={userHardSkills}
+          selectedItems={selectedItems}
+          handleCheckboxChange={handleCheckboxChange}
         />
-      }
-    />
+      ))}
+      {message && <p>{message}</p>}
+    </ul>
   )
 }
+
 export default HardSkillList
