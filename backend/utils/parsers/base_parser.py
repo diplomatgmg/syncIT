@@ -79,7 +79,12 @@ class BaseParser(ABC):
     @staticmethod
     def get_or_none(model: ModelType, **kwargs) -> Optional[ModelType]:
         try:
-            return model.objects.get(**kwargs)
+            models = model.objects.filter(**kwargs)
+            if models.count() > 1:
+                print(
+                    f"WARNING. Найдено более одного объекта в модели {model}, kwargs: {kwargs}"
+                )
+            return models.first()
         except model.DoesNotExist:
             return None
 

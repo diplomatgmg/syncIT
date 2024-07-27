@@ -7,10 +7,23 @@ from ..profession.models import Profession
 from ..work_format.models import WorkFormat
 
 
-class Vacancy(models.Model):
-    unique_hash = models.CharField(
-        max_length=64, unique=True, blank=True, null=True, editable=False
-    )
+class BaseVacancy(models.Model):
+    unique_hash = models.CharField(max_length=64, unique=True, editable=False)
+
+    def __str__(self):
+        return self.unique_hash
+
+    class Meta:
+        abstract = True
+
+
+class ParsedVacancy(BaseVacancy):
+    """
+    Вакансия, которая была спаршена и не подошла по критериям
+    """
+
+
+class Vacancy(BaseVacancy):
     name = models.CharField(max_length=255)
     description = models.TextField()
     salary_from = models.IntegerField(blank=True, null=True)
@@ -24,15 +37,8 @@ class Vacancy(models.Model):
     profession = models.ForeignKey(Profession, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     published_at = models.DateTimeField()
-    # Придумать, как показывать пользователю вакансии, которые он не смотрел.
+    # TODO Придумать, как показывать пользователю вакансии, которые он не смотрел.
     # Которые смотрел - отобразить на фронте снизу
 
     def __str__(self):
         return self.name
-
-
-# TODO доделать. Собираем все вакансии с ХХ -> добавляем в бд hash -> парсич через GPT
-# class ParsedVacancy(models.Model):
-#     unique_hash = models.CharField(
-#         max_length=64, unique=True, blank=True, null=True, editable=False
-#     )

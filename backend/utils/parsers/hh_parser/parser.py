@@ -7,7 +7,7 @@ from urllib.parse import urlencode
 
 import requests
 
-from apps.vacancy.models import Vacancy
+from apps.vacancy.models import ParsedVacancy
 from utils.helpers import generate_hash, clear_html, timeit
 from utils.parsers.base_parser import BaseParser
 from utils.parsers.normalize_grade import normalize_grade
@@ -132,9 +132,9 @@ class HHParser(BaseParser):
             generate_hash(vacancy_id): vacancy_id for vacancy_id in vacancies_ids
         }
         existing_hashes = set(
-            Vacancy.objects.filter(unique_hash__in=vacancies_hashes.keys()).values_list(
-                "unique_hash", flat=True
-            )
+            ParsedVacancy.objects.filter(
+                unique_hash__in=vacancies_hashes.keys()
+            ).values_list("unique_hash", flat=True)
         )
 
         return {
@@ -253,4 +253,5 @@ class HHParser(BaseParser):
                 continue
 
             vacancy_result = self.get_vacancy_result(vacancy_data, parsed_vacancy)
+            ParsedVacancy.objects.create(unique_hash=vacancy_result["unique_hash"])
             self.save_vacancy_to_db(vacancy_result)
