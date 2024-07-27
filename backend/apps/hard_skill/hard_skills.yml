@@ -1,4 +1,4 @@
-Programming languages:
+Языки программирования:
   - Python
   - Golang
   - JavaScript
@@ -10,8 +10,10 @@ Programming languages:
   - Swift
   - Ruby
   - PHP
-  - HTML
-  - CSS
+
+Скриптовые языки:
+  - Bash
+  - Lua
 
 Backend:
   Python:
@@ -23,10 +25,12 @@ Backend:
     - Node.js
     - Nest.js
   Java:
-    - Spring
+    - Spring Framework
       - Spring Boot
   PHP:
     - Laravel
+    - Symfony
+    - Yii
   C#:
     - .NET
       - ASP.NET
@@ -34,9 +38,10 @@ Backend:
     - Ruby on Rails
 
 Frontend:
-  HTML:
+  - HTML
     - XHTML
-  CSS:
+    - XML
+  - CSS
     - Sass
     - Less
     - Bootstrap
@@ -49,8 +54,27 @@ Frontend:
     - Angular
     - Ember.js
     - Svelte
+    - JQuery
+    - Vite
+    - Webpack
+    - Redux
 
-Version control system:
+Тестирование:
+  Python:
+    - Pytest
+    - Selenium
+
+Базы данных:
+  SQL:
+    - PostgreSQL
+    - MySQL
+    - Oracle
+    - MS SQL
+  NoSQL:
+    - MongoDB
+    - Redis
+
+Системы контроля версий:
   - Git
   - GitHub
   - GitLab
@@ -65,19 +89,34 @@ DevOps:
   - Nginx
   - Elasticsearch
   - ClickHouse
+  - Kafka
+  - Sentry
 
-Databases:
-  - PostgreSQL
-  - MySQL
-  - MongoDB
-  - Redis
-  - MariaDB
-  - SQLite
-  - Oracle
+Архитектурные принципы:
+  - API
+    - REST API
+    - GraphQL
+  - SOLID
+  - ООП
+  - DDD
 
-Tools:
+Методологии:
+  - Agile
+  - Scrum
+  - Kanban
+
+Инструменты:
   - Figma
   - Postman
   - Jira
   - Confluence
   - Grafana
+  - Prometheus
+  - Zabbix
+  - Swagger
+
+Операционные системы:
+  - Windows
+  - Linux
+    - Ubuntu
+  - MacOS
