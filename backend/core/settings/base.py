@@ -123,7 +123,7 @@ CACHES = {
     }
 }
 
-if TESTING in sys.argv:
+if TESTING:
     CACHES = {
         "default": {
             "BACKEND": "django.core.cache.backends.dummy.DummyCache",
