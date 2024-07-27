@@ -1,11 +1,11 @@
 import { HardSkill } from "@/types/hardSkillTypes.ts"
-import { FC, useEffect } from "react"
+import { FC } from "react"
 import HardSkillItem from "@/features/profile/components/HardSkill/HardSkillItem.tsx"
 import {
   useGetProfileStatusQuery,
   useSetUserHardSkillsMutation,
 } from "@/store/api/profileApi.ts"
-import useSelectableList from "@/store/hooks/useSelectableList.ts"
+import useSelectableItems from "@/store/hooks/useSelectableItems.ts"
 
 interface HardSkillListProps {
   hardSkills: HardSkill[]
@@ -17,13 +17,11 @@ const HardSkillList: FC<HardSkillListProps> = ({
   userHardSkills,
 }) => {
   const { refetch: refetchProfileStatus } = useGetProfileStatusQuery()
-  const { selectedItems, setSelectedItems, message, handleCheckboxChange } =
-    useSelectableList(userHardSkills, useSetUserHardSkillsMutation)
-
-  useEffect(() => {
-    setSelectedItems(userHardSkills)
-    refetchProfileStatus()
-  }, [userHardSkills, setSelectedItems, refetchProfileStatus])
+  const { selectedItems, message, handleCheckboxChange } = useSelectableItems(
+    userHardSkills,
+    useSetUserHardSkillsMutation,
+    refetchProfileStatus
+  )
 
   return (
     <ul>

@@ -1,21 +1,25 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import xorBy from "lodash/xorBy"
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const useSelectableList = <T extends { id: number }>(
+const useSelectableItems = <T extends { id: number }>(
   initialItems: T[],
-  mutation: any
+  mutation: any, // eslint-disable-line @typescript-eslint/no-explicit-any
+  refetch: () => void
 ) => {
   const [selectedItems, setSelectedItems] = useState(initialItems)
   const [message, setMessage] = useState("")
   const [setItems] = mutation()
+
+  useEffect(() => {
+    setSelectedItems(initialItems)
+    refetch()
+  }, [initialItems, refetch])
 
   const handleCheckboxChange = async (item: T) => {
     const updatedItems = xorBy(selectedItems, [item], "id")
     setSelectedItems(updatedItems)
 
     try {
-      console.log("fetch")
       await setItems(updatedItems).unwrap()
       setMessage("Изменения успешно сохранены")
       setTimeout(() => setMessage(""), 3000)
@@ -27,7 +31,7 @@ const useSelectableList = <T extends { id: number }>(
     }
   }
 
-  return { selectedItems, setSelectedItems, message, handleCheckboxChange }
+  return { selectedItems, message, handleCheckboxChange }
 }
 
-export default useSelectableList
+export default useSelectableItems

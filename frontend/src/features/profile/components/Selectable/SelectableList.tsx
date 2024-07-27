@@ -1,5 +1,5 @@
-import { ReactElement, useEffect } from "react"
-import useSelectableList from "@/store/hooks/useSelectableList.ts"
+import { ReactElement } from "react"
+import useSelectableItems from "@/store/hooks/useSelectableItems.ts"
 import Checkbox from "@/components/common/Input/Checkbox.tsx"
 import { useGetProfileStatusQuery } from "@/store/api/profileApi.ts"
 
@@ -15,13 +15,11 @@ const SelectableList = <T extends { id: number; name: string }>({
   mutation,
 }: SelectableListProps<T>): ReactElement => {
   const { refetch: refetchProfileStatus } = useGetProfileStatusQuery()
-  const { selectedItems, setSelectedItems, message, handleCheckboxChange } =
-    useSelectableList(userItems, mutation)
-
-  useEffect(() => {
-    setSelectedItems(userItems)
-    refetchProfileStatus()
-  }, [userItems, setSelectedItems, refetchProfileStatus])
+  const { selectedItems, message, handleCheckboxChange } = useSelectableItems(
+    userItems,
+    mutation,
+    refetchProfileStatus
+  )
 
   return (
     <div>
