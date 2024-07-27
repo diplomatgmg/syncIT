@@ -1,5 +1,7 @@
+import json
 import re
 from typing import List, Tuple, Optional
+
 
 from django.conf import settings
 
@@ -14,6 +16,10 @@ def read_skills():
 
 def clean(text: str) -> str:
     return text.replace("-", "").replace(":", "").strip()
+
+
+def is_selectable(text: str) -> bool:
+    return text.lstrip().startswith("-")
 
 
 def parse(text: str) -> List[dict]:
@@ -32,15 +38,21 @@ def parse_lines(
             break
         if indent == level:
             lines.pop(0)
+            selectable = is_selectable(line)
             name = clean(line)
 
             if not name:  # В файле скиллов могут бить отступы (пустые строки)
                 continue
 
-            node = {"name": name, "parent": parent, "children": []}
+            node = {
+                "name": name,
+                "selectable": selectable,
+                "parent": parent,
+                "children": [],
+            }
 
             if lines and len(re.match(r"^\s*", lines[0]).group()) > level:
-                node["selectable"] = False
+
                 node["children"], lines = parse_lines(lines, level + 2, name)
             result.append(node)
     return result, lines

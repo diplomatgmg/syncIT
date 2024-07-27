@@ -19,7 +19,7 @@ class Command(BaseCommand):
             skill, created = HardSkill.objects.get_or_create(
                 name=normalized_name,
                 parent=parent,
-                defaults={"selectable": skill_data.get("selectable", True)},
+                selectable=skill_data["selectable"],
             )
             if created:
                 self.stdout.write(self.style.SUCCESS(f"Создан навык: {skill.name}"))
