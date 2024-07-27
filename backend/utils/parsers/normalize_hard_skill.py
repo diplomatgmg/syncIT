@@ -91,8 +91,10 @@ HARD_SKILL_MAPPING = {
     "linux": "Linux",
     "lua": "Lua",
     "less": "Less",
+    "mariadb": "MariaDB",
     "mongodb": "MongoDB",
     "meteor": "Meteor",
+    "mercurial": "Mercurial",
     "mysql": "MySQL",
     "nginx": "Nginx",
     "node.js": "Node.js",
@@ -149,12 +151,14 @@ HARD_SKILL_MAPPING = {
     "rtk-query": "RTK Query",
     "rtk query": "RTK Query",
     "ruby": "Ruby",
+    "ruby on rails": "Ruby on Rails",
     "rust": "Rust",
     "svelte": "Svelte",
     "seo": "SEO",
     "seo оптимизация": "SEO",
     "seo-оптимизация": "SEO",
     "sql": "SQL",
+    "sqlite": "SQLite",
     "sqlalchemy": "SQLAlchemy",
     "sql alchemy": "SQLAlchemy",
     "spring": "Spring",
@@ -176,7 +180,21 @@ HARD_SKILL_MAPPING = {
     "vue.js": "Vue",
     "webpack": "Webpack",
     "websocket": "WebSocket",
+    "xhtml": "XHTML",
 }
+
+# Дефотные навыкы, которые имеют selectable=false
+# Играют роль "Категории навыков"
+default = (
+    "Backend",
+    "Frontend",
+    "Databases",
+    "JavaScript/TypeScript",
+    "Programming languages",
+    "Tools",
+    "Version control system",
+    "DevOps",
+)
 
 
 def normalize_hard_skill(skill: str):
@@ -184,5 +202,6 @@ def normalize_hard_skill(skill: str):
     if normalized_skill:
         return normalized_skill
     else:
-        hard_skill, _ = UnknownHardSkill.objects.get_or_create(name=skill)
+        if skill not in default:
+            hard_skill, _ = UnknownHardSkill.objects.get_or_create(name=skill)
         return None
