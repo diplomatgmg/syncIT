@@ -52,6 +52,27 @@
     "model": "profession.profession",
     "pk": 8,
     "fields": {
+      "name": "Мобильный разработчик"
+    }
+  },
+  {
+    "model": "profession.profession",
+    "pk": 9,
+    "fields": {
+      "name": "Project Manager"
+    }
+  },
+  {
+    "model": "profession.profession",
+    "pk": 10,
+    "fields": {
+      "name": "Data Scientist"
+    }
+  },
+  {
+    "model": "profession.profession",
+    "pk": 11,
+    "fields": {
       "name": "Неизвестно"
     }
   }
