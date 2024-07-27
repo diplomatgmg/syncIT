@@ -67,7 +67,7 @@ class BaseParser(ABC):
             )
 
             if not hard_skill_model:
-                UnknownHardSkill.objects.get_or_create(name=hard_skill_name)
+                UnknownHardSkill.objects.create_skill(name=hard_skill_name)
 
         hard_skill_models = HardSkill.objects.filter(
             name__in=hard_skill_names, selectable=True

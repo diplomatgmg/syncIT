@@ -17,4 +17,4 @@ class HardSkillAdmin(admin.ModelAdmin):
 
 @admin.register(UnknownHardSkill)
 class UnknownHardSkillAdmin(admin.ModelAdmin):
-    pass
+    list_display = ["name", "create_count"]

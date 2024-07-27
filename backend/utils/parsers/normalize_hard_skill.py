@@ -202,5 +202,5 @@ def normalize_hard_skill(skill: str):
         return normalized_skill
     else:
         if skill not in default:
-            hard_skill, _ = UnknownHardSkill.objects.get_or_create(name=skill)
+            UnknownHardSkill.objects.create_skill(name=skill)
         return None
