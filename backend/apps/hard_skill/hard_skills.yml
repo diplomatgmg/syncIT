@@ -1,0 +1,84 @@
+Programming languages:
+  - Python
+  - Golang
+  - JavaScript
+  - TypeScript
+  - C
+  - C#
+  - C++
+  - Java
+  - Swift
+  - Ruby
+  - PHP
+  - HTML
+  - CSS
+
+Backend:
+  Python:
+    - Django
+      - Django REST Framework
+    - FastAPI
+    - Flask
+  JavaScript/TypeScript:
+    - Node.js
+    - Nest.js
+  Java:
+    - Spring
+      - Spring Boot
+  PHP:
+    - Laravel
+  C#:
+    - .NET
+      - ASP.NET
+  Ruby:
+    - Ruby on Rails
+
+Frontend:
+  HTML:
+    - HTML
+    - XHTML
+  CSS:
+    - Sass
+    - Less
+    - Bootstrap
+  JavaScript/TypeScript:
+    - React
+      - React Native
+      - Next.js
+    - Vue
+      - Nuxt.js
+    - Angular
+    - Ember.js
+    - Svelte
+
+Version control system:
+  - Git
+  - GitHub
+  - GitLab
+  - Mercurial
+
+DevOps:
+  - Docker
+    - Docker Compose
+  - Kubernetes
+  - CI/CD
+  - Jenkins
+  - Nginx
+  - Elasticsearch
+  - ClickHouse
+
+Databases:
+  - PostgreSQL
+  - MySQL
+  - MongoDB
+  - Redis
+  - MariaDB
+  - SQLite
+  - Oracle
+
+Tools:
+  - Figma
+  - Postman
+  - Jira
+  - Confluence
+  - Grafana
