@@ -1,6 +1,6 @@
 import { ReactElement, useEffect } from "react"
 import useSelectableList from "@/store/hooks/useSelectableList.ts"
-import Checkbox from "@/components/common/Input/CheckBox.tsx"
+import Checkbox from "@/components/common/Input/Checkbox.tsx"
 import { useGetProfileStatusQuery } from "@/store/api/profileApi.ts"
 
 interface SelectableListProps<T> {
@@ -27,15 +27,16 @@ const SelectableList = <T extends { id: number; name: string }>({
     <div>
       <ul>
         {items.map((item) => (
-          <Checkbox
-            key={item.id}
-            id={item.id}
-            name={item.name}
-            isSelected={selectedItems.some(
-              (selectedItem) => selectedItem.id === item.id
-            )}
-            handleCheckboxChange={() => handleCheckboxChange(item)}
-          />
+          <li key={item.id}>
+            <Checkbox
+              id={item.id}
+              name={item.name}
+              isSelected={selectedItems.some(
+                (selectedItem) => selectedItem.id === item.id
+              )}
+              handleCheckboxChange={() => handleCheckboxChange(item)}
+            />
+          </li>
         ))}
       </ul>
       {message && <p>{message}</p>}
