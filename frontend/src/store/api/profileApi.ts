@@ -14,10 +14,10 @@ const profileApi = createApi({
   endpoints: (builder) => ({
     getProfileData: builder.query<Profile, void>({
       query: () => "profile/",
+      providesTags: ["Profile"],
     }),
     getProfileStatus: builder.query<ProfileStatus, void>({
       query: () => "profile/is_completed/",
-      providesTags: ["Profile"],
     }),
     getProfileVacancies: builder.query<PreviewVacancy[], void>({
       query: () => "profile/vacancies/",
@@ -36,24 +36,24 @@ const profileApi = createApi({
         url: "profile/grades/",
         method: "PATCH",
         body: data,
-        invalidatesTags: ["Profile"],
       }),
+      invalidatesTags: ["Profile"],
     }),
     setUserWorkFormats: builder.mutation<WorkFormat[], WorkFormat[]>({
       query: (data) => ({
         url: "profile/work_formats/",
         method: "PATCH",
         body: data,
-        invalidatesTags: ["Profile"],
       }),
+      invalidatesTags: ["Profile"],
     }),
     setUserProfessions: builder.mutation<Profession[], Profession[]>({
       query: (data) => ({
         url: "profile/professions/",
         method: "PATCH",
         body: data,
-        invalidatesTags: ["Profile"],
       }),
+      invalidatesTags: ["Profile"],
     }),
   }),
 })
