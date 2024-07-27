@@ -1,9 +1,13 @@
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
 import xorBy from "lodash/xorBy"
+
+// Не нашел в документации нужный тип для useMutation
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type Mutation = () => any
 
 const useSelectableItems = <T extends { id: number }>(
   initialItems: T[],
-  mutation: any, // eslint-disable-line @typescript-eslint/no-explicit-any
+  mutation: Mutation,
   refetch: () => void
 ) => {
   const [selectedItems, setSelectedItems] = useState(initialItems)

@@ -1,12 +1,14 @@
 import { ReactElement } from "react"
-import useSelectableItems from "@/store/hooks/useSelectableItems.ts"
+import useSelectableItems, {
+  Mutation,
+} from "@/store/hooks/useSelectableItems.ts"
 import Checkbox from "@/components/common/Input/Checkbox.tsx"
 import { useGetProfileStatusQuery } from "@/store/api/profileApi.ts"
 
 interface SelectableListProps<T> {
   items: T[]
   userItems: T[]
-  mutation: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  mutation: Mutation
 }
 
 const SelectableList = <T extends { id: number; name: string }>({
