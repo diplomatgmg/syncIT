@@ -6,6 +6,7 @@ import {
   useSetUserHardSkillsMutation,
 } from "@/store/api/profileApi.ts"
 import useSelectableItems from "@/store/hooks/useSelectableItems.ts"
+import "./style.css"
 
 interface HardSkillListProps {
   hardSkills: HardSkill[]
@@ -24,7 +25,14 @@ const HardSkillList: FC<HardSkillListProps> = ({
   )
 
   return (
-    <ul>
+    <ul
+      className={"categories"}
+      style={{
+        listStyle: "none",
+        fontWeight: "bold",
+        color: "#8c8c8c",
+        paddingLeft: "10px",
+      }}>
       {hardSkills.map((hardSkill) => (
         <HardSkillItem
           key={hardSkill.id}

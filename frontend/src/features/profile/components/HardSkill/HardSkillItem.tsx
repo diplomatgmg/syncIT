@@ -15,8 +15,13 @@ const HardSkillItem: FC<HardSkillItemProps> = ({
   selectedItems,
   handleCheckboxChange,
 }) => {
+  const listStyle = hardSkill.selectable
+    ? { listStyle: "none", fontWeight: "normal", color: "#fff" }
+    : {
+        listStyle: "none",
+      }
   return (
-    <li>
+    <li style={listStyle}>
       {hardSkill.selectable && (
         <HardSkillSelectable
           hardSkill={hardSkill}
@@ -26,7 +31,7 @@ const HardSkillItem: FC<HardSkillItemProps> = ({
       )}
       {!hardSkill.selectable && hardSkill.name}
       {hardSkill.children.length > 0 && (
-        <ul>
+        <ul style={{ paddingLeft: "24px" }}>
           {hardSkill.children.map((child) => (
             <HardSkillItem
               key={child.id}
