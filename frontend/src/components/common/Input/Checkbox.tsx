@@ -7,24 +7,22 @@ interface CheckboxProps {
   handleCheckboxChange: (id: number) => void
 }
 
-const Checkbox: FC<CheckboxProps> = ({
+const Checkbox2: FC<CheckboxProps> = ({
   id,
   name,
   isSelected,
   handleCheckboxChange,
 }): ReactElement => {
   return (
-    <li>
-      <label>
-        <input
-          type="checkbox"
-          checked={isSelected}
-          onChange={() => handleCheckboxChange(id)}
-        />
-        {name}
-      </label>
-    </li>
+    <label>
+      <input
+        type="checkbox"
+        checked={isSelected}
+        onChange={() => handleCheckboxChange(id)}
+      />
+      {name}
+    </label>
   )
 }
 
-export default Checkbox
+export default Checkbox2
