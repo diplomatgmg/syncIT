@@ -11,11 +11,8 @@ const useSelectableList = (initialItems: Item[], mutation: any) => {
   const [message, setMessage] = useState("")
   const [setItems] = mutation()
 
-  const handleCheckboxChange = async (id: number, items: Item[]) => {
-    const item = items.find((i) => i.id === id)
-
-    if (!item) return
-
+  const handleCheckboxChange = async (item: Item) => {
+    console.log(item)
     const updatedItems = xorBy(selectedItems, [item], "id")
     setSelectedItems(updatedItems)
 

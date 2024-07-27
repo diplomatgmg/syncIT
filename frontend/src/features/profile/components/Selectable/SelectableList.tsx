@@ -7,14 +7,12 @@ interface SelectableListProps<T> {
   items: T[]
   userItems: T[]
   mutation: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  searchComponent?: ReactElement
 }
 
 const SelectableList = <T extends { id: number; name: string }>({
   items,
   userItems,
   mutation,
-  searchComponent,
 }: SelectableListProps<T>): ReactElement => {
   const { refetch: refetchProfileStatus } = useGetProfileStatusQuery()
   const { selectedItems, setSelectedItems, message, handleCheckboxChange } =
@@ -27,17 +25,16 @@ const SelectableList = <T extends { id: number; name: string }>({
 
   return (
     <div>
-      {searchComponent}
       <ul>
-        {items.map(({ id, name }) => (
+        {items.map((item) => (
           <Checkbox
-            key={id}
-            id={id}
-            name={name}
-            isSelected={selectedItems.some((item) => item.id === id)}
-            handleCheckboxChange={(id: number) =>
-              handleCheckboxChange(id, items)
-            }
+            key={item.id}
+            id={item.id}
+            name={item.name}
+            isSelected={selectedItems.some(
+              (selectedItem) => selectedItem.id === item.id
+            )}
+            handleCheckboxChange={() => handleCheckboxChange(item)}
           />
         ))}
       </ul>
