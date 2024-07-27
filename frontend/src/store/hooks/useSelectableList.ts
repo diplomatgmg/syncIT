@@ -1,22 +1,21 @@
 import { useState } from "react"
 import xorBy from "lodash/xorBy"
 
-interface Item {
-  id: number
-}
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const useSelectableList = (initialItems: Item[], mutation: any) => {
+const useSelectableList = <T extends { id: number }>(
+  initialItems: T[],
+  mutation: any
+) => {
   const [selectedItems, setSelectedItems] = useState(initialItems)
   const [message, setMessage] = useState("")
   const [setItems] = mutation()
 
-  const handleCheckboxChange = async (item: Item) => {
-    console.log(item)
+  const handleCheckboxChange = async (item: T) => {
     const updatedItems = xorBy(selectedItems, [item], "id")
     setSelectedItems(updatedItems)
 
     try {
+      console.log("fetch")
       await setItems(updatedItems).unwrap()
       setMessage("Изменения успешно сохранены")
       setTimeout(() => setMessage(""), 3000)
