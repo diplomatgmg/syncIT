@@ -9,7 +9,9 @@ def find_vacancies():
     profiles = Profile.objects.filter(is_completed=True)
 
     for profile in profiles:
-        profile_hard_skills = profile.hard_skills.values_list("name", flat=True)
+        profile_hard_skills = profile.hard_skills.values_list(
+            "name", flat=True
+        ).distinct()
         profile_professions = profile.professions.values_list("name", flat=True)
 
         HHParser(
