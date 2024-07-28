@@ -1,6 +1,6 @@
 from django.db import models
 
-
+# TODO Добавить добавление скиллов через анализ гит-репозитория
 class HardSkill(models.Model):
     name = models.CharField(max_length=100)
     parent = models.ForeignKey(
