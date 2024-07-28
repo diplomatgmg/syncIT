@@ -199,11 +199,15 @@ class HHParser(BaseParser):
         for item in data:
             work_formats.update(item["work_format_names"])
 
+        description = [item["description"] for item in data]
+        description = max(set(description), key=description.count)
+
         return {
             "grade_name": normalize_grade(grade),
             "hard_skill_names": tuple(hard_skills),
             "work_format_names": tuple(work_formats),
             "profession_name": normalize_profession(profession),
+            "description": description,
         }
 
     @staticmethod
@@ -223,7 +227,6 @@ class HHParser(BaseParser):
         return {
             "unique_hash": generate_hash(vacancy_data["id"]),
             "name": vacancy_data["name"],
-            "description": vacancy_data["description"],
             "salary_from": salary_from,
             "salary_to": salary_to,
             "experience": vacancy_data["experience"]["name"],

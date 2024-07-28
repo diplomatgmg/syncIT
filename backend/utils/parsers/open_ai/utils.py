@@ -4,12 +4,15 @@ from typing import Optional
 
 def parse_vacancy(text: str) -> Optional[dict[str, str | list[str]]]:
     def extract_pattern(pattern: str, key: str) -> Optional[str | list[str]]:
+        if key == "description":
+            return re.search(pattern, text, re.DOTALL).group(2)
+
         match = re.search(pattern, text)
         if not match:
             return None
 
         data = match.group(2).split(", ")
-        if key in ("profession", "grade_name"):
+        if key in ("profession", "grade_name", "description"):
             return data[0]
 
         return data
@@ -20,6 +23,7 @@ def parse_vacancy(text: str) -> Optional[dict[str, str | list[str]]]:
         "hard_skill_names": rf"(Навыки|Skills):{base_pattern}",
         "work_format_names": rf"(Формат работы|Format of work):{base_pattern}",
         "profession": rf"(Профессия|Profession):{base_pattern}",
+        "description": r"(Описание|Description):\s*(.*)",
     }
 
     parsed_data = {
