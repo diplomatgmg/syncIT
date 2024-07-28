@@ -9,6 +9,8 @@ class HardSkill(models.Model):
     selectable = models.BooleanField(default=True)
 
     class Meta:
+        # TODO
+        # ynique_together = ('name', 'parent')
         constraints = (
             models.UniqueConstraint(
                 fields=("name", "parent"), name="unique_hardskill_name_parent"

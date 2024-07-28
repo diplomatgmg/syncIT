@@ -4,11 +4,14 @@ from celery.app import shared_task
 from django.db.models import Count, Q
 
 from .models import Profile
-from ..vacancy.models import Vacancy
+from ..vacancy.models import Vacancy, UserVacancy
 
 
 @shared_task()
 def find_suitable_vacancies():
+    """
+    Поиск подходящих вакансий для пользователей
+    """
     profiles = Profile.objects.filter(is_completed=True)
     newest_vacancies = Vacancy.objects.filter(
         published_at__gt=datetime.now() - timedelta(days=1)
@@ -31,4 +34,8 @@ def find_suitable_vacancies():
             grade__in=profile_grades,
         )
 
-        profile.vacancies.set(suitable_vacancies)
+        print(suitable_vacancies)
+        for suitable_vacancy in suitable_vacancies:
+            UserVacancy.objects.get_or_create(
+                user=profile.user, vacancy=suitable_vacancy
+            )

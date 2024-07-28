@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 
 from ..company.models import Company
@@ -7,8 +8,13 @@ from ..profession.models import Profession
 from ..work_format.models import WorkFormat
 
 
+User = get_user_model()
+
+
 class BaseVacancy(models.Model):
     unique_hash = models.CharField(max_length=64, unique=True, editable=False)
+    name = models.CharField(max_length=255)
+    url = models.URLField()
 
     def __str__(self):
         return self.unique_hash
@@ -37,8 +43,22 @@ class Vacancy(BaseVacancy):
     profession = models.ForeignKey(Profession, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     published_at = models.DateTimeField()
-    # TODO Придумать, как показывать пользователю вакансии, которые он не смотрел.
-    # Которые смотрел - отобразить на фронте снизу
 
     def __str__(self):
         return self.name
+
+
+class UserVacancy(models.Model):
+    """
+    Релевантная вакансия для пользователя
+    """
+
+    is_viewed: models.BooleanField(default=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    vacancy = models.ForeignKey(Vacancy, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ("user", "vacancy")
+
+    def __str__(self):
+        return f"Vacancy #{self.vacancy.id} for user {self.user.email}"

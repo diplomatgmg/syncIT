@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Vacancy, ParsedVacancy
+from .models import Vacancy, ParsedVacancy, UserVacancy
 from django.contrib.admin.filters import SimpleListFilter
 from ..hard_skill.models import HardSkill
 
@@ -26,4 +26,9 @@ class VacancyAdmin(admin.ModelAdmin):
 
 @admin.register(ParsedVacancy)
 class ParsedVacancyAdmin(admin.ModelAdmin):
+    list_per_page = 25
+
+
+@admin.register(UserVacancy)
+class UserVacancyAdmin(admin.ModelAdmin):
     list_per_page = 25
