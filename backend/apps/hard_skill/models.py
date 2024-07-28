@@ -1,6 +1,8 @@
 from django.db import models
 
 # TODO Добавить добавление скиллов через анализ гит-репозитория
+
+
 class HardSkill(models.Model):
     name = models.CharField(max_length=100)
     parent = models.ForeignKey(
@@ -9,13 +11,7 @@ class HardSkill(models.Model):
     selectable = models.BooleanField(default=True)
 
     class Meta:
-        # TODO
-        # ynique_together = ('name', 'parent')
-        constraints = (
-            models.UniqueConstraint(
-                fields=("name", "parent"), name="unique_hardskill_name_parent"
-            ),
-        )
+        unique_together = ("name", "parent")
 
     def __str__(self):
         # Рекурсия для получения полного дерева
