@@ -5,7 +5,10 @@ from typing import Optional
 def parse_vacancy(text: str) -> Optional[dict[str, str | list[str]]]:
     def extract_pattern(pattern: str, key: str) -> Optional[str | list[str]]:
         if key == "description":
-            return re.search(pattern, text, re.DOTALL).group(2)
+            match = re.search(pattern, text, re.DOTALL)
+            if not match:
+                return None
+            return match.group(2)
 
         match = re.search(pattern, text)
         if not match:

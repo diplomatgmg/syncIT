@@ -41,7 +41,9 @@ class Vacancy(BaseVacancy):
     work_formats = models.ManyToManyField(WorkFormat, related_name="vacancies")
     hard_skills = models.ManyToManyField(HardSkill, related_name="vacancies")
     profession = models.ForeignKey(Profession, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )  # TODO Мб поменять в парcере created_at и published_at местами
     published_at = models.DateTimeField()
 
     def __str__(self):
@@ -53,7 +55,7 @@ class UserVacancy(models.Model):
     Релевантная вакансия для пользователя
     """
 
-    is_viewed: models.BooleanField(default=False)
+    is_viewed = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     vacancy = models.ForeignKey(Vacancy, on_delete=models.CASCADE)
 

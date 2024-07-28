@@ -3,7 +3,7 @@ import {
   useGetProfileDataQuery,
   useGetProfileVacanciesQuery,
 } from "@/store/api/profileApi.ts"
-import { PreviewVacancy } from "@/types/vacancyTypes.ts"
+import { VacancyPreview, UserVacancyPreview } from "@/types/vacancyTypes.ts"
 
 // TODO Разделить компонент
 const Home = (): ReactElement => {
@@ -12,7 +12,8 @@ const Home = (): ReactElement => {
 
   const userHardSkills = profileData?.hardSkills ?? []
 
-  const calcSuitable = (hardSkills: PreviewVacancy["hardSkills"]) => {
+  // TODO Лучше вынести вычисления на бекенд
+  const calcSuitable = (hardSkills: VacancyPreview["hardSkills"]) => {
     const matchingSkillsCount = hardSkills.filter((skill) =>
       userHardSkills.find(({ id }) => id === skill.id)
     ).length
@@ -23,10 +24,10 @@ const Home = (): ReactElement => {
     return Math.round(suitabilityPercentage)
   }
 
-  const vacanciesWithSuitable = vacancies
+  const vacanciesWithSuitable: UserVacancyPreview[] = vacancies
     .map((vacancy) => ({
       ...vacancy,
-      suitable: calcSuitable(vacancy.hardSkills),
+      suitable: calcSuitable(vacancy.vacancy.hardSkills),
     }))
     .filter(({ suitable }) => suitable > 60)
     .sort((a, b) => b.suitable - a.suitable)
@@ -35,9 +36,11 @@ const Home = (): ReactElement => {
     <div>
       <h3>Best vacancies:</h3>
       <ul>
-        {vacanciesWithSuitable.map((vacancy) => (
-          <li key={vacancy.id}>
+        {vacanciesWithSuitable.map(({ id, isViewed, vacancy }) => (
+          <li key={id}>
             {vacancy.name}
+            <br />
+            Просмотрена - {String(isViewed)}
             <p>
               <a href={vacancy.url} target="_blank" rel="noreferrer">
                 Open

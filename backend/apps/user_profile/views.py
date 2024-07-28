@@ -3,13 +3,11 @@ from rest_framework.generics import GenericAPIView, RetrieveAPIView
 from apps.grade.models import Grade
 from apps.grade.serializers import GradeSerializer
 from apps.hard_skill.models import HardSkill
-from apps.hard_skill.serializers import HardSkillSerializer
+from apps.hard_skill.serializers import HardSkillRecursiveSerializer
 from apps.profession.models import Profession
 from apps.profession.serializers import ProfessionSerializer
 from apps.user_profile.mixins import ProfileAttributesMixin, ProfileMixin
 from apps.user_profile.serializers import ProfileIsCompletedSerializer
-from apps.vacancy.models import Vacancy
-from apps.vacancy.serializers import VacancyListSerializer
 from apps.work_format.models import WorkFormat
 from apps.work_format.serializers import WorkFormatSerializer
 
@@ -32,7 +30,7 @@ class ProfileAttributesAPIView(ProfileMixin, ProfileAttributesMixin, GenericAPIV
 
 class ProfileHardSkillsAPIView(ProfileAttributesAPIView):
     attribute_model = HardSkill
-    attribute_serializer = HardSkillSerializer
+    attribute_serializer = HardSkillRecursiveSerializer
     attribute_field = "hard_skills"
 
 
@@ -52,9 +50,3 @@ class ProfileProfessionsAPIView(ProfileAttributesAPIView):
     attribute_model = Profession
     attribute_serializer = ProfessionSerializer
     attribute_field = "professions"
-
-
-class ProfileVacanciesListAPIView(ProfileAttributesAPIView):
-    attribute_model = Vacancy
-    attribute_serializer = VacancyListSerializer
-    attribute_field = "vacancies"

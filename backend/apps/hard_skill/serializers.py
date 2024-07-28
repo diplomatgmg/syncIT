@@ -4,6 +4,12 @@ from apps.hard_skill.models import HardSkill
 
 
 class HardSkillSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HardSkill
+        fields = ("id", "name")
+
+
+class HardSkillRecursiveSerializer(serializers.ModelSerializer):
     children = serializers.SerializerMethodField()
 
     class Meta:
@@ -13,4 +19,4 @@ class HardSkillSerializer(serializers.ModelSerializer):
     def get_children(self, obj):
         # TODO оптимизировать sql
         children = HardSkill.objects.filter(parent=obj)
-        return HardSkillSerializer(children, many=True).data
+        return HardSkillRecursiveSerializer(children, many=True).data

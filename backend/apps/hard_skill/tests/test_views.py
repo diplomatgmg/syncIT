@@ -2,7 +2,7 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 from ..models import HardSkill
-from ..serializers import HardSkillSerializer
+from ..serializers import HardSkillRecursiveSerializer
 
 
 class HardSkillListAPIViewTestCase(APITestCase):
@@ -17,5 +17,5 @@ class HardSkillListAPIViewTestCase(APITestCase):
 
         hard_skills = HardSkill.objects.all()
         self.assertCountEqual(
-            response.data, HardSkillSerializer(hard_skills, many=True).data
+            response.data, HardSkillRecursiveSerializer(hard_skills, many=True).data
         )

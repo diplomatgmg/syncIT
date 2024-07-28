@@ -1,21 +1,26 @@
 import { HardSkill } from "@/types/hardSkillTypes.ts"
+import { Company } from "@/types/companyTypes.ts"
+import { Grade } from "@/types/gradeTypes.ts"
+import { Profession } from "@/types/professionTypes.ts"
+import { WorkFormat } from "@/types/workFormatTypes.ts"
 
-export interface Vacancy {
+// Краткая информация о вакансии
+export interface VacancyPreview {
   id: number
-  uniqueHash: string
   name: string
-  description: string
-  salaryFrom: number
-  salaryTo: number
+  salaryFrom: number | null
+  salaryTo: number | null
   experience: string
   url: string
-  company: number
-  grade: number
-  workFormats: number[]
+  company: Company
+  grade: Grade
+  profession: Profession
+  workFormats: WorkFormat[]
   hardSkills: HardSkill[]
-  profession: number
-  createdAt: string
-  publishedAt: string
-} // TODO Пофиксить тип
+}
 
-export type PreviewVacancy = Pick<Vacancy, "id" | "name" | "url" | "hardSkills">
+export interface UserVacancyPreview {
+  id: number
+  isViewed: boolean
+  vacancy: VacancyPreview
+}
