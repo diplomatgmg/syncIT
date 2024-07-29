@@ -50,6 +50,7 @@ Frontend:
       - React Native
       - Next.js
     - Vue
+      - Vuex
       - Nuxt.js
     - Angular
     - Ember.js
@@ -58,6 +59,7 @@ Frontend:
     - Vite
     - Webpack
     - Redux
+    - Ajax
 
 Тестирование:
   Python:
@@ -93,9 +95,12 @@ DevOps:
   - Sentry
 
 Архитектурные принципы:
+  - JSON
+  - HTTP
   - API
     - REST API
     - GraphQL
+    - SOAP
   - SOLID
   - ООП
   - DDD
@@ -110,6 +115,7 @@ DevOps:
   - Postman
   - Jira
   - Confluence
+  - Slack
   - Grafana
   - Prometheus
   - Zabbix
