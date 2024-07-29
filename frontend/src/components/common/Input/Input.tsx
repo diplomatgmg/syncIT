@@ -1,22 +1,24 @@
-import {
-  type HTMLInputAutoCompleteAttribute,
-  type HTMLInputTypeAttribute,
-  type ReactElement,
-  useId,
-} from "react"
-import { Control, Controller, type FieldValues, Path } from "react-hook-form"
-import Label from "@/components/common/Input/Label.tsx"
-import InputField from "@/components/common/Input/InputField.tsx"
+import { FC, InputHTMLAttributes, useId } from "react"
 import styled from "styled-components"
+import { FieldError, UseFormRegisterReturn } from "react-hook-form"
+import { colors } from "@/styles/theme.ts"
+import Label from "@/components/common/Input/Label.tsx"
 
-interface InputProps<T extends FieldValues> {
-  label: string
-  error?: string
-  name: Path<T>
-  type?: HTMLInputTypeAttribute
-  autoComplete?: HTMLInputAutoCompleteAttribute
-  control?: Control<T>
-  rules?: FieldValues
+const StyledInput = styled.input`
+  outline: none;
+  border: 2px solid ${colors.accent};
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 0.05rem;
+  font-family: "Nunito", sans-serif;
+`
+
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  register: UseFormRegisterReturn
+  error?: FieldError
 }
 
 const StyledDiv = styled.div`
@@ -25,43 +27,14 @@ const StyledDiv = styled.div`
   flex-direction: column;
 `
 
-const StyledError = styled.span`
-  position: absolute;
-  font-size: 0.9rem;
-  color: red;
-  left: 22px;
-  bottom: 50px;
-  pointer-events: none;
-`
-
-const Input = <T extends FieldValues>({
-  label,
-  error,
-  name,
-  type,
-  autoComplete,
-  control,
-  rules,
-}: InputProps<T>): ReactElement => {
-  const inputId = useId()
+const Input: FC<InputProps> = ({ register, error, ...rest }) => {
+  const id = useId()
   return (
-    <Controller
-      name={name}
-      control={control}
-      rules={rules}
-      render={({ field }) => (
-        <StyledDiv>
-          <Label htmlFor={inputId} label={label} />
-          <InputField
-            id={inputId}
-            type={type}
-            autoComplete={autoComplete}
-            field={field}
-          />
-          {error && <StyledError>{error}</StyledError>}
-        </StyledDiv>
-      )}
-    />
+    <StyledDiv>
+      <Label htmlFor={id} label={rest.placeholder || ""} />
+      <StyledInput id={id} {...register} {...rest} />
+      {error && <span>{error.message}</span>}
+    </StyledDiv>
   )
 }
 
