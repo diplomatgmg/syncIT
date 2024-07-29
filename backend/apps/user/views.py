@@ -23,3 +23,4 @@ class CustomTokenRefreshView(TokenRefreshView):
 
 class UserCreateAPIView(CreateAPIView):
     serializer_class = UserCreateSerializer
+    permission_classes = []
