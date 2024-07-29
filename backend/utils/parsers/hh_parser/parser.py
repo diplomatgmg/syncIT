@@ -86,7 +86,7 @@ class HHParser(BaseParser):
                 time.sleep(1)
 
     @staticmethod
-    def get_data_with_workers(callback, collection, timeout=5, max_workers=10):
+    def get_data_with_workers(callback, collection, timeout=10, max_workers=10):
         result = []
 
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
@@ -100,7 +100,7 @@ class HHParser(BaseParser):
                     try:
                         data = future.result(timeout=timeout)
                     except TimeoutError:
-                        print(f"Повторная попытка получить данные...")
+                        print(f"TimeoutError. Повторная попытка получить данные...")
                         pass
 
                 result.append(data)
@@ -172,7 +172,7 @@ class HHParser(BaseParser):
         for prompt in vacancies_prompts:
             # Получаем 3 ответа от ChatGPT для максимального сбора инфы
             vacancy_response = self.get_data_with_workers(
-                get_chat_gpt_completion, [prompt] * 3, timeout=3
+                get_chat_gpt_completion, [prompt] * 3, timeout=10
             )
 
             yield vacancy_response
