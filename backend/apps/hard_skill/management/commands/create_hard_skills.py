@@ -31,4 +31,4 @@ class Command(BaseCommand):
                 process_skills(skill_data.get("children", []), parent=skill)
 
         process_skills(skills_dict)
-        self.stdout.write(self.style.SUCCESS("Successfully imported skills"))
+        self.stdout.write(self.style.SUCCESS("Скиллы успешно импортированы"))

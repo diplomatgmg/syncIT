@@ -9,7 +9,7 @@ class HardSkillSerializerTestCase(TestCase):
         hard_skill = HardSkill.objects.create(name="Python")
         serializer = HardSkillRecursiveSerializer(hard_skill)
         expected_data = {
-            "id": 2,
+            "id": hard_skill.id,
             "name": "Python",
             "selectable": True,
             "children": [],
