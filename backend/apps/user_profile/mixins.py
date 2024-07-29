@@ -1,5 +1,4 @@
 from django.contrib.auth import get_user_model
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
 
@@ -11,7 +10,6 @@ User = get_user_model()
 
 class ProfileMixin:
     queryset = Profile.objects.all()
-    permission_classes = [IsAuthenticated]
     serializer_class = ProfileSerializer
 
 

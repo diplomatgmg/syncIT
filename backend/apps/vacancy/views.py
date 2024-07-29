@@ -1,6 +1,6 @@
 from rest_framework import generics
 from rest_framework.generics import get_object_or_404
-from rest_framework.views import APIView
+from rest_framework.response import Response
 from setuptools.config._validate_pyproject.error_reporting import ValidationError
 
 from apps.vacancy.models import Vacancy, UserVacancy
@@ -9,8 +9,6 @@ from apps.vacancy.serializers import (
     UserVacancyListSerializer,
     UpdateUserVacancyViewStatusSerializer,
 )
-from rest_framework.response import Response
-from rest_framework import status
 
 
 class UserVacancyListAPIView(generics.ListAPIView):
