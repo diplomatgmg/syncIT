@@ -1,0 +1,1 @@
+- Добавить permission classes для представлений
