@@ -1,7 +1,5 @@
 import { type ReactElement } from "react"
 import useAuth from "@/store/hooks/useAuth.ts"
-import useAppDispatch from "@/store/hooks/useAppDispatch.ts"
-import { logout } from "@/store/slice/authSlice.ts"
 import {
   HeaderItemStyle,
   HeaderLinkStyle,
@@ -11,14 +9,11 @@ import routes from "@/routes/routes.tsx"
 import Button from "@/components/common/Button.tsx"
 import Link from "@/components/common/Link.tsx"
 import { colors } from "@/styles/theme.ts"
+import useLogout from "@/store/hooks/useLogout.ts"
 
 const HeaderNavigation = (): ReactElement => {
   const { isAuthenticated } = useAuth()
-  const dispatch = useAppDispatch()
-
-  const handleLogout = () => {
-    dispatch(logout())
-  }
+  const logoutHandler = useLogout()
 
   return (
     <HeaderListStyle style={{ margin: "0" }}>
@@ -34,16 +29,13 @@ const HeaderNavigation = (): ReactElement => {
 
       {isAuthenticated && (
         <HeaderItemStyle>
-          <Button onClick={handleLogout} borderRadius={"0"}>
+          <Button onClick={logoutHandler} borderRadius={"0"}>
             Logout
           </Button>
         </HeaderItemStyle>
       )}
 
       {!isAuthenticated && (
-        // <HeaderItemStyle>
-        //   <HeaderLinkStyle href={routes.login.path}>Login</HeaderLinkStyle>
-        // </HeaderItemStyle>
         <Link to={routes.login.path} backgroundColor={colors.accent}>
           Login
         </Link>
