@@ -59,8 +59,11 @@ const Home = (): ReactElement => {
                 onClick={() => handleReferVacancy(vacancy.id)}>
                 К источнику
               </a>{" "}
-              | <a href="#">Подробнее</a> | Подходит на{" "}
-              {calcSuitable(vacancy.hardSkills)}%
+              |{" "}
+              <a href="#" onClick={() => handleReferVacancy(vacancy.id)}>
+                Подробнее
+              </a>{" "}
+              | Подходит на {calcSuitable(vacancy.hardSkills)}%
               <br />
               {vacancy.hardSkills.map(({ name }) => name).join(", ")}
             </p>

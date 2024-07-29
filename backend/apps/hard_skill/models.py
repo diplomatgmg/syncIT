@@ -47,6 +47,9 @@ class UnknownHardSkillManager(models.Manager):
         """
         Увеличивает create_count при создании такого же скилла
         """
+        if len(name) > 100:
+            return
+
         skill, created = self.get_or_create(name=name)
         if created:
             skill.create_count = 1

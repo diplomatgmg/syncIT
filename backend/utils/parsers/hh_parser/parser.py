@@ -185,7 +185,11 @@ class HHParser(BaseParser):
         grade = max(set(grades), key=grades.count) if grades else "Неизвестно"
 
         professions = [item["profession"] for item in data]
-        profession = max(set(professions), key=professions.count)
+        profession = (
+            max(set(professions), key=professions.count)
+            if professions
+            else "Неизвестно"
+        )
 
         hard_skills = set()
         for item in data:
@@ -200,7 +204,9 @@ class HHParser(BaseParser):
             work_formats.update(item["work_format_names"])
 
         description = [item["description"] for item in data]
-        description = max(set(description), key=description.count)
+        description = (
+            max(set(description), key=description.count) if description else ""
+        )
 
         return {
             "grade_name": normalize_grade(grade),
