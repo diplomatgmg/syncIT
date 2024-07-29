@@ -20,6 +20,7 @@ class HardSkillFilter(SimpleListFilter):
 
 @admin.register(Vacancy)
 class VacancyAdmin(admin.ModelAdmin):
+    search_fields = ("name",)
     list_per_page = 20
     list_filter = ("profession__name", HardSkillFilter)
 
