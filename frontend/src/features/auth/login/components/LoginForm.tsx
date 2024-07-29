@@ -5,6 +5,7 @@ import { setEmail, setTokens } from "@/store/slice/authSlice.ts"
 import Input from "@/components/common/Input/Input.tsx"
 import { useNavigate } from "react-router-dom"
 import routes from "@/routes/routes.tsx"
+import Button from "@/components/common/Button.tsx"
 
 interface Inputs {
   email: string
@@ -58,7 +59,7 @@ function LoginForm() {
         {errors.password && <span>{errors.password.message}</span>}
       </div>
 
-      <button type="submit">Login</button>
+      <Button type="submit">Login</Button>
     </form>
   )
 }

@@ -3,7 +3,7 @@ import styled from "styled-components"
 export const HeaderStyle = styled.header`
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
+  align-items: center;
   background-color: #333;
 `
 
@@ -16,8 +16,8 @@ export const HeaderLogoStyle = styled.h3`
 export const HeaderListStyle = styled.ul`
   display: flex;
   justify-content: space-around;
+  align-items: center;
   padding: 0;
-  gap: 3rem;
   list-style: none;
 `
 

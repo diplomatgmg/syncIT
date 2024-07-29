@@ -8,6 +8,9 @@ import {
   HeaderListStyle,
 } from "@/components/layout/Header/HeaderStyles.ts"
 import routes from "@/routes/routes.tsx"
+import Button from "@/components/common/Button.tsx"
+import Link from "@/components/common/Link.tsx"
+import { colors } from "@/styles/theme.ts"
 
 const HeaderNavigation = (): ReactElement => {
   const { isAuthenticated } = useAuth()
@@ -31,22 +34,23 @@ const HeaderNavigation = (): ReactElement => {
 
       {isAuthenticated && (
         <HeaderItemStyle>
-          <button onClick={handleLogout}>Logout</button>
+          <Button onClick={handleLogout}>Logout</Button>
         </HeaderItemStyle>
       )}
 
       {!isAuthenticated && (
-        <HeaderItemStyle>
-          <HeaderLinkStyle href={routes.login.path}>Login</HeaderLinkStyle>
-        </HeaderItemStyle>
+        // <HeaderItemStyle>
+        //   <HeaderLinkStyle href={routes.login.path}>Login</HeaderLinkStyle>
+        // </HeaderItemStyle>
+        <Link to={routes.login.path} backgroundColor={colors.accent}>
+          Login
+        </Link>
       )}
 
       {!isAuthenticated && (
-        <HeaderItemStyle>
-          <HeaderLinkStyle href={routes.register.path}>
-            Register
-          </HeaderLinkStyle>
-        </HeaderItemStyle>
+        <Link to={routes.register.path} backgroundColor={colors.accent}>
+          Register
+        </Link>
       )}
     </HeaderListStyle>
   )

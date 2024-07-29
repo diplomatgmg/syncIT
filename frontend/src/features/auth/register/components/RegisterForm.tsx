@@ -5,6 +5,7 @@ import { setEmail } from "@/store/slice/authSlice.ts"
 import Input from "@/components/common/Input/Input.tsx"
 import { useNavigate } from "react-router-dom"
 import routes from "@/routes/routes.tsx"
+import Button from "@/components/common/Button.tsx"
 
 interface Inputs {
   email: string
@@ -75,7 +76,7 @@ function RegisterForm() {
         {errors.re_password && <span>{errors.re_password.message}</span>}
       </div>
 
-      <button type="submit">Register</button>
+      <Button type="submit">Register</Button>
     </form>
   )
 }
