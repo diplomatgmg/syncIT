@@ -1,1 +1,3 @@
 - Добавить permission classes для представлений
+- Использовать logging вместо print xD
+- Создать микросервис для ChatGPT
