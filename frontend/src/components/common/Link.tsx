@@ -4,7 +4,7 @@ import {
   Link as RouterLink,
   LinkProps as RouterLinkProps,
 } from "react-router-dom"
-import { colors, sizes, transitionsSpeed } from "@/styles/theme.ts"
+import { colors, transitionsSpeed } from "@/styles/theme.ts"
 
 interface LinkProps extends RouterLinkProps {
   backgroundColor?: CSSProperties["backgroundColor"]
@@ -24,7 +24,7 @@ const StyledLink = styled(RouterLink)<StyledLinkProps>`
   color: ${({ theme }) => theme.textColor};
   text-decoration: none;
   background-color: ${({ theme }) => theme.backgroundColor};
-  padding: ${sizes.xs} ${sizes["4xl"]};
+  padding: 0.75rem 2.5rem;
   transition: ${transitionsSpeed.fast} linear;
 
   &:hover {

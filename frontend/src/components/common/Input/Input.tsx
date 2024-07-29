@@ -5,9 +5,13 @@ import {
   useId,
 } from "react"
 import { Control, Controller, type FieldValues, Path } from "react-hook-form"
+import Label from "@/components/common/Input/Label.tsx"
+import InputField from "@/components/common/Input/InputField.tsx"
+import styled from "styled-components"
 
 interface InputProps<T extends FieldValues> {
   label: string
+  error?: string
   name: Path<T>
   type?: HTMLInputTypeAttribute
   autoComplete?: HTMLInputAutoCompleteAttribute
@@ -15,8 +19,24 @@ interface InputProps<T extends FieldValues> {
   rules?: FieldValues
 }
 
+const StyledDiv = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+`
+
+const StyledError = styled.span`
+  position: absolute;
+  font-size: 0.9rem;
+  color: red;
+  left: 22px;
+  bottom: 50px;
+  pointer-events: none;
+`
+
 const Input = <T extends FieldValues>({
   label,
+  error,
   name,
   type,
   autoComplete,
@@ -30,16 +50,16 @@ const Input = <T extends FieldValues>({
       control={control}
       rules={rules}
       render={({ field }) => (
-        <div>
-          <label htmlFor={inputId}>{label}</label>
-          <input
+        <StyledDiv>
+          <Label htmlFor={inputId} label={label} />
+          <InputField
             id={inputId}
-            type={type ?? "text"}
-            autoComplete={autoComplete ?? "off"}
-            {...field}
-            value={field.value ?? ""}
+            type={type}
+            autoComplete={autoComplete}
+            field={field}
           />
-        </div>
+          {error && <StyledError>{error}</StyledError>}
+        </StyledDiv>
       )}
     />
   )
