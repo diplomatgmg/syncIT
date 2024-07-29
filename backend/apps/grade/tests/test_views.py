@@ -1,11 +1,18 @@
+from django.contrib.auth import get_user_model
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 from ..models import Grade
 from ..serializers import GradeSerializer
 
+User = get_user_model()
+
 
 class GradeListAPIViewTestCase(APITestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(email="test@test.com", password="password")
+        self.client.login(email="test@test.com", password="password")
+
     def test_list_grades(self):
         """Проверяем, что представление возвращает список всех оценок"""
         Grade.objects.create(name="Junior")
