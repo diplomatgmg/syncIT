@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 from ..company.models import Company
@@ -6,7 +7,6 @@ from ..grade.models import Grade
 from ..hard_skill.models import HardSkill
 from ..profession.models import Profession
 from ..work_format.models import WorkFormat
-
 
 User = get_user_model()
 
@@ -58,6 +58,12 @@ class UserVacancy(models.Model):
     is_viewed = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     vacancy = models.ForeignKey(Vacancy, on_delete=models.CASCADE)
+    suitability = models.IntegerField(
+        validators=(
+            MinValueValidator(0),
+            MaxValueValidator(100),
+        )
+    )
 
     class Meta:
         unique_together = ("user", "vacancy")

@@ -266,5 +266,8 @@ class HHParser(BaseParser):
             if len(parsed_vacancy["hard_skill_names"]) < 5:
                 continue
 
+            # TODO Некоторых скиллов нет в БД, поэтому вакансия сохраниться в БД,
+            # но количество ее скиллов будет < 5
+
             vacancy_result = self.get_vacancy_result(vacancy_data, parsed_vacancy)
             self.save_vacancy_to_db(vacancy_result)

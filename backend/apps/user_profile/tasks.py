@@ -5,6 +5,7 @@ from django.db.models import Count, Q
 
 from .models import Profile
 from ..vacancy.models import Vacancy, UserVacancy
+from django.conf import settings
 
 
 @shared_task()
@@ -34,8 +35,16 @@ def find_suitable_vacancies():
             grade__in=profile_grades,
         )
 
-        print(suitable_vacancies)
         for suitable_vacancy in suitable_vacancies:
-            UserVacancy.objects.get_or_create(
-                user=profile.user, vacancy=suitable_vacancy
+            matching_skills_count = suitable_vacancy.hard_skill_count
+            total_skills = suitable_vacancy.hard_skills.count()
+            suitability = round((matching_skills_count / total_skills) * 100)
+
+            if suitability < settings.MINIMUM_VACANCY_SUITABILITY:
+                continue
+
+            UserVacancy.objects.update_or_create(
+                user=profile.user,
+                vacancy=suitable_vacancy,
+                suitability=suitability,
             )

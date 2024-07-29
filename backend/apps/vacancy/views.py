@@ -1,7 +1,7 @@
 from rest_framework import generics
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
-from setuptools.config._validate_pyproject.error_reporting import ValidationError
+from rest_framework.validators import ValidationError
 
 from apps.vacancy.models import Vacancy, UserVacancy
 from apps.vacancy.serializers import (
@@ -15,7 +15,6 @@ class UserVacancyListAPIView(generics.ListAPIView):
     serializer_class = UserVacancyListSerializer
 
     def get_queryset(self):
-        # TODO Убрать обработку релевантности вакансий с бекенда и перенести сюда
         return UserVacancy.objects.filter(user=self.request.user).prefetch_related(
             "vacancy",
             "vacancy__company",

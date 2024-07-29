@@ -55,7 +55,7 @@ class UserVacancyListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserVacancy
-        fields = ("id", "is_viewed", "vacancy")
+        fields = ("id", "is_viewed", "suitability", "vacancy")
 
 
 class VacancyCreateSerializer(serializers.ModelSerializer):

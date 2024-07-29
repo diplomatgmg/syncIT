@@ -22,6 +22,7 @@ export interface VacancyPreview {
 export interface UserVacancyPreview {
   id: number
   isViewed: boolean
+  suitability: number
   vacancy: VacancyPreview
 }
 
