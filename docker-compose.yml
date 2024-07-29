@@ -121,6 +121,7 @@ services:
       - backend
       - redis
       - celery
+      - celery-beat
     networks:
       - app-network
 
