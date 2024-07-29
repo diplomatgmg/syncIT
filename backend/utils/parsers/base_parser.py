@@ -24,6 +24,12 @@ ModelNameType = Literal[
 class BaseParser(ABC):
     def save_vacancy_to_db(self, data):
         unique_hash = data.get("unique_hash")
+
+        if Vacancy.objects.filter(unique_hash=unique_hash).exists():
+            # Иногда, таски могут запускаться параллельно (если слишком маленький интервал)
+            # Из-за этого могут парситься одинаковые вакансии
+            return
+
         name = data.get("name")
         description = data.get("description")
         salary_from = data.get("salary_from")
