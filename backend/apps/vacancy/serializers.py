@@ -73,3 +73,9 @@ class VacancyCreateSerializer(serializers.ModelSerializer):
             "work_formats",
             "hard_skills",
         )
+
+
+class UpdateUserVacancyViewStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserVacancy
+        fields = ("id", "user", "vacancy")
