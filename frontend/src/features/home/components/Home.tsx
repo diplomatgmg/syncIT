@@ -1,14 +1,16 @@
 import { type ReactElement } from "react"
+import { useGetProfileDataQuery } from "@/store/api/profileApi.ts"
+import { UserVacancyPreview, VacancyPreview } from "@/types/vacancyTypes.ts"
 import {
-  useGetProfileDataQuery,
-  useGetProfileVacanciesQuery,
-} from "@/store/api/profileApi.ts"
-import { VacancyPreview, UserVacancyPreview } from "@/types/vacancyTypes.ts"
+  useGetVacanciesQuery,
+  useUpdateVacancyViewStatusMutation,
+} from "@/store/api/vacancyApi.ts"
 
 // TODO Разделить компонент
 const Home = (): ReactElement => {
-  const { data: vacancies = [] } = useGetProfileVacanciesQuery()
+  const { data: vacancies = [] } = useGetVacanciesQuery()
   const { data: profileData } = useGetProfileDataQuery()
+  const [updateVacancyViewStatus] = useUpdateVacancyViewStatusMutation()
 
   const userHardSkills = profileData?.hardSkills ?? []
 
@@ -32,6 +34,14 @@ const Home = (): ReactElement => {
     .filter(({ suitable }) => suitable > 60)
     .sort((a, b) => b.suitable - a.suitable)
 
+  const handleReferVacancy = async (vacancy_id: number) => {
+    try {
+      await updateVacancyViewStatus({ vacancy: vacancy_id }).unwrap()
+    } catch (err) {
+      console.error("Ошибка входа: ", err)
+    }
+  }
+
   return (
     <div>
       <h3>Best vacancies:</h3>
@@ -42,10 +52,15 @@ const Home = (): ReactElement => {
             <br />
             Просмотрена - {String(isViewed)}
             <p>
-              <a href={vacancy.url} target="_blank" rel="noreferrer">
-                Open
+              <a
+                href={vacancy.url}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => handleReferVacancy(vacancy.id)}>
+                К источнику
               </a>{" "}
-              Подходит на {calcSuitable(vacancy.hardSkills)}%
+              | <a href="#">Подробнее</a> | Подходит на{" "}
+              {calcSuitable(vacancy.hardSkills)}%
               <br />
               {vacancy.hardSkills.map(({ name }) => name).join(", ")}
             </p>

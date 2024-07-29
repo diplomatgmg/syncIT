@@ -24,3 +24,11 @@ export interface UserVacancyPreview {
   isViewed: boolean
   vacancy: VacancyPreview
 }
+
+export interface UpdateVacancyViewStatusRequest {
+  vacancy: number
+}
+
+export interface UpdateVacancyViewStatusResponse {
+  status: string
+}
