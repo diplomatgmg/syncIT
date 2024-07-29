@@ -15,7 +15,7 @@ def find_suitable_vacancies():
     profiles = Profile.objects.filter(is_completed=True)
     newest_vacancies = Vacancy.objects.filter(
         published_at__gt=datetime.now() - timedelta(days=1)
-    )
+    )  # TODO: Django ругается на разницу пользователя и часового пояса
 
     for profile in profiles:
         profile_hard_skills = profile.hard_skills.all()
