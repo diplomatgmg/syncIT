@@ -1,29 +1,28 @@
 import {
-  type FC,
   type HTMLInputAutoCompleteAttribute,
   type HTMLInputTypeAttribute,
   type ReactElement,
   useId,
 } from "react"
-import { Controller, type FieldValues } from "react-hook-form"
+import { Control, Controller, type FieldValues, Path } from "react-hook-form"
 
-interface InputProps {
+interface InputProps<T extends FieldValues> {
   label: string
-  name: string
+  name: Path<T>
   type?: HTMLInputTypeAttribute
   autoComplete?: HTMLInputAutoCompleteAttribute
-  control?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  control?: Control<T>
   rules?: FieldValues
 }
 
-const Input: FC<InputProps> = ({
+const Input = <T extends FieldValues>({
   label,
   name,
   type,
   autoComplete,
   control,
   rules,
-}): ReactElement => {
+}: InputProps<T>): ReactElement => {
   const inputId = useId()
   return (
     <Controller
