@@ -34,7 +34,9 @@ const HeaderNavigation = (): ReactElement => {
 
       {isAuthenticated && (
         <HeaderItemStyle>
-          <Button onClick={handleLogout}>Logout</Button>
+          <Button onClick={handleLogout} borderRadius={"0"}>
+            Logout
+          </Button>
         </HeaderItemStyle>
       )}
 
