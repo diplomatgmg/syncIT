@@ -3,26 +3,27 @@ import re
 from datetime import datetime
 
 
-def dict_keys_snake_to_camel(input_dict: dict) -> dict:
-    def convert_to_camel_case(key: str) -> str:
-        return re.sub(r"([_-])([a-z])", lambda match: match.group(2).upper(), key)
+def snake_to_camel(snake_str: str) -> str:
+    return "".join(
+        word.capitalize() if i > 0 else word
+        for i, word in enumerate(snake_str.split("_"))
+    )
 
-    def convert_dict(_input_dict: dict) -> dict:
-        new_dict: dict = {}
-        for key, value in _input_dict.items():
-            new_key: str = convert_to_camel_case(key)
-            if isinstance(value, dict):
-                new_dict[new_key] = convert_dict(value)
-            elif isinstance(value, list):
-                new_dict[new_key] = [
-                    convert_dict(item) if isinstance(item, dict) else item
-                    for item in value
-                ]
-            else:
-                new_dict[new_key] = value
-        return new_dict
 
-    return convert_dict(input_dict)
+def dict_keys_snake_to_camel(d):
+    if not isinstance(d, dict):
+        return d
+
+    def process_item(item):
+        if isinstance(item, dict):
+            return {snake_to_camel(k): process_item(v) for k, v in item.items()}
+
+        if isinstance(item, list):
+            return [process_item(i) for i in item]
+
+        return item
+
+    return process_item(d)
 
 
 def generate_hash(value: str) -> str:
