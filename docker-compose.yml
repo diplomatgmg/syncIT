@@ -88,6 +88,7 @@ services:
     command: celery -A core.celery.app worker -l debug
     depends_on:
       - redis
+      - postgres
       - backend
     networks:
       - app-network
@@ -101,8 +102,9 @@ services:
       - .env
     command: celery -A core.celery.app beat -l debug
     depends_on:
-      - backend
       - redis
+      - postgres
+      - backend
       - celery
     networks:
       - app-network
@@ -118,8 +120,8 @@ services:
     ports:
       - "5555:5555"
     depends_on:
-      - backend
       - redis
+      - backend
       - celery
       - celery-beat
     networks:
