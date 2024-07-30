@@ -4,12 +4,12 @@ from g4f.Provider import Blackbox
 from g4f.client import Client
 
 
-def clear_text(text: str):
+def clear_text(text: str) -> str:
     return re.sub(r"\*+", " ", text).strip()
 
 
-def get_chat_gpt_completion(prompt: str):
-    def get_completion(_prompt: str):
+def get_chat_gpt_completion(prompt: str) -> str:
+    def get_completion(_prompt: str) -> str:
         try:
             client = Client()
             response = client.chat.completions.create(

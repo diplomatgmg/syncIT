@@ -240,10 +240,12 @@ default = (
 )
 
 
-def normalize_hard_skill(skill: str):
+def normalize_hard_skill(skill: str) -> str | None:
     normalized_skill = HARD_SKILL_MAPPING.get(skill.lower())
     if normalized_skill:
         return normalized_skill
 
     if skill not in default:
         UnknownHardSkill.objects.create_skill(name=skill)
+
+    return None

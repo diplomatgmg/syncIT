@@ -3,17 +3,14 @@ import re
 from datetime import datetime
 
 
-def dict_keys_snake_to_camel(input_dict):
-    def convert_to_camel_case(key):
-        return re.sub("([_-])([a-z])", lambda match: match.group(2).upper(), key)
+def dict_keys_snake_to_camel(input_dict: dict) -> dict:
+    def convert_to_camel_case(key: str) -> str:
+        return re.sub(r"([_-])([a-z])", lambda match: match.group(2).upper(), key)
 
-    def convert_dict(input_dict):
-        if not isinstance(input_dict, dict):
-            return input_dict
-
-        new_dict = {}
-        for key, value in input_dict.items():
-            new_key = convert_to_camel_case(key)
+    def convert_dict(_input_dict: dict) -> dict:
+        new_dict: dict = {}
+        for key, value in _input_dict.items():
+            new_key: str = convert_to_camel_case(key)
             if isinstance(value, dict):
                 new_dict[new_key] = convert_dict(value)
             elif isinstance(value, list):

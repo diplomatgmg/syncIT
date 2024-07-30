@@ -70,20 +70,15 @@ class HHParser(BaseParser):
     def _build_vacancy_detail_url(self, url: str) -> str:
         return f"{self.base_url}/{url}"
 
-    def _get_http_data(
-        self, url: str, **kwargs
-    ) -> dict[str, list[Any] | str | int | None]:
-        retries = 0
-        while retries < 10:
+    def _get_http_data(self, url: str, **kwargs) -> dict[str, Any]:
+        for _ in range(10):
             try:
                 response = self.session.get(url, headers=self.headers, **kwargs)
                 response.raise_for_status()
                 return response.json()
             except requests.exceptions.RequestException:
-                retries += 1
-                if retries == 5:
-                    self.session = requests.Session()
                 time.sleep(1)
+        raise requests.exceptions.RequestException("Не удалось получить данные")
 
     @staticmethod
     def get_data_with_workers(callback, collection, timeout=10, max_workers=10):
@@ -178,7 +173,7 @@ class HHParser(BaseParser):
             yield vacancy_response
 
     @staticmethod
-    def parse_gpt_responses(gpt_responses: list[str]) -> dict[str, tuple]:
+    def parse_gpt_responses(gpt_responses):
         data = tuple(filter(lambda x: x is not None, map(parse_vacancy, gpt_responses)))
 
         grades = [item["grade_name"] for item in data]
