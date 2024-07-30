@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components"
-import NunitoBlackTtf from "/public/fonts/Nunito-Black.ttf"
-import NunitoBoldTtf from "/public/fonts/Nunito-Bold.ttf"
-import NunitoRegularTtf from "/public/fonts/Nunito-Regular.ttf"
+import NunitoBlackTtf from "/fonts/Nunito-Black.ttf"
+import NunitoBoldTtf from "/fonts/Nunito-Bold.ttf"
+import NunitoRegularTtf from "/fonts/Nunito-Regular.ttf"
 
 export default createGlobalStyle`
     @font-face {
