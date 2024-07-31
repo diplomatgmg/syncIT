@@ -1,6 +1,5 @@
 **/parsers/**/config.py
 .idea/
-bun.lockb
 
 ### Django template
 *.log
