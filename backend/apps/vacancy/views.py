@@ -15,12 +15,16 @@ class UserVacancyListAPIView(generics.ListAPIView):
     serializer_class = UserVacancyListSerializer
 
     def get_queryset(self):
-        return UserVacancy.objects.filter(user=self.request.user).prefetch_related(
-            "vacancy",
-            "vacancy__company",
-            "vacancy__grade",
-            "vacancy__profession",
-            "vacancy__hard_skills",
+        return (
+            UserVacancy.objects.filter(user=self.request.user)
+            .prefetch_related(
+                "vacancy",
+                "vacancy__company",
+                "vacancy__grade",
+                "vacancy__profession",
+                "vacancy__hard_skills",
+            )
+            .order_by("-suitability")
         )
 
 
