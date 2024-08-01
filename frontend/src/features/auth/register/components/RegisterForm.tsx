@@ -8,22 +8,16 @@ import routes from "@/routes/routes.tsx"
 import Button from "@/components/common/Button.tsx"
 import { ReactElement } from "react"
 import Form from "@/features/auth/Form.tsx"
-import styled from "styled-components"
 
 interface Inputs {
   email: string
   password: string
-  re_password: string
+  re_password: string // Snake case для удобной передачи бекенду
 }
-
-const StyledPasswordContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-`
 
 const RegisterForm = (): ReactElement => {
   const {
-    control,
+    register,
     handleSubmit,
     formState: { errors },
     watch,
@@ -33,7 +27,6 @@ const RegisterForm = (): ReactElement => {
   const navigate = useNavigate()
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    console.log(data)
     try {
       const { email } = await registerUser(data).unwrap()
       dispatch(setEmail({ email }))
@@ -43,48 +36,42 @@ const RegisterForm = (): ReactElement => {
     }
   }
 
+  const disabled = Boolean(
+    errors.email || errors.password || errors.re_password
+  )
+
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Input
         type={"email"}
-        autoComplete={"email"}
-        label={"Email"}
-        name={"email"}
-        control={control}
-        rules={{ required: "Обязательное поле" }}
-        error={errors?.email?.message}
+        placeholder={"Email"}
+        register={register("email", { required: "Обязательное поле" })}
+        error={errors.email}
       />
 
-      <StyledPasswordContainer>
-        <Input
-          type={"password"}
-          autoComplete={"current-password"}
-          label={"Password"}
-          name={"password"}
-          control={control}
-          rules={{ required: "Обязательное поле" }}
-          error={errors?.password?.message}
-        />
+      <Input
+        type={"password"}
+        placeholder={"Password"}
+        register={register("password", { required: "Обязательное поле" })}
+        error={errors.password}
+      />
 
-        <Input
-          type={"password"}
-          autoComplete={"new-password"}
-          label={"Repeat password"}
-          name={"re_password"}
-          control={control}
-          error={errors?.re_password?.message}
-          rules={{
-            required: "Обязательное поле",
-            validate: (value: string) =>
-              value === watch("password") || "Пароли не совпадают",
-          }}
-        />
-      </StyledPasswordContainer>
+      <Input
+        type={"password"}
+        placeholder={"Repeat password"}
+        register={register("re_password", {
+          required: "Обязательное поле",
+          validate: (value: string) =>
+            value === watch("password") || "Пароли не совпадают",
+        })}
+        error={errors.re_password}
+      />
 
       <Button
+        disabled={disabled}
         type="submit"
         style={{
-          margin: "2rem -4rem -4rem -4rem",
+          margin: "2rem -4rem -6.2rem -4rem",
           borderRadius: "0 0 1rem 1rem",
         }}
         borderRadius={"0"}>

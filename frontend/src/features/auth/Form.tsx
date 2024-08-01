@@ -8,9 +8,9 @@ interface FormProps {
 }
 
 const StyledForm = styled.form`
-  margin: 0 auto;
-  max-width: 500px;
-  width: 50%;
+  margin: -110px 2rem -60px;
+  width: 100%;
+  max-width: 700px;
   display: flex;
   flex-direction: column;
   background-color: ${colors.background};

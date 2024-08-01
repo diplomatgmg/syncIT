@@ -34,6 +34,7 @@ const HeaderNavigation = (): ReactElement => {
       {isAuthenticated && (
         <AuthButtonContainer>
           <Button
+            style={{ width: "100%" }}
             onClick={logoutHandler}
             borderRadius="0"
             backgroundColor={colors.danger}>

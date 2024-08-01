@@ -27,13 +27,21 @@ const StyledDiv = styled.div`
   flex-direction: column;
 `
 
+const Message = styled.span`
+  position: absolute;
+  right: 1rem;
+  top: 50px;
+  font-size: 0.9rem;
+  color: ${colors.danger};
+`
+
 const Input: FC<InputProps> = ({ register, error, ...rest }) => {
   const id = useId()
   return (
     <StyledDiv>
       <Label htmlFor={id} label={rest.placeholder || ""} />
       <StyledInput id={id} {...register} {...rest} />
-      {error && <span>{error.message}</span>}
+      {error && <Message>{error.message}</Message>}
     </StyledDiv>
   )
 }

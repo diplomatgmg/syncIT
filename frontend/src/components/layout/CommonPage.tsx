@@ -8,9 +8,12 @@ const StyledPage = styled.div`
   display: flex;
   position: relative;
   flex-direction: row-reverse;
+  height: 100vh;
 `
 const ChildrenStyle = styled.div`
+  display: flex;
   width: 100%;
+  height: 100%;
 `
 
 const CommonPage = ({ children }: CommonPageProps): ReactElement => {

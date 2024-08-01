@@ -11,6 +11,7 @@ import { colors, transitionsSpeed } from "@/styles/theme.ts"
 interface ButtonProps {
   children: ReactNode
   onClick?: () => void
+  disabled?: boolean
   style?: CSSProperties
   type?: ButtonHTMLAttributes<HTMLButtonElement>["type"]
   backgroundColor?: CSSProperties["backgroundColor"]
@@ -21,6 +22,7 @@ interface ButtonProps {
 interface StyledButtonProps {
   style?: CSSProperties
   theme: {
+    disabled?: boolean
     backgroundColor?: CSSProperties["backgroundColor"]
     textColor: CSSProperties["color"]
   }
@@ -38,19 +40,22 @@ const StyledButton = styled.button<StyledButtonProps>`
   transition: ${transitionsSpeed.fast} linear;
   font-family: "Nunito", sans-serif;
   display: flex;
-  width: 100%;
   justify-content: center;
+  cursor: ${({ theme }) => (theme.disabled ? "not-allowed" : "pointer")};
+  opacity: ${({ theme }) => (theme.disabled ? 0.6 : 1)};
 
   &:hover {
-    cursor: pointer;
-    background-color: ${({ theme }) => theme.textColor};
-    color: ${({ theme }) => theme.backgroundColor};
+    background-color: ${({ theme }) =>
+      theme.disabled ? theme.backgroundColor : theme.textColor};
+    color: ${({ theme }) =>
+      theme.disabled ? theme.textColor : theme.backgroundColor};
   }
 `
 
 const Button: FC<ButtonProps> = ({
   children,
   onClick,
+  disabled = false,
   style,
   type = "button",
   backgroundColor = colors.accent,
@@ -58,8 +63,13 @@ const Button: FC<ButtonProps> = ({
   borderRadius,
 }): ReactElement => {
   return (
-    <ThemeProvider theme={{ backgroundColor, textColor, borderRadius }}>
-      <StyledButton style={style} onClick={onClick} type={type}>
+    <ThemeProvider
+      theme={{ backgroundColor, textColor, borderRadius, disabled }}>
+      <StyledButton
+        style={style}
+        onClick={!disabled ? onClick : undefined}
+        type={type}
+        disabled={disabled}>
         {children}
       </StyledButton>
     </ThemeProvider>
