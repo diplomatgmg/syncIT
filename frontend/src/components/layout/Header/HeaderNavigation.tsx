@@ -46,7 +46,7 @@ const HeaderNavigation = (): ReactElement => {
       {!isAuthenticated && (
         <AuthButtonContainer>
           {renderLink(routes.login.path, "Вход")}
-          {renderLink(routes.register.path, "Авторизация")}
+          {renderLink(routes.register.path, "Регистрация")}
         </AuthButtonContainer>
       )}
     </HeaderListStyle>
