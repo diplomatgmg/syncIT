@@ -9,8 +9,7 @@ import { ReactElement, useState } from "react"
 import Form from "@/features/auth/Form.tsx"
 import Input from "@/components/common/Input/Input.tsx"
 import { LoginResponseError } from "@/types/authTypes.ts"
-import styled from "styled-components"
-import { colors } from "@/styles/theme.ts"
+import AuthErrors from "@/features/auth/AuthErrors.tsx"
 
 interface Inputs {
   email: string
@@ -41,6 +40,8 @@ const LoginForm = (): ReactElement => {
     }
   }
 
+  const disabled = Boolean(errors.email || errors.password)
+
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Input
@@ -58,9 +59,10 @@ const LoginForm = (): ReactElement => {
         autoComplete={"current-password"}
       />
 
-      {message && <Message>{message}</Message>}
+      {message && <AuthErrors errors={[message]} />}
 
       <Button
+        disabled={disabled}
         type="submit"
         style={{
           margin: "2rem -4rem -6.2rem -4rem",
@@ -73,10 +75,3 @@ const LoginForm = (): ReactElement => {
 }
 
 export default LoginForm
-
-const Message = styled.p`
-  margin: 0;
-  text-align: center;
-  color: ${colors.danger};
-  font-size: 1rem;
-`

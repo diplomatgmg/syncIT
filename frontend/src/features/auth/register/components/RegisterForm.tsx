@@ -6,8 +6,10 @@ import Input from "@/components/common/Input/Input.tsx"
 import { useNavigate } from "react-router-dom"
 import routes from "@/routes/routes.tsx"
 import Button from "@/components/common/Button.tsx"
-import { ReactElement } from "react"
+import { ReactElement, useState } from "react"
 import Form from "@/features/auth/Form.tsx"
+import { RegisterResponseError } from "@/types/authTypes.ts"
+import AuthErrors from "@/features/auth/AuthErrors.tsx"
 
 interface Inputs {
   email: string
@@ -25,6 +27,12 @@ const RegisterForm = (): ReactElement => {
   const dispatch = useAppDispatch()
   const [registerUser] = useRegisterMutation()
   const navigate = useNavigate()
+  const [emailErrors, setEmailsError] = useState<
+    RegisterResponseError["data"]["email"]
+  >([])
+  const [passwordErrors, setPasswordErrors] = useState<
+    RegisterResponseError["data"]["password"]
+  >([])
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
@@ -32,6 +40,10 @@ const RegisterForm = (): ReactElement => {
       dispatch(setEmail({ email }))
       navigate(routes.login.path)
     } catch (err) {
+      const error = err as RegisterResponseError
+      setEmailsError(error.data?.email ?? [])
+      setPasswordErrors(error.data?.password ?? [])
+
       console.error("Ошибка входа: ", err)
     }
   }
@@ -48,6 +60,8 @@ const RegisterForm = (): ReactElement => {
         register={register("email", { required: "Обязательное поле" })}
         error={errors.email}
       />
+
+      <AuthErrors errors={emailErrors} />
 
       <Input
         type={"password"}
@@ -66,6 +80,8 @@ const RegisterForm = (): ReactElement => {
         })}
         error={errors.re_password}
       />
+
+      <AuthErrors errors={passwordErrors} />
 
       <Button
         disabled={disabled}
