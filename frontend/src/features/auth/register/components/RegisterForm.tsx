@@ -56,7 +56,7 @@ const RegisterForm = (): ReactElement => {
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Input
         type={"email"}
-        placeholder={"Email"}
+        placeholder={"Почта"}
         register={register("email", { required: "Обязательное поле" })}
         error={errors.email}
       />
@@ -65,14 +65,14 @@ const RegisterForm = (): ReactElement => {
 
       <Input
         type={"password"}
-        placeholder={"Password"}
+        placeholder={"Пароль"}
         register={register("password", { required: "Обязательное поле" })}
         error={errors.password}
       />
 
       <Input
         type={"password"}
-        placeholder={"Repeat password"}
+        placeholder={"Повтор пароля"}
         register={register("re_password", {
           required: "Обязательное поле",
           validate: (value: string) =>
@@ -91,7 +91,7 @@ const RegisterForm = (): ReactElement => {
           borderRadius: "0 0 1rem 1rem",
         }}
         borderRadius={"0"}>
-        Register
+        Зарегистрироваться
       </Button>
     </Form>
   )

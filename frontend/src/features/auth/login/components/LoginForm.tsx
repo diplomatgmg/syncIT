@@ -46,14 +46,14 @@ const LoginForm = (): ReactElement => {
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Input
         type="email"
-        placeholder="Email"
+        placeholder="Почта"
         register={register("email", { required: "Обязательное поле" })}
         error={errors.email}
         autoComplete={"email"}
       />
       <Input
         type="password"
-        placeholder="Password"
+        placeholder="Пароль"
         register={register("password", { required: "Обязательное поле" })}
         error={errors.password}
         autoComplete={"current-password"}
@@ -68,7 +68,7 @@ const LoginForm = (): ReactElement => {
           margin: "2rem -4rem -6.2rem -4rem",
           borderRadius: "0 0 1rem 1rem",
         }}>
-        Login
+        Войти
       </Button>
     </Form>
   )

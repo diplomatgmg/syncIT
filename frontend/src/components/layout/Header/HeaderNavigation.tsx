@@ -25,9 +25,9 @@ const HeaderNavigation = (): ReactElement => {
 
   return (
     <HeaderListStyle>
-      {renderLink(routes.home.path, "Home")}
+      {renderLink(routes.home.path, "Вакансии")}
 
-      {isAuthenticated && renderLink(routes.profile.path, "Profile")}
+      {isAuthenticated && renderLink(routes.profile.path, "Профиль")}
 
       {renderLink(routes.faq.path, "FAQ")}
 
@@ -38,15 +38,15 @@ const HeaderNavigation = (): ReactElement => {
             onClick={logoutHandler}
             borderRadius="0"
             backgroundColor={colors.danger}>
-            Logout
+            Выйти
           </Button>
         </AuthButtonContainer>
       )}
 
       {!isAuthenticated && (
         <AuthButtonContainer>
-          {renderLink(routes.login.path, "Login")}
-          {renderLink(routes.register.path, "Register")}
+          {renderLink(routes.login.path, "Вход")}
+          {renderLink(routes.register.path, "Авторизация")}
         </AuthButtonContainer>
       )}
     </HeaderListStyle>
