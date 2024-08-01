@@ -1,13 +1,12 @@
 import { type ReactElement } from "react"
-import Header from "@/components/layout/Header/Header.tsx"
 import Login from "@/features/auth/login/components/Login.tsx"
+import CommonPage from "@/components/layout/CommonPage.tsx"
 
 const LoginPage = (): ReactElement => {
   return (
-    <>
-      <Header />
+    <CommonPage>
       <Login />
-    </>
+    </CommonPage>
   )
 }
 

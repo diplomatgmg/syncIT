@@ -1,13 +1,12 @@
 import { type ReactElement } from "react"
-import Header from "@/components/layout/Header/Header.tsx"
 import Register from "@/features/auth/register/components/Register.tsx"
+import CommonPage from "@/components/layout/CommonPage.tsx"
 
 const RegisterPage = (): ReactElement => {
   return (
-    <>
-      <Header />
+    <CommonPage>
       <Register />
-    </>
+    </CommonPage>
   )
 }
 

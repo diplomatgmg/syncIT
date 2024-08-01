@@ -4,11 +4,9 @@ import CommonPage from "@/components/layout/CommonPage.tsx"
 
 const ProfilePage = (): ReactElement => {
   return (
-    <>
-      <CommonPage>
-        <Profile />
-      </CommonPage>
-    </>
+    <CommonPage>
+      <Profile />
+    </CommonPage>
   )
 }
 
