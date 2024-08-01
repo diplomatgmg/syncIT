@@ -2,6 +2,7 @@ import { createGlobalStyle } from "styled-components"
 import NunitoBlackTtf from "/fonts/Nunito-Black.ttf"
 import NunitoBoldTtf from "/fonts/Nunito-Bold.ttf"
 import NunitoRegularTtf from "/fonts/Nunito-Regular.ttf"
+import { colors } from "@/styles/theme.ts"
 
 export default createGlobalStyle`
     @font-face {
@@ -29,5 +30,9 @@ export default createGlobalStyle`
         line-height: 1;
         letter-spacing: 1px;
         font-family: "Nunito", sans-serif;
+    }
+    
+    body {
+        background: ${colors.primary};
     }
 `

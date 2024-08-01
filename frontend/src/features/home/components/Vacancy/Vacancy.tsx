@@ -4,7 +4,6 @@ import VacancyList from "@/features/home/components/Vacancy/VacancyList.tsx"
 
 const Vacancy = (): ReactElement => {
   const { data: vacancies = [], isLoading } = useGetVacanciesQuery()
-  // TODO Отсортировать вакансии на бекенде по isViewed > suitability
 
   if (isLoading) {
     return <div>Loading...</div>

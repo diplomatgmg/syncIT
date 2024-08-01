@@ -7,7 +7,6 @@ const HomePage = (): ReactElement => {
   return (
     <>
       <Header />
-      <h3>Home</h3>
       <Home />
       <Footer />
     </>

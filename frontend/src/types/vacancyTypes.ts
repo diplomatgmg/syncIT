@@ -17,6 +17,7 @@ export interface VacancyPreview {
   profession: Profession
   workFormats: WorkFormat[]
   hardSkills: HardSkill[]
+  description: string
 }
 
 export interface UserVacancyPreview {
