@@ -2,7 +2,7 @@ import { FC, type ReactElement, useId, useState } from "react"
 import { VacancyPreview } from "@/types/vacancyTypes.ts"
 import { useUpdateVacancyViewStatusMutation } from "@/store/api/vacancyApi.ts"
 import HardSkillList from "@/features/home/components/HardSkill/HardSkillList.tsx"
-import styled from "styled-components"
+import styled, { ThemeProvider } from "styled-components"
 import { Link } from "react-router-dom"
 import { colors } from "@/styles/theme.ts"
 import UnWatchIcon from "@/assets/svg/unwatch.svg"
@@ -40,64 +40,74 @@ const VacancyItem: FC<VacancyItemProps> = ({
       ? "Неизвестно"
       : `${salaryFrom} - ${salaryTo}`
 
-  // TODO После скрытия вакансия исчезает пока не обновится страница
   if (isHidden) return null
 
   return (
-    <JobCard>
-      <JobHeaderContainer>
-        <JobHeader>
-          <JobTitle>
-            <Link to={vacancy.url} target={"_blank"}>
-              {vacancy.name} - {String(isViewed)}
-            </Link>
-          </JobTitle>
-          <Company>{vacancy.company.name}</Company>
-        </JobHeader>
-        <UnWatch
-          alt={"Unwatch"}
-          src={UnWatchIcon}
-          onClick={handleOpenVacancySource(vacancy.id)}
-        />
-      </JobHeaderContainer>
+    <ThemeProvider theme={{ isViewed }}>
+      <JobCard>
+        <JobHeaderContainer>
+          <JobHeader>
+            <JobTitle>
+              <Link to={vacancy.url} target={"_blank"}>
+                {vacancy.name} - {String(isViewed)}
+              </Link>
+            </JobTitle>
+            <Company>{vacancy.company.name}</Company>
+          </JobHeader>
+          {!isViewed && (
+            <UnWatch
+              alt={"Unwatch"}
+              src={UnWatchIcon}
+              onClick={handleOpenVacancySource(vacancy.id)}
+            />
+          )}
+        </JobHeaderContainer>
 
-      <JobDetails>
-        <Format>
-          {vacancy.workFormats.map(({ name }) => name).join(", ")}
-        </Format>
-        <Profession>{vacancy.profession.name}</Profession>
-        <Experience>{vacancy.experience}</Experience>
-      </JobDetails>
+        <JobDetails>
+          <Format>
+            {vacancy.workFormats.map(({ name }) => name).join(", ")}
+          </Format>
+          <Profession>{vacancy.profession.name}</Profession>
+          <Experience>{vacancy.experience}</Experience>
+        </JobDetails>
 
-      <JobDetails>
-        <Relevance>Релевантность: {suitability}%</Relevance>
-        <Salary>Зарплата: {salary}</Salary>
-      </JobDetails>
+        <JobDetails>
+          <Relevance>Релевантность: {suitability}%</Relevance>
+          <Salary>Зарплата: {salary}</Salary>
+        </JobDetails>
 
-      <HardSkillList hardSkills={vacancy.hardSkills} />
+        <HardSkillList hardSkills={vacancy.hardSkills} />
 
-      <ToggleDescription id={id} />
-      <ToggleLabel
-        htmlFor={id}
-        onClick={() => setIsOpenedDescription(!isOpenedDescription)}>
-        {isOpenedDescription ? "Свернуть" : "Развернуть"}
-      </ToggleLabel>
+        <ToggleDescription id={id} />
+        <ToggleLabel
+          htmlFor={id}
+          onClick={() => setIsOpenedDescription(!isOpenedDescription)}>
+          {isOpenedDescription ? "Свернуть" : "Развернуть"}
+        </ToggleLabel>
 
-      <JobDescription>
-        <pre>{vacancy.description}</pre>
-      </JobDescription>
-    </JobCard>
+        <JobDescription>
+          <pre>{vacancy.description}</pre>
+        </JobDescription>
+      </JobCard>
+    </ThemeProvider>
   )
 }
 
 export default VacancyItem
 
-const JobCard = styled.div`
+interface Styles {
+  theme: {
+    isViewed: boolean
+  }
+}
+
+const JobCard = styled.div<Styles>`
   border: 1px solid ${colors.textSecondary};
   border-radius: 5px;
   padding: 20px;
   width: 100%;
-  background-color: black;
+  background-color: ${({ theme }) =>
+    theme.isViewed ? colors.background : colors.primary};
   margin-bottom: 4rem;
 
   @media (max-width: 768px) {
