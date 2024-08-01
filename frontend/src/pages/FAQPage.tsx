@@ -1,13 +1,12 @@
 import { type ReactElement } from "react"
-import Home from "@/features/home/components/Home.tsx"
 import CommonPage from "@/components/layout/CommonPage.tsx"
 
-const HomePage = (): ReactElement => {
+const FAQPage = (): ReactElement => {
   return (
     <CommonPage>
-      <Home />
+      <div>FAQ</div>
     </CommonPage>
   )
 }
 
-export default HomePage
+export default FAQPage

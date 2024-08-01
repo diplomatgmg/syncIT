@@ -4,6 +4,8 @@ export const colors = {
   textSecondary: "#626264",
   accent: "#6D7EEC",
   background: "#1E1F22",
+
+  danger: "#ff3e1b",
 }
 
 export const transitionsSpeed = {

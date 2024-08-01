@@ -8,6 +8,7 @@ const AppRouter = () => {
       <Route path={routes.home.path} element={routes.home.element} />
       <Route path={routes.login.path} element={routes.login.element} />
       <Route path={routes.register.path} element={routes.register.element} />
+      <Route path={routes.faq.path} element={routes.faq.element} />
 
       <Route element={<ProtectedRoute />}>
         <Route path={routes.profile.path} element={routes.profile.element} />

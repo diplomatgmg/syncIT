@@ -26,6 +26,9 @@ const StyledLink = styled(RouterLink)<StyledLinkProps>`
   background-color: ${({ theme }) => theme.backgroundColor};
   padding: 0.75rem 2.5rem;
   transition: ${transitionsSpeed.fast} linear;
+  font-size: 1.25rem;
+  display: flex;
+  justify-content: center;
 
   &:hover {
     background-color: ${({ theme }) => theme.textColor};
@@ -34,13 +37,18 @@ const StyledLink = styled(RouterLink)<StyledLinkProps>`
 `
 
 const Link: FC<LinkProps> = ({
-  backgroundColor = "transparent",
+  backgroundColor,
   textColor = colors.text,
   borderRadius,
   ...props
 }): ReactElement => {
   return (
-    <ThemeProvider theme={{ backgroundColor, textColor, borderRadius }}>
+    <ThemeProvider
+      theme={{
+        backgroundColor,
+        textColor,
+        borderRadius,
+      }}>
       <StyledLink {...props} />
     </ThemeProvider>
   )

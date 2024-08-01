@@ -3,12 +3,14 @@ import HomePage from "@/pages/HomePage.tsx"
 import LoginPage from "@/pages/LoginPage.tsx"
 import RegisterPage from "@/pages/RegisterPage.tsx"
 import ProfilePage from "@/pages/ProfilePage.tsx"
+import FAQPage from "@/pages/FAQPage.tsx"
 
 export enum RouteKeys {
   HOME = "home",
   LOGIN = "login",
   REGISTER = "register",
   PROFILE = "profile",
+  FAQ = "faq",
 }
 
 export interface Route {
@@ -36,6 +38,10 @@ const routes: Routes = {
   [RouteKeys.PROFILE]: {
     path: "/profile",
     element: <ProfilePage />,
+  },
+  [RouteKeys.FAQ]: {
+    path: "/faq",
+    element: <FAQPage />,
   },
 }
 

@@ -1,12 +1,16 @@
 import { type ReactElement } from "react"
-import { HeaderStyle } from "@/components/layout/Header/HeaderStyles.ts"
-import HeaderLogo from "@/components/layout/Header/HeaderLogo.tsx"
 import HeaderNavigation from "@/components/layout/Header/HeaderNavigation.tsx"
+import styled from "styled-components"
+
+const HeaderStyle = styled.header`
+  display: flex;
+  justify-content: end;
+  padding-left: 200px;
+`
 
 const Header = (): ReactElement => {
   return (
     <HeaderStyle>
-      <HeaderLogo />
       <HeaderNavigation />
     </HeaderStyle>
   )

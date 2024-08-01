@@ -37,6 +37,9 @@ const StyledButton = styled.button<StyledButtonProps>`
   font-weight: bold;
   transition: ${transitionsSpeed.fast} linear;
   font-family: "Nunito", sans-serif;
+  display: flex;
+  width: 100%;
+  justify-content: center;
 
   &:hover {
     cursor: pointer;
