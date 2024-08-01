@@ -24,7 +24,7 @@ class UserVacancyListAPIView(generics.ListAPIView):
                 "vacancy__profession",
                 "vacancy__hard_skills",
             )
-            .order_by("-suitability")
+            .order_by("is_viewed", "-suitability")
         )
 
 
