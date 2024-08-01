@@ -5,22 +5,27 @@ import HardSkillList from "@/features/home/components/HardSkill/HardSkillList.ts
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 import { colors } from "@/styles/theme.ts"
+import UnWatchIcon from "@/assets/svg/unwatch.svg"
 
 interface VacancyItemProps {
+  isViewed: boolean
   suitability: number
   vacancy: VacancyPreview
 }
 
 const VacancyItem: FC<VacancyItemProps> = ({
+  isViewed,
   suitability,
   vacancy,
-}): ReactElement => {
+}): ReactElement | null => {
   const [isOpenedDescription, setIsOpenedDescription] = useState(false)
   const id = useId()
   const [updateVacancyViewStatus] = useUpdateVacancyViewStatusMutation()
+  const [isHidden, setIsHidden] = useState(false)
 
   const handleOpenVacancySource = (vacancy_id: number) => async () => {
     try {
+      setIsHidden(true)
       await updateVacancyViewStatus({ vacancy: vacancy_id }).unwrap()
     } catch (err) {
       console.error("Ошибка входа: ", err)
@@ -34,19 +39,25 @@ const VacancyItem: FC<VacancyItemProps> = ({
       ? "Неизвестно"
       : `${salaryFrom} - ${salaryTo}`
 
+  if (isHidden || isViewed) return null
+
   return (
     <JobCard>
-      <JobHeader>
-        <JobTitle>
-          <Link
-            to={vacancy.url}
-            target={"_blank"}
-            onClick={handleOpenVacancySource(vacancy.id)}>
-            {vacancy.name}
-          </Link>
-        </JobTitle>
-        <Company>{vacancy.company.name}</Company>
-      </JobHeader>
+      <JobHeaderContainer>
+        <JobHeader>
+          <JobTitle>
+            <Link to={vacancy.url} target={"_blank"}>
+              {vacancy.name}
+            </Link>
+          </JobTitle>
+          <Company>{vacancy.company.name}</Company>
+        </JobHeader>
+        <UnWatch
+          alt={"Unwatch"}
+          src={UnWatchIcon}
+          onClick={handleOpenVacancySource(vacancy.id)}
+        />
+      </JobHeaderContainer>
 
       <JobDetails>
         <Format>
@@ -83,9 +94,7 @@ const JobCard = styled.div`
   border: 1px solid ${colors.textSecondary};
   border-radius: 5px;
   padding: 20px;
-  margin-bottom: 20px;
   width: 100%;
-  max-width: 1024px;
   background-color: black;
 
   @media (max-width: 768px) {
@@ -93,9 +102,17 @@ const JobCard = styled.div`
   }
 `
 
-const JobHeader = styled.div`
+const JobHeaderContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
   border-bottom: 1px solid #ccc;
   padding-bottom: 10px;
+`
+
+const JobHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `
 
 const JobTitle = styled.h3`
@@ -109,6 +126,14 @@ const JobTitle = styled.h3`
 
   @media (max-width: 768px) {
     font-size: 1.5rem;
+  }
+`
+
+const UnWatch = styled.img`
+  align-self: start;
+  width: 2.5rem;
+  &:hover {
+    cursor: pointer;
   }
 `
 
@@ -217,6 +242,7 @@ const JobDescription = styled.div`
   transition: max-height 0.3s ease-out;
 
   pre {
+    margin-bottom: 0;
     white-space: pre-wrap;
     font-size: 1rem;
     font-family: Nunito, sans-serif;

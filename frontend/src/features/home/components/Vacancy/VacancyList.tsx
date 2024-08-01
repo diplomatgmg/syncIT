@@ -8,12 +8,12 @@ interface VacancyListProps {
 }
 
 const StyledVacancyList = styled.ul`
-  display: grid;
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 3rem;
-  margin: 0 5rem;
   padding: 0;
+  margin-top: 3rem;
 `
 
 const VacancyList: FC<VacancyListProps> = ({ vacancies }): ReactElement => {
@@ -22,6 +22,7 @@ const VacancyList: FC<VacancyListProps> = ({ vacancies }): ReactElement => {
       {vacancies.map((vacancy) => (
         <VacancyItem
           key={vacancy.id}
+          isViewed={vacancy.isViewed}
           vacancy={vacancy.vacancy}
           suitability={vacancy.suitability}
         />

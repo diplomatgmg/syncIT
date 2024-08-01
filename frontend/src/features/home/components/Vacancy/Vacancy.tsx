@@ -9,7 +9,22 @@ const Vacancy = (): ReactElement => {
     return <div>Loading...</div>
   }
 
-  return <VacancyList vacancies={vacancies} />
+  const countUnViewedVacancies = vacancies.reduce((acc, cur) => {
+    if (cur.isViewed) {
+      return acc + 1
+    }
+    return acc
+  }, 0)
+
+  return (
+    <div>
+      <span style={{ display: "flex", justifyContent: "center" }}>
+        Всего - {vacancies.length} вакансий. Просмотренных -{" "}
+        {countUnViewedVacancies}
+      </span>
+      <VacancyList vacancies={vacancies} />
+    </div>
+  )
 }
 
 export default Vacancy

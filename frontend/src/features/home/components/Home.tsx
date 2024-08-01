@@ -3,7 +3,7 @@ import Vacancy from "@/features/home/components/Vacancy/Vacancy.tsx"
 import styled from "styled-components"
 
 const StyledHome = styled.div`
-  margin-top: 3rem;
+  margin: 2rem 5rem;
 `
 
 const Home = (): ReactElement => {
