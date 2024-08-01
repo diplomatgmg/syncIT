@@ -11,7 +11,6 @@ const StyledVacancyList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 3rem;
   padding: 0;
   margin-top: 3rem;
 `

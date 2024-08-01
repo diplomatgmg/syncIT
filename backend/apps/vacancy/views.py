@@ -24,7 +24,8 @@ class UserVacancyListAPIView(generics.ListAPIView):
                 "vacancy__profession",
                 "vacancy__hard_skills",
             )
-            .order_by("is_viewed", "-suitability")
+            .order_by("is_viewed", "suitability", "id")
+            # Без id меняется порядок вакансий при повторном запросе
         )
 
 

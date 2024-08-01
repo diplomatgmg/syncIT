@@ -26,6 +26,7 @@ const VacancyItem: FC<VacancyItemProps> = ({
   const handleOpenVacancySource = (vacancy_id: number) => async () => {
     try {
       setIsHidden(true)
+      setTimeout(() => setIsHidden(false), 3000)
       await updateVacancyViewStatus({ vacancy: vacancy_id }).unwrap()
     } catch (err) {
       console.error("Ошибка входа: ", err)
@@ -39,7 +40,8 @@ const VacancyItem: FC<VacancyItemProps> = ({
       ? "Неизвестно"
       : `${salaryFrom} - ${salaryTo}`
 
-  if (isHidden || isViewed) return null
+  // TODO После скрытия вакансия исчезает пока не обновится страница
+  if (isHidden) return null
 
   return (
     <JobCard>
@@ -47,7 +49,7 @@ const VacancyItem: FC<VacancyItemProps> = ({
         <JobHeader>
           <JobTitle>
             <Link to={vacancy.url} target={"_blank"}>
-              {vacancy.name}
+              {vacancy.name} - {String(isViewed)}
             </Link>
           </JobTitle>
           <Company>{vacancy.company.name}</Company>
@@ -96,6 +98,7 @@ const JobCard = styled.div`
   padding: 20px;
   width: 100%;
   background-color: black;
+  margin-bottom: 4rem;
 
   @media (max-width: 768px) {
     padding: 15px;

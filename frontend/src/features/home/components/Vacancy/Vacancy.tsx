@@ -18,10 +18,10 @@ const Vacancy = (): ReactElement => {
 
   return (
     <div>
-      <span style={{ display: "flex", justifyContent: "center" }}>
-        Всего - {vacancies.length} вакансий. Просмотренных -{" "}
-        {countUnViewedVacancies}
-      </span>
+      <div style={{ display: "flex", gap: "1rem", justifyContent: "center" }}>
+        <span>Всего - {vacancies.length} вакансий.</span>
+        <span>Просмотренных - {countUnViewedVacancies}</span>
+      </div>
       <VacancyList vacancies={vacancies} />
     </div>
   )
