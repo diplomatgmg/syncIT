@@ -59,6 +59,7 @@ const RegisterForm = (): ReactElement => {
         placeholder={"Почта"}
         register={register("email", { required: "Обязательное поле" })}
         error={errors.email}
+        autoComplete={"email"}
       />
 
       <AuthErrors errors={emailErrors} />
@@ -68,6 +69,7 @@ const RegisterForm = (): ReactElement => {
         placeholder={"Пароль"}
         register={register("password", { required: "Обязательное поле" })}
         error={errors.password}
+        autoComplete={"new-password"}
       />
 
       <Input
@@ -79,6 +81,7 @@ const RegisterForm = (): ReactElement => {
             value === watch("password") || "Пароли не совпадают",
         })}
         error={errors.re_password}
+        autoComplete={"new-password"}
       />
 
       <AuthErrors errors={passwordErrors} />
