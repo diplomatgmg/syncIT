@@ -30,7 +30,7 @@ class VacancyListSerializer(serializers.ModelSerializer):
     company = CompanySerializer()
     grade = GradeSerializer()
     profession = ProfessionSerializer()
-    work_formats = WorkFormatSerializer()
+    work_formats = WorkFormatSerializer(many=True)
     hard_skills = HardSkillSerializer(many=True)
 
     class Meta:
@@ -47,6 +47,7 @@ class VacancyListSerializer(serializers.ModelSerializer):
             "profession",
             "work_formats",
             "hard_skills",
+            "description",
         )
 
 
