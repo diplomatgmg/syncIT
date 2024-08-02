@@ -17,9 +17,7 @@ const HardSkillItem: FC<HardSkillItemProps> = ({
   selectedItems,
   handleCheckboxChange,
 }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(
-    hardSkill.selectable && hardSkill.children.length === 1
-  )
+  const [isMenuOpen, setIsMenuOpen] = useState(hardSkill.selectable)
 
   const toggleMenu = () => setIsMenuOpen((prevState) => !prevState)
 
