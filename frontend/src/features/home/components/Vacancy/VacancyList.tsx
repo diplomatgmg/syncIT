@@ -12,7 +12,6 @@ const StyledVacancyList = styled.ul`
   flex-wrap: wrap;
   justify-content: center;
   padding: 0;
-  margin-top: 3rem;
 `
 
 const VacancyList: FC<VacancyListProps> = ({ vacancies }): ReactElement => {

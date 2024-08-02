@@ -36,7 +36,11 @@ const HeaderNavigation = (): ReactElement => {
       {isAuthenticated && (
         <AuthButtonContainer>
           <Button
-            style={{ width: "100%" }}
+            style={{
+              paddingTop: "1.075rem",
+              paddingBottom: "1.075rem",
+              width: "100%",
+            }}
             onClick={logoutHandler}
             borderRadius="0"
             backgroundColor={colors.danger}>
@@ -63,28 +67,42 @@ interface HeaderItemProps {
 
 const HeaderListStyle = styled.ul`
   display: flex;
-  position: fixed;
   flex-direction: column;
   padding: 0;
   height: 100%;
   background-color: ${colors.background};
   margin: 0;
+
+  @media (max-width: 1200px) {
+    width: 100vw;
+    overflow-x: auto;
+    flex-direction: row;
+    justify-content: space-between;
+    height: min-content;
+  }
 `
 
 const HeaderItemStyle = styled.div<HeaderItemProps>`
-  width: 200px;
   position: relative;
   background-color: ${({ theme }) =>
     theme.isActive ? colors.accent : colors.background};
 
+  & > * {
+    font-size: 1rem;
+  }
+
   a {
-    padding: 1.25rem 0;
+    padding: 1.25rem;
   }
 `
 
 const AuthButtonContainer = styled(HeaderItemStyle)`
   margin-top: auto;
-  padding: 0;
+
+  @media (max-width: 1200px) {
+    display: flex;
+    width: max-content;
+  }
 `
 
 export default HeaderNavigation

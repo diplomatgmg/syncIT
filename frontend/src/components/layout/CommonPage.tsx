@@ -25,11 +25,20 @@ const StyledPage = styled.div`
   position: relative;
   flex-direction: row-reverse;
   height: 100vh;
+
+  @media (max-width: 1200px) {
+    display: block;
+  }
 `
 const ChildrenStyle = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
+  padding-right: 200px;
+
+  @media (max-width: 1200px) {
+    padding-right: 0;
+  }
 `
 
 export default CommonPage

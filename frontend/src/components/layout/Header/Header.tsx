@@ -5,7 +5,14 @@ import styled from "styled-components"
 const HeaderStyle = styled.header`
   display: flex;
   justify-content: end;
-  padding-left: 200px;
+  position: fixed;
+  height: 100%;
+  width: max-content;
+
+  @media (max-width: 1200px) {
+    position: relative;
+    height: fit-content;
+  }
 `
 
 const Header = (): ReactElement => {

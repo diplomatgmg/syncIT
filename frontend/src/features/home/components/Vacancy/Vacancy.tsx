@@ -1,6 +1,7 @@
 import { type ReactElement } from "react"
 import { useGetVacanciesQuery } from "@/store/api/vacancyApi.ts"
 import VacancyList from "@/features/home/components/Vacancy/VacancyList.tsx"
+import styled from "styled-components"
 
 const Vacancy = (): ReactElement => {
   const { data: vacancies = [], isLoading } = useGetVacanciesQuery()
@@ -17,14 +18,27 @@ const Vacancy = (): ReactElement => {
   }, 0)
 
   return (
-    <div>
-      <div style={{ display: "flex", gap: "1rem", justifyContent: "center" }}>
+    <>
+      <VacanciesInfoContainer>
         <span>Всего - {vacancies.length} вакансий.</span>
         <span>Просмотренных - {countUnViewedVacancies}</span>
-      </div>
+      </VacanciesInfoContainer>
       <VacancyList vacancies={vacancies} />
-    </div>
+    </>
   )
 }
 
 export default Vacancy
+
+const VacanciesInfoContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  white-space: nowrap;
+  margin-bottom: 2rem;
+
+  @media (max-width: 720px) {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+`

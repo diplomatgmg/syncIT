@@ -32,15 +32,15 @@ const StyledButton = styled.button<StyledButtonProps>`
   color: ${({ theme }) => theme.textColor};
   background-color: ${({ theme }) => theme.backgroundColor};
   border: none;
-  font-size: 1.25rem;
+  font-size: 1rem;
   border-radius: ${({ theme }) => theme.borderRadius ?? "2rem"};
-  padding: 0.75rem 3rem;
+  padding: 1rem 2.5rem;
   letter-spacing: 0.1rem;
-  font-weight: bold;
   transition: ${transitionsSpeed.fast} linear;
   font-family: "Nunito", sans-serif;
   display: flex;
   justify-content: center;
+  align-items: center;
   cursor: ${({ theme }) => (theme.disabled ? "not-allowed" : "pointer")};
   opacity: ${({ theme }) => (theme.disabled ? 0.6 : 1)};
 

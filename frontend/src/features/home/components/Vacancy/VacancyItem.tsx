@@ -101,7 +101,6 @@ interface Styles {
   }
 }
 
-// TODO Улучшить стили
 const JobCard = styled.div<Styles>`
   border: 1px solid ${colors.textSecondary};
   border-radius: 5px;
@@ -111,6 +110,13 @@ const JobCard = styled.div<Styles>`
   background-color: ${({ theme }) =>
     theme.isViewed ? colors.background : colors.primary};
   margin-bottom: 4rem;
+
+  @media (max-width: 1200px) {
+    border: none;
+    border-bottom: 1px solid ${colors.textSecondary};
+    border-top: 1px solid ${colors.textSecondary};
+    border-radius: 0;
+  }
 
   @media (max-width: 768px) {
     padding: 15px;
@@ -139,7 +145,7 @@ const JobTitle = styled.h3`
     color: #6d7eec;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1200px) {
     font-size: 1.5rem;
   }
 `
