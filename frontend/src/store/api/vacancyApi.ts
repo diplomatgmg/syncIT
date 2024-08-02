@@ -31,4 +31,6 @@ const vacancyApi = createApi({
 
 export const { useGetVacanciesQuery, useUpdateVacancyViewStatusMutation } =
   vacancyApi
+export const { invalidateTags } = vacancyApi.util
+
 export default vacancyApi

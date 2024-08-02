@@ -10,6 +10,7 @@ import Form from "@/features/auth/Form.tsx"
 import Input from "@/components/common/Input/Input.tsx"
 import { LoginResponseError } from "@/types/authTypes.ts"
 import AuthErrors from "@/features/auth/AuthErrors.tsx"
+import { invalidateTags } from "@/store/api/vacancyApi.ts"
 
 interface Inputs {
   email: string
@@ -30,6 +31,7 @@ const LoginForm = (): ReactElement => {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
       const response = await login(data).unwrap()
+      dispatch(invalidateTags(["Vacancy"]))
       dispatch(setTokens(response))
       dispatch(setEmail(response))
       navigate(routes.home.path, { state: { fromLogin: true } })
