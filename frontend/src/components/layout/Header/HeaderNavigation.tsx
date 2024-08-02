@@ -84,6 +84,7 @@ const HeaderListStyle = styled.ul`
 
 const HeaderItemStyle = styled.div<HeaderItemProps>`
   position: relative;
+  min-width: 140px;
   background-color: ${({ theme }) =>
     theme.isActive ? colors.accent : colors.background};
 

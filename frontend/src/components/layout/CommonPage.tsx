@@ -34,7 +34,7 @@ const ChildrenStyle = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
-  padding-right: 200px;
+  padding-right: 180px;
 
   @media (max-width: 1200px) {
     padding-right: 0;

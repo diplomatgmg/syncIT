@@ -1,6 +1,8 @@
 import { HardSkill } from "@/types/hardSkillTypes.ts"
-import { FC } from "react"
-import HardSkillSelectable from "@/features/profile/components/HardSkill/HardSkillSelectable.tsx"
+import { FC, useState } from "react"
+import styled from "styled-components"
+import ToggleIcon from "@/features/profile/components/HardSkill/ToggleIcon.tsx"
+import Checkbox from "@/components/common/Input/Checkbox.tsx"
 
 interface HardSkillItemProps {
   hardSkill: HardSkill
@@ -15,23 +17,29 @@ const HardSkillItem: FC<HardSkillItemProps> = ({
   selectedItems,
   handleCheckboxChange,
 }) => {
-  const listStyle = hardSkill.selectable
-    ? { listStyle: "none", fontWeight: "normal", color: "#fff" }
-    : {
-        listStyle: "none",
-      }
+  const [isMenuOpen, setIsMenuOpen] = useState(
+    hardSkill.selectable && hardSkill.children.length === 1
+  )
+
+  const toggleMenu = () => setIsMenuOpen((prevState) => !prevState)
+
   return (
-    <li style={listStyle}>
-      {hardSkill.selectable && (
-        <HardSkillSelectable
-          hardSkill={hardSkill}
+    <StyledSkillItem>
+      {hardSkill.selectable ? (
+        <Checkbox
+          name={hardSkill.name}
           isSelected={selectedItems.some((skill) => skill.id === hardSkill.id)}
-          handleCheckboxChange={handleCheckboxChange}
+          handleCheckboxChange={() => handleCheckboxChange(hardSkill)}
         />
+      ) : (
+        <SkillContainer>
+          <ToggleIcon isOpen={isMenuOpen} onClick={toggleMenu} />
+          <SkillName onClick={toggleMenu}>{hardSkill.name}</SkillName>
+        </SkillContainer>
       )}
-      {!hardSkill.selectable && hardSkill.name}
-      {hardSkill.children.length > 0 && (
-        <ul style={{ paddingLeft: "24px" }}>
+
+      {hardSkill.children.length > 0 && isMenuOpen && (
+        <ChildrenList>
           {hardSkill.children.map((child) => (
             <HardSkillItem
               key={child.id}
@@ -41,10 +49,29 @@ const HardSkillItem: FC<HardSkillItemProps> = ({
               handleCheckboxChange={handleCheckboxChange}
             />
           ))}
-        </ul>
+        </ChildrenList>
       )}
-    </li>
+    </StyledSkillItem>
   )
 }
+
+const StyledSkillItem = styled.li`
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+`
+
+const SkillContainer = styled.div`
+  display: flex;
+  align-items: center;
+`
+
+const SkillName = styled.span`
+  cursor: pointer;
+`
+
+const ChildrenList = styled.ul`
+  padding-left: 24px;
+`
 
 export default HardSkillItem

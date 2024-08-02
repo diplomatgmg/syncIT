@@ -11,7 +11,6 @@ const useSelectableItems = <T extends { id: number }>(
   refetch: () => void
 ) => {
   const [selectedItems, setSelectedItems] = useState(initialItems)
-  const [message, setMessage] = useState("")
   const [setItems] = mutation()
 
   useEffect(() => {
@@ -25,17 +24,12 @@ const useSelectableItems = <T extends { id: number }>(
 
     try {
       await setItems(updatedItems).unwrap()
-      setMessage("Изменения успешно сохранены")
-      setTimeout(() => setMessage(""), 3000)
     } catch (err) {
       console.error("Ошибка: ", err)
-      setMessage(
-        "Ошибка при сохранении изменений. Пожалуйста, попробуйте позже."
-      )
     }
   }
 
-  return { selectedItems, message, handleCheckboxChange }
+  return { selectedItems, handleCheckboxChange }
 }
 
 export default useSelectableItems

@@ -4,6 +4,7 @@ import useSelectableItems, {
 } from "@/store/hooks/useSelectableItems.ts"
 import Checkbox from "@/components/common/Input/Checkbox.tsx"
 import { useGetProfileStatusQuery } from "@/store/api/profileApi.ts"
+import styled from "styled-components"
 
 interface SelectableListProps<T> {
   items: T[]
@@ -17,31 +18,51 @@ const SelectableList = <T extends { id: number; name: string }>({
   mutation,
 }: SelectableListProps<T>): ReactElement => {
   const { refetch: refetchProfileStatus } = useGetProfileStatusQuery()
-  const { selectedItems, message, handleCheckboxChange } = useSelectableItems(
+  const { selectedItems, handleCheckboxChange } = useSelectableItems(
     userItems,
     mutation,
     refetchProfileStatus
   )
 
   return (
-    <div>
-      <ul>
-        {items.map((item) => (
-          <li key={item.id}>
-            <Checkbox
-              id={item.id}
-              name={item.name}
-              isSelected={selectedItems.some(
-                (selectedItem) => selectedItem.id === item.id
-              )}
-              handleCheckboxChange={() => handleCheckboxChange(item)}
-            />
-          </li>
-        ))}
-      </ul>
-      {message && <p>{message}</p>}
-    </div>
+    <List>
+      {items.map((item) => (
+        <ListItem key={item.id}>
+          <Checkbox
+            name={item.name}
+            isSelected={selectedItems.some(
+              (selectedItem) => selectedItem.id === item.id
+            )}
+            handleCheckboxChange={() => handleCheckboxChange(item)}
+          />
+        </ListItem>
+      ))}
+    </List>
   )
 }
+
+const List = styled.ul`
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  list-style: none;
+`
+
+const ListItem = styled.li`
+  margin-bottom: 0.75rem;
+
+  &:last-child {
+    padding-bottom: 0.75rem;
+  }
+
+  @media (max-width: 1200px) {
+    &:last-child {
+      padding-bottom: 0;
+    }
+
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+`
 
 export default SelectableList

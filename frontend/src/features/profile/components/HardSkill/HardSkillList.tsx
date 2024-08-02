@@ -6,7 +6,8 @@ import {
   useSetUserHardSkillsMutation,
 } from "@/store/api/profileApi.ts"
 import useSelectableItems from "@/store/hooks/useSelectableItems.ts"
-import "./style.css"
+import styled from "styled-components"
+import { colors } from "@/styles/theme.ts"
 
 interface HardSkillListProps {
   hardSkills: HardSkill[]
@@ -18,21 +19,14 @@ const HardSkillList: FC<HardSkillListProps> = ({
   userHardSkills,
 }) => {
   const { refetch: refetchProfileStatus } = useGetProfileStatusQuery()
-  const { selectedItems, message, handleCheckboxChange } = useSelectableItems(
+  const { selectedItems, handleCheckboxChange } = useSelectableItems(
     userHardSkills,
     useSetUserHardSkillsMutation,
     refetchProfileStatus
   )
 
   return (
-    <ul
-      className={"categories"}
-      style={{
-        listStyle: "none",
-        fontWeight: "bold",
-        color: "#8c8c8c",
-        paddingLeft: "10px",
-      }}>
+    <List>
       {hardSkills.map((hardSkill) => (
         <HardSkillItem
           key={hardSkill.id}
@@ -42,9 +36,24 @@ const HardSkillList: FC<HardSkillListProps> = ({
           handleCheckboxChange={handleCheckboxChange}
         />
       ))}
-      {message && <p>{message}</p>}
-    </ul>
+    </List>
   )
 }
+
+const List = styled.ul`
+  padding: 0;
+  margin: 0;
+
+  & > li {
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid ${colors.textSecondary};
+
+    &:last-child {
+      border: none;
+      padding-bottom: 0;
+    }
+  }
+`
 
 export default HardSkillList

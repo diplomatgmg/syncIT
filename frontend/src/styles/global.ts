@@ -34,6 +34,5 @@ export default createGlobalStyle`
     
     body {
         background: ${colors.primary};
-        overflow-y: scroll;
     }
 `
