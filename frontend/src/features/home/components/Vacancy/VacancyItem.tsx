@@ -4,7 +4,7 @@ import { useUpdateVacancyViewStatusMutation } from "@/store/api/vacancyApi.ts"
 import HardSkillList from "@/features/home/components/HardSkill/HardSkillList.tsx"
 import styled, { ThemeProvider } from "styled-components"
 import { Link } from "react-router-dom"
-import { colors } from "@/styles/theme.ts"
+import { colors, transitionsSpeed } from "@/styles/theme.ts"
 import UnWatchIcon from "@/assets/svg/unwatch.svg"
 
 interface VacancyItemProps {
@@ -49,7 +49,7 @@ const VacancyItem: FC<VacancyItemProps> = ({
           <JobHeader>
             <JobTitle>
               <Link to={vacancy.url} target={"_blank"}>
-                {vacancy.name} - {String(isViewed)}
+                {vacancy.name}
               </Link>
             </JobTitle>
             <Company>{vacancy.company.name}</Company>
@@ -57,10 +57,12 @@ const VacancyItem: FC<VacancyItemProps> = ({
           {!isViewed && (
             <UnWatch
               alt={"Unwatch"}
+              title={"Отметить просмотренным"}
               src={UnWatchIcon}
               onClick={handleOpenVacancySource(vacancy.id)}
             />
           )}
+          {isViewed && <Watched>Просмотрено</Watched>}
         </JobHeaderContainer>
 
         <JobDetails>
@@ -110,6 +112,11 @@ const JobCard = styled.div<Styles>`
   background-color: ${({ theme }) =>
     theme.isViewed ? colors.background : colors.primary};
   margin-bottom: 4rem;
+  transition: ${transitionsSpeed.fast};
+
+  &:hover {
+    background-color: #131315ff;
+  }
 
   @media (max-width: 1200px) {
     border: none;
@@ -126,7 +133,7 @@ const JobCard = styled.div<Styles>`
 const JobHeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid ${colors.textSecondary};
   padding-bottom: 10px;
 `
 
@@ -142,7 +149,11 @@ const JobTitle = styled.h3`
 
   a {
     text-decoration: none;
-    color: #6d7eec;
+    color: ${colors.accent};
+
+    &:hover {
+      color: #6d7eec;
+    }
   }
 
   @media (max-width: 1200px) {
@@ -153,9 +164,21 @@ const JobTitle = styled.h3`
 const UnWatch = styled.img`
   align-self: start;
   width: 2.5rem;
+  transition: ${transitionsSpeed.fast};
+  user-select: none;
+
   &:hover {
+    scale: 130%;
     cursor: pointer;
   }
+`
+
+const Watched = styled.span`
+  user-select: none;
+  display: flex;
+  align-items: center;
+  margin-top: -1rem;
+  color: ${colors.text};
 `
 
 const Company = styled.p`
@@ -251,6 +274,12 @@ const ToggleLabel = styled.label`
   color: ${colors.accent};
   cursor: pointer;
   text-align: center;
+
+  user-select: none;
+
+  &:hover {
+    color: #6d7eec;
+  }
 
   @media (max-width: 768px) {
     font-size: 1rem;

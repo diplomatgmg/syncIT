@@ -11,7 +11,7 @@ const Vacancy = (): ReactElement => {
   }
 
   const countUnViewedVacancies = vacancies.reduce((acc, cur) => {
-    if (cur.isViewed) {
+    if (!cur.isViewed) {
       return acc + 1
     }
     return acc
@@ -21,7 +21,7 @@ const Vacancy = (): ReactElement => {
     <>
       <VacanciesInfoContainer>
         <span>Всего - {vacancies.length} вакансий.</span>
-        <span>Просмотренных - {countUnViewedVacancies}</span>
+        <span>Новых - {countUnViewedVacancies}</span>
       </VacanciesInfoContainer>
       <VacancyList vacancies={vacancies} />
     </>

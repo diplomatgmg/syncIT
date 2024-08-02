@@ -17,7 +17,7 @@ const HeaderNavigation = (): ReactElement => {
     return (
       <ThemeProvider theme={{ isActive: location.pathname === to }}>
         <HeaderItemStyle>
-          <Link to={to} disabled={disabled}>
+          <Link to={to} disabled={disabled} backgroundColor={colors.accent}>
             {label}
           </Link>
         </HeaderItemStyle>
@@ -72,12 +72,12 @@ const HeaderListStyle = styled.ul`
   height: 100%;
   background-color: ${colors.background};
   margin: 0;
+  width: 180px;
 
   @media (max-width: 1200px) {
     width: 100vw;
     overflow-x: auto;
     flex-direction: row;
-    justify-content: space-between;
     height: min-content;
   }
 `
@@ -100,8 +100,8 @@ const AuthButtonContainer = styled(HeaderItemStyle)`
   margin-top: auto;
 
   @media (max-width: 1200px) {
+    margin-left: auto;
     display: flex;
-    width: max-content;
   }
 `
 
