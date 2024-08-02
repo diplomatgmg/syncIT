@@ -15,6 +15,9 @@ const usePopupHandler = () => {
     } else if (location.state?.fromLogin) {
       popup.success("Вы успешно авторизованы!")
       navigate(location.pathname, { replace: true, state: {} })
+    } else if (location.state?.fromLogout) {
+      popup.success("Вы успешно вышли!")
+      navigate(location.pathname, { replace: true, state: {} })
     }
   }, [location.pathname, location.state, navigate])
 }

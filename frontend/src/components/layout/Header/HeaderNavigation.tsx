@@ -6,12 +6,18 @@ import Link from "@/components/common/Link.tsx"
 import { colors } from "@/styles/theme.ts"
 import useLogout from "@/store/hooks/useLogout.ts"
 import styled, { ThemeProvider } from "styled-components"
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 
 const HeaderNavigation = (): ReactElement => {
   const { isAuthenticated } = useAuth()
   const logoutHandler = useLogout()
   const location = useLocation()
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    logoutHandler()
+    navigate(routes.login.path, { state: { fromLogout: true } })
+  }
 
   const renderLink = (to: string, label: string, disabled?: boolean) => {
     return (
@@ -41,7 +47,7 @@ const HeaderNavigation = (): ReactElement => {
               paddingBottom: "1.075rem",
               width: "100%",
             }}
-            onClick={logoutHandler}
+            onClick={handleLogout}
             borderRadius="0"
             backgroundColor={colors.danger}>
             Выйти
