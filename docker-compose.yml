@@ -23,6 +23,11 @@ services:
       - "8000:8000"
     env_file:
       - .env
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/health-check/" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     depends_on:
       postgres:
         condition: service_healthy
@@ -57,8 +62,8 @@ services:
       - .env
     healthcheck:
       test: pg_isready -h ${POSTGRES_HOST} -p ${POSTGRES_PORT} -d ${POSTGRES_DB}
-      interval: 10s
-      timeout: 10s
+      interval: 5s
+      timeout: 5s
       retries: 5
     networks:
       - app-network
@@ -72,8 +77,8 @@ services:
       - "6379:6379"
     healthcheck:
       test: [ "CMD", "redis-cli", "ping" ]
-      interval: 10s
-      timeout: 10s
+      interval: 5s
+      timeout: 5s
       retries: 5
     networks:
       - app-network
@@ -85,11 +90,9 @@ services:
       target: ${BUILD_TARGET}
     env_file:
       - .env
-    command: celery -A core.celery.app worker -l debug
     depends_on:
-      - redis
-      - postgres
-      - backend
+      backend:
+        condition: service_healthy
     networks:
       - app-network
 
@@ -102,9 +105,6 @@ services:
       - .env
     command: celery -A core.celery.app beat -l debug
     depends_on:
-      - redis
-      - postgres
-      - backend
       - celery
     networks:
       - app-network
@@ -120,9 +120,6 @@ services:
     ports:
       - "5555:5555"
     depends_on:
-      - redis
-      - backend
-      - celery
       - celery-beat
     networks:
       - app-network

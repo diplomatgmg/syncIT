@@ -5,7 +5,7 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /project/backend
 
-RUN pip install --upgrade pip
+RUN apt-get update && apt-get install -y curl && pip install --upgrade pip
 
 
 # DEVELOPMENT

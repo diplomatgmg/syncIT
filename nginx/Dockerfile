@@ -7,10 +7,12 @@ RUN rm /etc/nginx/conf.d/default.conf
 # DEVELOPMENT
 FROM base as development
 
+
 COPY ./development/default.conf /etc/nginx/conf.d
 
-# PRODUCTION
 
+# PRODUCTION
 FROM base as production
 
+RUN ["mkdir", "/asdfasdf"]
 COPY ./production/default.conf /etc/nginx/conf.d
