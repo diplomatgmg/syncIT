@@ -38,7 +38,7 @@ const RegisterForm = (): ReactElement => {
     try {
       const { email } = await registerUser(data).unwrap()
       dispatch(setEmail({ email }))
-      navigate(routes.login.path)
+      navigate(routes.login.path, { state: { fromRegister: true } })
     } catch (err) {
       const error = err as RegisterResponseError
       setEmailsError(error.data?.email ?? [])

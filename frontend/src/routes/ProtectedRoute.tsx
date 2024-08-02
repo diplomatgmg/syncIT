@@ -1,10 +1,23 @@
-import { Navigate, Outlet } from "react-router-dom"
+import { Outlet, useNavigate } from "react-router-dom"
 import useAuth from "@/store/hooks/useAuth.ts"
 import routes from "@/routes/routes.tsx"
+import "react-toastify/dist/ReactToastify.css"
+import { useEffect } from "react"
 
 const ProtectedRoute = () => {
   const { isAuthenticated } = useAuth()
-  return isAuthenticated ? <Outlet /> : <Navigate to={routes.login.path} />
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate(routes.login.path, {
+        replace: true,
+        state: { fromProtectedRoute: true },
+      })
+    }
+  }, [isAuthenticated, navigate])
+
+  return <Outlet />
 }
 
 export default ProtectedRoute

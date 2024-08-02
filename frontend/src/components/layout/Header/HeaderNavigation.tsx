@@ -13,11 +13,13 @@ const HeaderNavigation = (): ReactElement => {
   const logoutHandler = useLogout()
   const location = useLocation()
 
-  const renderLink = (to: string, label: string) => {
+  const renderLink = (to: string, label: string, disabled?: boolean) => {
     return (
       <ThemeProvider theme={{ isActive: location.pathname === to }}>
         <HeaderItemStyle>
-          <Link to={to}>{label}</Link>
+          <Link to={to} disabled={disabled}>
+            {label}
+          </Link>
         </HeaderItemStyle>
       </ThemeProvider>
     )
@@ -25,9 +27,9 @@ const HeaderNavigation = (): ReactElement => {
 
   return (
     <HeaderListStyle>
-      {renderLink(routes.home.path, "Вакансии")}
+      {renderLink(routes.home.path, "Вакансии", !isAuthenticated)}
 
-      {isAuthenticated && renderLink(routes.profile.path, "Профиль")}
+      {renderLink(routes.profile.path, "Профиль", !isAuthenticated)}
 
       {renderLink(routes.faq.path, "FAQ")}
 
@@ -73,16 +75,10 @@ const HeaderItemStyle = styled.div<HeaderItemProps>`
   width: 200px;
   position: relative;
   background-color: ${({ theme }) =>
-    theme.isActive ? colors.primary : colors.accent};
+    theme.isActive ? colors.accent : colors.background};
 
   a {
     padding: 1.25rem 0;
-    background-color: ${({ theme }) =>
-      theme.isActive ? colors.primary : colors.accent};
-
-    &:hover {
-      background-color: ${colors.primary};
-    }
   }
 `
 

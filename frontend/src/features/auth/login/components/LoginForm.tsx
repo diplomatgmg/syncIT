@@ -32,7 +32,7 @@ const LoginForm = (): ReactElement => {
       const response = await login(data).unwrap()
       dispatch(setTokens(response))
       dispatch(setEmail(response))
-      navigate(routes.home.path)
+      navigate(routes.home.path, { state: { fromLogin: true } })
     } catch (err) {
       const error = err as LoginResponseError
       setMessage(error.data.detail)

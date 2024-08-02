@@ -101,11 +101,13 @@ interface Styles {
   }
 }
 
+// TODO Улучшить стили
 const JobCard = styled.div<Styles>`
   border: 1px solid ${colors.textSecondary};
   border-radius: 5px;
   padding: 20px;
   width: 100%;
+  max-width: 1200px;
   background-color: ${({ theme }) =>
     theme.isViewed ? colors.background : colors.primary};
   margin-bottom: 4rem;
