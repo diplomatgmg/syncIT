@@ -4,7 +4,15 @@ import CommonPage from "@/components/layout/CommonPage.tsx"
 const FAQPage = (): ReactElement => {
   return (
     <CommonPage>
-      <div>FAQ</div>
+      <h2
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "100%",
+        }}>
+        Скоро будет...
+      </h2>
     </CommonPage>
   )
 }
