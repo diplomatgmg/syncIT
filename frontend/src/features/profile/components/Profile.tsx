@@ -28,7 +28,7 @@ const Profile = (): ReactElement => {
             <Tile>
               <Grade />
             </Tile>
-            <Tile style={{ overflow: "hidden", paddingBottom: "2.5rem" }}>
+            <Tile>
               <WorkFormat />
             </Tile>
           </LeftSelect>
@@ -56,6 +56,7 @@ const ProfileContainer = styled.div`
   margin: 2rem;
   gap: 2rem;
   height: 94vh;
+  user-select: none;
 
   @media (max-width: 1200px) {
     flex-direction: column;
@@ -69,7 +70,7 @@ const LeftSide = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: 2rem;
-  width: 100%;
+  flex: 1;
 
   @media (max-width: 1200px) {
     flex-direction: row;
@@ -85,6 +86,16 @@ const LeftSelect = styled.div`
   flex-direction: column;
   gap: 2rem;
   width: 100%;
+  flex: 1.6;
+
+  & > *:first-child {
+    flex: 1;
+  }
+
+  & > *:last-child > ul > li {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
 `
 
 const RightSide = styled.div`
@@ -92,10 +103,11 @@ const RightSide = styled.div`
   border: 1px solid ${colors.textSecondary};
   padding: 1rem 1rem 0;
   overflow-y: auto;
-  width: 100%;
+  flex: 1.7;
 
   @media (max-width: 1200px) {
     width: auto;
+    margin-bottom: 2rem;
   }
 `
 
@@ -103,6 +115,7 @@ const RightSelect = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  flex: 1;
 
   & > *:last-child {
     height: 100%;

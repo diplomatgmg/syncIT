@@ -17,6 +17,7 @@ const HardSkillItem: FC<HardSkillItemProps> = ({
   selectedItems,
   handleCheckboxChange,
 }) => {
+  // FIXME После выбора последнего popup select верска съезжает. Надо строго заблокировать экран пользователя
   const [isMenuOpen, setIsMenuOpen] = useState(hardSkill.selectable)
 
   const toggleMenu = () => setIsMenuOpen((prevState) => !prevState)
