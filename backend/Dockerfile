@@ -1,11 +1,11 @@
-FROM python:3.12-slim AS base
+FROM python:3.12-alpine AS base
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 WORKDIR /project/backend
 
-RUN apt-get update && apt-get install -y curl && pip install --upgrade pip
+RUN pip install --upgrade pip
 
 
 # DEVELOPMENT

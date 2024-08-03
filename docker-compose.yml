@@ -23,11 +23,6 @@ services:
       - "8000:8000"
     env_file:
       - .env
-    healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:8000/health-check/" ]
-      interval: 5s
-      timeout: 5s
-      retries: 5
     depends_on:
       postgres:
         condition: service_healthy
@@ -84,6 +79,7 @@ services:
       - app-network
 
   celery:
+    restart: always
     container_name: celery
     build:
       context: ./backend
@@ -91,13 +87,11 @@ services:
     command: celery -A core.celery.app worker -l debug
     env_file:
       - .env
-    depends_on:
-      backend:
-        condition: service_healthy
     networks:
       - app-network
 
   celery-beat:
+    restart: always
     container_name: celery-beat
     build:
       context: ./backend
@@ -105,12 +99,11 @@ services:
     env_file:
       - .env
     command: celery -A core.celery.app beat -l debug
-    depends_on:
-      - celery
     networks:
       - app-network
 
   flower:
+    restart: always
     container_name: flower
     build:
       context: ./backend
@@ -120,8 +113,6 @@ services:
       - .env
     ports:
       - "5555:5555"
-    depends_on:
-      - celery-beat
     networks:
       - app-network
 
