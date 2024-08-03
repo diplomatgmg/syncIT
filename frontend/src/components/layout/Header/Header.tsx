@@ -7,6 +7,7 @@ const HeaderStyle = styled.header`
   justify-content: end;
   position: fixed;
   height: 100%;
+  z-index: 1;
 
   @media (max-width: 1200px) {
     position: relative;

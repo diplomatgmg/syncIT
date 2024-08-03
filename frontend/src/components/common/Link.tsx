@@ -31,11 +31,10 @@ const StyledLink = styled(RouterLink)<StyledLinkProps>`
   display: flex;
   justify-content: center;
   cursor: ${({ theme }) => (theme.disabled ? "not-allowed" : "pointer")};
-  opacity: ${({ theme }) => (theme.disabled ? 0.6 : 1)};
+  opacity: ${({ theme }) => (theme.disabled ? 0.25 : 1)};
 
   &:hover {
-    background-color: ${({ theme }) =>
-      theme.disabled ? theme.backgroundColor : colors.primary};
+    background-color: ${colors.primary};
     color: ${({ theme }) =>
       theme.disabled ? theme.textColor : theme.backgroundColor};
   }
