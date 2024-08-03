@@ -7,6 +7,7 @@ import { colors } from "@/styles/theme.ts"
 import useLogout from "@/store/hooks/useLogout.ts"
 import styled, { ThemeProvider } from "styled-components"
 import { useLocation, useNavigate } from "react-router-dom"
+import { popup } from "@/utils/popup/popup.tsx"
 
 const HeaderNavigation = (): ReactElement => {
   const { isAuthenticated } = useAuth()
@@ -19,11 +20,19 @@ const HeaderNavigation = (): ReactElement => {
     navigate(routes.login.path, { state: { fromLogout: true } })
   }
 
+  const handlePopup = () => {
+    popup.error("Необходимо авторизоваться!")
+  }
+
   const renderLink = (to: string, label: string, disabled?: boolean) => {
     return (
       <ThemeProvider theme={{ isActive: location.pathname === to }}>
         <HeaderItemStyle>
-          <Link to={to} disabled={disabled} backgroundColor={colors.accent}>
+          <Link
+            to={to}
+            disabled={disabled}
+            onClick={disabled ? handlePopup : undefined}
+            backgroundColor={colors.accent}>
             {label}
           </Link>
         </HeaderItemStyle>
