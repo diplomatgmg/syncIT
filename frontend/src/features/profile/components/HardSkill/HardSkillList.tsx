@@ -7,7 +7,7 @@ import {
 } from "@/store/api/profileApi.ts"
 import useSelectableItems from "@/store/hooks/useSelectableItems.ts"
 import styled from "styled-components"
-import { colors } from "@/styles/theme.ts"
+import { colors, transitionsSpeed } from "@/styles/theme.ts"
 
 interface HardSkillListProps {
   hardSkills: HardSkill[]
@@ -41,17 +41,21 @@ const HardSkillList: FC<HardSkillListProps> = ({
 }
 
 const List = styled.ul`
-  padding: 0;
   margin: 0;
+  padding: 0;
 
   & > li {
-    margin-bottom: 1.25rem;
-    padding-bottom: 1.25rem;
+    padding: 1rem;
+
     border-bottom: 1px solid ${colors.textSecondary};
+    transition: ease ${transitionsSpeed.fast};
+
+    &:hover {
+      background-color: ${colors.backgroundSecondary};
+    }
 
     &:last-child {
       border: none;
-      padding-bottom: 0;
     }
   }
 `

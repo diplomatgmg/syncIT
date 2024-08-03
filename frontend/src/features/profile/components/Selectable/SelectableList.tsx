@@ -44,13 +44,13 @@ const SelectableList = <T extends { id: number; name: string }>({
 const List = styled.ul`
   padding: 0;
   margin: 0;
-  height: 100%;
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 `
 
 const ListItem = styled.li`
-  padding-bottom: 0.5rem;
-
   @media (max-width: 1200px) {
     &:last-child {
       padding-bottom: 0;

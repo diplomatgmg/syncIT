@@ -50,18 +50,23 @@ export default Profile
 
 // Верстка ебанина полная.
 const ProfileContainer = styled.div`
-  width: 100%;
   display: flex;
   justify-content: space-between;
   margin: 2rem;
   gap: 2rem;
   height: 94vh;
   user-select: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  padding-right: 180px;
 
   @media (max-width: 1200px) {
     flex-direction: column;
     min-height: 1200px;
     margin: 2rem;
+    padding-right: 0;
+    position: absolute;
   }
 `
 
@@ -98,7 +103,6 @@ const LeftSelect = styled.div`
 const RightSide = styled.div`
   border-radius: 0.5rem;
   border: 1px solid ${colors.textSecondary};
-  padding: 1rem 1rem 0;
   overflow-y: auto;
   flex: 1.7;
 
@@ -124,7 +128,7 @@ const Tile = styled.div`
   align-items: center;
   border: 1px solid ${colors.textSecondary};
   border-radius: 0.5rem;
-  padding: 1rem;
   min-height: fit-content;
   overflow-y: auto;
+  padding: 0.5rem 1rem;
 `

@@ -30,10 +30,6 @@ const Checkbox: FC<CheckboxProps> = ({
 
 export default Checkbox
 
-const Container = styled.div`
-  margin-top: 0.25rem;
-`
-
 const Input = styled.input`
   position: absolute;
   z-index: -1;
@@ -50,6 +46,11 @@ const Input = styled.input`
     opacity: 0.25;
   }
 
+  &:not(:disabled):hover + label::before {
+    background-color: ${colors.accent};
+    opacity: 0.75;
+  }
+
   &:not(:disabled):active + label::before {
     background-color: ${colors.accent};
     border-color: ${colors.accent};
@@ -58,6 +59,10 @@ const Input = styled.input`
   &:disabled + label::before {
     background-color: ${colors.accent};
   }
+`
+
+const Container = styled.div`
+  padding: 0.4rem 0;
 `
 
 const Label = styled.label`

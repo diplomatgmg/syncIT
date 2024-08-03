@@ -67,10 +67,11 @@ const SkillContainer = styled.div`
 
 const SkillName = styled.span`
   cursor: pointer;
+  width: 100%;
 `
 
 const ChildrenList = styled.ul`
-  padding-left: 24px;
+  padding-left: 2.5rem;
 `
 
 export default HardSkillItem
