@@ -100,6 +100,8 @@ services:
       target: ${BUILD_TARGET}
     env_file:
       - .env
+    depends_on:
+      - celery
     command: celery -A core.celery.app beat -l debug
     networks:
       - app-network
