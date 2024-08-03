@@ -74,6 +74,7 @@ REST_FRAMEWORK = {
     ],
 }
 
+
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
@@ -82,7 +83,31 @@ SIMPLE_JWT = {
     "TOKEN_OBTAIN_SERIALIZER": "apps.user.serializers.CustomTokenObtainSerializer",
 }
 
-DJOSER = {}
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.yandex.ru"
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+
+EMAIL_SERVER = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_ADMIN = EMAIL_HOST_USER
+
+DOMAIN = os.getenv("SITE_DOMAIN")
+SITE_NAME = os.getenv("SITE_NAME")
+
+DJOSER = {
+    "LOGIN_FIELD": "email",
+    "SEND_EMAIL_CONFIRMATION": True,
+    "SEND_ACTIVATION_EMAIL": True,
+    "ACTIVATION_URL": "login/{uid}/{token}",
+    "SERIALIZERS": {
+        "user_create": "apps.user.serializers.UserCreateSerializer",
+        "user": "apps.user.serializers.UserCreateSerializer",
+    },
+}
 
 
 ROOT_URLCONF = "core.urls"

@@ -1,5 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react"
 import {
+  ActivateAccountRequest,
   LoginRequest,
   LoginResponse,
   RegisterRequest,
@@ -13,20 +14,31 @@ const authApi = createApi({
   endpoints: (builder) => ({
     login: builder.mutation<LoginResponse, LoginRequest>({
       query: (credentials) => ({
-        url: "auth/token/create/",
+        url: "token/create/",
         method: "POST",
         body: credentials,
       }),
     }),
     register: builder.mutation<RegisterResponse, RegisterRequest>({
       query: (credentials) => ({
-        url: "auth/register/",
+        url: "user/register/",
         method: "POST",
         body: credentials,
+      }),
+    }),
+    activateAccount: builder.mutation<void, ActivateAccountRequest>({
+      query: (data) => ({
+        url: "user/activate/",
+        method: "POST",
+        body: data,
       }),
     }),
   }),
 })
 
-export const { useLoginMutation, useRegisterMutation } = authApi
+export const {
+  useLoginMutation,
+  useRegisterMutation,
+  useActivateAccountMutation,
+} = authApi
 export default authApi

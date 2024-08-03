@@ -41,3 +41,8 @@ export interface TokenRefreshResponse {
     refresh: string
   }
 }
+
+export interface ActivateAccountRequest {
+  uid: string
+  token: string
+}

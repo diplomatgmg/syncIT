@@ -6,6 +6,10 @@ const AppRouter = () => {
   return (
     <Routes>
       <Route path={routes.login.path} element={routes.login.element} />
+      <Route
+        path={routes.login.path + "/:uid/:token"}
+        element={routes.login.element}
+      />
       <Route path={routes.register.path} element={routes.register.element} />
       <Route path={routes.faq.path} element={routes.faq.element} />
 

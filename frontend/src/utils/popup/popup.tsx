@@ -4,7 +4,7 @@ import "./styles.css"
 
 const baseConfig: ToastOptions = {
   position: "bottom-left",
-  autoClose: 4000,
+  autoClose: 5000,
   closeOnClick: true,
   pauseOnHover: false,
   theme: "dark",
