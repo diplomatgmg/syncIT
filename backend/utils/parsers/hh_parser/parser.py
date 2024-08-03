@@ -182,7 +182,7 @@ class HHParser(BaseParser):
         data = tuple(filter(lambda x: x is not None, map(parse_vacancy, gpt_responses)))
 
         grades = [item["grade_name"] for item in data]
-        grade = max(set(grades), key=grades.count) if grades else "Неизвестно"
+        grade = min(set(grades), key=grades.count) if grades else "Неизвестно"
 
         professions = [item["profession"] for item in data]
         profession = (
