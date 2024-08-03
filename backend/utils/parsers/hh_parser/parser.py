@@ -26,15 +26,9 @@ class HHParser(BaseParser):
     session = requests.Session()
     headers = None
 
-    def __init__(
-        self,
-        profile_hard_skills_names: list[str],
-        profile_profession_names: list[str],
-    ):
-        self.profile_hard_skills_names = profile_hard_skills_names
-        self.profile_profession_names = profile_profession_names
+    def __init__(self, *args, **kwargs):
         self.headers = self._create_headers()
-        super().__init__()
+        super().__init__(*args, **kwargs)
 
     @staticmethod
     def _create_headers() -> dict[str, str]:
