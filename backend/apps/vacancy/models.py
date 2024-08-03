@@ -34,6 +34,7 @@ class Vacancy(BaseVacancy):
     description = models.TextField()
     salary_from = models.IntegerField(blank=True, null=True)
     salary_to = models.IntegerField(blank=True, null=True)
+    currency = models.CharField(max_length=5, blank=True, null=True)
     experience = models.CharField(max_length=255)
     url = models.URLField()
     company = models.ForeignKey(Company, on_delete=models.CASCADE)

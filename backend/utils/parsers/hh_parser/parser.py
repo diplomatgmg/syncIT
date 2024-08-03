@@ -7,8 +7,9 @@ from urllib.parse import urlencode
 
 import requests
 
-from apps.vacancy.models import ParsedVacancy
+from apps.vacancy.models import ParsedVacancy, Vacancy
 from utils.helpers import generate_hash, clear_html, timeit
+from utils.normalize_currency import normalize_currency
 from utils.parsers.base_parser import BaseParser
 from utils.parsers.normalize_grade import normalize_grade
 from utils.parsers.normalize_hard_skill import normalize_hard_skill
@@ -125,10 +126,15 @@ class HHParser(BaseParser):
         vacancies_hashes = {
             generate_hash(vacancy_id): vacancy_id for vacancy_id in vacancies_ids
         }
+
         existing_hashes = set(
             ParsedVacancy.objects.filter(
                 unique_hash__in=vacancies_hashes.keys()
             ).values_list("unique_hash", flat=True)
+        ) | set(
+            Vacancy.objects.filter(unique_hash__in=vacancies_hashes.keys()).values_list(
+                "unique_hash", flat=True
+            )
         )
 
         return {
@@ -212,15 +218,16 @@ class HHParser(BaseParser):
 
     @staticmethod
     def get_vacancy_result(vacancy_data, parsed_vacancy):
-        if vacancy_data["salary"]:
-            salary_from = vacancy_data["salary"]["from"]
-            salary_to = vacancy_data["salary"]["to"]
+        salary = vacancy_data["salary"]
+        if salary:
+            salary_from = salary["from"]
+            salary_to = salary["to"]
         else:
             salary_from = None
             salary_to = None
 
-        # Django ругается, что нет адаптации с локальным временем
-        # Мб надо поправить, но это не критично
+        # FIXME: Django ругается, что нет адаптации с локальным временем
+        #  Мб надо поправить, но это не критично
         published_at_str = vacancy_data["published_at"]
         published_at = datetime.strptime(published_at_str, "%Y-%m-%dT%H:%M:%S%z")
 
@@ -229,6 +236,7 @@ class HHParser(BaseParser):
             "name": vacancy_data["name"],
             "salary_from": salary_from,
             "salary_to": salary_to,
+            "currency": normalize_currency(salary["currency"]) if salary else None,
             "experience": vacancy_data["experience"]["name"],
             "url": vacancy_data["alternate_url"],
             "company_name": vacancy_data["employer"]["name"],

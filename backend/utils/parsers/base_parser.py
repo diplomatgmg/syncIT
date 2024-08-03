@@ -34,6 +34,7 @@ class BaseParser(ABC):
         description = data.get("description")
         salary_from = data.get("salary_from")
         salary_to = data.get("salary_to")
+        currency = data.get("currency")
         experience = data.get("experience")
         url = data.get("url")
         published_at = data.get("published_at")
@@ -55,6 +56,7 @@ class BaseParser(ABC):
             description=description,
             salary_from=salary_from,
             salary_to=salary_to,
+            currency=currency,
             experience=experience,
             url=url,
             company=company_model,

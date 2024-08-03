@@ -1,10 +1,10 @@
 import { FC, type ReactElement } from "react"
-import { UserVacancyPreview } from "@/types/vacancyTypes.ts"
+import { UserVacancy } from "@/types/vacancyTypes.ts"
 import VacancyItem from "@/features/home/components/Vacancy/VacancyItem.tsx"
 import styled from "styled-components"
 
 interface VacancyListProps {
-  vacancies: UserVacancyPreview[]
+  vacancies: UserVacancy[]
 }
 
 const StyledVacancyList = styled.ul`

@@ -40,6 +40,7 @@ class VacancyListSerializer(serializers.ModelSerializer):
             "name",
             "salary_from",
             "salary_to",
+            "currency",
             "experience",
             "url",
             "company",

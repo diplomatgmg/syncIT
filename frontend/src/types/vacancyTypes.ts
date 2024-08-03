@@ -5,11 +5,12 @@ import { Profession } from "@/types/professionTypes.ts"
 import { WorkFormat } from "@/types/workFormatTypes.ts"
 
 // Краткая информация о вакансии
-export interface VacancyPreview {
+export interface Vacancy {
   id: number
   name: string
   salaryFrom: number | null
   salaryTo: number | null
+  currency: string | null
   experience: string
   url: string
   company: Company
@@ -20,11 +21,11 @@ export interface VacancyPreview {
   description: string
 }
 
-export interface UserVacancyPreview {
+export interface UserVacancy {
   id: number
   isViewed: boolean
   suitability: number
-  vacancy: VacancyPreview
+  vacancy: Vacancy
 }
 
 export interface UpdateVacancyViewStatusRequest {

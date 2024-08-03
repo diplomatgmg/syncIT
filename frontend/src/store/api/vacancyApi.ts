@@ -3,7 +3,7 @@ import baseQuery from "@/store/api/baseQuery.ts"
 import {
   UpdateVacancyViewStatusRequest,
   UpdateVacancyViewStatusResponse,
-  UserVacancyPreview,
+  UserVacancy,
 } from "@/types/vacancyTypes.ts"
 
 const vacancyApi = createApi({
@@ -11,7 +11,7 @@ const vacancyApi = createApi({
   baseQuery,
   tagTypes: ["Vacancy"],
   endpoints: (builder) => ({
-    getVacancies: builder.query<UserVacancyPreview[], void>({
+    getVacancies: builder.query<UserVacancy[], void>({
       query: () => "vacancies/",
       providesTags: ["Vacancy"],
     }),

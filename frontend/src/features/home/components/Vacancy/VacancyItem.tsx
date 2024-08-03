@@ -1,16 +1,17 @@
 import { FC, type ReactElement, useId, useState } from "react"
-import { VacancyPreview } from "@/types/vacancyTypes.ts"
+import { Vacancy } from "@/types/vacancyTypes.ts"
 import { useUpdateVacancyViewStatusMutation } from "@/store/api/vacancyApi.ts"
 import HardSkillList from "@/features/home/components/HardSkill/HardSkillList.tsx"
 import styled, { ThemeProvider } from "styled-components"
 import { Link } from "react-router-dom"
 import { colors, transitionsSpeed } from "@/styles/theme.ts"
 import UnWatchIcon from "@/assets/svg/unwatch.svg"
+import getSalary from "@/features/home/utils/getSalary.ts"
 
 interface VacancyItemProps {
   isViewed: boolean
   suitability: number
-  vacancy: VacancyPreview
+  vacancy: Vacancy
 }
 
 const VacancyItem: FC<VacancyItemProps> = ({
@@ -32,13 +33,11 @@ const VacancyItem: FC<VacancyItemProps> = ({
       console.error("Ошибка входа: ", err)
     }
   }
-
-  const salaryFrom = vacancy.salaryFrom ? `${vacancy.salaryFrom}₽` : "?₽"
-  const salaryTo = vacancy.salaryTo ? `${vacancy.salaryTo}₽` : "?₽"
-  const salary =
-    !vacancy.salaryFrom && !vacancy.salaryTo
-      ? "Неизвестно"
-      : `${salaryFrom} - ${salaryTo}`
+  const salary = getSalary(
+    vacancy.currency,
+    vacancy.salaryFrom,
+    vacancy.salaryTo
+  )
 
   if (isHidden) return null
 
