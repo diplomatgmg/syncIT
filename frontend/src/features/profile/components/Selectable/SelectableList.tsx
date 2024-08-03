@@ -49,11 +49,7 @@ const List = styled.ul`
 `
 
 const ListItem = styled.li`
-  margin-bottom: 0.75rem;
-
-  &:last-child {
-    padding-bottom: 0.75rem;
-  }
+  padding-bottom: 0.5rem;
 
   @media (max-width: 1200px) {
     &:last-child {

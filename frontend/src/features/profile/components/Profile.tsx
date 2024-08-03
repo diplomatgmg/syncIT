@@ -85,16 +85,13 @@ const LeftSelect = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  width: 100%;
-  flex: 1.6;
+
+  @media (max-width: 1200px) {
+    flex: 0.5;
+  }
 
   & > *:first-child {
     flex: 1;
-  }
-
-  & > *:last-child > ul > li {
-    margin-bottom: 0;
-    padding-bottom: 0;
   }
 `
 
