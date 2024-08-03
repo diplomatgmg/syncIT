@@ -43,7 +43,6 @@ const RegisterForm = (): ReactElement => {
       const error = err as RegisterResponseError
       setEmailsError(error.data?.email ?? [])
       setPasswordErrors(error.data?.password ?? [])
-
       console.error("Ошибка входа: ", err)
     }
   }

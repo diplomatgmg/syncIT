@@ -1,3 +1,8 @@
+export interface LoginRequest {
+  email: string
+  password: string
+}
+
 export interface LoginResponse {
   email: string
   token: {
@@ -11,6 +16,11 @@ export interface LoginResponseError {
   data: {
     detail: string
   }
+}
+
+export interface RegisterRequest {
+  email: string
+  password: string
 }
 
 export interface RegisterResponse {
