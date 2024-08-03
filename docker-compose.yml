@@ -85,6 +85,8 @@ services:
       context: ./backend
       target: ${BUILD_TARGET}
     command: celery -A core.celery.app worker -l debug
+    depends_on:
+      - backend
     env_file:
       - .env
     networks:
@@ -111,6 +113,9 @@ services:
     command: celery -A core.celery.app flower -l debug
     env_file:
       - .env
+    depends_on:
+      - celery
+      - celery-beat
     ports:
       - "5555:5555"
     networks:
