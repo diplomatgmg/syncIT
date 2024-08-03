@@ -1,13 +1,14 @@
 from datetime import datetime, timedelta
 
 from celery.app import shared_task
+from django.conf import settings
 from django.db.models import Count, Q
 
 from .models import Profile
 from ..vacancy.models import Vacancy, UserVacancy
-from django.conf import settings
 
 
+# TODO Переписать таску
 @shared_task()
 def find_suitable_vacancies():
     """
@@ -38,13 +39,18 @@ def find_suitable_vacancies():
         for suitable_vacancy in suitable_vacancies:
             matching_skills_count = suitable_vacancy.hard_skill_count
             total_skills = suitable_vacancy.hard_skills.count()
-            suitability = round((matching_skills_count / total_skills) * 100)
+            # FIXME Вакансии могут быть >100 релевантности
+            suitability = min(round((matching_skills_count / total_skills) * 100), 100)
 
             if suitability < settings.MINIMUM_VACANCY_SUITABILITY:
                 continue
 
-            UserVacancy.objects.update_or_create(
+            user_vacancy, created = UserVacancy.objects.get_or_create(
                 user=profile.user,
                 vacancy=suitable_vacancy,
-                suitability=suitability,
+                defaults={"suitability": suitability, "is_viewed": False},
             )
+
+            if not created:
+                user_vacancy.suitability = suitability
+                user_vacancy.save()
