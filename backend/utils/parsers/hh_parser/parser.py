@@ -77,8 +77,7 @@ class HHParser(BaseParser):
                 response.raise_for_status()
                 return response.json()
             except requests.exceptions.RequestException:
-                time.sleep(1)
-        raise requests.exceptions.RequestException("Не удалось получить данные")
+                time.sleep(2)
 
     @staticmethod
     def get_data_with_workers(callback, collection, timeout=10, max_workers=10):
