@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     "rest_framework_simplejwt.token_blacklist",
     "corsheaders",
+    "djoser",
     # Custom apps
     "apps.user",
     "apps.hard_skill",
@@ -78,7 +79,10 @@ SIMPLE_JWT = {
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "ROTATE_REFRESH_TOKENS": True,
     "BLACKLIST_AFTER_ROTATION": True,
+    "TOKEN_OBTAIN_SERIALIZER": "apps.user.serializers.CustomTokenObtainSerializer",
 }
+
+DJOSER = {}
 
 
 ROOT_URLCONF = "core.urls"

@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 User = get_user_model()
 
@@ -29,9 +30,15 @@ class UserCreateSerializer(serializers.ModelSerializer):
     def validate_email(self, value):
         if User.objects.filter(email=value).exists():
             raise serializers.ValidationError(
-                "Пользователь с таким email уже существует"
+                "Пользователя с таким email уже существует"
             )
         return value
 
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
+
+
+class CustomTokenObtainSerializer(TokenObtainPairSerializer):
+    default_error_messages = {
+        "no_active_account": "Пользователя с такими данными не существует",
+    }
