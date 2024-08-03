@@ -67,12 +67,12 @@ Frontend:
     - Selenium
 
 Базы данных:
-  SQL:
+  - SQL
     - PostgreSQL
     - MySQL
     - Oracle
     - MS SQL
-  NoSQL:
+  - NoSQL
     - MongoDB
     - Redis
 
