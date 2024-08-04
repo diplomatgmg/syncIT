@@ -3,182 +3,3738 @@
     "model": "company.company",
     "pk": 1,
     "fields": {
-      "name": "VK"
+      "name": "YAMAGUCHI"
     }
   },
   {
     "model": "company.company",
     "pk": 2,
     "fields": {
-      "name": "Бронируй Онлайн"
+      "name": "TextMagic"
     }
   },
   {
     "model": "company.company",
     "pk": 3,
     "fields": {
-      "name": "Софтвайс"
+      "name": "Intaro"
     }
   },
   {
     "model": "company.company",
     "pk": 4,
     "fields": {
-      "name": "UserGate"
+      "name": "Техноком"
     }
   },
   {
     "model": "company.company",
     "pk": 5,
     "fields": {
-      "name": "Радиофид"
+      "name": "Технотроникс"
     }
   },
   {
     "model": "company.company",
     "pk": 6,
     "fields": {
-      "name": "Диполь"
+      "name": "STARTRIBE LTD"
     }
   },
   {
     "model": "company.company",
     "pk": 7,
     "fields": {
-      "name": "Пеленг"
+      "name": "Innovative People"
     }
   },
   {
     "model": "company.company",
     "pk": 8,
     "fields": {
-      "name": "НОВАЯ СТУДИЯ"
+      "name": "билайн"
     }
   },
   {
     "model": "company.company",
     "pk": 9,
     "fields": {
-      "name": "it-aces.com"
+      "name": "Контур"
     }
   },
   {
     "model": "company.company",
     "pk": 10,
     "fields": {
-      "name": "Терехов"
+      "name": "Когнитек"
     }
   },
   {
     "model": "company.company",
     "pk": 11,
     "fields": {
-      "name": "Corporate Performance Systems"
+      "name": "Linxdatacenter"
     }
   },
   {
     "model": "company.company",
     "pk": 12,
     "fields": {
-      "name": "Даком М"
+      "name": "Тион"
     }
   },
   {
     "model": "company.company",
     "pk": 13,
     "fields": {
-      "name": "Жасыл даму, АО"
+      "name": "Taptima"
     }
   },
   {
     "model": "company.company",
     "pk": 14,
     "fields": {
-      "name": "Цифровые решения, НПП"
+      "name": "Ю Би Эс Технологии"
     }
   },
   {
     "model": "company.company",
     "pk": 15,
     "fields": {
-      "name": "СИНЬЮС"
+      "name": "LOGISTIX"
     }
   },
   {
     "model": "company.company",
     "pk": 16,
     "fields": {
-      "name": "Юрент"
+      "name": "Russ"
     }
   },
   {
     "model": "company.company",
     "pk": 17,
     "fields": {
-      "name": "Технолайт"
+      "name": "Исмагилов Рустам Закирович"
     }
   },
   {
     "model": "company.company",
     "pk": 18,
     "fields": {
-      "name": "FUNCORP"
+      "name": "DIGINETICA"
     }
   },
   {
     "model": "company.company",
     "pk": 19,
     "fields": {
-      "name": "Магнитогорская энергетическая компания"
+      "name": "Марафон"
     }
   },
   {
     "model": "company.company",
     "pk": 20,
     "fields": {
-      "name": "АНО ЦИСМ"
+      "name": "ВойсЛинк"
     }
   },
   {
     "model": "company.company",
     "pk": 21,
     "fields": {
-      "name": "African Vending Systems Limited"
+      "name": "Dante Research"
     }
   },
   {
     "model": "company.company",
     "pk": 22,
     "fields": {
-      "name": "Финансовые Информационные Системы"
+      "name": "Манзони"
     }
   },
   {
     "model": "company.company",
     "pk": 23,
     "fields": {
-      "name": "Элеста"
+      "name": "Антиплагиат"
     }
   },
   {
     "model": "company.company",
     "pk": 24,
     "fields": {
-      "name": "Муртазин Рустам Ирекович"
+      "name": "Форлинк"
     }
   },
   {
     "model": "company.company",
     "pk": 25,
     "fields": {
-      "name": "VOXYS"
+      "name": "Cyber Eye Control"
     }
   },
   {
     "model": "company.company",
     "pk": 26,
     "fields": {
-      "name": "MPBoost"
+      "name": "Студия Oxem"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 27,
+    "fields": {
+      "name": "R-BAND"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 28,
+    "fields": {
+      "name": "Облако"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 29,
+    "fields": {
+      "name": "FunBox"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 30,
+    "fields": {
+      "name": "viomedia"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 31,
+    "fields": {
+      "name": "Novo BI"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 32,
+    "fields": {
+      "name": "АЛЬФАСАТКОМ"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 33,
+    "fields": {
+      "name": "ИТ-Экспертиза"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 34,
+    "fields": {
+      "name": "Ozon"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 35,
+    "fields": {
+      "name": "Хомяк Елена Александровна"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 36,
+    "fields": {
+      "name": "KLBR Studio"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 37,
+    "fields": {
+      "name": "Eclipse Digital"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 38,
+    "fields": {
+      "name": "Mad Wave"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 39,
+    "fields": {
+      "name": "TravelLine"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 40,
+    "fields": {
+      "name": "Alar Studios"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 41,
+    "fields": {
+      "name": "К2Т"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 42,
+    "fields": {
+      "name": "Селфсек"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 43,
+    "fields": {
+      "name": "Eqvanta"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 44,
+    "fields": {
+      "name": "NPM"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 45,
+    "fields": {
+      "name": "КонсОМ СКС"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 46,
+    "fields": {
+      "name": "SIMAI"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 47,
+    "fields": {
+      "name": "Юсмп Групп"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 48,
+    "fields": {
+      "name": "Cedro Agency"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 49,
+    "fields": {
+      "name": "Квантбокс"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 50,
+    "fields": {
+      "name": "Безопасные программные решения"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 51,
+    "fields": {
+      "name": "AERODISK"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 52,
+    "fields": {
+      "name": "Лустов Степан Андреевич"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 53,
+    "fields": {
+      "name": "Лаборатория Касперского"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 54,
+    "fields": {
+      "name": "99 БАЛЛОВ"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 55,
+    "fields": {
+      "name": "Группа Компаний Wallet One"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 56,
+    "fields": {
+      "name": "Платформа Трим"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 57,
+    "fields": {
+      "name": "i-Sys Labs"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 58,
+    "fields": {
+      "name": "ITConstruct"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 59,
+    "fields": {
+      "name": "АДЕСК"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 60,
+    "fields": {
+      "name": "Технокорп"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 61,
+    "fields": {
+      "name": "Клеркгрупп"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 62,
+    "fields": {
+      "name": "Спортмастер"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 63,
+    "fields": {
+      "name": "НАЛАНЧ"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 64,
+    "fields": {
+      "name": "Wi-Fi и сетевое оборудование Ubiquiti Networks"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 65,
+    "fields": {
+      "name": "Office-Expert.kz"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 66,
+    "fields": {
+      "name": "Брисмани"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 67,
+    "fields": {
+      "name": "Элисофт"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 68,
+    "fields": {
+      "name": "OGD Solutions"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 69,
+    "fields": {
+      "name": "Nexpanse"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 70,
+    "fields": {
+      "name": "Вебпрактик"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 71,
+    "fields": {
+      "name": "Freedom International Group"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 72,
+    "fields": {
+      "name": "ЧУ ДО Московская школа программистов"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 73,
+    "fields": {
+      "name": "Diasoft"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 74,
+    "fields": {
+      "name": "А-Кор"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 75,
+    "fields": {
+      "name": "Ганеева Мария Сергеевна"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 76,
+    "fields": {
+      "name": "Сета"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 77,
+    "fields": {
+      "name": "HALIKOV STUDIO"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 78,
+    "fields": {
+      "name": "Lesta Games"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 79,
+    "fields": {
+      "name": "Кодики (ИП Федорова Татьяна Валерьевна)"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 80,
+    "fields": {
+      "name": "Лард"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 81,
+    "fields": {
+      "name": "Электроника, ПСЦ"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 82,
+    "fields": {
+      "name": "Контент"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 83,
+    "fields": {
+      "name": "Villeroy & Boch Tableware division"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 84,
+    "fields": {
+      "name": "NLS Kazakhstan"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 85,
+    "fields": {
+      "name": "Аренадата Софтвер"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 86,
+    "fields": {
+      "name": "Р-Вижн"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 87,
+    "fields": {
+      "name": "Сервискод"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 88,
+    "fields": {
+      "name": "Аурига"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 89,
+    "fields": {
+      "name": "РОССКО"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 90,
+    "fields": {
+      "name": "idaproject"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 91,
+    "fields": {
+      "name": "Отклик АДВ"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 92,
+    "fields": {
+      "name": "OLEXDECO (ИП Бородина Светлана Александровна)"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 93,
+    "fields": {
+      "name": "Gems development (Джемс Девелопмент)"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 94,
+    "fields": {
+      "name": "StormWall™"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 95,
+    "fields": {
+      "name": "Кутовой Евгений Григорьевич"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 96,
+    "fields": {
+      "name": "Равенол Руссланд"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 97,
+    "fields": {
+      "name": "ФомЛайн"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 98,
+    "fields": {
+      "name": "Blacktyres"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 99,
+    "fields": {
+      "name": "Госзаказ Групп"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 100,
+    "fields": {
+      "name": "Лабмедиа"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 101,
+    "fields": {
+      "name": "Межрегиональный институт экспертизы"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 102,
+    "fields": {
+      "name": "NEXT Contact"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 103,
+    "fields": {
+      "name": "TradingView"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 104,
+    "fields": {
+      "name": "Даком М"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 105,
+    "fields": {
+      "name": "Джива"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 106,
+    "fields": {
+      "name": "ЧОП Центавр"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 107,
+    "fields": {
+      "name": "NB-Bet"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 108,
+    "fields": {
+      "name": "Фабрика Решений"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 109,
+    "fields": {
+      "name": "NAVITEL"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 110,
+    "fields": {
+      "name": "Kvando Technologies"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 111,
+    "fields": {
+      "name": "Pushwoosh"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 112,
+    "fields": {
+      "name": "Наука"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 113,
+    "fields": {
+      "name": "Corporate Performance Systems"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 114,
+    "fields": {
+      "name": "АйТи БАСТИОН"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 115,
+    "fields": {
+      "name": "РУ-Ю"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 116,
+    "fields": {
+      "name": "AMarkets"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 117,
+    "fields": {
+      "name": "amoCRM"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 118,
+    "fields": {
+      "name": "Бизнес Технологии"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 119,
+    "fields": {
+      "name": "АСД Технолоджиз"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 120,
+    "fields": {
+      "name": "Джемтех"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 121,
+    "fields": {
+      "name": "Progressive Mind"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 122,
+    "fields": {
+      "name": "Гоубас"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 123,
+    "fields": {
+      "name": "Синаптик"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 124,
+    "fields": {
+      "name": "Клеверенс Софт"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 125,
+    "fields": {
+      "name": "GRI"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 126,
+    "fields": {
+      "name": "Цифровые Миры"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 127,
+    "fields": {
+      "name": "AVIATA.KZ"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 128,
+    "fields": {
+      "name": "QUARTA"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 129,
+    "fields": {
+      "name": "СБЕР"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 130,
+    "fields": {
+      "name": "ФГАНУ Центр информационных технологий и систем органов исполнительной власти"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 131,
+    "fields": {
+      "name": "АйТи Гео, ООО (IT GEO)"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 132,
+    "fields": {
+      "name": "SPRINTHOST"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 133,
+    "fields": {
+      "name": "Мангалиб"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 134,
+    "fields": {
+      "name": "ATI.SU"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 135,
+    "fields": {
+      "name": "Хороший Дизайн"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 136,
+    "fields": {
+      "name": "Биллинговый центр"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 137,
+    "fields": {
+      "name": "ИЦ АЙ-ТЕКО"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 138,
+    "fields": {
+      "name": "INMYROOM"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 139,
+    "fields": {
+      "name": "CMstore"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 140,
+    "fields": {
+      "name": "Destiny.Games"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 141,
+    "fields": {
+      "name": "ИнфоДиалог"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 142,
+    "fields": {
+      "name": "Rocket Science"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 143,
+    "fields": {
+      "name": "Ригинтел"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 144,
+    "fields": {
+      "name": "Неткрэкер Текнолоджи Казахстан"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 145,
+    "fields": {
+      "name": "Радио Гигабит"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 146,
+    "fields": {
+      "name": "Prime Source"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 147,
+    "fields": {
+      "name": "Tiger Technologies"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 148,
+    "fields": {
+      "name": "Wisebits"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 149,
+    "fields": {
+      "name": "Датум Групп (DATUM Group)"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 150,
+    "fields": {
+      "name": "Термика"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 151,
+    "fields": {
+      "name": "Парфюмерно-косметический супермаркет Золотое Яблоко"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 152,
+    "fields": {
+      "name": "Restaurant Guru"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 153,
+    "fields": {
+      "name": "Хеммерсбах РУС"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 154,
+    "fields": {
+      "name": "Онпоинт"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 155,
+    "fields": {
+      "name": "Атлантик"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 156,
+    "fields": {
+      "name": "Медиапоинт"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 157,
+    "fields": {
+      "name": "ZennoLab"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 158,
+    "fields": {
+      "name": "SberTech"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 159,
+    "fields": {
+      "name": "BIRCH"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 160,
+    "fields": {
+      "name": "ИТ-ЛИНК"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 161,
+    "fields": {
+      "name": "ГК «Максима»"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 162,
+    "fields": {
+      "name": "Avanpost"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 163,
+    "fields": {
+      "name": "Rusprofile"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 164,
+    "fields": {
+      "name": "Syntellect (ООО СИНТЕЛЛЕКТ)"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 165,
+    "fields": {
+      "name": "Бронируй Онлайн"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 166,
+    "fields": {
+      "name": "Майндлаб"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 167,
+    "fields": {
+      "name": "Gear Games"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 168,
+    "fields": {
+      "name": "modesco"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 169,
+    "fields": {
+      "name": "Микрофинансовая компания Элет-Капитал"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 170,
+    "fields": {
+      "name": "Итсен"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 171,
+    "fields": {
+      "name": "Невасофт"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 172,
+    "fields": {
+      "name": "Студия Перцы"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 173,
+    "fields": {
+      "name": "ТулаСофт"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 174,
+    "fields": {
+      "name": "ПСБ (ПАО «Промсвязьбанк»)"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 175,
+    "fields": {
+      "name": "АНОО Областная гимназия им. Примакова"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 176,
+    "fields": {
+      "name": "CyberOK"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 177,
+    "fields": {
+      "name": "Цифровое Приморье"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 178,
+    "fields": {
+      "name": "Авексима"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 179,
+    "fields": {
+      "name": "Студия Дедяева Максима"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 180,
+    "fields": {
+      "name": "Unisender"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 181,
+    "fields": {
+      "name": "Деловая среда"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 182,
+    "fields": {
+      "name": "Конкулевский Максим Викторович"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 183,
+    "fields": {
+      "name": "Октопустех"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 184,
+    "fields": {
+      "name": "SL Soft"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 185,
+    "fields": {
+      "name": "Секретные Агенты"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 186,
+    "fields": {
+      "name": "Бюро Информационных Технологий"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 187,
+    "fields": {
+      "name": "UBIC"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 188,
+    "fields": {
+      "name": "МАГ Девелопмент"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 189,
+    "fields": {
+      "name": "Andersen"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 190,
+    "fields": {
+      "name": "itSeez3D"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 191,
+    "fields": {
+      "name": "VR DEV"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 192,
+    "fields": {
+      "name": "ITECO"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 193,
+    "fields": {
+      "name": "BeyimTech"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 194,
+    "fields": {
+      "name": "Дип Фокс"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 195,
+    "fields": {
+      "name": "СканТур"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 196,
+    "fields": {
+      "name": "PUSK"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 197,
+    "fields": {
+      "name": "Страховая компания Халык, ДО Народного Банка Казахстана"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 198,
+    "fields": {
+      "name": "Lincoln Labs"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 199,
+    "fields": {
+      "name": "GTROBOTPRO"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 200,
+    "fields": {
+      "name": "Smart IT Power LLC"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 201,
+    "fields": {
+      "name": "РА Дельта"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 202,
+    "fields": {
+      "name": "Смарт-ком"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 203,
+    "fields": {
+      "name": "Передовые Системы Обучения и Контроля"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 204,
+    "fields": {
+      "name": "Дата Ист"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 205,
+    "fields": {
+      "name": "Островок"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 206,
+    "fields": {
+      "name": "VK"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 207,
+    "fields": {
+      "name": "NAUMEN"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 208,
+    "fields": {
+      "name": "Группа компаний Астра"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 209,
+    "fields": {
+      "name": "Верный Код"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 210,
+    "fields": {
+      "name": "Геоскан"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 211,
+    "fields": {
+      "name": "ВанТуВорк"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 212,
+    "fields": {
+      "name": "Молл Медиа Групп"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 213,
+    "fields": {
+      "name": "Инскайнет"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 214,
+    "fields": {
+      "name": "Терехов"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 215,
+    "fields": {
+      "name": "Окунева Наталья Николаевна"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 216,
+    "fields": {
+      "name": "Теремъ"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 217,
+    "fields": {
+      "name": "Восхождение"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 218,
+    "fields": {
+      "name": "Супертел"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 219,
+    "fields": {
+      "name": "Hoteza"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 220,
+    "fields": {
+      "name": "DIS Group"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 221,
+    "fields": {
+      "name": "PBF group"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 222,
+    "fields": {
+      "name": "Защищенные Телекоммуникации"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 223,
+    "fields": {
+      "name": "Ascensio System"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 224,
+    "fields": {
+      "name": "Автомакон"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 225,
+    "fields": {
+      "name": "КИТ Финанс (АО)"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 226,
+    "fields": {
+      "name": "Swordfish Security"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 227,
+    "fields": {
+      "name": "CORE"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 228,
+    "fields": {
+      "name": "А-Тел"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 229,
+    "fields": {
+      "name": "NOVA LABS"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 230,
+    "fields": {
+      "name": "Trisystems"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 231,
+    "fields": {
+      "name": "Университет искусственного интеллекта"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 232,
+    "fields": {
+      "name": "Клевентс Элевен Продакшн"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 233,
+    "fields": {
+      "name": "АМИКОН"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 234,
+    "fields": {
+      "name": "Русофт"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 235,
+    "fields": {
+      "name": "PravoTech"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 236,
+    "fields": {
+      "name": "PreITSol LLC"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 237,
+    "fields": {
+      "name": "Метр квадратный"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 238,
+    "fields": {
+      "name": "Бергманн Инфотех Групп Ост"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 239,
+    "fields": {
+      "name": "Бэлл Интегратор"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 240,
+    "fields": {
+      "name": "Технология и Сервис"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 241,
+    "fields": {
+      "name": "INGURU.RU"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 242,
+    "fields": {
+      "name": "Оранж Процесс"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 243,
+    "fields": {
+      "name": "Муртазин Рустам Ирекович"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 244,
+    "fields": {
+      "name": "Монолит Северо-Запад"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 245,
+    "fields": {
+      "name": "Светлые головы"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 246,
+    "fields": {
+      "name": "Кухни Вардек"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 247,
+    "fields": {
+      "name": "Шарпов Андрей Витальевич"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 248,
+    "fields": {
+      "name": "FUNCORP"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 249,
+    "fields": {
+      "name": "Красное & Белое, розничная сеть"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 250,
+    "fields": {
+      "name": "ПУЛЬС АЙТИМ"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 251,
+    "fields": {
+      "name": "Dynamics Scientific"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 252,
+    "fields": {
+      "name": "Модум-Транс"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 253,
+    "fields": {
+      "name": "Digital Direction"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 254,
+    "fields": {
+      "name": "Код Грин Инжиниринг"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 255,
+    "fields": {
+      "name": "Интабия"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 256,
+    "fields": {
+      "name": "Бонабайт"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 257,
+    "fields": {
+      "name": "Tungsten Montenegro DOO Podgorica"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 258,
+    "fields": {
+      "name": "Секвойя Сервис"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 259,
+    "fields": {
+      "name": "СПб ГКУ ССПК"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 260,
+    "fields": {
+      "name": "Аксета"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 261,
+    "fields": {
+      "name": "Хайтек Медиа"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 262,
+    "fields": {
+      "name": "Brainhub"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 263,
+    "fields": {
+      "name": "Компьютерная Академия Top"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 264,
+    "fields": {
+      "name": "ГК ВИЗАВИ Консалт"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 265,
+    "fields": {
+      "name": "ЭНГРИ"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 266,
+    "fields": {
+      "name": "Petshopru"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 267,
+    "fields": {
+      "name": "ОНИН"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 268,
+    "fields": {
+      "name": "Транснефтьэнерго"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 269,
+    "fields": {
+      "name": "Публичная Компания «Freedom Finance Global PLC»"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 270,
+    "fields": {
+      "name": "Рулю"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 271,
+    "fields": {
+      "name": "Fundraise Up"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 272,
+    "fields": {
+      "name": "WineStyle"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 273,
+    "fields": {
+      "name": "МАС Платформ"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 274,
+    "fields": {
+      "name": "Sentium (ИП Пономаренко Никита Александрович)"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 275,
+    "fields": {
+      "name": "Брендсайд"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 276,
+    "fields": {
+      "name": "Documentolog"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 277,
+    "fields": {
+      "name": "Риверстарт"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 278,
+    "fields": {
+      "name": "Финансовые Информационные Системы"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 279,
+    "fields": {
+      "name": "Гринатом"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 280,
+    "fields": {
+      "name": "Фин Промоут Системс"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 281,
+    "fields": {
+      "name": "Production IT"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 282,
+    "fields": {
+      "name": "ADWIN.agency"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 283,
+    "fields": {
+      "name": "ДЕМЛАБС"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 284,
+    "fields": {
+      "name": "Учёт. Бухгалтерия"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 285,
+    "fields": {
+      "name": "ДЕФАН"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 286,
+    "fields": {
+      "name": "Агро Индустрия KZ"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 287,
+    "fields": {
+      "name": "Ренью"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 288,
+    "fields": {
+      "name": "ОнТаргет ЛАБС"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 289,
+    "fields": {
+      "name": "MATRIX SYSTEMS"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 290,
+    "fields": {
+      "name": "KMS Lighthouse"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 291,
+    "fields": {
+      "name": "КОРТЕОС"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 292,
+    "fields": {
+      "name": "Ремарк"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 293,
+    "fields": {
+      "name": "BLACKHUB GAMES"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 294,
+    "fields": {
+      "name": "Ниармедик Ваш Доктор Рядом"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 295,
+    "fields": {
+      "name": "Карвиль"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 296,
+    "fields": {
+      "name": "Эдиторум"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 297,
+    "fields": {
+      "name": "БизнесАвтоматика, НПЦ"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 298,
+    "fields": {
+      "name": "Рондем"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 299,
+    "fields": {
+      "name": "Будущее технологий"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 300,
+    "fields": {
+      "name": "Фрифлекс"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 301,
+    "fields": {
+      "name": "Частная компания “Automated Communication Solutions Ltd.”"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 302,
+    "fields": {
+      "name": "ДОМА"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 303,
+    "fields": {
+      "name": "Postgres Professional"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 304,
+    "fields": {
+      "name": "МедиаСофт"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 305,
+    "fields": {
+      "name": "Первый Доктор"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 306,
+    "fields": {
+      "name": "Осьминожка"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 307,
+    "fields": {
+      "name": "Коннект персонал"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 308,
+    "fields": {
+      "name": "Mindbox"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 309,
+    "fields": {
+      "name": "ECOS"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 310,
+    "fields": {
+      "name": "LITE Gallery"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 311,
+    "fields": {
+      "name": "LATOKEN"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 312,
+    "fields": {
+      "name": "Никс"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 313,
+    "fields": {
+      "name": "НТЦ Комплексные Системы"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 314,
+    "fields": {
+      "name": "AdRiver"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 315,
+    "fields": {
+      "name": "MedMundus"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 316,
+    "fields": {
+      "name": "Апэрбот"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 317,
+    "fields": {
+      "name": "YADRO"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 318,
+    "fields": {
+      "name": "Dex"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 319,
+    "fields": {
+      "name": "ProfIT Family"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 320,
+    "fields": {
+      "name": "АПТЕКА ВАША № 1"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 321,
+    "fields": {
+      "name": "Управление большими данными"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 322,
+    "fields": {
+      "name": "Аптрейд"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 323,
+    "fields": {
+      "name": "Институт Дополнительного Профессионального Образования Знание"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 324,
+    "fields": {
+      "name": "ТК Вездевоз"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 325,
+    "fields": {
+      "name": "Межрегиональный ТранзитТелеком (АО МТТ)"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 326,
+    "fields": {
+      "name": "ВЦИОМ"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 327,
+    "fields": {
+      "name": "Servers.com"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 328,
+    "fields": {
+      "name": "Рабочие Руки"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 329,
+    "fields": {
+      "name": "Медиа Ком"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 330,
+    "fields": {
+      "name": "МОРСКОЙ БАНК"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 331,
+    "fields": {
+      "name": "Uspio LTD"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 332,
+    "fields": {
+      "name": "МАКСБИТСОЛЮШЕН"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 333,
+    "fields": {
+      "name": "Smart Parking Technologies"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 334,
+    "fields": {
+      "name": "ВЕБ ПЭЙ"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 335,
+    "fields": {
+      "name": "Ruba Technology"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 336,
+    "fields": {
+      "name": "Qualitica"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 337,
+    "fields": {
+      "name": "Карбокс"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 338,
+    "fields": {
+      "name": "Т-Банк"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 339,
+    "fields": {
+      "name": "Novakid Inc"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 340,
+    "fields": {
+      "name": "TOP15MOSCOW"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 341,
+    "fields": {
+      "name": "НИИ МАСШТАБ"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 342,
+    "fields": {
+      "name": "Ситис"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 343,
+    "fields": {
+      "name": "IT-Solutions"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 344,
+    "fields": {
+      "name": "Original Works"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 345,
+    "fields": {
+      "name": "ИнфоБиС"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 346,
+    "fields": {
+      "name": "Раппорто"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 347,
+    "fields": {
+      "name": "Иностранное унитарное предприятие Адмитад"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 348,
+    "fields": {
+      "name": "OSON payments (ОСОН пэйментс)"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 349,
+    "fields": {
+      "name": "Зарипов Дмитрий Владимирович"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 350,
+    "fields": {
+      "name": "PIX Robotics"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 351,
+    "fields": {
+      "name": "Радиофид"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 352,
+    "fields": {
+      "name": "DevSoft AM"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 353,
+    "fields": {
+      "name": "Транснефть-Технологии"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 354,
+    "fields": {
+      "name": "Quantum Art"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 355,
+    "fields": {
+      "name": "Банк ЦентрКредит"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 356,
+    "fields": {
+      "name": "ТЕКОН-Инжиниринг"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 357,
+    "fields": {
+      "name": "ПроИнфоСервис"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 358,
+    "fields": {
+      "name": "HARTUNG"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 359,
+    "fields": {
+      "name": "Т1"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 360,
+    "fields": {
+      "name": "Газпром нефть"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 361,
+    "fields": {
+      "name": "Юниксбот"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 362,
+    "fields": {
+      "name": "ЦРТ | Группа компаний"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 363,
+    "fields": {
+      "name": "ИНФОМЕДИА"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 364,
+    "fields": {
+      "name": "Холдинг Е-генератор"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 365,
+    "fields": {
+      "name": "Таранюк Виталий Геннадьевич"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 366,
+    "fields": {
+      "name": "Группа компаний «ИНФОРСЕР»"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 367,
+    "fields": {
+      "name": "Хьюман Аппс/ Human Apps"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 368,
+    "fields": {
+      "name": "ioka fintech"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 369,
+    "fields": {
+      "name": "SharesPro"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 370,
+    "fields": {
+      "name": "Р.О.С.Т. - Информационные Технологии"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 371,
+    "fields": {
+      "name": "СМТ-ИСС"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 372,
+    "fields": {
+      "name": "Smartis"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 373,
+    "fields": {
+      "name": "Воркми"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 374,
+    "fields": {
+      "name": "АМДтехнологии"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 375,
+    "fields": {
+      "name": "КРЕДИТ ЕВРОПА БАНК"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 376,
+    "fields": {
+      "name": "Millennium"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 377,
+    "fields": {
+      "name": "Dukascopy"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 378,
+    "fields": {
+      "name": "Retail Rocket"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 379,
+    "fields": {
+      "name": "Аналитическое кредитное рейтинговое агентство (АКРА)"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 380,
+    "fields": {
+      "name": "ФАКЕЛ"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 381,
+    "fields": {
+      "name": "ДКС"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 382,
+    "fields": {
+      "name": "SoftGamings"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 383,
+    "fields": {
+      "name": "PrimeXBT"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 384,
+    "fields": {
+      "name": "ЛЕГАЛБЕТ"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 385,
+    "fields": {
+      "name": "Автоцентр Сити (Центр)"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 386,
+    "fields": {
+      "name": "АНО ЦИСМ"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 387,
+    "fields": {
+      "name": "Клевер Технолоджи"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 388,
+    "fields": {
+      "name": "КРОК"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 389,
+    "fields": {
+      "name": "Адвантум"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 390,
+    "fields": {
+      "name": "АДЕПТ, Группа компаний"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 391,
+    "fields": {
+      "name": "KISLOROD"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 392,
+    "fields": {
+      "name": "Ростелеком Информационные Технологии"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 393,
+    "fields": {
+      "name": "Элементарные программные решения"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 394,
+    "fields": {
+      "name": "ЭКО-Балт"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 395,
+    "fields": {
+      "name": "Enjoypro"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 396,
+    "fields": {
+      "name": "Sape"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 397,
+    "fields": {
+      "name": "Технология Карьеры"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 398,
+    "fields": {
+      "name": "Слетать.ру"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 399,
+    "fields": {
+      "name": "Группа Лоджик Старс"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 400,
+    "fields": {
+      "name": "Gridnine Systems"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 401,
+    "fields": {
+      "name": "Новые Телеком Решения (НТР)"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 402,
+    "fields": {
+      "name": "СиЭйИ Текнолоджи / CAE Technology"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 403,
+    "fields": {
+      "name": "Betby"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 404,
+    "fields": {
+      "name": "Вкусно — и точка"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 405,
+    "fields": {
+      "name": "Quatromatic"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 406,
+    "fields": {
+      "name": "Goodt"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 407,
+    "fields": {
+      "name": "АНО ВО МОСКОВСКИЙ МЕЖДУНАРОДНЫЙ УНИВЕРСИТЕТ"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 408,
+    "fields": {
+      "name": "TWIN"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 409,
+    "fields": {
+      "name": "РЕСО-Гарантия, САО"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 410,
+    "fields": {
+      "name": "НОНТОН.РФ"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 411,
+    "fields": {
+      "name": "Клевертек"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 412,
+    "fields": {
+      "name": "СПРОСИВРАЧА"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 413,
+    "fields": {
+      "name": "Инжиниринг+"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 414,
+    "fields": {
+      "name": "Ньюити"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 415,
+    "fields": {
+      "name": "КСОР"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 416,
+    "fields": {
+      "name": "Айдеко"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 417,
+    "fields": {
+      "name": "AbeloHost B.V."
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 418,
+    "fields": {
+      "name": "Астрософт Про"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 419,
+    "fields": {
+      "name": "Передовые Технологии"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 420,
+    "fields": {
+      "name": "Byndyusoft"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 421,
+    "fields": {
+      "name": "Флексайтс"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 422,
+    "fields": {
+      "name": "InfraKAP"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 423,
+    "fields": {
+      "name": "РЕДСМС"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 424,
+    "fields": {
+      "name": "Академия Арт"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 425,
+    "fields": {
+      "name": "Современные технологии управления"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 426,
+    "fields": {
+      "name": "Vasterra"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 427,
+    "fields": {
+      "name": "Лаборатория Интернет"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 428,
+    "fields": {
+      "name": "Фирма Светец"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 429,
+    "fields": {
+      "name": "RAKETA"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 430,
+    "fields": {
+      "name": "Чиббис"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 431,
+    "fields": {
+      "name": "Комита, АО (Санкт-Петербург)"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 432,
+    "fields": {
+      "name": "Платформа"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 433,
+    "fields": {
+      "name": "Jana Post"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 434,
+    "fields": {
+      "name": "Унитек"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 435,
+    "fields": {
+      "name": "Реддиджитал"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 436,
+    "fields": {
+      "name": "Актру-Образовательные Технологии"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 437,
+    "fields": {
+      "name": "ЛабСистемс"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 438,
+    "fields": {
+      "name": "Кариид"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 439,
+    "fields": {
+      "name": "Digital-агентство ADN"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 440,
+    "fields": {
+      "name": "Крупный, международный DeFi проект"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 441,
+    "fields": {
+      "name": "FS Play"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 442,
+    "fields": {
+      "name": "Розничные банковские системы"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 443,
+    "fields": {
+      "name": "BP Mobile"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 444,
+    "fields": {
+      "name": "ОГО! онлайн-гипермаркет"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 445,
+    "fields": {
+      "name": "USETECH"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 446,
+    "fields": {
+      "name": "Digital Security"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 447,
+    "fields": {
+      "name": "Кузница Кадров"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 448,
+    "fields": {
+      "name": "IDIA Market"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 449,
+    "fields": {
+      "name": "Космос Про Медиа"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 450,
+    "fields": {
+      "name": "H2O"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 451,
+    "fields": {
+      "name": "Инженерный Центр Информационно-аналитических систем"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 452,
+    "fields": {
+      "name": "Парадокс"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 453,
+    "fields": {
+      "name": "АТОМ"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 454,
+    "fields": {
+      "name": "Быстрая поставка систем"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 455,
+    "fields": {
+      "name": "КодМейкер"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 456,
+    "fields": {
+      "name": "АО «ОТП Банк» (JSC «OTP Bank»)"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 457,
+    "fields": {
+      "name": "Софт Инжиниринг"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 458,
+    "fields": {
+      "name": "Фаззи Лоджик Лабс"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 459,
+    "fields": {
+      "name": "Bolashak Engineering"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 460,
+    "fields": {
+      "name": "Digital-агентство itDelta"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 461,
+    "fields": {
+      "name": "GETWOLA"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 462,
+    "fields": {
+      "name": "ART 3D-Graphics"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 463,
+    "fields": {
+      "name": "Евромобайл"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 464,
+    "fields": {
+      "name": "Эколайн"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 465,
+    "fields": {
+      "name": "Смартдиалогс"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 466,
+    "fields": {
+      "name": "Ахметов Далер Валерьевич"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 467,
+    "fields": {
+      "name": "ЭРКОН"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 468,
+    "fields": {
+      "name": "Клируэй Текнолоджис"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 469,
+    "fields": {
+      "name": "Сорб групп"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 470,
+    "fields": {
+      "name": "NEXTEPIC"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 471,
+    "fields": {
+      "name": "Элвис-Плюс"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 472,
+    "fields": {
+      "name": "МойСклад"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 473,
+    "fields": {
+      "name": "ИТ-Капитал"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 474,
+    "fields": {
+      "name": "Планета Творчества"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 475,
+    "fields": {
+      "name": "ДИДЖИ ТЕХ"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 476,
+    "fields": {
+      "name": "DDoS-Guard"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 477,
+    "fields": {
+      "name": "РОССИННО"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 478,
+    "fields": {
+      "name": "Информационный центр Аптекарь"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 479,
+    "fields": {
+      "name": "КомплИТех"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 480,
+    "fields": {
+      "name": "DELTA"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 481,
+    "fields": {
+      "name": "Мамаева Ирина Анатольевна"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 482,
+    "fields": {
+      "name": "ДельтаЛизинг"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 483,
+    "fields": {
+      "name": "Домклик"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 484,
+    "fields": {
+      "name": "ПроКомплаенс"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 485,
+    "fields": {
+      "name": "Epam Kazakhstan (Эпам Казахстан),ТОО"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 486,
+    "fields": {
+      "name": "Karma8"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 487,
+    "fields": {
+      "name": "Софтомнител"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 488,
+    "fields": {
+      "name": "ФГБУ ГИВЦ Минкультуры России"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 489,
+    "fields": {
+      "name": "Восток.Софт"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 490,
+    "fields": {
+      "name": "FX Back Office"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 491,
+    "fields": {
+      "name": "Travelata.ru (ООО Травелата)"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 492,
+    "fields": {
+      "name": "ЛайнКам"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 493,
+    "fields": {
+      "name": "Data Acquisition"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 494,
+    "fields": {
+      "name": "АйТи Сервис Менеджмент"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 495,
+    "fields": {
+      "name": "ТАНАИС"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 496,
+    "fields": {
+      "name": "ЯСП"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 497,
+    "fields": {
+      "name": "Винтерфелл, сеть гостиниц"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 498,
+    "fields": {
+      "name": "Эверис, Представительство"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 499,
+    "fields": {
+      "name": "Магнитогорская энергетическая компания"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 500,
+    "fields": {
+      "name": "Единая Информационная Система ЖКХ"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 501,
+    "fields": {
+      "name": "Дримкас"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 502,
+    "fields": {
+      "name": "Юрист Для Людей"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 503,
+    "fields": {
+      "name": "НТ Прогресс"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 504,
+    "fields": {
+      "name": "ЗАЗЕКС"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 505,
+    "fields": {
+      "name": "ООО Inspired"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 506,
+    "fields": {
+      "name": "Apart Sharing"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 507,
+    "fields": {
+      "name": "Студия Кефир"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 508,
+    "fields": {
+      "name": "Zoftify Eesti OÜ"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 509,
+    "fields": {
+      "name": "АйЭнДи Аркитектс"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 510,
+    "fields": {
+      "name": "Kesmaty"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 511,
+    "fields": {
+      "name": "Гарда Технологии"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 512,
+    "fields": {
+      "name": "ГОЛДЕНГУС ИНТЕРНЕШНЛ"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 513,
+    "fields": {
+      "name": "ПДВ"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 514,
+    "fields": {
+      "name": "Уральское производственное предприятие ЕСЭ"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 515,
+    "fields": {
+      "name": "Варити+"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 516,
+    "fields": {
+      "name": "ФинГрад"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 517,
+    "fields": {
+      "name": "ВФМ Технолоджи"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 518,
+    "fields": {
+      "name": "VIGO"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 519,
+    "fields": {
+      "name": "Областное государственное бюджетное учреждение Челябинский региональный центр навигационно-информационных технологий"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 520,
+    "fields": {
+      "name": "Нескучные Финансы"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 521,
+    "fields": {
+      "name": "Ведисофт"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 522,
+    "fields": {
+      "name": "Интернет Логистика"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 523,
+    "fields": {
+      "name": "Компания PERCo"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 524,
+    "fields": {
+      "name": "Совкомбанк Технологии"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 525,
+    "fields": {
+      "name": "Русское Электротехническое общество"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 526,
+    "fields": {
+      "name": "ArtVolkov.ru"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 527,
+    "fields": {
+      "name": "Петрова Анастасия Андреевна"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 528,
+    "fields": {
+      "name": "Диджитал Веб"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 529,
+    "fields": {
+      "name": "Data World"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 530,
+    "fields": {
+      "name": "ТМК"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 531,
+    "fields": {
+      "name": "DLine Media"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 532,
+    "fields": {
+      "name": "Unicon Software"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 533,
+    "fields": {
+      "name": "Бренд Монитор"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 534,
+    "fields": {
+      "name": "Лайтпоинт"
     }
   }
 ]
