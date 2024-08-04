@@ -1,3 +1,4 @@
+import logging
 import os
 import time
 from concurrent.futures import ThreadPoolExecutor
@@ -17,8 +18,6 @@ from utils.parsers.normalize_profession import normalize_profession
 from utils.parsers.open_ai.chat_gpt import get_chat_gpt_completion
 from utils.parsers.open_ai.prompt import make_prompt
 from utils.parsers.open_ai.utils import parse_vacancy
-import logging
-
 
 logger = logging.getLogger(__name__)
 

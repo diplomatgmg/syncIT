@@ -1,6 +1,12 @@
 import hashlib
+import logging
 import re
 from datetime import datetime
+from functools import wraps
+
+from django.core.cache import caches
+
+logger = logging.getLogger(__name__)
 
 
 def snake_to_camel(snake_str: str) -> str:
@@ -43,7 +49,42 @@ def timeit(func):
         result = func(*args, **kwargs)
         end = datetime.now()
         func_path = __normalize_path(func.__code__)
-        print(f"Функция {func_path} выполнилась за {end - start} секунд")
+        logger.info(
+            f"Функция {func_path} -> <{func.__name__}> выполнилась за {end - start} секунд"
+        )
         return result
 
     return wrapper
+
+
+def singleton_task(task_name):
+    """
+    Singleton декоратор для тасок
+    """
+
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            redis_instance = caches["default"]
+
+            lock_id = f"{task_name}_lock"
+            task = redis_instance.get(lock_id)
+
+            if task:
+                logger.info(f"Таска {task_name} уже выполняется")
+                return
+
+            logger.info(f"Таска {task_name} начинает выполнение")
+            redis_instance.set(lock_id, "true")
+
+            try:
+                return func(*args, **kwargs)
+            except Exception as e:
+                logger.error(f"Таска {task_name} вызвала исключение: {e}")
+                raise
+            finally:
+                redis_instance.delete(lock_id)
+
+        return wrapper
+
+    return decorator

@@ -22,3 +22,5 @@ app.conf.beat_schedule = {
         "schedule": crontab(minute="*/10"),
     },
 }
+
+app.conf.broker_connection_retry_on_startup = True
