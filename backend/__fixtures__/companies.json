@@ -1,0 +1,184 @@
+[
+  {
+    "model": "company.company",
+    "pk": 1,
+    "fields": {
+      "name": "VK"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 2,
+    "fields": {
+      "name": "Бронируй Онлайн"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 3,
+    "fields": {
+      "name": "Софтвайс"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 4,
+    "fields": {
+      "name": "UserGate"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 5,
+    "fields": {
+      "name": "Радиофид"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 6,
+    "fields": {
+      "name": "Диполь"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 7,
+    "fields": {
+      "name": "Пеленг"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 8,
+    "fields": {
+      "name": "НОВАЯ СТУДИЯ"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 9,
+    "fields": {
+      "name": "it-aces.com"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 10,
+    "fields": {
+      "name": "Терехов"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 11,
+    "fields": {
+      "name": "Corporate Performance Systems"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 12,
+    "fields": {
+      "name": "Даком М"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 13,
+    "fields": {
+      "name": "Жасыл даму, АО"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 14,
+    "fields": {
+      "name": "Цифровые решения, НПП"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 15,
+    "fields": {
+      "name": "СИНЬЮС"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 16,
+    "fields": {
+      "name": "Юрент"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 17,
+    "fields": {
+      "name": "Технолайт"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 18,
+    "fields": {
+      "name": "FUNCORP"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 19,
+    "fields": {
+      "name": "Магнитогорская энергетическая компания"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 20,
+    "fields": {
+      "name": "АНО ЦИСМ"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 21,
+    "fields": {
+      "name": "African Vending Systems Limited"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 22,
+    "fields": {
+      "name": "Финансовые Информационные Системы"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 23,
+    "fields": {
+      "name": "Элеста"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 24,
+    "fields": {
+      "name": "Муртазин Рустам Ирекович"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 25,
+    "fields": {
+      "name": "VOXYS"
+    }
+  },
+  {
+    "model": "company.company",
+    "pk": 26,
+    "fields": {
+      "name": "MPBoost"
+    }
+  }
+]
