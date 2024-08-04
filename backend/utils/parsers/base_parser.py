@@ -6,7 +6,7 @@ from django.db.models import Model
 from apps.company.models import Company
 from apps.grade.models import Grade
 from apps.hard_skill.models import HardSkill, UnknownHardSkill
-from apps.profession.models import Profession
+from apps.profession.models import Profession, UnknownProfession
 from apps.vacancy.models import Vacancy
 from apps.work_format.models import WorkFormat
 
@@ -60,9 +60,10 @@ class BaseParser(ABC):
         grade_model = self.get_or_default(Grade, grade_name, "Неизвестно")
 
         profession_name = data.get("profession_name")
-        profession_model = self.get_or_default(
-            Profession, profession_name, "Неизвестно"
-        )
+        profession_model = self.get_or_none(Profession, name=profession_name)
+        if profession_model is None:
+            UnknownProfession.objects.create(name=profession_name)
+            profession_model, _ = Profession.objects.get_or_create(name="Неизвестно")
 
         created_vacancy_model = Vacancy.objects.create(
             unique_hash=unique_hash,
@@ -89,7 +90,7 @@ class BaseParser(ABC):
             )
 
             if not hard_skill_model:
-                UnknownHardSkill.objects.create_skill(name=hard_skill_name)
+                UnknownHardSkill.objects.create(name=hard_skill_name)
 
         hard_skill_models = HardSkill.objects.filter(
             name__in=hard_skill_names, selectable=True

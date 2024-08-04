@@ -1,19 +1,19 @@
 from django.db import models
 
+from utils.managers import CountableManager
+
 
 # TODO Добавить добавление скиллов через анализ гит-репозитория
 
 
+class UnknownHardSkillManager(CountableManager):
+    pass
+
+
 class HardSkillManager(models.Manager):
     def get_queryset(self):
-        # Надеюсь, этот пиздец никто не увидит. Главное - работает
-        # Сделано для оптимизации в админке
         # Из-за рекурсивного __str__ надо подгружать родительские __str__
-        return (
-            super()
-            .get_queryset()
-            .prefetch_related("parent__parent__parent__parent__parent")
-        )
+        return super().get_queryset().select_related("parent__parent__parent__parent")
 
 
 class HardSkill(models.Model):
@@ -43,26 +43,9 @@ class HardSkill(models.Model):
         return self.name
 
 
-class UnknownHardSkillManager(models.Manager):
-    def create_skill(self, name):
-        """
-        Увеличивает create_count при создании такого же скилла
-        """
-        if len(name) > 100:
-            return
-
-        skill, created = self.get_or_create(name=name)
-        if created:
-            skill.create_count = 1
-        else:
-            skill.create_count += 1
-        skill.save()
-        return skill
-
-
 class UnknownHardSkill(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    create_count = models.IntegerField(null=True)
+    create_count = models.IntegerField(default=1)
 
     objects = UnknownHardSkillManager()
 

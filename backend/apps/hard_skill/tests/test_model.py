@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.test import TestCase
 
 from apps.hard_skill.models import HardSkill, UnknownHardSkill
@@ -37,25 +38,28 @@ class UnknownHardSkillModelTests(TestCase):
 
     def test_create_skill(self):
         # Тестируем метод create_skill
-        skill = UnknownHardSkill.objects.create_skill("TypeScript")
+        skill = UnknownHardSkill.objects.create(name="TypeScript")
         self.assertIsNotNone(skill)
         self.assertEqual(skill.name, "TypeScript")
         self.assertEqual(skill.create_count, 1)
 
         # Создание одинакового скилла снова должно увеличить create_count
-        skill = UnknownHardSkill.objects.create_skill("TypeScript")
+        skill = UnknownHardSkill.objects.create(name="TypeScript")
         self.assertEqual(skill.create_count, 2)
 
     def test_create_skill_with_long_name(self):
         # Тестируем, что скиллы с длинным именем не создаются
-        skill = UnknownHardSkill.objects.create_skill("A" * 101)
-        self.assertIsNone(skill)
+        long_name = "A" * 101
+        skill = UnknownHardSkill(name=long_name)
+
+        with self.assertRaises(ValidationError):
+            skill.full_clean()
 
     def test_ordering_by_create_count(self):
         # Тестируем сортировку по create_count
-        UnknownHardSkill.objects.create_skill("Python")
-        UnknownHardSkill.objects.create_skill("Golang")
-        UnknownHardSkill.objects.create_skill("Golang")
+        UnknownHardSkill.objects.create(name="Python")
+        UnknownHardSkill.objects.create(name="Golang")
+        UnknownHardSkill.objects.create(name="Golang")
 
         skills = list(UnknownHardSkill.objects.all())
         self.assertEqual(skills[0].name, "Golang")

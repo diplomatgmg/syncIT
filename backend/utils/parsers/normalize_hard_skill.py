@@ -246,6 +246,6 @@ def normalize_hard_skill(skill: str) -> str | None:
         return normalized_skill
 
     if skill not in default:
-        UnknownHardSkill.objects.create_skill(name=skill)
+        UnknownHardSkill.objects.create(name=skill)
 
     return None
