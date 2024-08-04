@@ -180,7 +180,8 @@ class HHParser(BaseParser):
         data = tuple(filter(lambda x: x is not None, map(parse_vacancy, gpt_responses)))
 
         grades = [item["grade_name"] for item in data]
-        grade = min(set(grades), key=grades.count) if grades else "Неизвестно"
+        grade = max(set(grades), key=grades.count) if grades else "Неизвестно"
+        # Получаем самый частый грейд на основе ответов chatGPT. Аналогично дальше
 
         professions = [item["profession"] for item in data]
         profession = (
