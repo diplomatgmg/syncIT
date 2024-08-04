@@ -40,6 +40,9 @@ def find_suitable_vacancies():
             .filter(hard_skill_count__gte=5)
         )
 
+        # Если пользователь изменит грейд, формат работы и тп, удалим старые вакансии
+        profile.user.vacancies.all().delete()
+
         for suitable_vacancy in suitable_vacancies:
             matching_skills_count = suitable_vacancy.hard_skill_count
             total_skills = suitable_vacancy.total_hard_skills
@@ -48,12 +51,8 @@ def find_suitable_vacancies():
             if suitability < settings.MINIMUM_VACANCY_SUITABILITY:
                 continue
 
-            user_vacancy, created = UserVacancy.objects.get_or_create(
+            UserVacancy.objects.create(
                 user=profile.user,
                 vacancy=suitable_vacancy,
-                defaults={"suitability": suitability, "is_viewed": False},
+                suitability=suitability,
             )
-
-            if not created:
-                user_vacancy.suitability = suitability
-                user_vacancy.save()

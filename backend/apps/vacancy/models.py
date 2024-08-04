@@ -55,7 +55,7 @@ class UserVacancy(models.Model):
     """
 
     is_viewed = models.BooleanField(default=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="vacancies")
     vacancy = models.ForeignKey(Vacancy, on_delete=models.CASCADE)
     suitability = models.IntegerField(
         validators=(
