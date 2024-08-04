@@ -4,7 +4,7 @@ import re
 from datetime import datetime
 from functools import wraps
 
-from django.core.cache import caches
+from django.core.cache import cache
 
 logger = logging.getLogger(__name__)
 
@@ -59,31 +59,28 @@ def timeit(func):
 
 def singleton_task(task_name):
     """
-    Singleton декоратор для тасок
+    Singleton decorator for tasks
     """
 
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
-            redis_instance = caches["default"]
-
             lock_id = f"{task_name}_lock"
-            task = redis_instance.get(lock_id)
 
-            if task:
-                logger.info(f"Таска {task_name} уже выполняется")
+            # Добавляем в кеш на 24 часа, иначе кеш может очиститься сам
+            got_lock = cache.add(lock_id, "true", timeout=60 * 60 * 24)
+
+            if not got_lock:
+                logger.info(f"Task {task_name} is already running")
                 return
 
-            logger.info(f"Таска {task_name} начинает выполнение")
-            redis_instance.set(lock_id, "true")
-
+            logger.info(f"Task {task_name} is starting execution")
             try:
                 return func(*args, **kwargs)
             except Exception as e:
-                logger.error(f"Таска {task_name} вызвала исключение: {e}")
-                raise
+                logger.error(f"Task {task_name} raised an exception: {e}")
             finally:
-                redis_instance.delete(lock_id)
+                cache.delete(lock_id)
 
         return wrapper
 
