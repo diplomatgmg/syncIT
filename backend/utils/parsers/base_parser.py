@@ -118,10 +118,7 @@ class BaseParser(ABC):
         obj = self.get_or_none(model, name=name)
 
         if not obj:
-            logger.warning(
-                f"Не удалось найти поле {name} в модели {model}."
-                f"Создаем модель {model}"
-            )
+            logger.warning(f"Не удалось найти поле {name} в модели {model}.")
             obj, _ = model.objects.get_or_create(name=default)
 
         return obj
