@@ -1,24 +1,27 @@
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 from rest_framework import status
-from rest_framework.test import APITestCase
+
+from utils.base_test import BaseTestCase
 from ..models import Grade
 from ..serializers import GradeSerializer
+from ..views import GradeListAPIView
 
 User = get_user_model()
 
 
-class GradeListAPIViewTestCase(APITestCase):
-    def setUp(self):
-        self.user = User.objects.create_user(email="test@test.com", password="password")
-        self.client.login(email="test@test.com", password="password")
-
+class GradeListAPIViewTestCase(BaseTestCase):
     def test_list_grades(self):
         """Проверяем, что представление возвращает список всех оценок"""
         Grade.objects.create(name="Junior")
         Grade.objects.create(name="Middle")
+
         url = reverse("grade-list")
-        response = self.client.get(url)
+        self.assert_unauthorized(url)
+        request = self.authenticate_request(url)
+        view = GradeListAPIView.as_view()
+        response = view(request)
+
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 2)
 

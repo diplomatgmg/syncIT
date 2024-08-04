@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+import logging
 from io import StringIO
 from unittest.mock import patch
 
@@ -6,36 +6,40 @@ from django.test import TestCase
 
 from utils.helpers import timeit
 
-
-# Импортируем декоратор
+logger = logging.getLogger(__name__)
 
 
 class TimeitDecoratorTest(TestCase):
-    def test_timeit_decorator_output(self):
+    @patch("utils.helpers.logger")  # Патчим logger
+    def test_timeit_decorator_output(self, mock_logger):
         @timeit
         def sample_function():
             return "test"
 
-        with patch("sys.stdout", new=StringIO()) as fake_out:
+        with patch("sys.stdout", new=StringIO()) as _:
             result = sample_function()
 
             self.assertEqual(result, "test")
 
-            output = fake_out.getvalue().strip()
+            mock_logger.info.assert_called()
+            log_message = mock_logger.info.call_args[0][0]
 
-            self.assertTrue(output.startswith("Функция"))
-            self.assertTrue(output.endswith("секунд"))
+            self.assertTrue("Функция" in log_message)
+            self.assertTrue("секунд" in log_message)
 
-    def test_timeit_decorator_functionality(self):
+    @patch("utils.helpers.logger")  # Патчим logger
+    def test_timeit_decorator_functionality(self, mock_logger):
         @timeit
         def delayed_function():
             return "delayed"
 
-        with patch("sys.stdout", new=StringIO()) as fake_out:
+        with patch("sys.stdout", new=StringIO()) as _:
             result = delayed_function()
 
             self.assertEqual(result, "delayed")
 
-            output = fake_out.getvalue().strip()
-            self.assertTrue("Функция" in output)
-            self.assertTrue("секунд" in output)
+            mock_logger.info.assert_called()
+            log_message = mock_logger.info.call_args[0][0]
+
+            self.assertTrue("Функция" in log_message)
+            self.assertTrue("секунд" in log_message)
