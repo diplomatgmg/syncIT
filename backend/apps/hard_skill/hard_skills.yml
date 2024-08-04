@@ -11,10 +11,6 @@
   - Ruby
   - PHP
 
-Скриптовые языки:
-  - Bash
-  - Lua
-
 Backend:
   Python:
     - Django
@@ -61,11 +57,6 @@ Frontend:
     - Redux
     - Ajax
 
-Тестирование:
-  Python:
-    - Pytest
-    - Selenium
-
 Базы данных:
   - SQL
     - PostgreSQL
@@ -75,6 +66,11 @@ Frontend:
   - NoSQL
     - MongoDB
     - Redis
+
+Тестирование:
+  Python:
+    - Pytest
+    - Selenium
 
 Системы контроля версий:
   - Git
@@ -126,3 +122,7 @@ DevOps:
   - Linux
     - Ubuntu
   - MacOS
+
+Скриптовые языки:
+  - Bash
+  - Lua

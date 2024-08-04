@@ -197,6 +197,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+FIXTURE_DIR = BASE_DIR / "__fixtures__"
+
 STATIC_URL = "/django_static/"
 STATIC_ROOT = BASE_DIR / "django_static"
 
