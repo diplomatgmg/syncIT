@@ -68,6 +68,7 @@ Frontend:
     - Redis
 
 Тестирование:
+  - Postman
   Python:
     - Pytest
     - Selenium
@@ -108,7 +109,6 @@ DevOps:
 
 Инструменты:
   - Figma
-  - Postman
   - Jira
   - Confluence
   - Slack
