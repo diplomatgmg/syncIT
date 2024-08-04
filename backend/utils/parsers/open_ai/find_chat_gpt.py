@@ -17,7 +17,7 @@ def clear_text(text: str):
 def get_chat_gpt_completion(prompt: str, provider):
     try:
         response = g4f.ChatCompletion.create(
-            model="gpt-4o-mini",
+            model="gpt-3.5-turbo",
             messages=[{"role": "user", "content": prompt}],
         )
         return clear_text(response)

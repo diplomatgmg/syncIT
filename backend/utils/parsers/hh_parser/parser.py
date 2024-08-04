@@ -17,6 +17,10 @@ from utils.parsers.normalize_profession import normalize_profession
 from utils.parsers.open_ai.chat_gpt import get_chat_gpt_completion
 from utils.parsers.open_ai.prompt import make_prompt
 from utils.parsers.open_ai.utils import parse_vacancy
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 
 class HHParser(BaseParser):
@@ -83,13 +87,14 @@ class HHParser(BaseParser):
                 executor.submit(callback, item): item for item in collection
             }
             for count, future in enumerate(future_to_data):
-                print(f"Выполнено future: {count + 1} из {len(collection)}")
                 data = None
                 while data is None:
                     try:
                         data = future.result(timeout=timeout)
                     except TimeoutError:
-                        print(f"TimeoutError. Повторная попытка получить данные...")
+                        logger.error(
+                            f"TimeoutError. Повторная попытка получить данные..."
+                        )
                         pass
 
                 result.append(data)
@@ -251,7 +256,10 @@ class HHParser(BaseParser):
             self.get_vacancies_gpt_responses(vacancies_prompts),
         )
 
-        for vacancy_data, gpt_responses in vacancies_gpt_responses:
+        for vacancy_number, (vacancy_data, gpt_responses) in enumerate(
+            vacancies_gpt_responses, start=1
+        ):
+            logger.info(f"Парсим вакансию {vacancy_number} из {len(vacancies_data)}")
             parsed_vacancy = self.parse_gpt_responses(gpt_responses)
             ParsedVacancy.objects.get_or_create(
                 unique_hash=generate_hash(vacancy_data["id"]),
@@ -261,9 +269,6 @@ class HHParser(BaseParser):
 
             if len(parsed_vacancy["hard_skill_names"]) < 5:
                 continue
-
-            # TODO Некоторых скиллов нет в БД, поэтому вакансия сохраниться в БД,
-            # но количество ее скиллов будет < 5
 
             vacancy_result = self.get_vacancy_result(vacancy_data, parsed_vacancy)
             self.save_vacancy_to_db(vacancy_result)

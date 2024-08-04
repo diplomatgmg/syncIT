@@ -10,6 +10,10 @@ from apps.profession.models import Profession
 from apps.vacancy.models import Vacancy
 from apps.work_format.models import WorkFormat
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 ModelType = Type[Model]
 ModelNameType = Literal[
     "vacancy",
@@ -91,6 +95,10 @@ class BaseParser(ABC):
             name__in=hard_skill_names, selectable=True
         )
 
+        # Пропустим вакансию, если мало скиллов, иначе выдача будет не такая релевантная
+        if len(hard_skill_models) < 5:
+            return
+
         created_vacancy_model.work_formats.add(*work_format_models)
         created_vacancy_model.hard_skills.add(*hard_skill_models)
 
@@ -99,8 +107,8 @@ class BaseParser(ABC):
         try:
             models = model.objects.filter(**kwargs)
             if models.count() > 1:
-                print(
-                    f"WARNING. Найдено более одного объекта в модели {model}, kwargs: {kwargs}"
+                logger.error(
+                    f"Найдено более одного объекта в модели {model}, kwargs: {kwargs}"
                 )
             return models.first()
         except model.DoesNotExist:
@@ -110,7 +118,10 @@ class BaseParser(ABC):
         obj = self.get_or_none(model, name=name)
 
         if not obj:
-            print(f"Не удалось найти поле {name} в модели {model}")
+            logger.warning(
+                f"Не удалось найти поле {name} в модели {model}."
+                f"Создаем модель {model}"
+            )
             obj, _ = model.objects.get_or_create(name=default)
 
         return obj

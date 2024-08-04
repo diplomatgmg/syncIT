@@ -210,3 +210,13 @@ AUTH_USER_MODEL = "user.User"
 
 # Минимум %, на сколько вакансия подходит пользователю
 MINIMUM_VACANCY_SUITABILITY = 60
+
+
+LOGGING = {
+    "version": 1,
+    "loggers": {
+        "asyncio": {
+            "level": "WARNING",
+        },
+    },
+}
