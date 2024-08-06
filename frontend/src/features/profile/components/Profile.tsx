@@ -66,7 +66,8 @@ const ProfileContainer = styled.div`
     min-height: 1200px;
     margin: 2rem;
     padding-right: 0;
-    position: absolute;
+    position: relative;
+    width: 100%;
   }
 `
 
@@ -81,6 +82,11 @@ const LeftSide = styled.div`
     flex-direction: row;
   }
 
+  @media (max-width: 700px) {
+    flex-direction: column;
+    height: 52%;
+  }
+
   & > * {
     overflow-y: auto;
   }
@@ -93,6 +99,10 @@ const LeftSelect = styled.div`
 
   @media (max-width: 1200px) {
     flex: 0.5;
+  }
+
+  @media (max-width: 700px) {
+    flex-direction: row;
   }
 
   & > *:first-child {
@@ -118,6 +128,10 @@ const RightSelect = styled.div`
   width: 100%;
   flex: 1;
 
+  @media (max-width: 700px) {
+    display: contents;
+  }
+
   & > *:last-child {
     height: 100%;
   }
@@ -131,4 +145,8 @@ const Tile = styled.div`
   min-height: fit-content;
   overflow-y: auto;
   padding: 0.5rem 1rem;
+
+  @media (max-width: 700px) {
+    flex: 0.7;
+  }
 `
