@@ -34,5 +34,8 @@ export default createGlobalStyle`
     
     body {
         background: ${colors.primary};
+        margin: 0;
+        font-size: 1.5rem;
+        color: #fff;
     }
 `

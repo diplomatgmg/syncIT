@@ -24,7 +24,6 @@ const StyledPage = styled.div`
   display: flex;
   position: relative;
   flex-direction: row-reverse;
-  height: 100vh;
 
   @media (max-width: 1200px) {
     display: block;
