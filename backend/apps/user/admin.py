@@ -6,4 +6,5 @@ User = get_user_model()
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    pass
+    # FIXME Пароль не хешируется при изменении через админку
+    readonly_fields = ("password",)
