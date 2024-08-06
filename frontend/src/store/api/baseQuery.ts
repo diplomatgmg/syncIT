@@ -1,11 +1,12 @@
 import { BaseQueryFn, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import { BASE_URL } from "@/constants.ts"
 import { RootState } from "@/store/store.ts"
 import { logout, setTokens } from "@/store/slice/authSlice.ts"
 import { LoginResponse } from "@/types/authTypes.ts"
 
+const API_URL = import.meta.env.PROD ? "/api" : "http://localhost:8000/api"
+
 const baseQuery = fetchBaseQuery({
-  baseUrl: BASE_URL,
+  baseUrl: API_URL,
   prepareHeaders: (headers, { getState }) => {
     const accessToken = (getState() as RootState).auth.token.access
 

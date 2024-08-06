@@ -13,7 +13,7 @@ const app = (
   </Provider>
 )
 
-if (process.env.NODE_ENV === "development") {
+if (import.meta.env.PROD) {
   ReactDOM.createRoot(rootElement).render(
     <React.StrictMode>{app}</React.StrictMode>
   )
