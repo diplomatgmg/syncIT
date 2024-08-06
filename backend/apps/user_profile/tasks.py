@@ -41,7 +41,7 @@ def find_suitable_vacancies():
         )
 
         # Если пользователь изменит грейд, формат работы и тп, удалим старые вакансии
-        profile.user.vacancies.all().delete()
+        profile.user.vacancies.filter(is_viewed=False).delete()
 
         for suitable_vacancy in suitable_vacancies:
             matching_skills_count = suitable_vacancy.hard_skill_count
