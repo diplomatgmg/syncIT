@@ -5,10 +5,18 @@ import "@/style.css"
 import store from "@/store/store.ts"
 import App from "@/App.tsx"
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>
+const rootElement = document.getElementById("root")!
+
+const app = (
+  <Provider store={store}>
+    <App />
+  </Provider>
 )
+
+if (process.env.NODE_ENV === "development") {
+  ReactDOM.createRoot(rootElement).render(
+    <React.StrictMode>{app}</React.StrictMode>
+  )
+} else {
+  ReactDOM.createRoot(rootElement).render(app)
+}
