@@ -25,3 +25,4 @@ class HardSkillAdmin(admin.ModelAdmin):
 @admin.register(UnknownHardSkill)
 class UnknownHardSkillAdmin(admin.ModelAdmin):
     list_display = ["name", "create_count"]
+    ordering = ("-create_count",)

@@ -11,3 +11,4 @@ class ProfessionAdmin(admin.ModelAdmin):
 @admin.register(UnknownProfession)
 class UnknownProfessionAdmin(admin.ModelAdmin):
     list_display = ["name", "create_count"]
+    ordering = ("-create_count",)
