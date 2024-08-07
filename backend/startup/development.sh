@@ -19,8 +19,10 @@ python manage.py loaddata $FIXTURES_DIR/grades.json
 python manage.py loaddata $FIXTURES_DIR/companies.json
 python manage.py loaddata $FIXTURES_DIR/work_formats.json
 python manage.py loaddata $FIXTURES_DIR/professions.json
+python manage.py loaddata $FIXTURES_DIR/parsed_vacancies.json
 python manage.py loaddata $FIXTURES_DIR/vacancies.json
-python manage.py loaddata $FIXTURES_DIR/user_profiles.json
+python manage.py loaddata $FIXTURES_DIR/profiles.json
+python manage.py loaddata $FIXTURES_DIR/user_vacancies.json
 echo "Fixtures loaded"
 
 echo "Starting server..."
