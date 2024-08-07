@@ -51,8 +51,12 @@ def find_suitable_vacancies():
             if suitability < settings.MINIMUM_VACANCY_SUITABILITY:
                 continue
 
-            UserVacancy.objects.create(
+            vacancy, created = UserVacancy.objects.get_or_create(
                 user=profile.user,
                 vacancy=suitable_vacancy,
-                suitability=suitability,
+                defaults={"suitability": suitability},
             )
+
+            if not created:
+                vacancy.suitability = suitability
+                vacancy.save()
