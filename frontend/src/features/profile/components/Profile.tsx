@@ -33,7 +33,7 @@ const Profile = (): ReactElement => {
             </Tile>
           </LeftSelect>
           <RightSelect>
-            <Tile>
+            <Tile style={{ overflowY: "auto" }}>
               <Profession />
             </Tile>
           </RightSelect>
@@ -131,20 +131,14 @@ const RightSelect = styled.div`
   @media (max-width: 700px) {
     display: contents;
   }
-
-  & > *:last-child {
-    height: 100%;
-  }
 `
 
 const Tile = styled.div`
   display: flex;
-  align-items: center;
+  align-items: start;
+  height: 100%;
   border: 1px solid ${colors.textSecondary};
   border-radius: 0.5rem;
-  min-height: fit-content;
-  overflow-y: auto;
-  padding: 0.5rem 1rem;
 
   @media (max-width: 700px) {
     flex: 0.7;
