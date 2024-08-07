@@ -79,7 +79,7 @@ const Label = styled.label`
     flex-shrink: 0;
     flex-grow: 0;
     border: 1px solid ${colors.textSecondary};
-    border-radius: 1rem;
+    border-radius: 0.3rem;
     margin-right: 0.5rem;
     background-repeat: no-repeat;
     background-position: center center;
