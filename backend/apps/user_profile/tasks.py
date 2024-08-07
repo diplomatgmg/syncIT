@@ -15,9 +15,7 @@ def find_suitable_vacancies():
     Поиск подходящих вакансий для пользователей
     """
     profiles = Profile.objects.filter(is_completed=True)
-    newest_vacancies = Vacancy.objects.filter(
-        published_at__gt=timezone.now() - timedelta(days=1)
-    )
+    vacancies = Vacancy.objects.all()
 
     for profile in profiles:
         profile_hard_skills = profile.hard_skills.all()
@@ -26,7 +24,7 @@ def find_suitable_vacancies():
         profile_grades = profile.grades.all()
 
         suitable_vacancies = (
-            newest_vacancies.filter(
+            vacancies.filter(
                 work_formats__in=profile_work_formats,
                 profession__in=profile_professions,
                 grade__in=profile_grades,
