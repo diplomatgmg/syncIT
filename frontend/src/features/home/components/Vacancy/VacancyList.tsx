@@ -3,6 +3,7 @@ import { UserVacancyResult } from "@/types/vacancyTypes.ts"
 import VacancyItem from "@/features/home/components/Vacancy/VacancyItem.tsx"
 import styled from "styled-components"
 import VacancyItemSkeleton from "@/features/home/components/Vacancy/VacancyItemSkeleton/VacancyItemSkeleton.tsx"
+import uniqueId from "lodash/uniqueId"
 
 interface VacancyListProps {
   vacancies: UserVacancyResult[]
@@ -14,7 +15,8 @@ const StyledVacancyList = styled.ul`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  margin: 0;
+  padding: 0;
 `
 
 const VacancyList: FC<VacancyListProps> = ({
@@ -38,7 +40,7 @@ const VacancyList: FC<VacancyListProps> = ({
     <StyledVacancyList>
       {vacancies.map((vacancy) => (
         <VacancyItem
-          key={vacancy.id}
+          key={uniqueId()}
           isViewed={vacancy.isViewed}
           vacancy={vacancy.vacancy}
           suitability={vacancy.suitability}

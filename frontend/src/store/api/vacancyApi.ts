@@ -11,8 +11,8 @@ const vacancyApi = createApi({
   baseQuery,
   tagTypes: ["Vacancy"],
   endpoints: (builder) => ({
-    getVacancies: builder.query<UserVacancy, void>({
-      query: () => "vacancies/",
+    getVacancies: builder.query<UserVacancy, { page: number }>({
+      query: ({ page }) => `vacancies/?page=${page}`,
       providesTags: ["Vacancy"],
     }),
     updateVacancyViewStatus: builder.mutation<
