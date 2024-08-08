@@ -13,9 +13,8 @@ const StyledVacancyList = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
   justify-content: center;
-  padding: 0;
+  padding: 1rem;
 `
 
 const VacancyList: FC<VacancyListProps> = ({
