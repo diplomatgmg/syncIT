@@ -2,13 +2,10 @@ import { type ReactElement } from "react"
 import { useGetVacanciesQuery } from "@/store/api/vacancyApi.ts"
 import VacancyList from "@/features/home/components/Vacancy/VacancyList.tsx"
 import styled from "styled-components"
+import CustomSkeleton from "@/components/common/CustomSkeleton/CustomSkeleton.tsx"
 
 const Vacancy = (): ReactElement => {
   const { data: vacancies = [], isLoading } = useGetVacanciesQuery()
-
-  if (isLoading) {
-    return <div>Loading...</div>
-  }
 
   const countUnViewedVacancies = vacancies.reduce((acc, cur) => {
     if (!cur.isViewed) {
@@ -20,10 +17,17 @@ const Vacancy = (): ReactElement => {
   return (
     <>
       <VacanciesInfoContainer>
-        <span>Всего - {vacancies.length} вакансий.</span>
-        <span>Новых - {countUnViewedVacancies}</span>
+        {isLoading && (
+          <CustomSkeleton width={"25%"} style={{ margin: "0 auto" }} />
+        )}
+        {!isLoading && (
+          <>
+            <span>Всего - {vacancies.length} вакансий.</span>
+            <span>Новых - {countUnViewedVacancies}</span>
+          </>
+        )}
       </VacanciesInfoContainer>
-      <VacancyList vacancies={vacancies} />
+      <VacancyList vacancies={vacancies} isLoading={isLoading} />
     </>
   )
 }

@@ -2,19 +2,39 @@ import { FC, type ReactElement } from "react"
 import { UserVacancy } from "@/types/vacancyTypes.ts"
 import VacancyItem from "@/features/home/components/Vacancy/VacancyItem.tsx"
 import styled from "styled-components"
+import VacancyItemSkeleton from "@/features/home/components/Vacancy/VacancyItemSkeleton/VacancyItemSkeleton.tsx"
 
 interface VacancyListProps {
   vacancies: UserVacancy[]
+  isLoading: boolean
 }
 
 const StyledVacancyList = styled.ul`
   display: flex;
+  flex-direction: column;
+  align-items: center;
   flex-wrap: wrap;
   justify-content: center;
   padding: 0;
 `
 
-const VacancyList: FC<VacancyListProps> = ({ vacancies }): ReactElement => {
+const VacancyList: FC<VacancyListProps> = ({
+  vacancies,
+  isLoading,
+}): ReactElement => {
+  if (isLoading) {
+    return (
+      <StyledVacancyList>
+        <VacancyItemSkeleton />
+        <VacancyItemSkeleton />
+        <VacancyItemSkeleton />
+        <VacancyItemSkeleton />
+        <VacancyItemSkeleton />
+        <VacancyItemSkeleton />
+      </StyledVacancyList>
+    )
+  }
+
   return (
     <StyledVacancyList>
       {vacancies.map((vacancy) => (

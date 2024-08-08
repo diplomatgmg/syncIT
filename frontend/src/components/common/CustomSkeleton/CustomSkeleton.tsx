@@ -6,11 +6,11 @@ import "./style.css"
 const CustomSkeleton: FC<SkeletonProps> = (props): ReactElement => {
   return (
     <Skeleton
-      {...props}
       containerClassName={"skeleton-container"}
       width={"100%"}
       baseColor={colors.backgroundSecondary}
       highlightColor={colors.textSecondary}
+      {...props}
     />
   )
 }
