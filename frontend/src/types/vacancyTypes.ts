@@ -4,7 +4,6 @@ import { Grade } from "@/types/gradeTypes.ts"
 import { Profession } from "@/types/professionTypes.ts"
 import { WorkFormat } from "@/types/workFormatTypes.ts"
 
-// Краткая информация о вакансии
 export interface Vacancy {
   id: number
   name: string
@@ -21,11 +20,18 @@ export interface Vacancy {
   description: string
 }
 
-export interface UserVacancy {
+export interface UserVacancyResult {
   id: number
   isViewed: boolean
   suitability: number
   vacancy: Vacancy
+}
+
+export interface UserVacancy {
+  count: number
+  previous: string | null
+  next: string | null
+  results: UserVacancyResult[]
 }
 
 export interface UpdateVacancyViewStatusRequest {

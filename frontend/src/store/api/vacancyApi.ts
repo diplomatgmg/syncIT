@@ -11,7 +11,7 @@ const vacancyApi = createApi({
   baseQuery,
   tagTypes: ["Vacancy"],
   endpoints: (builder) => ({
-    getVacancies: builder.query<UserVacancy[], void>({
+    getVacancies: builder.query<UserVacancy, void>({
       query: () => "vacancies/",
       providesTags: ["Vacancy"],
     }),

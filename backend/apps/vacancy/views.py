@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.validators import ValidationError
 
 from apps.vacancy.models import Vacancy, UserVacancy
+from apps.vacancy.pagination import UserVacancyPagination
 from apps.vacancy.serializers import (
     VacancyCreateSerializer,
     UserVacancyListSerializer,
@@ -13,6 +14,7 @@ from apps.vacancy.serializers import (
 
 class UserVacancyListAPIView(generics.ListAPIView):
     serializer_class = UserVacancyListSerializer
+    pagination_class = UserVacancyPagination
 
     def get_queryset(self):
         return (

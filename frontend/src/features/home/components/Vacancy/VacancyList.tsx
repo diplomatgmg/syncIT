@@ -1,11 +1,11 @@
 import { FC, type ReactElement } from "react"
-import { UserVacancy } from "@/types/vacancyTypes.ts"
+import { UserVacancyResult } from "@/types/vacancyTypes.ts"
 import VacancyItem from "@/features/home/components/Vacancy/VacancyItem.tsx"
 import styled from "styled-components"
 import VacancyItemSkeleton from "@/features/home/components/Vacancy/VacancyItemSkeleton/VacancyItemSkeleton.tsx"
 
 interface VacancyListProps {
-  vacancies: UserVacancy[]
+  vacancies: UserVacancyResult[]
   isLoading: boolean
 }
 

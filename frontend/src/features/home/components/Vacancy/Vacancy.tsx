@@ -5,26 +5,18 @@ import styled from "styled-components"
 import CustomSkeleton from "@/components/common/CustomSkeleton/CustomSkeleton.tsx"
 
 const Vacancy = (): ReactElement => {
-  const { data: vacancies = [], isLoading } = useGetVacanciesQuery()
+  const { data, isLoading } = useGetVacanciesQuery()
 
-  const countUnViewedVacancies = vacancies.reduce((acc, cur) => {
-    if (!cur.isViewed) {
-      return acc + 1
-    }
-    return acc
-  }, 0)
+  const vacancies = data?.results ?? []
 
   return (
     <>
       <VacanciesInfoContainer>
         {isLoading && (
-          <CustomSkeleton width={"25%"} style={{ margin: "0 auto" }} />
+          <CustomSkeleton width={"15rem"} style={{ margin: "0 auto" }} />
         )}
         {!isLoading && (
-          <>
-            <span>Всего - {vacancies.length} вакансий.</span>
-            <span>Новых - {countUnViewedVacancies}</span>
-          </>
+          <span>Всего - {vacancies.length * data!.count} вакансий</span>
         )}
       </VacanciesInfoContainer>
       <VacancyList vacancies={vacancies} isLoading={isLoading} />
