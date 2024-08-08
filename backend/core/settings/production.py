@@ -4,16 +4,16 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     "localhost",
-    "188.124.39.234",
+    "syncit.space",
 ]
 
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost",
-    "http://188.124.39.234",
+    "http://syncit.space/",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost",
-    "http://188.124.39.234",
+    "http://syncit.space/",
 ]
