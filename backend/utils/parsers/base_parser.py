@@ -26,12 +26,6 @@ ModelNameType = Literal[
 
 
 class BaseParser(ABC):
-    def __init__(
-        self, profile_hard_skills_names: list[str], profile_profession_names: list[str]
-    ):
-        self.profile_hard_skills_names = self.filter_names(profile_hard_skills_names)
-        self.profile_profession_names = self.filter_names(profile_profession_names)
-
     @staticmethod
     def filter_names(names: list[str]) -> list[str]:
         return [name for name in names if name != "Неизвестно"]

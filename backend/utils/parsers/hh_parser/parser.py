@@ -8,6 +8,7 @@ from urllib.parse import urlencode
 
 import requests
 
+from apps.profession.models import Profession
 from apps.vacancy.models import ParsedVacancy, Vacancy
 from utils.helpers import generate_hash, clear_html, timeit
 from utils.normalize_currency import normalize_currency
@@ -51,10 +52,10 @@ class HHParser(BaseParser):
         return " OR ".join(params)
 
     def _build_parse_url(self, page=0) -> str:
-        text = self._join_url_params(
-            *self.profile_profession_names,
-            *self.profile_hard_skills_names,
+        profession_names = Profession.objects.exclude(name="Неизвестно").values_list(
+            "name", flat=True
         )
+        text = self._join_url_params(*profession_names)
 
         params = {
             "text": text,
