@@ -5,6 +5,8 @@ def normalize_profession(profession: str):
         return "DevOps"
 
     match profession_lower:
+        case "бэкенд-разработчик" | "бэкенд разработчик":
+            return "Backend-разработчик"
         case "qa automation engineer" | "qa-инженер":
             return "Тестировщик"
         case "мобильный разработчик" | "mobile-разработчик":
