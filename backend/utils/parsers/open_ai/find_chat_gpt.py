@@ -7,7 +7,11 @@ import g4f
 import g4f.Provider
 
 
-providers = [*g4f.Provider.__providers__]
+providers = [
+    # g4f.Provider.Allyfy,
+    # g4f.Provider.DDG,
+    g4f.Provider.GeminiProChat,
+]
 
 
 def clear_text(text: str):
@@ -17,7 +21,8 @@ def clear_text(text: str):
 def get_chat_gpt_completion(prompt: str, provider):
     try:
         response = g4f.ChatCompletion.create(
-            model="gpt-3.5-turbo",
+            model="gpt-4o",
+            provider=provider,
             messages=[{"role": "user", "content": prompt}],
         )
         return clear_text(response)
@@ -28,15 +33,15 @@ def get_chat_gpt_completion(prompt: str, provider):
 
 def measure_provider_speed(prompt: str, provider):
     times = []
-    for _ in range(5):
+    for _ in range(10):
         start_time = time.time()
-        get_chat_gpt_completion(prompt, provider)
+        print(get_chat_gpt_completion(prompt, provider), provider)
         elapsed_time = time.time() - start_time
         times.append(elapsed_time)
     return sum(times) / len(times)
 
 
-def get_fastest_providers(prompt: str, top_n=3):
+def get_fastest_providers(prompt: str):
     provider_times = {}
     with ThreadPoolExecutor() as executor:
         for _provider in providers:
@@ -46,7 +51,7 @@ def get_fastest_providers(prompt: str, top_n=3):
             provider_times[_provider] = time_taken
 
     sorted_providers = sorted(provider_times.items(), key=lambda x: x[1])
-    return sorted_providers[:top_n]
+    return sorted_providers
 
 
 prompt = "Привет!"

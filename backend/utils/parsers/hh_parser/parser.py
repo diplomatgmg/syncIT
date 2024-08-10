@@ -268,7 +268,12 @@ class HHParser(BaseParser):
                 url=vacancy_data["alternate_url"],
             )
 
-            if len(parsed_vacancy["hard_skill_names"]) < 5:
+            vacancy_skills = parsed_vacancy["hard_skill_names"]
+            if len(vacancy_skills) < 4:
+                vacancy_url = vacancy_data["alternate_url"]
+                logger.debug(
+                    f"Пропустили вакансию {vacancy_url} - мало скиллов. {vacancy_skills}"
+                )
                 continue
 
             vacancy_result = self.get_vacancy_result(vacancy_data, parsed_vacancy)

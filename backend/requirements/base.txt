@@ -24,7 +24,7 @@ djangorestframework-simplejwt==5.3.1
 djoser==2.2.3
 flower==2.0.1
 frozenlist==1.4.1
-g4f==0.3.2.2
+g4f==0.3.2.3
 humanize==4.10.0
 idna==3.7
 kombu==5.3.7

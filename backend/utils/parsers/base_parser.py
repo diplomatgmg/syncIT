@@ -76,6 +76,7 @@ class BaseParser(ABC):
 
         work_format_names = data.get("work_format_names")
         work_format_models = WorkFormat.objects.filter(name__in=work_format_names)
+        created_vacancy_model.work_formats.add(*work_format_models)
 
         hard_skill_names = data.get("hard_skill_names")
         for hard_skill_name in hard_skill_names:
@@ -90,11 +91,6 @@ class BaseParser(ABC):
             name__in=hard_skill_names, selectable=True
         )
 
-        # Пропустим вакансию, если мало скиллов, иначе выдача будет не такая релевантная
-        if len(hard_skill_models) < 5:
-            return
-
-        created_vacancy_model.work_formats.add(*work_format_models)
         created_vacancy_model.hard_skills.add(*hard_skill_models)
 
     @staticmethod
