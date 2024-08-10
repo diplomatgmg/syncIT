@@ -35,7 +35,7 @@ if settings.DEBUG and not settings.TESTING:
     urlpatterns += [
         path("__debug__/", include("debug_toolbar.urls")),
         re_path(
-            "",
+            "swagger/",
             schema_view.with_ui("swagger", cache_timeout=0),
             name="schema-swagger-ui",
         ),
