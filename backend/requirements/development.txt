@@ -2,6 +2,7 @@
 
 django-debug-toolbar==4.4.2
 django-extensions==3.2.3
+drf-yasg==1.21.7
 Werkzeug==3.0.3
 
 

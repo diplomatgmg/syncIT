@@ -16,6 +16,7 @@ INSTALLED_APPS = [
     *INSTALLED_APPS,
     "debug_toolbar" if not TESTING else None,
     "django_extensions",
+    "drf_yasg",
 ]
 INSTALLED_APPS = [app for app in INSTALLED_APPS if app]
 
