@@ -43,13 +43,6 @@
   },
   {
     "model": "profession.profession",
-    "pk": 10,
-    "fields": {
-      "name": "Data Scientist"
-    }
-  },
-  {
-    "model": "profession.profession",
     "pk": 11,
     "fields": {
       "name": "Неизвестно"
