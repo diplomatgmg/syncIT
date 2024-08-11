@@ -8,14 +8,13 @@ interface FormProps {
 }
 
 const StyledForm = styled.form`
-  margin: -110px 2rem -60px;
   width: 100%;
   max-width: 700px;
   display: flex;
   flex-direction: column;
   background-color: ${colors.background};
-  padding: 3rem 4rem;
-  border-radius: 1rem 1rem 0 0;
+  padding: 3rem 3rem 4rem;
+  border-radius: 1rem;
 `
 
 const Form: FC<FormProps> = ({ children, onSubmit }): ReactElement => {

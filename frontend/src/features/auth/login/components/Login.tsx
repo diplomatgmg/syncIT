@@ -1,20 +1,10 @@
 import { type ReactElement, useEffect } from "react"
 import LoginForm from "@/features/auth/login/components/LoginForm.tsx"
-import styled from "styled-components"
 import { useNavigate, useParams } from "react-router-dom"
 import { useActivateAccountMutation } from "@/store/api/authApi.ts"
 import routes from "@/routes/routes.tsx"
+import styled from "styled-components"
 
-const StyledLogin = styled.div`
-  display: flex;
-  justify-content: center;
-  place-self: center;
-  width: 100%;
-`
-
-// TODO Возможно, имеет смысл вынести активацию аккаунта в отдельный компонент.
-//  После регистрации пользователю приходит письмо, после перехода по ссылке
-//  у пользователя будет открыто 2 вкладки сайта. + Облегчится этот компонент
 const Login = (): ReactElement => {
   const { uid, token } = useParams()
   const navigate = useNavigate()
@@ -40,5 +30,11 @@ const Login = (): ReactElement => {
     </StyledLogin>
   )
 }
+
+const StyledLogin = styled.div`
+  height: 100vh;
+  display: flex;
+  align-items: center;
+`
 
 export default Login
