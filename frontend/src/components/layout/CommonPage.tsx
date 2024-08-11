@@ -12,33 +12,14 @@ const CommonPage = ({ children }: CommonPageProps): ReactElement => {
   usePopupHandler()
 
   return (
-    <StyledPage>
+    <>
       <Header />
       <ChildrenStyle>{children}</ChildrenStyle>
       <ToastContainer />
-    </StyledPage>
+    </>
   )
 }
 
-const StyledPage = styled.div`
-  display: flex;
-  position: relative;
-  flex-direction: row-reverse;
-
-  @media (max-width: 1200px) {
-    display: block;
-  }
-`
-const ChildrenStyle = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  padding-right: 180px;
-
-  @media (max-width: 1200px) {
-    padding-right: 0;
-  }
-`
+const ChildrenStyle = styled.div``
 
 export default CommonPage
