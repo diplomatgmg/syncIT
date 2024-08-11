@@ -36,30 +36,9 @@
   },
   {
     "model": "profession.profession",
-    "pk": 6,
-    "fields": {
-      "name": "SQL-разработчик"
-    }
-  },
-  {
-    "model": "profession.profession",
-    "pk": 7,
-    "fields": {
-      "name": "UX/UI дизайнер"
-    }
-  },
-  {
-    "model": "profession.profession",
     "pk": 8,
     "fields": {
       "name": "Мобильный разработчик"
-    }
-  },
-  {
-    "model": "profession.profession",
-    "pk": 9,
-    "fields": {
-      "name": "Project Manager"
     }
   },
   {
