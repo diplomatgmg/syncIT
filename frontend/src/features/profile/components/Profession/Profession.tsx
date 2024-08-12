@@ -3,16 +3,15 @@ import { useGetProfileDataQuery } from "@/store/api/profileApi.ts"
 import { useGetProfessionsQuery } from "@/store/api/professionApi.ts"
 import ProfessionList from "@/features/profile/components/Profession/ProfessionList.tsx"
 import styled from "styled-components"
-import CustomSkeleton from "@/components/common/CustomSkeleton/CustomSkeleton.tsx"
 
-const Profession = (): ReactElement => {
+const Profession = (): ReactElement | null => {
   const { data: professions, isLoading: professionsIsLoading } =
     useGetProfessionsQuery()
   const { data: profileData, isLoading: profileIsLoading } =
     useGetProfileDataQuery()
 
   if (professionsIsLoading || profileIsLoading) {
-    return <CustomSkeleton />
+    return null
   }
 
   return (

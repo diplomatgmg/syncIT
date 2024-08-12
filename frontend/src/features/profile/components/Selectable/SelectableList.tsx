@@ -2,9 +2,9 @@ import { ReactElement } from "react"
 import useSelectableItems, {
   Mutation,
 } from "@/store/hooks/useSelectableItems.ts"
-import Checkbox from "@/components/common/Input/Checkbox.tsx"
 import { useGetProfileStatusQuery } from "@/store/api/profileApi.ts"
 import styled from "styled-components"
+import Checkbox from "@/components/common/Input/Checkbox.tsx"
 
 interface SelectableListProps<T> {
   items: T[]
@@ -47,18 +47,10 @@ const List = styled.ul`
   list-style: none;
   display: flex;
   flex-direction: column;
-  height: 100%;
 `
 
 const ListItem = styled.li`
-  @media (max-width: 1200px) {
-    &:last-child {
-      padding-bottom: 0;
-    }
-
-    margin-bottom: 0;
-    padding-bottom: 0;
-  }
+  white-space: nowrap;
 `
 
 export default SelectableList

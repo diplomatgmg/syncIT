@@ -6,8 +6,9 @@ import {
   useSetUserHardSkillsMutation,
 } from "@/store/api/profileApi.ts"
 import useSelectableItems from "@/store/hooks/useSelectableItems.ts"
-import styled from "styled-components"
-import { colors, transitionsSpeed } from "@/styles/theme.ts"
+import styled, { ThemeProvider } from "styled-components"
+import { transitionsSpeed } from "@/styles/theme.ts"
+import { rgba, useMantineTheme } from "@mantine/core"
 
 interface HardSkillListProps {
   hardSkills: HardSkill[]
@@ -24,34 +25,38 @@ const HardSkillList: FC<HardSkillListProps> = ({
     useSetUserHardSkillsMutation,
     refetchProfileStatus
   )
+  const theme = useMantineTheme()
 
   return (
-    <List>
-      {hardSkills.map((hardSkill) => (
-        <HardSkillItem
-          key={hardSkill.id}
-          hardSkill={hardSkill}
-          userHardSkills={userHardSkills}
-          selectedItems={selectedItems}
-          handleCheckboxChange={handleCheckboxChange}
-        />
-      ))}
-    </List>
+    <ThemeProvider theme={theme}>
+      <List>
+        {hardSkills.map((hardSkill) => (
+          <HardSkillItem
+            key={hardSkill.id}
+            hardSkill={hardSkill}
+            userHardSkills={userHardSkills}
+            selectedItems={selectedItems}
+            handleCheckboxChange={handleCheckboxChange}
+          />
+        ))}
+      </List>
+    </ThemeProvider>
   )
 }
 
 const List = styled.ul`
   margin: 0;
   padding: 0;
+  width: 100%;
+  place-self: start;
 
   & > li {
-    padding: 1rem;
-
-    border-bottom: 1px solid ${colors.textSecondary};
+    padding: 0.75rem;
     transition: ease ${transitionsSpeed.fast};
+    width: 100%;
 
     &:hover {
-      background-color: ${colors.backgroundSecondary};
+      background-color: ${({ theme }) => rgba(theme.colors.dark[8], 0.25)};
     }
 
     &:last-child {

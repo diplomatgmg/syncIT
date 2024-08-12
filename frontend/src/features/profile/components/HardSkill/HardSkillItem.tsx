@@ -1,8 +1,9 @@
 import { HardSkill } from "@/types/hardSkillTypes.ts"
 import { FC, useState } from "react"
 import styled from "styled-components"
-import ToggleIcon from "@/features/profile/components/HardSkill/ToggleIcon.tsx"
 import Checkbox from "@/components/common/Input/Checkbox.tsx"
+import { ChevronDown, ChevronRight } from "tabler-icons-react"
+import { ThemeIcon } from "@mantine/core"
 
 interface HardSkillItemProps {
   hardSkill: HardSkill
@@ -17,9 +18,7 @@ const HardSkillItem: FC<HardSkillItemProps> = ({
   selectedItems,
   handleCheckboxChange,
 }) => {
-  // FIXME После выбора последнего popup select верска съезжает. Надо строго заблокировать экран пользователя
   const [isMenuOpen, setIsMenuOpen] = useState(hardSkill.selectable)
-
   const toggleMenu = () => setIsMenuOpen((prevState) => !prevState)
 
   return (
@@ -31,9 +30,11 @@ const HardSkillItem: FC<HardSkillItemProps> = ({
           handleCheckboxChange={() => handleCheckboxChange(hardSkill)}
         />
       ) : (
-        <SkillContainer>
-          <ToggleIcon isOpen={isMenuOpen} onClick={toggleMenu} />
-          <SkillName onClick={toggleMenu}>{hardSkill.name}</SkillName>
+        <SkillContainer onClick={toggleMenu} style={{ gap: "0.5rem" }}>
+          <ThemeIcon variant="outline" size={25} bd={"none"}>
+            {isMenuOpen ? <ChevronDown /> : <ChevronRight />}
+          </ThemeIcon>
+          <SkillName>{hardSkill.name}</SkillName>
         </SkillContainer>
       )}
 
@@ -58,16 +59,18 @@ const StyledSkillItem = styled.li`
   display: flex;
   flex-direction: column;
   list-style: none;
+  width: fit-content;
 `
 
 const SkillContainer = styled.div`
   display: flex;
   align-items: center;
+  cursor: pointer;
 `
 
 const SkillName = styled.span`
   cursor: pointer;
-  width: 100%;
+  user-select: none;
 `
 
 const ChildrenList = styled.ul`

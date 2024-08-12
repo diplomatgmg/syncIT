@@ -3,15 +3,14 @@ import GradeList from "@/features/profile/components/Grade/GradeList.tsx"
 import { useGetGradesQuery } from "@/store/api/gradeApi.ts"
 import { useGetProfileDataQuery } from "@/store/api/profileApi.ts"
 import styled from "styled-components"
-import CustomSkeleton from "@/components/common/CustomSkeleton/CustomSkeleton.tsx"
 
-const Grade = (): ReactElement => {
+const Grade = (): ReactElement | null => {
   const { data: grades, isLoading: gradesIsLoading } = useGetGradesQuery()
   const { data: profileData, isLoading: profileIsLoading } =
     useGetProfileDataQuery()
 
   if (gradesIsLoading || profileIsLoading) {
-    return <CustomSkeleton height={370} />
+    return null
   }
 
   return (

@@ -3,16 +3,15 @@ import WorkFormatList from "@/features/profile/components/WorkFormat/WorkFormatL
 import { useGetWorkFormatsQuery } from "@/store/api/workFormatApi.ts"
 import { useGetProfileDataQuery } from "@/store/api/profileApi.ts"
 import styled from "styled-components"
-import CustomSkeleton from "@/components/common/CustomSkeleton/CustomSkeleton.tsx"
 
-const WorkFormat = (): ReactElement => {
+const WorkFormat = (): ReactElement | null => {
   const { data: workFormats, isLoading: workFormatIsLoading } =
     useGetWorkFormatsQuery()
   const { data: profileData, isLoading: profileIsLoading } =
     useGetProfileDataQuery()
 
   if (workFormatIsLoading || profileIsLoading) {
-    return <CustomSkeleton height={135} />
+    return null
   }
 
   return (

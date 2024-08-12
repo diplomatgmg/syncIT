@@ -1,146 +1,70 @@
-import { type ReactElement } from "react"
-import Grade from "@/features/profile/components/Grade/Grade.tsx"
-import WorkFormat from "@/features/profile/components/WorkFormat/WorkFormat.tsx"
+import { Container, Grid, Group, useMantineTheme } from "@mantine/core"
 import Profession from "@/features/profile/components/Profession/Profession.tsx"
+import WorkFormat from "@/features/profile/components/WorkFormat/WorkFormat.tsx"
+import Grade from "@/features/profile/components/Grade/Grade.tsx"
 import HardSkill from "@/features/profile/components/HardSkill/HardSkill.tsx"
-import styled, { createGlobalStyle } from "styled-components"
-import { colors } from "@/styles/theme.ts"
+import { useMediaQuery } from "@mantine/hooks"
 
-const GlobalStyle = createGlobalStyle`
-  body {
-      overflow: hidden;
-      height: 100vh;
+export const PRIMARY_COL_HEIGHT = "85vh"
+export const FIRST_COL_HEIGHT = `calc(${PRIMARY_COL_HEIGHT} / 2 - var(--mantine-spacing-xl) / 3)`
+export const SECOND_COL_HEIGHT = `calc(${PRIMARY_COL_HEIGHT} / 6 - var(--mantine-spacing-xl) / 3)`
+export const THIRD_COL_HEIGHT = `calc(${PRIMARY_COL_HEIGHT} / 3 - var(--mantine-spacing-xl) / 3)`
 
-      @media (max-width: 1200px) {
-          overflow-y: auto;
-          height: fit-content;
-      }
+const LG_HEIGHT = `calc(${PRIMARY_COL_HEIGHT} / 3 - var(--mantine-spacing-xl) / 3)`
+
+const Profile = () => {
+  const theme = useMantineTheme()
+  const bgStyle = {
+    backgroundColor: theme.colors.dark[9],
+    borderRadius: theme.radius.md,
   }
-`
+  const matchesLg = useMediaQuery(`(max-width: ${theme.breakpoints.lg})`)
+  const matchesSm = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`)
+  const bigSpan = matchesSm ? 12 : matchesLg ? 4 : 12
+  const smallSpan = matchesSm ? 6 : matchesLg ? 4 : 12
 
-const Profile = (): ReactElement => {
   return (
-    <>
-      <GlobalStyle />
-      <ProfileContainer>
-        <LeftSide>
-          <LeftSelect>
-            <Tile>
-              <Grade />
-            </Tile>
-            <Tile>
-              <WorkFormat />
-            </Tile>
-          </LeftSelect>
-          <RightSelect>
-            <Tile style={{ overflowY: "auto" }}>
-              <Profession />
-            </Tile>
-          </RightSelect>
-        </LeftSide>
-        <RightSide>
-          <HardSkill />
-        </RightSide>
-      </ProfileContainer>
-    </>
+    <Container my={"xl"} size={"xl"}>
+      <Grid justify={"center"}>
+        <Grid.Col span={{ base: 12, lg: 3 }}>
+          <Grid
+            justify={matchesLg ? "space-between" : "flex-start"}
+            style={{
+              flexDirection: matchesLg ? "row" : "column",
+            }}>
+            <Grid.Col span={bigSpan}>
+              <Group
+                h={matchesLg ? LG_HEIGHT : FIRST_COL_HEIGHT}
+                style={{ ...bgStyle, overflowY: "auto", overflowX: "hidden" }}>
+                <Profession />
+              </Group>
+            </Grid.Col>
+            <Grid.Col span={smallSpan}>
+              <Group
+                h={matchesLg ? LG_HEIGHT : SECOND_COL_HEIGHT}
+                style={bgStyle}>
+                <WorkFormat />
+              </Group>
+            </Grid.Col>
+            <Grid.Col span={smallSpan}>
+              <Group
+                h={matchesLg ? LG_HEIGHT : THIRD_COL_HEIGHT}
+                style={{ ...bgStyle, overflowY: "auto" }}>
+                <Grade />
+              </Group>
+            </Grid.Col>
+          </Grid>
+        </Grid.Col>
+        <Grid.Col span={{ base: 12, lg: 6 }}>
+          <Group
+            h={PRIMARY_COL_HEIGHT}
+            style={{ ...bgStyle, overflowY: "auto" }}>
+            <HardSkill />
+          </Group>
+        </Grid.Col>
+      </Grid>
+    </Container>
   )
 }
 
 export default Profile
-
-// Верстка ебанина полная.
-const ProfileContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 2rem;
-  gap: 2rem;
-  height: 94vh;
-  user-select: none;
-  position: fixed;
-  left: 0;
-  right: 0;
-  padding-right: 180px;
-
-  @media (max-width: 1200px) {
-    flex-direction: column;
-    min-height: 1200px;
-    margin: 2rem;
-    padding-right: 0;
-    position: relative;
-    width: 100%;
-  }
-`
-
-const LeftSide = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 2rem;
-  flex: 1;
-
-  @media (max-width: 1200px) {
-    flex-direction: row;
-  }
-
-  @media (max-width: 700px) {
-    flex-direction: column;
-    height: 52%;
-  }
-
-  & > * {
-    overflow-y: auto;
-  }
-`
-
-const LeftSelect = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-
-  @media (max-width: 1200px) {
-    flex: 0.5;
-  }
-
-  @media (max-width: 700px) {
-    flex-direction: row;
-  }
-
-  & > *:first-child {
-    flex: 1;
-  }
-`
-
-const RightSide = styled.div`
-  border-radius: 0.5rem;
-  border: 1px solid ${colors.textSecondary};
-  overflow-y: auto;
-  flex: 1.7;
-
-  @media (max-width: 1200px) {
-    width: auto;
-    margin-bottom: 2rem;
-  }
-`
-
-const RightSelect = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  flex: 1;
-
-  @media (max-width: 700px) {
-    display: contents;
-  }
-`
-
-const Tile = styled.div`
-  display: flex;
-  align-items: start;
-  height: 100%;
-  border: 1px solid ${colors.textSecondary};
-  border-radius: 0.5rem;
-
-  @media (max-width: 700px) {
-    flex: 0.7;
-  }
-`

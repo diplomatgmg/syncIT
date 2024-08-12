@@ -2,9 +2,8 @@ import { ReactElement } from "react"
 import { useGetHardSkillsQuery } from "@/store/api/hardSkillApi.ts"
 import { useGetProfileDataQuery } from "@/store/api/profileApi.ts"
 import HardSkillList from "@/features/profile/components/HardSkill/HardSkillList.tsx"
-import CustomSkeleton from "@/components/common/CustomSkeleton/CustomSkeleton.tsx"
 
-const HardSkill = (): ReactElement => {
+const HardSkill = (): ReactElement | null => {
   const { data: hardSkills, isLoading: skillsIsLoading } =
     useGetHardSkillsQuery()
   const { data: profileData, isLoading: profileIsLoading } =
@@ -13,7 +12,7 @@ const HardSkill = (): ReactElement => {
   const userHardSkills = profileData?.hardSkills ?? []
 
   if (skillsIsLoading || profileIsLoading) {
-    return <CustomSkeleton height={"100vh"} />
+    return null
   }
 
   return (
