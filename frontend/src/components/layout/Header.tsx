@@ -158,7 +158,7 @@ const MobileMenu = styled.div`
   justify-content: space-between;
   background-color: var(--mantine-color-dark-8);
   padding: 1rem;
-  position: absolute;
+  position: fixed;
   top: 60px;
   bottom: 0;
   left: 0;
