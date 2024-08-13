@@ -12,9 +12,10 @@ const Register = (): ReactElement => {
 
 const StyledRegister = styled.div`
   position: absolute;
-  top: 50%;
+  z-index: -1;
+  top: 55%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -55%);
 `
 
 export default Register
