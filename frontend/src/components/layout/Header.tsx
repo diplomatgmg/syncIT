@@ -51,10 +51,17 @@ const Header = () => {
     }
     return (
       <Flex wrap={"wrap"} justify={"center"} gap={"md"}>
-        <Button component={Link} to={routes.login.path}>
+        <Button
+          component={Link}
+          to={routes.login.path}
+          onClick={() => setIsMenuOpen(false)}>
           Войти
         </Button>
-        <Button variant="default" component={Link} to={routes.register.path}>
+        <Button
+          variant="default"
+          component={Link}
+          to={routes.register.path}
+          onClick={() => setIsMenuOpen(false)}>
           Регистрация
         </Button>
       </Flex>
@@ -110,7 +117,7 @@ const Header = () => {
 
   return (
     <ThemeProvider theme={{ isMenuOpen }}>
-      <Box pb="mb">
+      <Box mb="mb">
         <HeaderStyle>
           <Group justify="space-between" h="100%">
             <Link to={routes.home.path}>
