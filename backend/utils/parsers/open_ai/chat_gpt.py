@@ -1,6 +1,6 @@
 import re
 
-from g4f.Provider import GeminiProChat
+from g4f.Provider import Blackbox
 from g4f.client import Client
 
 
@@ -13,8 +13,8 @@ def get_chat_gpt_completion(prompt: str) -> str:
         try:
             client = Client()
             response = client.chat.completions.create(
-                model="gpt-4o",
-                provider=GeminiProChat,
+                model="gpt-3.5-turbo",
+                provider=Blackbox,
                 messages=[{"role": "user", "content": _prompt}],
             )
             return clear_text(response.choices[0].message.content)
