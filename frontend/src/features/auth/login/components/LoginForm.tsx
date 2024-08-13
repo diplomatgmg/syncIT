@@ -4,6 +4,7 @@ import {
   Anchor,
   Button,
   Container,
+  Flex,
   Paper,
   PasswordInput,
   Text,
@@ -17,8 +18,10 @@ import useAppDispatch from "@/store/hooks/useAppDispatch.ts"
 import { invalidateTags } from "@/store/api/vacancyApi.ts"
 import { setEmail, setTokens } from "@/store/slice/authSlice.ts"
 import routes from "@/routes/routes.tsx"
+import { useMediaQuery } from "@mantine/hooks"
 
 const LoginForm = (): ReactElement => {
+  const matches = useMediaQuery("(max-width: 512px)")
   const form = useForm({
     initialValues: {
       email: "",
@@ -47,17 +50,28 @@ const LoginForm = (): ReactElement => {
   }
 
   return (
-    <Container>
+    <Container w={matches ? "100%" : 500}>
       <Form onSubmit={form.onSubmit(handleSubmit)}>
-        <Title>Добро пожаловать!</Title>
-        <Text size="sm" mt={5}>
-          Нет аккаунта?&nbsp;
-          <Anchor size="sm" component={Link} to={routes.register.path}>
-            Создать Аккаунт
-          </Anchor>
-        </Text>
+        {!matches && (
+          <>
+            <Title size={24}>Добро пожаловать!</Title>
+            <Text size="sm" mt={5}>
+              Нет аккаунта?&nbsp;
+              <Anchor size="sm" component={Link} to={routes.register.path}>
+                Создать Аккаунт
+              </Anchor>
+            </Text>
+          </>
+        )}
 
-        <Paper shadow="md" p={30} pt={15} mt={30} radius="lg" w={500}>
+        <Paper
+          shadow="md"
+          p={30}
+          pt={15}
+          pb={matches ? 15 : 30}
+          mt={15}
+          radius="lg"
+          w={"100%"}>
           <TextInput
             value={form.values.email}
             onChange={(event) =>
@@ -84,6 +98,23 @@ const LoginForm = (): ReactElement => {
           <Button type={"submit"} mt="xl" fullWidth radius={"md"}>
             Войти
           </Button>
+
+          {matches && (
+            <Flex
+              mt={"md"}
+              justify={"center"}
+              align={"center"}
+              gap={"xs"}
+              wrap={"wrap"}>
+              <Anchor
+                size="sm"
+                component={Link}
+                to={routes.register.path}
+                style={{ textAlign: "center" }}>
+                Создать Аккаунт
+              </Anchor>
+            </Flex>
+          )}
         </Paper>
       </Form>
     </Container>

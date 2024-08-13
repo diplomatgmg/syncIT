@@ -33,6 +33,7 @@ const Login = (): ReactElement => {
 
 const StyledLogin = styled.div`
   position: absolute;
+  width: 100%;
   z-index: -1;
   top: 55%;
   left: 50%;
