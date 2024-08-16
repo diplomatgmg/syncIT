@@ -77,7 +77,7 @@ const Header = () => {
           </Button>
         </Flex>
         {isMenuOpen && (
-          <MobileMenu>
+          <MobileMenu style={{ backgroundColor: theme.colors.dark[9] }}>
             <Flex
               mt={"md"}
               direction={"column"}
@@ -118,7 +118,7 @@ const Header = () => {
   return (
     <ThemeProvider theme={{ isMenuOpen }}>
       <Box mb="mb">
-        <HeaderStyle>
+        <HeaderStyle style={{ backgroundColor: theme.colors.dark[9] }}>
           <Group justify="space-between" h="100%">
             <Link to={routes.home.path}>
               <LogoStyle src={SyncItImg} alt="syncIT" />
@@ -155,7 +155,6 @@ const LinkStyle = styled(Link)`
 
 const HeaderStyle = styled.header`
   height: 60px;
-  background-color: var(--mantine-color-dark-8);
   padding: 0 1rem;
 `
 
@@ -163,7 +162,6 @@ const MobileMenu = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: var(--mantine-color-dark-8);
   padding: 1rem;
   position: fixed;
   top: 60px;

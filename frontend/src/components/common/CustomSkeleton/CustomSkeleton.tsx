@@ -1,15 +1,16 @@
 import { FC, type ReactElement } from "react"
-import { colors } from "@/styles/theme.ts"
 import Skeleton, { SkeletonProps } from "react-loading-skeleton"
 import "./style.css"
+import { useMantineTheme } from "@mantine/core"
 
 const CustomSkeleton: FC<SkeletonProps> = (props): ReactElement => {
+  const { colors } = useMantineTheme()
+
   return (
     <Skeleton
       containerClassName={"skeleton-container"}
-      width={"100%"}
-      baseColor={colors.backgroundSecondary}
-      highlightColor={colors.textSecondary}
+      baseColor={colors.dark[9]}
+      highlightColor={colors.dark[7]}
       {...props}
     />
   )
