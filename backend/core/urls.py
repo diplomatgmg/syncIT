@@ -5,6 +5,9 @@ from django.urls import re_path
 from rest_framework import permissions
 
 
+admin.site.site_title = "(DEV)"
+admin.site.index_title = "SyncIT"
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include("apps.hard_skill.urls")),
