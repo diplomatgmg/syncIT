@@ -78,6 +78,7 @@ const LoginForm = (): ReactElement => {
               form.setFieldValue("email", event.currentTarget.value)
             }
             error={form.errors.email && "Некорректная почта"}
+            type={"email"}
             placeholder="example@gmail.com"
             label="Почта"
             radius="md"

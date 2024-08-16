@@ -91,6 +91,7 @@ const RegisterForm = (): ReactElement => {
               form.setFieldValue("email", event.currentTarget.value)
             }
             error={form.errors.email && form.errors.email}
+            type={"email"}
             placeholder="example@gmail.com"
             label="Почта"
             radius="md"
