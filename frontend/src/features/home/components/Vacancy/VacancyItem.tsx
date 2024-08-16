@@ -3,27 +3,17 @@ import { Vacancy } from "@/types/vacancyTypes.ts"
 import { useUpdateVacancyViewStatusMutation } from "@/store/api/vacancyApi.ts"
 import HardSkillList from "@/features/home/components/HardSkill/HardSkillList.tsx"
 import { ThemeProvider } from "styled-components"
-import { Link } from "react-router-dom"
 import UnWatchIcon from "@/assets/svg/unwatch.svg"
 import getSalary from "@/features/home/utils/getSalary.ts"
 import {
-  Company,
-  Experience,
-  Format,
-  JobCard,
   JobDescription,
-  JobDetails,
-  JobHeader,
-  JobHeaderContainer,
-  JobTitle,
-  Profession,
-  Relevance,
-  Salary,
   ToggleDescription,
   ToggleLabel,
   UnWatch,
   Watched,
 } from "@/features/home/components/Vacancy/VacancyItemStyles.ts"
+import { Anchor, Flex, Text, Title, useMantineTheme } from "@mantine/core"
+import { useMediaQuery } from "@mantine/hooks"
 
 interface VacancyItemProps {
   isViewed: boolean
@@ -40,6 +30,8 @@ const VacancyItem: FC<VacancyItemProps> = ({
   const id = useId()
   const [updateVacancyViewStatus] = useUpdateVacancyViewStatusMutation()
   const [isHidden, setIsHidden] = useState(false)
+  const { breakpoints, colors, fontSizes } = useMantineTheme()
+  const matchesSm = useMediaQuery(`(max-width: ${breakpoints.sm})`)
 
   const handleOpenVacancySource = (vacancy_id: number) => async () => {
     try {
@@ -60,41 +52,84 @@ const VacancyItem: FC<VacancyItemProps> = ({
 
   return (
     <ThemeProvider theme={{ isViewed }}>
-      <JobCard>
-        <JobHeaderContainer>
-          <JobHeader>
-            <JobTitle>
-              <Link to={vacancy.url} target={"_blank"}>
-                {vacancy.name}
-              </Link>
-            </JobTitle>
-            <Company>{vacancy.company.name}</Company>
-          </JobHeader>
-          {!isViewed && (
-            <UnWatch
-              alt={"Unwatch"}
-              title={"Отметить просмотренным"}
-              src={UnWatchIcon}
-              onClick={handleOpenVacancySource(vacancy.id)}
-            />
-          )}
-          {isViewed && <Watched>Просмотрено</Watched>}
-        </JobHeaderContainer>
+      <Flex
+        p={"md"}
+        w={"100%"}
+        direction={"column"}
+        bg={colors.dark[9]}
+        style={{
+          maxWidth: "1200px",
+          borderRadius: fontSizes.xs,
+        }}>
+        <Flex
+          align={"center"}
+          justify={"space-between"}
+          style={{ borderBottom: `1px solid ${colors.dark[6]}` }}>
+          <Flex direction={"column"} gap={"xs"} pb={"md"}>
+            <Anchor
+              href={vacancy.url}
+              target="_blank"
+              style={{ textDecoration: "none" }}>
+              <Title order={matchesSm ? 2 : 1}>{vacancy.name}</Title>
+            </Anchor>
+            <Flex align={"center"} gap={"xl"}>
+              <Title order={matchesSm ? 4 : 3}>{vacancy.company.name}</Title>
+            </Flex>
+          </Flex>
+          <Flex style={{ alignSelf: "center" }}>
+            {!isViewed && (
+              <UnWatch
+                alt={"Unwatch"}
+                title={"Отметить просмотренным"}
+                src={UnWatchIcon}
+                onClick={handleOpenVacancySource(vacancy.id)}
+              />
+            )}
+            {isViewed && <Watched>Просмотрено</Watched>}
+          </Flex>
+        </Flex>
+        <Flex direction={matchesSm ? "row" : "column"}>
+          <Flex direction={"column"} flex={1} gap={"0.35rem"}>
+            <Flex
+              justify={"space-between"}
+              wrap={"wrap"}
+              direction={matchesSm ? "column" : "row"}
+              gap={"0.35rem"}
+              flex={matchesSm ? 1 : 2}
+              mt={"xs"}>
+              <Text c={colors.dark[3]} fz={matchesSm ? "md" : "xl"}>
+                {vacancy.workFormats.map(({ name }) => name).join(", ")}
+              </Text>
+              <Text c={colors.dark[3]} fz={matchesSm ? "md" : "xl"}>
+                {vacancy.profession.name}
+              </Text>
+              <Text c={colors.dark[3]} fz={matchesSm ? "md" : "xl"}>
+                {vacancy.experience}
+              </Text>
+            </Flex>
 
-        <JobDetails>
-          <Format>
-            {vacancy.workFormats.map(({ name }) => name).join(", ")}
-          </Format>
-          <Profession>{vacancy.profession.name}</Profession>
-          <Experience>{vacancy.experience}</Experience>
-        </JobDetails>
+            <Flex
+              justify={"space-between"}
+              wrap={"wrap"}
+              direction={matchesSm ? "column" : "row"}
+              gap={"0.35rem"}
+              flex={matchesSm ? 1 : 2}>
+              <Text c={colors.dark[3]} fz={matchesSm ? "md" : "xl"}>
+                Релевантность: {suitability}%
+              </Text>
+              <Text c={colors.dark[3]} fz={matchesSm ? "md" : "xl"}>
+                Зарплата: {salary}
+              </Text>
+            </Flex>
+          </Flex>
 
-        <JobDetails>
-          <Relevance>Релевантность: {suitability}%</Relevance>
-          <Salary>Зарплата: {salary}</Salary>
-        </JobDetails>
-
-        <HardSkillList hardSkills={vacancy.hardSkills} />
+          <Flex
+            justify={matchesSm ? "end" : "start"}
+            flex={1}
+            mt={matchesSm ? "xs" : "md"}>
+            <HardSkillList hardSkills={vacancy.hardSkills} />
+          </Flex>
+        </Flex>
 
         <ToggleDescription id={id} />
         <ToggleLabel
@@ -106,7 +141,7 @@ const VacancyItem: FC<VacancyItemProps> = ({
         <JobDescription>
           <pre>{vacancy.description}</pre>
         </JobDescription>
-      </JobCard>
+      </Flex>
     </ThemeProvider>
   )
 }

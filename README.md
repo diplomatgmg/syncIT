@@ -1,7 +1,7 @@
 <div align="center">
-    <a href="https://codeclimate.com/github/diplomatgmg/it_job_aggregator/maintainability"><img src="https://api.codeclimate.com/v1/badges/ba7e9ae9f4e9079c7b77/maintainability" /></a>
-    <a href="https://codecov.io/github/diplomatgmg/it_job_aggregator"><img src="https://codecov.io/github/diplomatgmg/it_job_aggregator/graph/badge.svg?token=U3Z5D4VE22"/></a>
-    <a href="https://wakatime.com/badge/github/diplomatgmg/it_job_aggregator"><img src="https://wakatime.com/badge/github/diplomatgmg/it_job_aggregator.svg"></a>
+    <a href="https://codeclimate.com/github/diplomatgmg/syncIT/maintainability"><img src="https://api.codeclimate.com/v1/badges/ba7e9ae9f4e9079c7b77/maintainability" /></a>
+    <a href="https://codecov.io/github/diplomatgmg/syncIT"><img src="https://codecov.io/github/diplomatgmg/it_job_aggregator/graph/badge.svg?token=U3Z5D4VE22"/></a>
+    <a href="https://wakatime.com/badge/github/diplomatgmg/syncIT"><img src="https://wakatime.com/badge/github/diplomatgmg/it_job_aggregator.svg"></a>
 </div>
 
 

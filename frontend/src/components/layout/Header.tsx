@@ -21,11 +21,7 @@ const Header = () => {
     if (isMenuOpen) {
       document.body.style.position = "fixed"
     } else {
-      document.body.style.overflowX = ""
-    }
-
-    return () => {
-      document.body.style.overflowX = ""
+      document.body.style.position = "static"
     }
   }, [isMenuOpen])
 
