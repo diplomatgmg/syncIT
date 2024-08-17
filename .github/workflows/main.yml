@@ -55,6 +55,7 @@ jobs:
           POSTGRES_USER: dbuser
           POSTGRES_PASSWORD: dbpass
           POSTGRES_PORT: 5432
+          DJANGO_SETTINGS_MODULE: backend.settings.development
         run: |
           coverage run --source='backend' backend/manage.py test backend
           coverage report
