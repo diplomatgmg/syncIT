@@ -1,4 +1,4 @@
-import { type ReactElement, useEffect, useState } from "react"
+import { type ReactElement, useCallback, useEffect, useReducer } from "react"
 import { useGetVacanciesQuery } from "@/store/api/vacancyApi.ts"
 import VacancyList from "@/features/home/components/Vacancy/VacancyList.tsx"
 import CustomSkeleton from "@/components/common/CustomSkeleton/CustomSkeleton.tsx"
@@ -7,30 +7,30 @@ import { UserVacancyResult } from "@/types/vacancyTypes.ts"
 import { Flex, Text } from "@mantine/core"
 
 const Vacancy = (): ReactElement => {
-  const [page, setPage] = useState(1)
-  const [vacancies, setVacancies] = useState<UserVacancyResult[]>([])
+  const [page, setPage] = useReducer((state) => state + 1, 1)
+  const [vacancies, setVacancies] = useReducer(
+    (state: UserVacancyResult[], action: UserVacancyResult[]) => [
+      ...state,
+      ...action,
+    ],
+    []
+  )
   const { data, isLoading, isFetching } = useGetVacanciesQuery({ page })
 
   useEffect(() => {
     if (data?.results) {
-      setVacancies((prevVacancies) => [...prevVacancies, ...data.results])
+      setVacancies(data.results)
     }
   }, [data])
 
-  const loadMoreVacancies = () => {
+  const loadMoreVacancies = useCallback(() => {
     if (!isFetching && data?.next) {
-      setPage((prevPage) => prevPage + 1)
+      setPage()
     }
-  }
+  }, [isFetching, data?.next])
 
   if (!data && !isLoading) {
-    return (
-      <h1 style={{ textAlign: "center" }}>
-        Вакансий нет.
-        <br />
-        Заполните профиль и немного подождите.
-      </h1>
-    )
+    return <h1 style={{ textAlign: "center" }}>Вакансий нет.</h1>
   }
 
   return (

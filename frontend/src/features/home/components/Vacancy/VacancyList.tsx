@@ -20,11 +20,11 @@ const VacancyList: FC<VacancyListProps> = ({
   return (
     <Flex direction={"column"} align={"center"} gap={"4rem"} m={"md"}>
       {isLoading && (
-        <Flex direction={"column"} gap={"4rem"}>
-          {range(5).map(() => (
+        <Flex direction={"column"} gap={"4rem"} mt={"3rem"}>
+          {range(4).map(() => (
             <CustomSkeleton
               key={uniqueId()}
-              height={320}
+              height={300}
               width={1200}
               style={{ borderRadius: radius.lg }}
             />
