@@ -113,17 +113,15 @@ const Header = () => {
 
   return (
     <ThemeProvider theme={{ isMenuOpen }}>
-      <Box mb="mb">
-        <HeaderStyle style={{ backgroundColor: theme.colors.dark[9] }}>
-          <Group justify="space-between" h="100%">
-            <Link to={routes.home.path}>
-              <LogoStyle src={SyncItImg} alt="syncIT" />
-            </Link>
-            {matches && renderMobileMenu()}
-            {!matches && renderDesktopMenu()}
-          </Group>
-        </HeaderStyle>
-      </Box>
+      <HeaderStyle style={{ backgroundColor: theme.colors.dark[9] }}>
+        <Group justify="space-between" h="100%">
+          <Link to={routes.home.path}>
+            <LogoStyle src={SyncItImg} alt="syncIT" />
+          </Link>
+          {matches && renderMobileMenu()}
+          {!matches && renderDesktopMenu()}
+        </Group>
+      </HeaderStyle>
     </ThemeProvider>
   )
 }
