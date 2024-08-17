@@ -38,6 +38,5 @@ export default createGlobalStyle`
         font-size: 1.5rem;
         color: #fff;
         width: 100%;
-        height: 100%;
     }
 `
