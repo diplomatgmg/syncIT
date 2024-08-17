@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 load_dotenv(BASE_DIR / ".." / ".env")
 
 SECRET_KEY = os.getenv("SECRET_KEY")
-TESTING = "test" in sys.argv
+TESTING = "test" in sys.argv or os.getenv("TESTING")
 
 
 INSTALLED_APPS = [

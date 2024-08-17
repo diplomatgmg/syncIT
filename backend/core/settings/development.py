@@ -12,19 +12,16 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 
-INSTALLED_APPS = [
-    *INSTALLED_APPS,
-    "debug_toolbar" if not TESTING else None,
-    "django_extensions",
-    "drf_yasg",
-]
-INSTALLED_APPS = [app for app in INSTALLED_APPS if app]
+if not TESTING:
+    INSTALLED_APPS += [
+        "debug_toolbar",
+        "django_extensions",
+        "drf_yasg",
+    ]
 
-MIDDLEWARE = [
-    *MIDDLEWARE,
-    "debug_toolbar.middleware.DebugToolbarMiddleware" if not TESTING else None,
-]
-MIDDLEWARE = [middleware for middleware in MIDDLEWARE if middleware]
+    MIDDLEWARE += [
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
+    ]
 
 
 DEBUG_TOOLBAR_CONFIG = {
