@@ -1,5 +1,5 @@
 import styled, { ThemeProvider } from "styled-components"
-import { Box, Button, Flex, Group, Text, useMantineTheme } from "@mantine/core"
+import { Button, Flex, Group, Text, useMantineTheme } from "@mantine/core"
 import SyncItImg from "@/assets/img/syncIt.png"
 import { Link, useNavigate } from "react-router-dom"
 import routes from "@/routes/routes.tsx"
@@ -148,6 +148,7 @@ const LinkStyle = styled(Link)`
 `
 
 const HeaderStyle = styled.header`
+  width: 100%;
   height: 60px;
   padding: 0 1rem;
 `
