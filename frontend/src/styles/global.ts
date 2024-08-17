@@ -37,5 +37,7 @@ export default createGlobalStyle`
         margin: 0;
         font-size: 1.5rem;
         color: #fff;
+        width: 100%;
+        height: 100%;
     }
 `
