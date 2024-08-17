@@ -1,21 +1,21 @@
 services:
-  frontend:
-    container_name: frontend
-    build:
-      context: ./frontend
-      target: ${BUILD_TARGET}
-    volumes:
-      - ./frontend:/project/frontend
-      - /project/frontend/node_modules
-      - frontend_dist:/project/frontend/dist
-      - static_volume:/project/backend/django_static/
-    ports:
-      - "80:80"
-      - "3000:3000"
-    depends_on:
-      - backend
-    networks:
-      - app-network
+#  frontend:
+#    container_name: frontend
+#    build:
+#      context: ./frontend
+#      target: ${BUILD_TARGET}
+#    volumes:
+#      - ./frontend:/project/frontend
+#      - /project/frontend/node_modules
+#      - frontend_dist:/project/frontend/dist
+#      - static_volume:/project/backend/django_static/
+#    ports:
+#      - "80:80"
+#      - "3000:3000"
+#    depends_on:
+#      - backend
+#    networks:
+#      - app-network
 
   backend:
     container_name: backend
@@ -44,9 +44,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
-    expose:
-      - 5432
+      - "5433:5432"
     env_file:
       - .env
     healthcheck:
