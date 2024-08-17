@@ -1,12 +1,12 @@
 from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
-from django.urls import re_path
 from rest_framework import permissions
 
 
 admin.site.site_title = "(DEV)"
 admin.site.index_title = "SyncIT"
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -37,7 +37,7 @@ if settings.DEBUG and not settings.TESTING:
 
     urlpatterns += [
         path("__debug__/", include("debug_toolbar.urls")),
-        re_path(
+        path(
             "swagger/",
             schema_view.with_ui("swagger", cache_timeout=0),
             name="schema-swagger-ui",
