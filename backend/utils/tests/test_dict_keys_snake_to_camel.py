@@ -1,5 +1,6 @@
 from django.test import TestCase
-from ..helpers import dict_keys_snake_to_camel
+
+from renderers.camel_case import dict_keys_snake_to_camel
 
 
 class SnakeToCamelTestCase(TestCase):
