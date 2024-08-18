@@ -5,11 +5,13 @@ import {
   Button,
   Container,
   Flex,
+  Loader,
   Paper,
   PasswordInput,
   Text,
   TextInput,
   Title,
+  useMantineTheme,
 } from "@mantine/core"
 import styled from "styled-components"
 import { useLoginMutation } from "@/store/api/authApi.ts"
@@ -21,6 +23,7 @@ import routes from "@/routes/routes.tsx"
 import { useMediaQuery } from "@mantine/hooks"
 
 const LoginForm = (): ReactElement => {
+  const { colors } = useMantineTheme()
   const matches = useMediaQuery("(max-width: 512px)")
   const form = useForm({
     initialValues: {
@@ -34,7 +37,7 @@ const LoginForm = (): ReactElement => {
   })
 
   const dispatch = useAppDispatch()
-  const [login] = useLoginMutation()
+  const [login, { isLoading }] = useLoginMutation()
   const navigate = useNavigate()
 
   const handleSubmit = async () => {
@@ -96,8 +99,21 @@ const LoginForm = (): ReactElement => {
             radius="md"
           />
 
-          <Button type={"submit"} mt="xl" fullWidth radius={"md"}>
-            Войти
+          <Button
+            type={"submit"}
+            mt="xl"
+            fullWidth
+            radius={"md"}
+            loaderProps={{
+              children: (
+                <Flex align={"center"} gap={"xs"} pb={3}>
+                  <Loader size={"xs"} color={colors.blue[5]} />
+                  <span style={{ color: colors.blue[1] }}>Входим...</span>
+                </Flex>
+              ),
+            }}
+            loading={isLoading}>
+            Войти
           </Button>
 
           {matches && (

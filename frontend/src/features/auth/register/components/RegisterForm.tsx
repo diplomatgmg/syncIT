@@ -5,11 +5,13 @@ import {
   Button,
   Container,
   Flex,
+  Loader,
   Paper,
   PasswordInput,
   Text,
   TextInput,
   Title,
+  useMantineTheme,
 } from "@mantine/core"
 import styled from "styled-components"
 import { useRegisterMutation } from "@/store/api/authApi.ts"
@@ -21,6 +23,7 @@ import { RegisterResponseError } from "@/types/authTypes.ts"
 import { useMediaQuery } from "@mantine/hooks"
 
 const RegisterForm = (): ReactElement => {
+  const { colors } = useMantineTheme()
   const matches = useMediaQuery("(max-width: 512px)")
   const form = useForm({
     initialValues: {
@@ -37,7 +40,7 @@ const RegisterForm = (): ReactElement => {
   })
 
   const dispatch = useAppDispatch()
-  const [register] = useRegisterMutation()
+  const [register, { isLoading }] = useRegisterMutation()
   const navigate = useNavigate()
 
   const handleSubmit = async () => {
@@ -122,7 +125,22 @@ const RegisterForm = (): ReactElement => {
             error={form.errors.confirmPassword}
           />
 
-          <Button type={"submit"} mt="xl" fullWidth radius={"md"}>
+          <Button
+            type={"submit"}
+            mt="xl"
+            fullWidth
+            radius={"md"}
+            loaderProps={{
+              children: (
+                <Flex align={"center"} gap={"xs"} pb={3}>
+                  <Loader size={"xs"} color={colors.blue[5]} />
+                  <span style={{ color: colors.blue[1] }}>
+                    Регистрируемся...
+                  </span>
+                </Flex>
+              ),
+            }}
+            loading={isLoading}>
             Зарегистрироваться
           </Button>
 
