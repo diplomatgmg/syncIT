@@ -4,7 +4,7 @@ import useSelectableItems, {
 } from "@/store/hooks/useSelectableItems.ts"
 import { useGetProfileStatusQuery } from "@/store/api/profileApi.ts"
 import styled from "styled-components"
-import Checkbox from "@/components/common/Input/Checkbox.tsx"
+import Checkbox from "@/components/common/Checkbox.tsx"
 
 interface SelectableListProps<T> {
   items: T[]

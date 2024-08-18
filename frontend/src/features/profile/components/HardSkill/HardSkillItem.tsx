@@ -1,7 +1,7 @@
 import { HardSkill } from "@/types/hardSkillTypes.ts"
 import { FC, useState } from "react"
 import styled from "styled-components"
-import Checkbox from "@/components/common/Input/Checkbox.tsx"
+import Checkbox from "@/components/common/Checkbox.tsx"
 import { ChevronDown, ChevronRight } from "tabler-icons-react"
 import { ThemeIcon } from "@mantine/core"
 
