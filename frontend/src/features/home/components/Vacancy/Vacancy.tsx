@@ -34,10 +34,14 @@ const Vacancy = (): ReactElement => {
   }
 
   return (
-    <Flex direction={"column"} gap={"xl"}>
+    <Flex direction={"column"} gap={"lg"}>
       <Flex justify={"center"}>
         {isLoading && (
-          <CustomSkeleton width={"15rem"} style={{ margin: "0 auto" }} />
+          <CustomSkeleton
+            width={"15rem"}
+            height={30}
+            style={{ margin: "0 auto" }}
+          />
         )}
         {!isLoading && <Text fz={"xl"}>Всего - {data!.count} вакансий</Text>}
       </Flex>

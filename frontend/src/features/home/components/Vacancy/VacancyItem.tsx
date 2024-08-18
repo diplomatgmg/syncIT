@@ -13,28 +13,27 @@ import {
   Watched,
 } from "@/features/home/components/Vacancy/VacancyItemStyles.ts"
 import { Anchor, Flex, Text, Title, useMantineTheme } from "@mantine/core"
-import { useMediaQuery } from "@mantine/hooks"
 
 interface VacancyItemProps {
   isViewed: boolean
   suitability: number
   vacancy: Vacancy
+  matchesSm?: boolean
+  matchesXs?: boolean
 }
 
 const VacancyItem: FC<VacancyItemProps> = ({
   isViewed,
   suitability,
   vacancy,
+  matchesXs,
+  matchesSm,
 }): ReactElement | null => {
   const [isOpenedDescription, setIsOpenedDescription] = useState(false)
   const id = useId()
   const [updateVacancyViewStatus] = useUpdateVacancyViewStatusMutation()
   const [isHidden, setIsHidden] = useState(false)
-  const { breakpoints, colors, fontSizes } = useMantineTheme()
-  const matchesSm = useMediaQuery(`(max-width: ${breakpoints.sm})`)
-  const matchesXs = useMediaQuery(`(max-width: ${breakpoints.xs})`)
-  console.log(matchesXs)
-  // TODO Сделать column (типа десктоп версию) если matcherXs
+  const { colors, fontSizes } = useMantineTheme()
   const handleOpenVacancySource = (vacancy_id: number) => async () => {
     try {
       setIsHidden(true)
@@ -58,6 +57,7 @@ const VacancyItem: FC<VacancyItemProps> = ({
         p={"md"}
         w={"100%"}
         gap={"xs"}
+        mt={"0.4rem"}
         direction={"column"}
         bg={colors.dark[9]}
         style={{
@@ -94,7 +94,7 @@ const VacancyItem: FC<VacancyItemProps> = ({
         <Flex
           direction={matchesXs ? "column" : matchesSm ? "row" : "column"}
           justify={"space-between"}
-          gap={matchesSm ? "xs" : "0"}>
+          gap={matchesXs ? "0" : matchesSm ? "5rem" : "0"}>
           <Flex
             direction={"column"}
             gap={"0.35rem"}
