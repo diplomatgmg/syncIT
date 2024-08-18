@@ -18,15 +18,20 @@ const VacancyList: FC<VacancyListProps> = ({
   const { radius } = useMantineTheme()
 
   return (
-    <Flex direction={"column"} align={"center"} gap={"4rem"} m={"md"}>
+    <Flex
+      direction={"column"}
+      align={"center"}
+      gap={"4rem"}
+      m={"md"}
+      mb={"4rem"}>
       {isLoading && (
-        <Flex direction={"column"} gap={"4rem"} mt={"3rem"}>
+        <Flex direction={"column"} gap={"4rem"}>
           {range(4).map(() => (
             <CustomSkeleton
               key={uniqueId()}
-              height={300}
-              width={1200}
-              style={{ borderRadius: radius.lg }}
+              height={400}
+              width={"95vw"}
+              style={{ borderRadius: radius.lg, maxWidth: "1200px" }}
             />
           ))}
         </Flex>

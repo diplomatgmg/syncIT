@@ -32,7 +32,9 @@ const VacancyItem: FC<VacancyItemProps> = ({
   const [isHidden, setIsHidden] = useState(false)
   const { breakpoints, colors, fontSizes } = useMantineTheme()
   const matchesSm = useMediaQuery(`(max-width: ${breakpoints.sm})`)
-
+  const matchesXs = useMediaQuery(`(max-width: ${breakpoints.xs})`)
+  console.log(matchesXs)
+  // TODO Сделать column (типа десктоп версию) если matcherXs
   const handleOpenVacancySource = (vacancy_id: number) => async () => {
     try {
       setIsHidden(true)
@@ -55,6 +57,7 @@ const VacancyItem: FC<VacancyItemProps> = ({
       <Flex
         p={"md"}
         w={"100%"}
+        gap={"xs"}
         direction={"column"}
         bg={colors.dark[9]}
         style={{
@@ -88,8 +91,15 @@ const VacancyItem: FC<VacancyItemProps> = ({
             {isViewed && <Watched>Просмотрено</Watched>}
           </Flex>
         </Flex>
-        <Flex direction={matchesSm ? "row" : "column"}>
-          <Flex direction={"column"} flex={1} gap={"0.35rem"}>
+        <Flex
+          direction={matchesXs ? "column" : matchesSm ? "row" : "column"}
+          justify={"space-between"}
+          gap={matchesSm ? "xs" : "0"}>
+          <Flex
+            direction={"column"}
+            gap={"0.35rem"}
+            style={{ textWrap: "nowrap" }}
+            h={"fit-content"}>
             <Flex
               justify={"space-between"}
               wrap={"wrap"}
@@ -124,8 +134,7 @@ const VacancyItem: FC<VacancyItemProps> = ({
           </Flex>
 
           <Flex
-            justify={matchesSm ? "end" : "start"}
-            flex={1}
+            justify={matchesXs ? "start" : matchesSm ? "end" : "start"}
             mt={matchesSm ? "xs" : "md"}>
             <HardSkillList hardSkills={vacancy.hardSkills} />
           </Flex>

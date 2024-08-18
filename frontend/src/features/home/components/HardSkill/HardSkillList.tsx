@@ -13,12 +13,13 @@ const HardSkillList: FC<HardSkillListProps> = ({
 }): ReactElement => {
   const { breakpoints } = useMantineTheme()
   const matchesSm = useMediaQuery(`(max-width: ${breakpoints.sm})`)
+  const matchesXs = useMediaQuery(`(max-width: ${breakpoints.xs})`)
 
   return (
     <Flex
       gap={"xs"}
       wrap={"wrap"}
-      justify={matchesSm ? "end" : "start"}
+      justify={matchesXs ? "center" : matchesSm ? "end" : "start"}
       h={"fit-content"}>
       {hardSkills.map(({ id, name }) => (
         <HardSkillItem key={id} skillName={name} />
