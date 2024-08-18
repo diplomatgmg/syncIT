@@ -1,5 +1,5 @@
 import styled, { ThemeProvider } from "styled-components"
-import { Button, Flex, Group, Text, useMantineTheme } from "@mantine/core"
+import { Button, Flex, Group, useMantineTheme } from "@mantine/core"
 import SyncItImg from "@/assets/img/syncIt.png"
 import { Link, useNavigate } from "react-router-dom"
 import routes from "@/routes/routes.tsx"
@@ -7,9 +7,10 @@ import useAuth from "@/store/hooks/useAuth.ts"
 import useLogout from "@/store/hooks/useLogout.ts"
 import { useMediaQuery } from "@mantine/hooks"
 import { useEffect, useState } from "react"
+import ProfileData from "@/components/layout/Header/ProfileData.tsx"
 
 const Header = () => {
-  const { isAuthenticated, email } = useAuth()
+  const { isAuthenticated } = useAuth()
   const logoutHandler = useLogout()
   const navigate = useNavigate()
   const theme = useMantineTheme()
@@ -38,7 +39,7 @@ const Header = () => {
     if (isAuthenticated) {
       return (
         <Group>
-          <Text>{email}</Text>
+          <ProfileData />
           <Button color={"red"} onClick={handleLogout}>
             Выйти
           </Button>
