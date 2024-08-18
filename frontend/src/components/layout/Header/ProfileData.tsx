@@ -26,7 +26,9 @@ const ProfileData = (): ReactElement => {
         </Tooltip>
       )}
       {data?.isCompleted === false && (
-        <Tooltip label="Профиль не заполнен">
+        <Tooltip
+          label="Заполните профиль для получения новых вакансий"
+          style={{ maxWidth: "240px", textWrap: "wrap", textAlign: "center" }}>
           <Flex>
             <CircleX size={24} color={"red"} />
           </Flex>

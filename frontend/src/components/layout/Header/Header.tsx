@@ -6,7 +6,7 @@ import routes from "@/routes/routes.tsx"
 import useAuth from "@/store/hooks/useAuth.ts"
 import useLogout from "@/store/hooks/useLogout.ts"
 import { useMediaQuery } from "@mantine/hooks"
-import { useEffect, useState } from "react"
+import { type MouseEvent, useEffect, useState } from "react"
 import ProfileData from "@/components/layout/Header/ProfileData.tsx"
 
 const Header = () => {
@@ -29,6 +29,10 @@ const Header = () => {
   const handleLogout = () => {
     logoutHandler()
     navigate(routes.login.path, { state: { fromLogout: true } })
+  }
+
+  const handleClickLink = (e: MouseEvent<HTMLAnchorElement>) => {
+    !isAuthenticated && e.preventDefault()
   }
 
   const toggleMenu = () => {
@@ -76,19 +80,43 @@ const Header = () => {
         {isMenuOpen && (
           <MobileMenu style={{ backgroundColor: theme.colors.dark[9] }}>
             <Flex
+              w={"fit-content"}
               mt={"md"}
               direction={"column"}
-              align={"center"}
-              gap={theme.fontSizes.xs}>
-              <LinkStyle to={routes.home.path} style={{ fontSize: "1.75rem" }}>
+              align={"center"}>
+              <LinkStyle
+                to={routes.home.path}
+                style={{
+                  fontSize: "1.75rem",
+                  padding: "1rem 1.75rem",
+                  width: "100%",
+                  placeContent: "center",
+                }}
+                disabled={!isAuthenticated}
+                onClick={handleClickLink}>
                 Вакансии
               </LinkStyle>
               <LinkStyle
                 to={routes.profile.path}
-                style={{ fontSize: "1.75rem" }}>
+                style={{
+                  fontSize: "1.75rem",
+                  padding: "1rem 1.75rem",
+                  width: "100%",
+                  placeContent: "center",
+                }}
+                disabled={!isAuthenticated}
+                onClick={handleClickLink}>
                 Профиль
               </LinkStyle>
-              <LinkStyle to={routes.faq.path} style={{ fontSize: "1.75rem" }}>
+              <LinkStyle
+                to={routes.faq.path}
+                style={{
+                  fontSize: "1.75rem",
+                  padding: "1rem 1.75rem",
+                  width: "100%",
+                  placeContent: "center",
+                }}
+                onClick={() => setIsMenuOpen(false)}>
                 FAQ
               </LinkStyle>
             </Flex>
@@ -103,9 +131,21 @@ const Header = () => {
     return (
       <>
         <Group h="100%">
-          <LinkStyle to={routes.home.path}>Вакансии</LinkStyle>
-          <LinkStyle to={routes.profile.path}>Профиль</LinkStyle>
-          <LinkStyle to={routes.faq.path}>FAQ</LinkStyle>
+          <LinkStyle
+            to={routes.home.path}
+            disabled={!isAuthenticated}
+            onClick={handleClickLink}>
+            Вакансии
+          </LinkStyle>
+          <LinkStyle
+            to={routes.profile.path}
+            disabled={!isAuthenticated}
+            onClick={handleClickLink}>
+            Профиль
+          </LinkStyle>
+          <LinkStyle to={routes.faq.path} onClick={() => setIsMenuOpen(false)}>
+            FAQ
+          </LinkStyle>
         </Group>
         {renderAuthButtons()}
       </>
@@ -133,7 +173,7 @@ const LogoStyle = styled.img`
   width: 100px;
 `
 
-const LinkStyle = styled(Link)`
+const LinkStyle = styled(Link)<{ disabled?: boolean }>`
   font-size: 1.25rem;
   text-decoration: none;
   color: var(--mantine-color-dark-0);
@@ -142,6 +182,7 @@ const LinkStyle = styled(Link)`
   align-items: center;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+  opacity: ${(props) => (props.disabled ? "0.25" : "1")};
 
   &:hover {
     background-color: var(--mantine-color-dark-7);
@@ -160,6 +201,7 @@ const MobileMenu = styled.div`
   justify-content: space-between;
   padding: 1rem;
   position: fixed;
+  align-items: center;
   top: 60px;
   bottom: 0;
   left: 0;
