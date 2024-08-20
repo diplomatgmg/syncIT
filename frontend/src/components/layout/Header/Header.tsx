@@ -32,11 +32,11 @@ const Header = () => {
   }
 
   const handleClickLink = (e: MouseEvent<HTMLAnchorElement>) => {
-    !isAuthenticated && e.preventDefault()
-  }
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
+    if (!isAuthenticated) {
+      e.preventDefault()
+      navigate(routes.login.path, { state: { fromProtectedRoute: true } })
+    }
+    setIsMenuOpen(false)
   }
 
   const renderAuthButtons = () => {
@@ -73,7 +73,7 @@ const Header = () => {
     return (
       <>
         <Flex align={"center"} gap={"sm"} wrap={"nowrap"}>
-          <Button onClick={toggleMenu} w={"50px"}>
+          <Button onClick={() => setIsMenuOpen(!isMenuOpen)} w={"50px"}>
             {isMenuOpen ? "✕" : "☰"}
           </Button>
         </Flex>
