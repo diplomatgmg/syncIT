@@ -27,12 +27,13 @@ class HardSkill(models.Model):
         related_name="children",
     )
     selectable = models.BooleanField(default=True)
+    ordering = models.PositiveSmallIntegerField(default=None, null=True)
 
     objects = HardSkillManager()
 
     class Meta:
         unique_together = ("name", "parent")
-        ordering = ("id",)
+        ordering = ("ordering", "name")
 
     def __str__(self):
         return self.get_full_path()
