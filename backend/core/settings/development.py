@@ -3,6 +3,7 @@ import sys
 
 DEBUG = True
 
+SHELL_PLUS = "ipython"
 
 ALLOWED_HOSTS = ["*"]
 
