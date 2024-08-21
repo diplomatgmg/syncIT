@@ -5,4 +5,5 @@ from .models import Grade
 
 @admin.register(Grade)
 class GradeAdmin(admin.ModelAdmin):
-    pass
+    list_display = ("id", "name")
+    search_fields = ("name",)

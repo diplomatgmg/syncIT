@@ -27,7 +27,7 @@ class HardSkill(models.Model):
         related_name="children",
     )
     selectable = models.BooleanField(default=True)
-    ordering = models.PositiveSmallIntegerField(default=None, null=True)
+    ordering = models.PositiveSmallIntegerField(default=None, null=True, blank=True)
 
     objects = HardSkillManager()
 

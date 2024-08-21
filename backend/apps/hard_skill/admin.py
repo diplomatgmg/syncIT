@@ -6,11 +6,11 @@ from .models import HardSkill, UnknownHardSkill
 
 @admin.register(HardSkill)
 class HardSkillAdmin(admin.ModelAdmin):
-    list_display = ("id", "full_name", "vacancies_count")
-    ordering = ("id",)
-
-    def full_name(self, obj: HardSkill):
-        return obj.get_full_path()
+    list_display = ("name", "parent", "selectable", "vacancies_count", "ordering")
+    list_filter = ("selectable",)
+    raw_id_fields = ("parent",)
+    search_fields = ("name",)
+    ordering = ("ordering", "-parent")
 
     def vacancies_count(self, obj):
         return obj.vacancies.count()

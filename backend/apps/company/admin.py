@@ -5,4 +5,5 @@ from .models import Company
 
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
-    pass
+    list_display = ("id", "name")
+    search_fields = ("name",)
