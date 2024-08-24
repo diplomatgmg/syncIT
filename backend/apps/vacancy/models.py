@@ -2,12 +2,6 @@ from django.contrib.auth import get_user_model
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
-from ..company.models import Company
-from ..grade.models import Grade
-from ..hard_skill.models import HardSkill
-from ..profession.models import Profession
-from ..work_format.models import WorkFormat
-
 User = get_user_model()
 
 
@@ -35,11 +29,11 @@ class Vacancy(BaseVacancy):
     salary_to = models.IntegerField(blank=True, null=True)
     currency = models.CharField(max_length=5, blank=True, null=True)
     experience = models.CharField(max_length=255)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
-    grade = models.ForeignKey(Grade, on_delete=models.CASCADE)
-    work_formats = models.ManyToManyField(WorkFormat, related_name="vacancies")
-    hard_skills = models.ManyToManyField(HardSkill, related_name="vacancies")
-    profession = models.ForeignKey(Profession, on_delete=models.CASCADE)
+    company = models.ForeignKey("Company", on_delete=models.CASCADE)
+    grade = models.ForeignKey("Grade", on_delete=models.CASCADE)
+    work_formats = models.ManyToManyField("WorkFormat", related_name="vacancies")
+    hard_skills = models.ManyToManyField("HardSkill", related_name="vacancies")
+    profession = models.ForeignKey("Profession", on_delete=models.CASCADE)
     created_at = models.DateTimeField(
         auto_now_add=True
     )  # TODO Мб поменять в парcере created_at и published_at местами
@@ -56,7 +50,7 @@ class UserVacancy(models.Model):
 
     is_viewed = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="vacancies")
-    vacancy = models.ForeignKey(Vacancy, on_delete=models.CASCADE)
+    vacancy = models.ForeignKey("Vacancy", on_delete=models.CASCADE)
     suitability = models.IntegerField(
         validators=(
             MinValueValidator(0),
