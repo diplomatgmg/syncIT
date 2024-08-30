@@ -9,4 +9,4 @@ ignore:
   - "**/admin.py"
   - "**/manage.py"
   - "**/apps.py"
-  - "parsers"
+  - "**/parsers"
