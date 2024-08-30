@@ -1,10 +1,6 @@
-from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import (
-    AbstractBaseUser,
     BaseUserManager,
-    PermissionsMixin,
 )
-from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
@@ -33,21 +29,3 @@ class UserManager(BaseUserManager):
             raise ValueError(_("Super user must have is_active=True."))
 
         return self.create_user(email, password, **extra_fields)
-
-
-class User(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(db_index=True, unique=True)
-
-    is_active = models.BooleanField(default=False)
-    is_staff = models.BooleanField(default=False)
-
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    objects = UserManager()
-
-    USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = []
-
-    def __str__(self):
-        return self.email

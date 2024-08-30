@@ -1,7 +1,11 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
-from ..models import Profile, Grade, HardSkill, WorkFormat, Profession
+from apps.grade.models import Grade
+from apps.hard_skill.models import HardSkill
+from apps.profession.models import Profession
+from apps.user_profile.models import Profile
+from apps.work_format.models import WorkFormat
 
 User = get_user_model()
 

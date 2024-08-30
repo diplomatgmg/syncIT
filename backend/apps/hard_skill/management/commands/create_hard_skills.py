@@ -1,7 +1,8 @@
 from django.core.management.base import BaseCommand
+
 from apps.hard_skill.models import HardSkill
 from apps.hard_skill.utils.hard_skill_parser import get_skills
-from utils.parsers.normalize_hard_skill import normalize_hard_skill
+from helpers.utils.normalize_hard_skill import normalize_hard_skill
 
 
 class Command(BaseCommand):

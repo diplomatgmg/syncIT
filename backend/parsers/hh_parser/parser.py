@@ -10,15 +10,17 @@ import requests
 
 from apps.profession.models import Profession
 from apps.vacancy.models import ParsedVacancy, Vacancy
-from utils.helpers import generate_hash, clear_html, timeit
-from utils.normalize_currency import normalize_currency
-from utils.parsers.base_parser import BaseParser
-from utils.parsers.normalize_grade import normalize_grade
-from utils.parsers.normalize_hard_skill import normalize_hard_skill
-from utils.parsers.normalize_profession import normalize_profession
-from utils.parsers.open_ai.chat_gpt import get_chat_gpt_completion
-from utils.parsers.open_ai.prompt import make_prompt
-from utils.parsers.open_ai.utils import parse_vacancy
+from helpers.utils.clear_html import clear_html
+from helpers.utils.generate_hash import generate_hash
+from helpers.utils.normalize_currency import normalize_currency
+from helpers.utils.timeit import timeit
+from parsers.base_parser import BaseParser
+from helpers.utils.normalize_grade import normalize_grade
+from helpers.utils.normalize_hard_skill import normalize_hard_skill
+from helpers.utils.normalize_profession import normalize_profession
+from parsers.open_ai.chat_gpt import get_chat_gpt_completion
+from parsers.open_ai.prompt import make_prompt
+from parsers.open_ai.utils import parse_vacancy
 
 logger = logging.getLogger(__name__)
 

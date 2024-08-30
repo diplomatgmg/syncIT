@@ -4,13 +4,13 @@ from unittest.mock import patch
 
 from django.test import TestCase
 
-from utils.helpers import timeit
+from helpers.utils.timeit import timeit
 
 logger = logging.getLogger(__name__)
 
 
 class TimeitDecoratorTest(TestCase):
-    @patch("utils.helpers.logger")  # Патчим logger
+    @patch("helpers.utils.timeit.logger")
     def test_timeit_decorator_output(self, mock_logger):
         @timeit
         def sample_function():
@@ -27,7 +27,7 @@ class TimeitDecoratorTest(TestCase):
             self.assertTrue("Функция" in log_message)
             self.assertTrue("секунд" in log_message)
 
-    @patch("utils.helpers.logger")  # Патчим logger
+    @patch("helpers.utils.timeit.logger")
     def test_timeit_decorator_functionality(self, mock_logger):
         @timeit
         def delayed_function():

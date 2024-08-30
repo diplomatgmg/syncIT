@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 from rest_framework import status
 
-from utils.base_test import BaseTestCase
+from helpers.for_tests.base_api_test import BaseTestCase
 from ..models import Profession
 from ..serializers import ProfessionSerializer
 from ..views import ProfessionListAPIView
