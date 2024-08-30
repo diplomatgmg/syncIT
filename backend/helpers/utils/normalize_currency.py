@@ -1,24 +1,14 @@
 def normalize_currency(currency: str) -> str:
-    match currency:
-        case "AZN":  # Манаты
-            return "₼"
-        case "BYR":  # Белорусские рубли
-            return "Br"
-        case "EUR":  # Евро
-            return "€"
-        case "GEL":  # Грузинский лари
-            return "₾"
-        case "KGS":  # Кыргызский сом
-            return "сом"
-        case "KZT":  # Тенге
-            return "₸"
-        case "RUR":  # Рубли
-            return "₽"
-        case "UAH":  # Гривны
-            return "₴"
-        case "USD":  # Доллары
-            return "$"
-        case "UZS":  # Узбекский сум
-            return "so'm"
-        case _:
-            return currency
+    currency_symbols = {
+        "AZN": "₼",  # Манаты
+        "BYR": "Br",  # Белорусские рубли
+        "EUR": "€",  # Евро
+        "GEL": "₾",  # Грузинский лари
+        "KGS": "сом",  # Кыргызский сом
+        "KZT": "₸",  # Тенге
+        "RUR": "₽",  # Рубли
+        "UAH": "₴",  # Гривны
+        "USD": "$",  # Доллары
+        "UZS": "so'm",  # Узбекский сум
+    }
+    return currency_symbols.get(currency, currency)

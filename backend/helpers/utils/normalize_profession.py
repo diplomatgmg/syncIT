@@ -1,19 +1,19 @@
 def normalize_profession(profession: str):
-    profession_lower = profession.lower()
+    profession_mapping = {
+        "devops": "DevOps",
+        "бэкенд-разработчик": "Backend-разработчик",
+        "бэкенд разработчик": "Backend-разработчик",
+        "qa automation engineer": "Тестировщик",
+        "qa-инженер": "Тестировщик",
+        "мобильный разработчик": "Мобильный разработчик",
+        "mobile-разработчик": "Мобильный разработчик",
+        "project manager": "Project Manager",
+        "it project manager": "Project Manager",
+        "data scientist": "Data Scientist",
+    }
 
-    if "devops" in profession_lower:
-        return "DevOps"
+    for key in profession_mapping:
+        if key in profession.lower():
+            return profession_mapping[key]
 
-    match profession_lower:
-        case "бэкенд-разработчик" | "бэкенд разработчик":
-            return "Backend-разработчик"
-        case "qa automation engineer" | "qa-инженер":
-            return "Тестировщик"
-        case "мобильный разработчик" | "mobile-разработчик":
-            return "Мобильный разработчик"
-        case "project manager" | "it project manager":
-            return "Project Manager"
-        case "data scientist":
-            return "Data Scientist"
-        case _:
-            return profession
+    return profession
