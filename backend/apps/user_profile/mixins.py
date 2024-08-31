@@ -4,6 +4,7 @@ from rest_framework.response import Response
 
 from .models import Profile
 from .serializers import ProfileSerializer
+from apps.user_profile.tasks import find_suitable_vacancies_for_profile
 
 User = get_user_model()
 
@@ -34,4 +35,8 @@ class ProfileAttributesMixin:
 
         getattr(profile, self.attribute_field).set(attributes)
         serializer = self.attribute_serializer(attributes, many=True)
+
+        # FIXME бьет по производительности.
+        #  Сделать один patch запрос для обновления профиля
+        find_suitable_vacancies_for_profile.delay(profile.id)
         return Response(serializer.data)
