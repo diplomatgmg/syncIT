@@ -18,7 +18,7 @@ def timeit(func):
         end = datetime.now()
         func_path = __normalize_path(func.__code__)
         logger.info(
-            f"Функция {func_path} -> <{func.__name__}> выполнилась за {end - start} секунд"
+            f"Функция {func_path} -> {func.__name__}() выполнилась за {end - start}"
         )
         return result
 
