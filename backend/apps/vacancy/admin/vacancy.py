@@ -1,8 +1,8 @@
 from django.contrib import admin
-
-from .models import Vacancy, ParsedVacancy, UserVacancy
 from django.contrib.admin.filters import SimpleListFilter
-from ..hard_skill.models import HardSkill
+
+from apps.hard_skill.models import HardSkill
+from apps.vacancy.models import Vacancy
 
 
 class HardSkillFilter(SimpleListFilter):
@@ -24,14 +24,3 @@ class VacancyAdmin(admin.ModelAdmin):
     search_fields = ("name",)
     list_per_page = 20
     list_filter = ("profession__name", HardSkillFilter)
-
-
-@admin.register(ParsedVacancy)
-class ParsedVacancyAdmin(admin.ModelAdmin):
-    list_display = ("name", "url")
-    list_per_page = 20
-
-
-@admin.register(UserVacancy)
-class UserVacancyAdmin(admin.ModelAdmin):
-    list_per_page = 20
