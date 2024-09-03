@@ -1,6 +1,7 @@
 from django.test import TestCase
-from ..models import Grade
-from ..serializers import GradeSerializer
+
+from apps.grade.models import Grade
+from apps.grade.serializers import GradeSerializer
 
 
 class GradeSerializerTestCase(TestCase):

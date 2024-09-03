@@ -2,10 +2,10 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 from rest_framework import status
 
+from apps.profession.models import Profession
+from apps.profession.serializers import ProfessionSerializer
+from apps.profession.views import ProfessionListAPIView
 from helpers.for_tests.base_api_test import BaseTestCase
-from ..models import Profession
-from ..serializers import ProfessionSerializer
-from ..views import ProfessionListAPIView
 
 User = get_user_model()
 

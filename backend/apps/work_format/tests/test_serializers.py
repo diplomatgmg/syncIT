@@ -1,6 +1,7 @@
 from django.test import TestCase
-from ..models import WorkFormat
-from ..serializers import WorkFormatSerializer
+
+from apps.work_format.models import WorkFormat
+from apps.work_format.serializers import WorkFormatSerializer
 
 
 class WorkFormatSerializerTestCase(TestCase):

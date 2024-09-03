@@ -1,6 +1,7 @@
 from django.test import TestCase
-from ..models import Profession
-from ..serializers import ProfessionSerializer
+
+from apps.profession.models import Profession
+from apps.profession.serializers import ProfessionSerializer
 
 
 class ProfessionSerializerTestCase(TestCase):

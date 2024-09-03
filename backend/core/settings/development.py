@@ -1,4 +1,5 @@
-from .base import *
+from core.settings.base import *
+
 import sys
 
 DEBUG = True

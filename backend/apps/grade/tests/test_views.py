@@ -2,10 +2,11 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 from rest_framework import status
 
+from apps.grade.models import Grade
+from apps.grade.serializers import GradeSerializer
+from apps.grade.views import GradeListAPIView
 from helpers.for_tests.base_api_test import BaseTestCase
-from ..models import Grade
-from ..serializers import GradeSerializer
-from ..views import GradeListAPIView
+
 
 User = get_user_model()
 
