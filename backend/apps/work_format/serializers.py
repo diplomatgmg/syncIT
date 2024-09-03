@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import WorkFormat
+from apps.work_format.models import WorkFormat
 
 
 class WorkFormatSerializer(serializers.ModelSerializer):

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import WorkFormat
+from apps.work_format.models import WorkFormat
 
 
 @admin.register(WorkFormat)
