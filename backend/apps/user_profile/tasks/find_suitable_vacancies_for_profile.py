@@ -51,14 +51,3 @@ def find_suitable_vacancies_for_profile(profile_id: int):
         if not created:
             vacancy.suitability = suitability
             vacancy.save()
-
-
-@shared_task()
-def find_suitable_vacancies_for_all_profiles():
-    """
-    Поиск подходящих вакансий для пользователей
-    """
-    profiles = Profile.objects.filter(is_completed=True)
-
-    for profile in profiles:
-        find_suitable_vacancies_for_profile.delay(profile.id)

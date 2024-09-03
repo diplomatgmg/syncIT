@@ -1,17 +1,8 @@
-from django.contrib.auth import get_user_model
 from rest_framework.request import Request
 from rest_framework.response import Response
 
-from .models import Profile
-from .serializers import ProfileSerializer
+from apps.user_profile.models import Profile
 from apps.user_profile.tasks import find_suitable_vacancies_for_profile
-
-User = get_user_model()
-
-
-class ProfileMixin:
-    queryset = Profile.objects.all()
-    serializer_class = ProfileSerializer
 
 
 class ProfileAttributesMixin:

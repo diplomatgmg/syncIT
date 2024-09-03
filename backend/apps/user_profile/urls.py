@@ -1,13 +1,6 @@
 from django.urls import path
 
-from .views import (
-    ProfileAPIView,
-    ProfileIsCompletedAPIView,
-    ProfileHardSkillsAPIView,
-    ProfileGradesAPIView,
-    ProfileWorkFormatsAPIView,
-    ProfileProfessionsAPIView,
-)
+from apps.user_profile.views import *
 
 urlpatterns = [
     path("", ProfileAPIView.as_view(), name="profile"),

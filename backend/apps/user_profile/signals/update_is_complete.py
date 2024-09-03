@@ -1,16 +1,7 @@
-from django.contrib.auth import get_user_model
-from django.db.models.signals import post_save, m2m_changed
+from django.db.models.signals import m2m_changed
 from django.dispatch import receiver
 
-from .models import Profile
-
-User = get_user_model()
-
-
-@receiver(post_save, sender=User)
-def create_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
+from apps.user_profile.models import Profile
 
 
 @receiver(m2m_changed, sender=Profile.hard_skills.through)
@@ -31,5 +22,4 @@ def update_is_complete(sender, instance, **kwargs):
     )
 
     instance.is_completed = is_completed
-
     instance.save()

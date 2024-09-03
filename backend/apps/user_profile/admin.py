@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from .models import Profile
-from ..hard_skill.models import HardSkill
+from apps.hard_skill.models import HardSkill
+from apps.user_profile.models import Profile
 
 
 @admin.register(Profile)

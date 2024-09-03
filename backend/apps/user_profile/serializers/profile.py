@@ -1,10 +1,9 @@
+from apps.grade.serializers import GradeSerializer
+from apps.hard_skill.serializers import HardSkillRecursiveSerializer
+from apps.profession.serializers import ProfessionSerializer
+from apps.user_profile.models import Profile
+from apps.work_format.serializers import WorkFormatSerializer
 from rest_framework import serializers
-
-from .models import Profile
-from ..grade.serializers import GradeSerializer
-from ..hard_skill.serializers import HardSkillRecursiveSerializer
-from ..profession.serializers import ProfessionSerializer
-from ..work_format.serializers import WorkFormatSerializer
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -22,9 +21,3 @@ class ProfileSerializer(serializers.ModelSerializer):
             "work_formats",
             "professions",
         )
-
-
-class ProfileIsCompletedSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Profile
-        fields = ("is_completed",)

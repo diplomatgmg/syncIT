@@ -4,8 +4,8 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIRequestFactory, force_authenticate
 
-from ..models import Profile
-from ..views import ProfileAPIView
+from apps.user_profile.models import Profile
+from apps.user_profile.views import ProfileAPIView
 
 User = get_user_model()
 

@@ -1,10 +1,10 @@
 from django.contrib.auth import get_user_model
-from rest_framework.test import APITestCase, APIClient
-from rest_framework import status
 from django.urls import reverse
+from rest_framework import status
+from rest_framework.test import APITestCase, APIClient
 
-from ..models import Profile
-from ...hard_skill.models import HardSkill
+from apps.hard_skill.models import HardSkill
+from apps.user_profile.models import Profile
 
 User = get_user_model()
 
