@@ -5,7 +5,7 @@ from rest_framework.test import APITestCase, APIRequestFactory, force_authentica
 User = get_user_model()
 
 
-class BaseTestCase(APITestCase):
+class BaseViewTestCase(APITestCase):
     """
     Базовый класс для работы с API
     """

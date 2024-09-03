@@ -5,12 +5,12 @@ from rest_framework import status
 from apps.profession.models import Profession
 from apps.profession.serializers import ProfessionSerializer
 from apps.profession.views import ProfessionListAPIView
-from helpers.for_tests.base_api_test import BaseTestCase
+from helpers.for_tests import BaseViewTestCase
 
 User = get_user_model()
 
 
-class ProfessionListAPIViewTestCase(BaseTestCase):
+class ProfessionListAPIViewViewTestCase(BaseViewTestCase):
     def test_list_professions(self):
         """Проверяем, что представление возвращает список всех профессий"""
         Profession.objects.create(name="Fullstack-разработчик")

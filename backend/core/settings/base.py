@@ -69,7 +69,7 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.SessionAuthentication",
     ),
     "DEFAULT_RENDERER_CLASSES": [
-        "helpers.renderers.camel_case.CamelCaseJSONRenderer",
+        "helpers.renderers.CamelCaseJSONRenderer",
         "rest_framework.renderers.BrowsableAPIRenderer",
     ],
 }

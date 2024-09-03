@@ -2,7 +2,7 @@ import hashlib
 
 from django.test import TestCase
 
-from helpers.utils.generate_hash import generate_hash
+from helpers.utils import generate_hash
 
 
 class GenerateHashCase(TestCase):

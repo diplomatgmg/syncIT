@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from helpers.utils.clear_html import clear_html
+from helpers.utils import clear_html
 
 
 class ClearHtmlTestCase(TestCase):

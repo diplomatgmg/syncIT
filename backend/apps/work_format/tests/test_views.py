@@ -5,12 +5,12 @@ from rest_framework import status
 from apps.work_format.models import WorkFormat
 from apps.work_format.serializers import WorkFormatSerializer
 from apps.work_format.views import WorkFormatListAPIView
-from helpers.for_tests.base_api_test import BaseTestCase
+from helpers.for_tests import BaseViewTestCase
 
 User = get_user_model()
 
 
-class WorkFormatListAPIViewTestCase(BaseTestCase):
+class WorkFormatListAPIViewViewTestCase(BaseViewTestCase):
     def test_list_work_formats(self):
         """Проверяем, что представление возвращает список всех форматов работы"""
         WorkFormat.objects.create(name="Офис")

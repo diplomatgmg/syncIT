@@ -1,4 +1,4 @@
-from helpers.managers.countable_manager import CountableManager
+from helpers.managers import CountableManager
 
 
 class UnknownHardSkillManager(CountableManager):

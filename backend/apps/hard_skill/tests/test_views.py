@@ -5,12 +5,12 @@ from rest_framework import status
 from apps.hard_skill.models import HardSkill
 from apps.hard_skill.serializers import HardSkillRecursiveSerializer
 from apps.hard_skill.views import HardSkillAPIView
-from helpers.for_tests.base_api_test import BaseTestCase
+from helpers.for_tests import BaseViewTestCase
 
 User = get_user_model()
 
 
-class HardSkillListAPIViewTestCase(BaseTestCase):
+class HardSkillListAPIViewViewTestCase(BaseViewTestCase):
     def test_list_hard_skills(self):
         """Проверяем, что представление возвращает список всех скиллов"""
         HardSkill.objects.create(name="Python")

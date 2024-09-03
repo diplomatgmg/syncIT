@@ -1,6 +1,6 @@
 from celery import shared_task
 
-from helpers.utils.singleton_task import singleton_task
+from helpers.utils import singleton_task
 from parsers.hh_parser.parser import HHParser
 
 

@@ -5,13 +5,13 @@ from rest_framework import status
 from apps.grade.models import Grade
 from apps.grade.serializers import GradeSerializer
 from apps.grade.views import GradeListAPIView
-from helpers.for_tests.base_api_test import BaseTestCase
+from helpers.for_tests import BaseViewTestCase
 
 
 User = get_user_model()
 
 
-class GradeListAPIViewTestCase(BaseTestCase):
+class GradeListAPIViewViewTestCase(BaseViewTestCase):
     def test_list_grades(self):
         """Проверяем, что представление возвращает список всех оценок"""
         Grade.objects.create(name="Junior")

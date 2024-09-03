@@ -1,7 +1,7 @@
 from django.test import TestCase
 
 from apps.hard_skill.models import UnknownHardSkill
-from helpers.utils.normalize_hard_skill import normalize_hard_skill
+from helpers.utils import normalize_hard_skill
 
 
 class TestNormalizeHardSkill(TestCase):
