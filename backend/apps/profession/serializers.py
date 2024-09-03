@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Profession
+from apps.profession.models import Profession
 
 
 class ProfessionSerializer(serializers.ModelSerializer):

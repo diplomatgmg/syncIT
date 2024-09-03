@@ -1,7 +1,6 @@
-from apps.profession.models.managers.unknown_profession_manager import (
-    UnknownProfessionManager,
-)
 from django.db import models
+
+from apps.profession.models.managers import UnknownProfessionManager
 
 
 class UnknownProfession(models.Model):
