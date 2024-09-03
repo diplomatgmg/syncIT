@@ -1,15 +1,11 @@
-import json
 import re
 from typing import List, Tuple, Optional
 
-
 from django.conf import settings
-
-BASE_DIR = settings.BASE_DIR
 
 
 def read_skills():
-    path = BASE_DIR / "apps" / "hard_skill" / "hard_skills.yml"
+    path = settings.BASE_DIR / "apps" / "hard_skill" / "hard_skills.yml"
     with open(path, "r") as file:
         return file.read()
 

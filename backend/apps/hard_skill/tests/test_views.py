@@ -2,10 +2,10 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 from rest_framework import status
 
+from apps.hard_skill.models import HardSkill
+from apps.hard_skill.serializers import HardSkillRecursiveSerializer
+from apps.hard_skill.views import HardSkillAPIView
 from helpers.for_tests.base_api_test import BaseTestCase
-from ..models import HardSkill
-from ..serializers import HardSkillRecursiveSerializer
-from ..views import HardSkillAPIView
 
 User = get_user_model()
 

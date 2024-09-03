@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.db.models import Count
 
-from .models import HardSkill, UnknownHardSkill
+from apps.hard_skill.models import HardSkill, UnknownHardSkill
 
 
 @admin.register(HardSkill)
@@ -28,5 +28,5 @@ class HardSkillAdmin(admin.ModelAdmin):
 
 @admin.register(UnknownHardSkill)
 class UnknownHardSkillAdmin(admin.ModelAdmin):
-    list_display = ["name", "create_count"]
+    list_display = ("name", "create_count")
     ordering = ("-create_count",)

@@ -1,6 +1,7 @@
 from django.test import TestCase
-from ..models import HardSkill
-from ..serializers import HardSkillRecursiveSerializer
+
+from apps.hard_skill.models import HardSkill
+from apps.hard_skill.serializers import HardSkillRecursiveSerializer
 
 
 class HardSkillSerializerTestCase(TestCase):

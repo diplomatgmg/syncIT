@@ -2,10 +2,8 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from rest_framework.generics import ListAPIView
 
-from .models import HardSkill
-from .serializers import (
-    HardSkillRecursiveSerializer,
-)
+from apps.hard_skill.models import HardSkill
+from apps.hard_skill.serializers import HardSkillRecursiveSerializer
 
 
 @method_decorator(cache_page(600), name="dispatch")  # 10 Минут

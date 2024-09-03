@@ -1,13 +1,6 @@
 from rest_framework import serializers
-from django.core.cache import cache
 
 from apps.hard_skill.models import HardSkill
-
-
-class HardSkillSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = HardSkill
-        fields = ("id", "name")
 
 
 class HardSkillRecursiveSerializer(serializers.ModelSerializer):
@@ -18,7 +11,6 @@ class HardSkillRecursiveSerializer(serializers.ModelSerializer):
         fields = ("id", "name", "selectable", "children")
 
     def get_children(self, obj: HardSkill):
-        # Мб можно обойтись без кеширования
         children = obj.children.all()
         serialized_children = HardSkillRecursiveSerializer(children, many=True).data
         return serialized_children
