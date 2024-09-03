@@ -1,7 +1,8 @@
 from rest_framework.generics import CreateAPIView
-from .serializers import UserCreateSerializer
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework.response import Response
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
+from apps.user.serializers import UserCreateSerializer
 
 
 class UserCreateAPIView(CreateAPIView):

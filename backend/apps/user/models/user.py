@@ -4,7 +4,7 @@ from django.contrib.auth.models import (
 )
 from django.db import models
 
-from apps.user.models.managers.user_manager import UserManager
+from apps.user.models.managers import UserManager
 
 
 class User(AbstractBaseUser, PermissionsMixin):

@@ -1,7 +1,7 @@
 from django.urls import path
 from djoser.views import UserViewSet
 
-from .views import CustomTokenObtainPairView, CustomTokenRefreshView
+from apps.user.views import CustomTokenObtainPairView, CustomTokenRefreshView
 
 urlpatterns = [
     path("token/create/", CustomTokenObtainPairView.as_view()),
