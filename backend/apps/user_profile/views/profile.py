@@ -14,32 +14,22 @@ class ProfileAPIView(RetrieveAPIView):
     def get_object(self):
         return self.queryset.get(user=self.request.user)
 
-    def put(self, request: Request, *args, **kwargs):  # FIXME рефактор этого говна
-        profile = Profile.objects.get(user=request.user)
+    def put(self, request: Request, *args, **kwargs):
+        profile = self.get_object()
+        data = request.data
 
-        professions = request.data.get("professions")
-        work_formats = request.data.get("workFormats")
-        grades = request.data.get("grades")
-        hard_skills = request.data.get("hardSkills")
+        fields_to_update = {
+            "professions": "professions",
+            "workFormats": "work_formats",
+            "grades": "grades",
+            "hardSkills": "hard_skills",
+        }
 
-        if professions:
-            profile.professions.clear()
-            for profession in professions:
-                profile.professions.add(profession.get("id"))
-
-        if work_formats:
-            profile.work_formats.clear()
-            for work_format in work_formats:
-                profile.work_formats.add(work_format.get("id"))
-
-        if grades:
-            profile.grades.clear()
-            for grade in grades:
-                profile.grades.add(grade.get("id"))
-
-        if hard_skills:
-            profile.hard_skills.clear()
-            for hard_skill in hard_skills:
-                profile.hard_skills.add(hard_skill.get("id"))
+        for field_name, attr_name in fields_to_update.items():
+            field_value = data.get(field_name)
+            if field_value:
+                getattr(profile, attr_name).clear()
+                for item in field_value:
+                    getattr(profile, attr_name).add(item.get("id"))
 
         return Response(status=status.HTTP_204_NO_CONTENT)
