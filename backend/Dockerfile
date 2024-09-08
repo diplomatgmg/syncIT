@@ -1,19 +1,21 @@
-FROM python:3.12-slim AS base
+FROM python:3.12-alpine AS base
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 WORKDIR /project/backend
 
-RUN pip install --upgrade pip
+COPY ./requirements/base.txt ./requirements/base.txt
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements/base.txt && \
+    pip install setuptools
 
 
 # DEVELOPMENT
 FROM base AS development
 
-COPY ./requirements/base.txt ./requirements/base.txt
 COPY ./requirements/development.txt ./requirements/development.txt
-RUN pip install -r requirements/development.txt
+RUN pip install --no-cache-dir -r requirements/development.txt
 COPY . .
 
 ENV DJANGO_SETTINGS_MODULE=core.settings.development
@@ -24,9 +26,8 @@ CMD ["sh", "startup/development.sh"]
 # PRODUCTION
 FROM base AS production
 
-COPY ./requirements/base.txt ./requirements/base.txt
 COPY ./requirements/production.txt ./requirements/production.txt
-RUN pip install -r requirements/production.txt
+RUN pip install --no-cache-dir -r requirements/production.txt
 COPY . .
 
 ENV DJANGO_SETTINGS_MODULE=core.settings.production
