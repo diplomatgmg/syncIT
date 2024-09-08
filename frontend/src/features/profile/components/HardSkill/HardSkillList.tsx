@@ -1,10 +1,6 @@
 import { HardSkill } from "@/types/hardSkillTypes.ts"
 import { FC } from "react"
 import HardSkillItem from "@/features/profile/components/HardSkill/HardSkillItem.tsx"
-import {
-  useGetProfileStatusQuery,
-  useSetUserHardSkillsMutation,
-} from "@/store/api/profileApi.ts"
 import useSelectableItems from "@/store/hooks/useSelectableItems.ts"
 import styled, { ThemeProvider } from "styled-components"
 import { transitionsSpeed } from "@/styles/theme.ts"
@@ -19,11 +15,9 @@ const HardSkillList: FC<HardSkillListProps> = ({
   hardSkills,
   userHardSkills,
 }) => {
-  const { refetch: refetchProfileStatus } = useGetProfileStatusQuery()
   const { selectedItems, handleCheckboxChange } = useSelectableItems(
     userHardSkills,
-    useSetUserHardSkillsMutation,
-    refetchProfileStatus
+    "hardSkill"
   )
   const theme = useMantineTheme()
 

@@ -1,10 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react"
 import baseQuery from "@/store/api/baseQuery.ts"
-import { HardSkill } from "@/types/hardSkillTypes.ts"
-import { Grade } from "@/types/gradeTypes.ts"
-import { WorkFormat } from "@/types/workFormatTypes.ts"
-import { Profession } from "@/types/professionTypes.ts"
 import { Profile, ProfileStatus } from "@/types/profileTypes.ts"
+import { ProfileState } from "@/store/slice/profileSlice.ts"
 
 const profileApi = createApi({
   reducerPath: "profileApi",
@@ -18,34 +15,10 @@ const profileApi = createApi({
     getProfileStatus: builder.query<ProfileStatus, void>({
       query: () => "profile/is_completed/",
     }),
-    setUserHardSkills: builder.mutation<HardSkill[], HardSkill[]>({
+    setProfileData: builder.mutation<Profile, ProfileState>({
       query: (data) => ({
-        url: "profile/hard_skills/",
-        method: "PATCH",
-        body: data,
-      }),
-      invalidatesTags: ["Profile"],
-    }),
-    setUserGrades: builder.mutation<Grade[], Grade[]>({
-      query: (data) => ({
-        url: "profile/grades/",
-        method: "PATCH",
-        body: data,
-      }),
-      invalidatesTags: ["Profile"],
-    }),
-    setUserWorkFormats: builder.mutation<WorkFormat[], WorkFormat[]>({
-      query: (data) => ({
-        url: "profile/work_formats/",
-        method: "PATCH",
-        body: data,
-      }),
-      invalidatesTags: ["Profile"],
-    }),
-    setUserProfessions: builder.mutation<Profession[], Profession[]>({
-      query: (data) => ({
-        url: "profile/professions/",
-        method: "PATCH",
+        url: "profile/",
+        method: "PUT",
         body: data,
       }),
       invalidatesTags: ["Profile"],
@@ -56,9 +29,6 @@ const profileApi = createApi({
 export const {
   useGetProfileDataQuery,
   useGetProfileStatusQuery,
-  useSetUserHardSkillsMutation,
-  useSetUserGradesMutation,
-  useSetUserWorkFormatsMutation,
-  useSetUserProfessionsMutation,
+  useSetProfileDataMutation,
 } = profileApi
 export default profileApi

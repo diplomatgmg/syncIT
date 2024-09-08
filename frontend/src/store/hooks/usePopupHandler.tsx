@@ -45,6 +45,10 @@ const usePopupHandler = () => {
           }
           break
 
+        case state.fromProfileSave:
+          popup.success("Профиль успешно сохранен!")
+          break
+
         default:
           return
       }

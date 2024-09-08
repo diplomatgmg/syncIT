@@ -6,6 +6,7 @@ import hardSkillApi from "@/store/api/hardSkillApi.ts"
 import workFormatApi from "@/store/api/workFormatApi.ts"
 import professionApi from "@/store/api/professionApi.ts"
 import authReducer from "@/store/slice/authSlice.ts"
+import profileReducer from "@/store/slice/profileSlice"
 import vacancyApi from "@/store/api/vacancyApi.ts"
 
 const store = configureStore({
@@ -18,6 +19,7 @@ const store = configureStore({
     [professionApi.reducerPath]: professionApi.reducer,
     [vacancyApi.reducerPath]: vacancyApi.reducer,
     auth: authReducer,
+    profile: profileReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(

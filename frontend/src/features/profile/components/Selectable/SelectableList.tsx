@@ -1,27 +1,22 @@
 import { ReactElement } from "react"
-import useSelectableItems, {
-  Mutation,
-} from "@/store/hooks/useSelectableItems.ts"
-import { useGetProfileStatusQuery } from "@/store/api/profileApi.ts"
+import useSelectableItems from "@/store/hooks/useSelectableItems.ts"
 import styled from "styled-components"
 import Checkbox from "@/components/common/Checkbox.tsx"
 
 interface SelectableListProps<T> {
   items: T[]
   userItems: T[]
-  mutation: Mutation
+  itemsName: "profession" | "workFormat" | "grade" | "hardSkill"
 }
 
 const SelectableList = <T extends { id: number; name: string }>({
   items,
   userItems,
-  mutation,
+  itemsName,
 }: SelectableListProps<T>): ReactElement => {
-  const { refetch: refetchProfileStatus } = useGetProfileStatusQuery()
   const { selectedItems, handleCheckboxChange } = useSelectableItems(
     userItems,
-    mutation,
-    refetchProfileStatus
+    itemsName
   )
 
   return (

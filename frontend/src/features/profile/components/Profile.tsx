@@ -4,6 +4,15 @@ import WorkFormat from "@/features/profile/components/WorkFormat/WorkFormat.tsx"
 import Grade from "@/features/profile/components/Grade/Grade.tsx"
 import HardSkill from "@/features/profile/components/HardSkill/HardSkill.tsx"
 import { useMediaQuery } from "@mantine/hooks"
+import { useGetProfileDataQuery } from "@/store/api/profileApi.ts"
+import useAppDispatch from "@/store/hooks/useAppDispatch.ts"
+import {
+  setGrades,
+  setHardSkills,
+  setProfessions,
+  setWorkFormats,
+} from "@/store/slice/profileSlice.ts"
+import { useEffect } from "react"
 
 export const PRIMARY_COL_HEIGHT = "85vh"
 export const FIRST_COL_HEIGHT = `calc(${PRIMARY_COL_HEIGHT} / 2 - var(--mantine-spacing-xl) / 3)`
@@ -13,6 +22,8 @@ export const THIRD_COL_HEIGHT = `calc(${PRIMARY_COL_HEIGHT} / 3 - var(--mantine-
 const LG_HEIGHT = `calc(${PRIMARY_COL_HEIGHT} / 3 - var(--mantine-spacing-xl) / 3)`
 
 const Profile = () => {
+  const { data: profileData } = useGetProfileDataQuery()
+  const dispatch = useAppDispatch()
   const theme = useMantineTheme()
   const bgStyle = {
     backgroundColor: theme.colors.dark[9],
@@ -22,6 +33,13 @@ const Profile = () => {
   const matchesSm = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`)
   const bigSpan = matchesSm ? 12 : matchesLg ? 4 : 12
   const smallSpan = matchesSm ? 6 : matchesLg ? 4 : 12
+
+  useEffect(() => {
+    dispatch(setProfessions(profileData?.professions ?? []))
+    dispatch(setWorkFormats(profileData?.workFormats ?? []))
+    dispatch(setGrades(profileData?.grades ?? []))
+    dispatch(setHardSkills(profileData?.hardSkills ?? []))
+  }, [dispatch, profileData])
 
   return (
     <Container my={"xl"} size={"xl"}>

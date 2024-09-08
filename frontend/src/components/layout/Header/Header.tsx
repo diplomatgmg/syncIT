@@ -13,7 +13,7 @@ const Header = () => {
   const { isAuthenticated } = useAuth()
   const logoutHandler = useLogout()
   const navigate = useNavigate()
-  const theme = useMantineTheme()
+  const { colors } = useMantineTheme()
   const matches = useMediaQuery("(max-width: 1024px)")
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -44,7 +44,7 @@ const Header = () => {
       return (
         <Group>
           <ProfileData />
-          <Button color={"red"} onClick={handleLogout}>
+          <Button color={colors.red[9]} onClick={handleLogout}>
             Выйти
           </Button>
         </Group>
@@ -78,7 +78,7 @@ const Header = () => {
           </Button>
         </Flex>
         {isMenuOpen && (
-          <MobileMenu style={{ backgroundColor: theme.colors.dark[9] }}>
+          <MobileMenu style={{ backgroundColor: colors.dark[9] }}>
             <Flex
               w={"fit-content"}
               mt={"md"}
@@ -154,7 +154,7 @@ const Header = () => {
 
   return (
     <ThemeProvider theme={{ isMenuOpen }}>
-      <HeaderStyle style={{ backgroundColor: theme.colors.dark[9] }}>
+      <HeaderStyle style={{ backgroundColor: colors.dark[9] }}>
         <Group justify="space-between" h="100%">
           <Link to={routes.home.path}>
             <LogoStyle src={SyncItImg} alt="syncIT" />
