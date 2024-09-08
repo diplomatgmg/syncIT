@@ -15,7 +15,7 @@ const profileApi = createApi({
     getProfileStatus: builder.query<ProfileStatus, void>({
       query: () => "profile/is_completed/",
     }),
-    setProfileData: builder.mutation<Profile, ProfileState>({
+    setProfileData: builder.mutation<void, ProfileState>({
       query: (data) => ({
         url: "profile/",
         method: "PUT",

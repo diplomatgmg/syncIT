@@ -1,14 +1,16 @@
-import time
-
 from rest_framework.generics import RetrieveAPIView
-from rest_framework.response import Response
-from apps.user_profile.mixins import ProfileMixin
 from rest_framework.request import Request
+from rest_framework.response import Response
 
 from apps.user_profile.models import Profile
+from apps.user_profile.serializers import ProfileSerializer
+from rest_framework import status
 
 
-class ProfileAPIView(ProfileMixin, RetrieveAPIView):
+class ProfileAPIView(RetrieveAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+
     def get_object(self):
         return self.queryset.get(user=self.request.user)
 
@@ -20,21 +22,24 @@ class ProfileAPIView(ProfileMixin, RetrieveAPIView):
         grades = request.data.get("grades")
         hard_skills = request.data.get("hardSkills")
 
-        profile.professions.clear()
-        profile.work_formats.clear()
-        profile.grades.clear()
-        profile.hard_skills.clear()
+        if professions:
+            profile.professions.clear()
+            for profession in professions:
+                profile.professions.add(profession.get("id"))
 
-        for profession in professions:
-            profile.professions.add(profession.get("id"))
+        if work_formats:
+            profile.work_formats.clear()
+            for work_format in work_formats:
+                profile.work_formats.add(work_format.get("id"))
 
-        for work_format in work_formats:
-            profile.work_formats.add(work_format.get("id"))
+        if grades:
+            profile.grades.clear()
+            for grade in grades:
+                profile.grades.add(grade.get("id"))
 
-        for grade in grades:
-            profile.grades.add(grade.get("id"))
+        if hard_skills:
+            profile.hard_skills.clear()
+            for hard_skill in hard_skills:
+                profile.hard_skills.add(hard_skill.get("id"))
 
-        for hard_skill in hard_skills:
-            profile.hard_skills.add(hard_skill.get("id"))
-
-        return Response({"status": "ok"})
+        return Response(status=status.HTTP_204_NO_CONTENT)
