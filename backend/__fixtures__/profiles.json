@@ -1,1 +1,0 @@
-[{"model": "user_profile.profile", "pk": 1, "fields": {"is_completed": true, "user": 1, "hard_skills": [2, 4, 5, 15, 16, 35, 38, 43, 53, 55, 58, 59, 63, 65, 67, 69, 70, 72, 73, 77, 78, 80, 82, 88, 89, 90, 91, 94, 95, 100, 102, 111, 112, 113, 114], "grades": [2, 3, 4], "work_formats": [1], "professions": [1, 2, 3]}}]
