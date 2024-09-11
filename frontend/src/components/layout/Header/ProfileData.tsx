@@ -1,66 +1,16 @@
-import { type ReactElement, useEffect } from "react"
-import {
-  Button,
-  Flex,
-  Loader,
-  Text,
-  Tooltip,
-  useMantineTheme,
-} from "@mantine/core"
+import { type ReactElement } from "react"
+import { Flex, Text, Tooltip, useMantineTheme } from "@mantine/core"
 import { Circle, CircleCheck, CircleX } from "tabler-icons-react"
 import useAuth from "@/store/hooks/useAuth.ts"
-import {
-  useGetProfileStatusQuery,
-  useSetProfileDataMutation,
-} from "@/store/api/profileApi.ts"
-import useProfile from "@/store/hooks/useProfile.ts"
-import useAppDispatch from "@/store/hooks/useAppDispatch.ts"
-import { setProfileIsChanged } from "@/store/slice/profileSlice.ts"
-import { popup } from "@/utils/popup/popup.tsx"
+import { useGetProfileStatusQuery } from "@/store/api/profileApi.ts"
 
 const ProfileData = (): ReactElement => {
   const { email } = useAuth()
   const { data = undefined } = useGetProfileStatusQuery()
-  const profile = useProfile()
-  const [updateProfile, { isLoading, isSuccess }] = useSetProfileDataMutation()
-  const dispatch = useAppDispatch()
   const { colors } = useMantineTheme()
-
-  useEffect(() => {
-    if (isSuccess && !profile.isChanged) {
-      popup.success("Профиль успешно сохранен!")
-    }
-  }, [isSuccess, profile.isChanged])
-
-  const handleSaveProfile = async () => {
-    try {
-      await updateProfile(profile).unwrap()
-      dispatch(setProfileIsChanged(false))
-    } catch (e) {
-      console.log(e)
-    }
-  }
 
   return (
     <Flex gap={"xs"} align={"center"}>
-      {profile.isChanged && (
-        <Button
-          onClick={handleSaveProfile}
-          w={"10rem"}
-          mr={"xs"}
-          loaderProps={{
-            children: (
-              <Flex align={"center"} gap={"xs"} pb={3}>
-                <Loader size={"xs"} color={colors.blue[5]} />
-                <span style={{ color: colors.blue[1] }}>Сохраняем...</span>
-              </Flex>
-            ),
-          }}
-          loading={isLoading}>
-          Сохранить
-        </Button>
-      )}
-
       <Text>{email}</Text>
       {data === undefined && (
         <Tooltip label="Получение профиля...">

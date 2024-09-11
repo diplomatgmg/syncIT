@@ -8,6 +8,9 @@ import useLogout from "@/store/hooks/useLogout.ts"
 import { useMediaQuery } from "@mantine/hooks"
 import { type MouseEvent, useEffect, useState } from "react"
 import ProfileData from "@/components/layout/Header/ProfileData.tsx"
+import SaveProfileButton from "@/components/layout/Header/SaveProfileButton.tsx"
+import useProfile from "@/store/hooks/useProfile.ts"
+import { Logout } from "tabler-icons-react"
 
 const Header = () => {
   const { isAuthenticated } = useAuth()
@@ -16,6 +19,7 @@ const Header = () => {
   const { colors } = useMantineTheme()
   const matches = useMediaQuery("(max-width: 1024px)")
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const profile = useProfile()
 
   useEffect(() => {
     // Отключение скролла при открытом меню
@@ -42,10 +46,11 @@ const Header = () => {
   const renderAuthButtons = () => {
     if (isAuthenticated) {
       return (
-        <Group>
+        <Group wrap={"nowrap"}>
+          {!matches && profile.isChanged && <SaveProfileButton />}
           <ProfileData />
           <Button color={colors.red[9]} onClick={handleLogout}>
-            Выйти
+            <Logout />
           </Button>
         </Group>
       )
@@ -73,6 +78,7 @@ const Header = () => {
     return (
       <>
         <Flex align={"center"} gap={"sm"} wrap={"nowrap"}>
+          {profile.isChanged && <SaveProfileButton />}
           <Button onClick={() => setIsMenuOpen(!isMenuOpen)} w={"50px"}>
             {isMenuOpen ? "✕" : "☰"}
           </Button>

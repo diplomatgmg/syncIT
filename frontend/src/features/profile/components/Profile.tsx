@@ -14,7 +14,7 @@ import {
 } from "@/store/slice/profileSlice.ts"
 import { useEffect } from "react"
 
-export const PRIMARY_COL_HEIGHT = "85vh"
+export const PRIMARY_COL_HEIGHT = "calc(100vh - 125px)"
 export const FIRST_COL_HEIGHT = `calc(${PRIMARY_COL_HEIGHT} / 2 - var(--mantine-spacing-xl) / 3)`
 export const SECOND_COL_HEIGHT = `calc(${PRIMARY_COL_HEIGHT} / 6 - var(--mantine-spacing-xl) / 3)`
 export const THIRD_COL_HEIGHT = `calc(${PRIMARY_COL_HEIGHT} / 3 - var(--mantine-spacing-xl) / 3)`
