@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from apps.user_profile.tasks import find_suitable_vacancies_for_all_profiles
+from apps.user_profile.tasks import find_suitable_vacancies
 
 
 class Command(BaseCommand):
@@ -7,4 +7,4 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         self.stdout.write(f"Начался поиск подходящих вакансий для пользователей")
-        find_suitable_vacancies_for_all_profiles.delay()
+        find_suitable_vacancies.delay()

@@ -7,6 +7,17 @@ from apps.vacancy.models import Vacancy, UserVacancy
 
 
 @shared_task()
+def find_suitable_vacancies():
+    """
+    Поиск подходящих вакансий для пользователей
+    """
+    profiles = Profile.objects.filter(is_completed=True)
+
+    for profile in profiles:
+        find_suitable_vacancies_for_profile.delay(profile.id)
+
+
+@shared_task()
 def find_suitable_vacancies_for_profile(profile_id: int):
     profile = Profile.objects.get(id=profile_id)
     vacancies = Vacancy.objects.all()
