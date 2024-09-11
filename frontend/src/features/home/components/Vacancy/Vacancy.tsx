@@ -46,6 +46,7 @@ const Vacancy = (): ReactElement => {
         {!isLoading && <Text fz={"xl"}>Всего - {data!.count} вакансий</Text>}
       </Flex>
       <InfiniteScroll
+        scrollThreshold={0.5}
         dataLength={vacancies.length * 10}
         next={loadMoreVacancies}
         hasMore={!!data?.next}
