@@ -1,6 +1,7 @@
+name: syncit
+
 services:
   frontend:
-    container_name: frontend
     build:
       context: ./frontend
       target: ${BUILD_TARGET}
@@ -13,12 +14,12 @@ services:
       - "80:80"
       - "3000:3000"
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
     networks:
       - app-network
 
   backend:
-    container_name: backend
     build:
       context: ./backend
       target: ${BUILD_TARGET}
@@ -30,6 +31,11 @@ services:
       - "8000:8000"
     env_file:
       - .env
+    healthcheck:
+      test: "curl -f http://localhost:8000/health-check/"
+      interval: 5s
+      timeout: 5s
+      retries: 10
     depends_on:
       postgres:
         condition: service_healthy
@@ -39,7 +45,6 @@ services:
       - app-network
 
   postgres:
-    container_name: postgres
     image: postgres:16.3-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data
@@ -48,37 +53,38 @@ services:
     env_file:
       - .env
     healthcheck:
-      test: pg_isready -h ${POSTGRES_HOST} -p ${POSTGRES_PORT} -d ${POSTGRES_DB}
+      test: "pg_isready -h ${POSTGRES_HOST} -p ${POSTGRES_PORT} -d ${POSTGRES_DB}"
       interval: 5s
       timeout: 5s
-      retries: 5
     networks:
       - app-network
 
   redis:
-    container_name: redis
     image: redis:7.2.5-alpine
     hostname: redis
     restart: always
     ports:
       - "6379:6379"
     healthcheck:
-      test: [ "CMD", "redis-cli", "ping" ]
+      test: "redis-cli ping"
       interval: 5s
       timeout: 5s
-      retries: 5
     networks:
       - app-network
 
   celery:
     restart: always
-    container_name: celery
     build:
       context: ./backend
       target: ${BUILD_TARGET}
     command: celery -A core.celery.app worker -l debug
+    healthcheck:
+      test: "celery inspect ping"
+      interval: 5s
+      timeout: 5s
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
     env_file:
       - .env
     networks:
@@ -86,34 +92,46 @@ services:
 
   celery-beat:
     restart: always
-    container_name: celery-beat
     build:
       context: ./backend
       target: ${BUILD_TARGET}
     env_file:
       - .env
     depends_on:
-      - celery
+      celery:
+        condition: service_healthy
     command: celery -A core.celery.app beat -l debug
     networks:
       - app-network
 
   flower:
     restart: always
-    container_name: flower
     build:
       context: ./backend
       target: ${BUILD_TARGET}
     command: celery -A core.celery.app flower -l debug
     env_file:
       - .env
+    healthcheck:
+      test: "curl -f http://localhost:5555"
+      interval: 5s
+      timeout: 5s
     depends_on:
-      - celery
+      celery:
+        condition: service_healthy
     ports:
       - "5555:5555"
     networks:
       - app-network
 
+  notifier:
+    image: lorcas/docker-telegram-notifier
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    env_file:
+      - .env
+    labels:
+      telegram-notifier.monitor: false
 
 volumes:
   static_volume:

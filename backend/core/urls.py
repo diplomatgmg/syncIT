@@ -1,14 +1,20 @@
 from django.conf import settings
 from django.contrib import admin
+from django.http import HttpResponse
 from django.urls import path, include
-from rest_framework import permissions
+from rest_framework import permissions, status
 
 
 admin.site.site_title = "(DEV)"
 admin.site.index_title = "SyncIT"
 
 
+def health_check(request):
+    return HttpResponse(status=status.HTTP_204_NO_CONTENT)
+
+
 urlpatterns = [
+    path("health-check/", health_check),
     path("admin/", admin.site.urls),
     path("api/", include("apps.hard_skill.urls")),
     path("api/", include("apps.grade.urls")),
