@@ -1,7 +1,7 @@
 from django.urls import path
 
-from apps.grade.views import GradeListAPIView
+from apps.grade.views import GradeProxyAPIView
 
 urlpatterns = [
-    path("grades/", GradeListAPIView.as_view(), name="grade-list"),
+    path("grades/", GradeProxyAPIView.as_view(), name="grade-list"),
 ]

@@ -1,12 +1,14 @@
+import requests
+
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
-from rest_framework import generics
-
-from apps.grade.models import Grade
-from apps.grade.serializers import GradeSerializer
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 
 @method_decorator(cache_page(600), name="dispatch")  # 10 Минут
-class GradeListAPIView(generics.ListAPIView):
-    queryset = Grade.objects.all()
-    serializer_class = GradeSerializer
+class GradeProxyAPIView(APIView):
+    def get(self, request, *args, **kwargs):
+        response = requests.get('http://go:8080/api/grades')
+        response.raise_for_status()
+        return Response(response.json())
