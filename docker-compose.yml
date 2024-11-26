@@ -21,12 +21,12 @@ services:
 
   django:
     build:
-      context: ./django
+      context: ./backend/django
       target: ${BUILD_TARGET}
     volumes:
-      - ./django:/project/django
-      - ./django/venv:/project/django/venv
-      - static_volume:/project/django/django_static/
+      - ./backend/django:/project/backend/django
+      - ./backend/django/venv:/project/backend/django/venv
+      - static_volume:/project/backend/django/django_static/
     ports:
       - "8000:8000"
     env_file:
@@ -73,7 +73,7 @@ services:
 
   celery:
     build:
-      context: ./django
+      context: ./backend/django
       target: ${BUILD_TARGET}
     command: celery -A core.celery.app worker -l debug
     healthcheck:
@@ -90,7 +90,7 @@ services:
 
   celery-beat:
     build:
-      context: ./django
+      context: ./backend/django
       target: ${BUILD_TARGET}
     env_file:
       - .env
@@ -103,7 +103,7 @@ services:
 
   flower:
     build:
-      context: ./django
+      context: ./backend/django
       target: ${BUILD_TARGET}
     command: celery -A core.celery.app flower -l debug
     env_file:
