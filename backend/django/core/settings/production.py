@@ -1,4 +1,4 @@
-from core.settings.base import *
+from core.settings.base import * # noqa
 
 DEBUG = False
 
