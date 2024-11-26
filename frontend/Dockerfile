@@ -8,7 +8,9 @@ RUN bun install --frozen-lockfilezz
 COPY . .
 
 
-# DEVELOPMENT
+# =============================== #
+#           DEVELOPMENT           #
+# =============================== #
 FROM base AS development
 
 ENV NODE_ENV=development
@@ -16,7 +18,9 @@ ENV NODE_ENV=development
 CMD ["bun", "run", "dev"]
 
 
-# PRODUCTION
+# =============================== #
+#            PRODUCTION           #
+# =============================== #
 FROM base AS build
 
 ENV NODE_ENV=production

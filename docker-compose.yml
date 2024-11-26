@@ -9,24 +9,24 @@ services:
       - ./frontend:/project/frontend
       - /project/frontend/node_modules
       - frontend_dist:/project/frontend/dist
-      - static_volume:/project/backend/django_static/
+      - static_volume:/project/django/django_static/
     ports:
       - "80:80"
       - "3000:3000"
     depends_on:
-      backend:
+      django:
         condition: service_healthy
     networks:
       - app-network
 
-  backend:
+  django:
     build:
-      context: ./backend
+      context: ./django
       target: ${BUILD_TARGET}
     volumes:
-      - ./backend:/project/backend
-      - ./backend/venv:/project/backend/venv
-      - static_volume:/project/backend/django_static/
+      - ./django:/project/django
+      - ./django/venv:/project/django/venv
+      - static_volume:/project/django/django_static/
     ports:
       - "8000:8000"
     env_file:
@@ -62,7 +62,6 @@ services:
   redis:
     image: redis:7.2.5-alpine
     hostname: redis
-    restart: always
     ports:
       - "6379:6379"
     healthcheck:
@@ -73,9 +72,8 @@ services:
       - app-network
 
   celery:
-    restart: always
     build:
-      context: ./backend
+      context: ./django
       target: ${BUILD_TARGET}
     command: celery -A core.celery.app worker -l debug
     healthcheck:
@@ -83,7 +81,7 @@ services:
       interval: 5s
       timeout: 5s
     depends_on:
-      backend:
+      django:
         condition: service_healthy
     env_file:
       - .env
@@ -91,9 +89,8 @@ services:
       - app-network
 
   celery-beat:
-    restart: always
     build:
-      context: ./backend
+      context: ./django
       target: ${BUILD_TARGET}
     env_file:
       - .env
@@ -105,9 +102,8 @@ services:
       - app-network
 
   flower:
-    restart: always
     build:
-      context: ./backend
+      context: ./django
       target: ${BUILD_TARGET}
     command: celery -A core.celery.app flower -l debug
     env_file:
