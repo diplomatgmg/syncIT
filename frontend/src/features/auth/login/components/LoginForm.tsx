@@ -77,6 +77,7 @@ const LoginForm = (): ReactElement => {
           w={"100%"}>
           <TextInput
             autoFocus
+            autoComplete="email"
             value={form.values.email}
             onChange={(event) =>
               form.setFieldValue("email", event.currentTarget.value)
@@ -91,6 +92,7 @@ const LoginForm = (): ReactElement => {
 
           <PasswordInput
             required
+            autoComplete="current-password"
             label="Пароль"
             placeholder="********"
             value={form.values.password}
