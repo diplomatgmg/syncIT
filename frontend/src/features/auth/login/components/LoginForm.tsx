@@ -76,6 +76,7 @@ const LoginForm = (): ReactElement => {
           radius="lg"
           w={"100%"}>
           <TextInput
+            autoFocus
             value={form.values.email}
             onChange={(event) =>
               form.setFieldValue("email", event.currentTarget.value)
