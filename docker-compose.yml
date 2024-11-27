@@ -47,6 +47,7 @@ services:
   go:
     build:
       context: ./backend/go
+      target: ${BUILD_TARGET}
     volumes:
       - ./backend/go:/project/backend/go
     ports:

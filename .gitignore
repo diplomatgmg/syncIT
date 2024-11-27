@@ -1,6 +1,3 @@
-**/parsers/**/config.py
-.idea/
-
 ### Django template
 *.log
 *.pot
@@ -13,7 +10,7 @@ media
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
 # in your Git repository. Update and uncomment the following line accordingly.
-backend/staticfiles/
+# <django-project-name>/staticfiles/
 
 ### Node template
 # Logs
@@ -56,6 +53,7 @@ bower_components
 build/Release
 
 # Dependency directories
+node_modules/
 jspm_packages/
 
 # Snowpack dependency directory (https://snowpack.dev/)
@@ -89,6 +87,7 @@ web_modules/
 .yarn-integrity
 
 # dotenv environment variable files
+.env
 .env.development.local
 .env.test.local
 .env.production.local
@@ -143,6 +142,33 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+### Go template
+# If you prefer the allow list template instead of the deny list, see community template:
+# https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
+#
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+*/go/tmp
+
+# Dependency directories (remove the comment below to include it)
+# vendor/
+
+# Go workspace file
+go.work
+go.work.sum
+
+# env file
+
 ### react template
 .DS_*
 **/*.backup.*
@@ -162,7 +188,6 @@ sketch
 *$py.class
 
 # C extensions
-*.so
 
 # Distribution / packaging
 .Python
@@ -258,8 +283,10 @@ ipython_config.py
 #pdm.lock
 #   pdm stores project-wide configurations in .pdm.toml, but it is recommended to not include it
 #   in version control.
-#   https://pdm.fming.dev/#use-with-ide
+#   https://pdm.fming.dev/latest/usage/project/#working-with-version-control
 .pdm.toml
+.pdm-python
+.pdm-build/
 
 # PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
 __pypackages__/
@@ -272,13 +299,12 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
 .venv
 env/
+venv/
 ENV/
 env.bak/
 venv.bak/
-venv/
 
 # Spyder project settings
 .spyderproject
@@ -309,5 +335,5 @@ cython_debug/
 #  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
-#.idea/
+.idea/
 

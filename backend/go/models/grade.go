@@ -6,5 +6,5 @@ type Grade struct {
 }
 
 func (Grade) TableName() string {
-    return "grade_grade" // FIXME Глянуть, как не хардкордить таблицу
+    return "grade_grade"
 }
