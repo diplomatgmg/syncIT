@@ -30,3 +30,9 @@ DEBUG_TOOLBAR_CONFIG = {
 
 
 SIMPLE_JWT["ACCESS_TOKEN_LIFETIME"] = timedelta(days=365)
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.dummy.DummyCache",
+    }
+}
