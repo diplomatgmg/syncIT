@@ -1,16 +1,16 @@
 package db
 
 import (
-    "github.com/jinzhu/gorm"
-    _ "github.com/jinzhu/gorm/dialects/postgres"
-    "log"
-    "os"
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"log"
+	"os"
 )
 
 var DB *gorm.DB
 
 func init() {
-    var err error
+	var err error
 
 	dbHost := os.Getenv("POSTGRES_HOST")
 	dbPort := os.Getenv("POSTGRES_PORT")
@@ -19,8 +19,8 @@ func init() {
 	dbName := os.Getenv("POSTGRES_DB")
 
 	connStr := "postgres://" + dbUser + ":" + dbPass + "@" + dbHost + ":" + dbPort + "/" + dbName + "?sslmode=disable"
-    DB, err = gorm.Open("postgres", connStr)
-    if err != nil {
-        log.Fatal("failed to connect to database:", err)
-    }
+	DB, err = gorm.Open("postgres", connStr)
+	if err != nil {
+		log.Fatal("failed to connect to database:", err)
+	}
 }
