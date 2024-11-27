@@ -6,7 +6,6 @@ urlpatterns = [
     path("", ProfileAPIView.as_view(), name="profile"),
     path(
         "is_completed/",
-        ProfileIsCompletedAPIView.as_view(),
-        name="profile-is-completed",
+        ProfileIsCompletedProxyAPIView.as_view(),
     ),
 ]

@@ -1,12 +1,12 @@
-from rest_framework.generics import RetrieveAPIView
+from rest_framework.request import Request
+from rest_framework.response import Response
 
-from apps.user_profile.models import Profile
-from apps.user_profile.serializers import ProfileIsCompletedSerializer
+from helpers.views import ProxyAPIView
 
 
-class ProfileIsCompletedAPIView(RetrieveAPIView):
-    queryset = Profile.objects.all()
-    serializer_class = ProfileIsCompletedSerializer
+class ProfileIsCompletedProxyAPIView(ProxyAPIView):
+    proxy_path = "api/profile/{}/is_completed"
 
-    def get_object(self):
-        return self.queryset.get(user=self.request.user)
+    def get(self, request: Request, *args, **kwargs) -> Response:
+        self.proxy_path = self.proxy_path.format(request.user.id)
+        return super().get(request, *args, **kwargs)

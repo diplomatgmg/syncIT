@@ -4,6 +4,7 @@ import { WorkFormat } from "@/types/workFormatTypes.ts"
 import { Profession } from "@/types/professionTypes.ts"
 
 export interface ProfileStatus {
+  id: number
   isCompleted: boolean
 }
 
