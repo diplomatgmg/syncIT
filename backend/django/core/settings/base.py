@@ -15,8 +15,7 @@ from datetime import timedelta
 from pathlib import Path
 
 from dotenv import load_dotenv
-
-from helpers.utils import Env
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -24,8 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # Loading environment variables
 load_dotenv(BASE_DIR / ".." / ".env")
 
-SECRET_KEY = Env.get("SECRET_KEY")
-TESTING = "test" in sys.argv or Env.get("TESTING", False)
+SECRET_KEY = os.getenv("SECRET_KEY")
+TESTING = "test" in sys.argv or os.getenv("TESTING")
 
 
 INSTALLED_APPS = [
@@ -89,15 +88,15 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.yandex.ru"
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
-EMAIL_HOST_USER = Env.get("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = Env.get("EMAIL_HOST_PASSWORD")
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 
 EMAIL_SERVER = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 EMAIL_ADMIN = EMAIL_HOST_USER
 
-DOMAIN = Env.get("SITE_DOMAIN")
-SITE_NAME = Env.get("SITE_NAME")
+DOMAIN = os.getenv("SITE_DOMAIN")
+SITE_NAME = os.getenv("SITE_NAME")
 
 DJOSER = {
     "LOGIN_FIELD": "email",
@@ -138,18 +137,18 @@ WSGI_APPLICATION = "core.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "HOST": Env.get("POSTGRES_HOST"),
-        "NAME": Env.get("POSTGRES_DB"),
-        "USER": Env.get("POSTGRES_USER"),
-        "PASSWORD": Env.get("POSTGRES_PASSWORD"),
-        "PORT": Env.get("POSTGRES_PORT"),
+        "HOST": os.getenv("POSTGRES_HOST"),
+        "NAME": os.getenv("POSTGRES_DB"),
+        "USER": os.getenv("POSTGRES_USER"),
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+        "PORT": os.getenv("POSTGRES_PORT"),
     }
 }
 
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": Env.get("REDIS_CACHE_LOCATION"),
+        "LOCATION": os.getenv("REDIS_CACHE_LOCATION"),
     }
 }
 
@@ -163,8 +162,8 @@ if TESTING:
     CELERY_TASK_EAGER_PROPAGATES = True
 
 
-CELERY_BROKER_URL = Env.get("CELERY_BROKER_URL")
-CELERY_RESULT_BACKEND = Env.get("CELERY_RESULT_BACKEND")
+CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
 
 
 # Password validation
@@ -214,7 +213,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "user.User"
 
-PROXY_URL = Env.get("GO_PROXY_URL")
+PROXY_URL = os.getenv("GO_PROXY_URL")
 
 # Минимум %, на сколько вакансия подходит пользователю
 MINIMUM_VACANCY_SUITABILITY = 60
