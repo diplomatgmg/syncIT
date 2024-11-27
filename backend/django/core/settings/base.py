@@ -10,12 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
-import os
 import sys
 from datetime import timedelta
 from pathlib import Path
 
 from dotenv import load_dotenv
+
+from helpers.utils.env import Env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -23,8 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # Loading environment variables
 load_dotenv(BASE_DIR / ".." / ".env")
 
-SECRET_KEY = os.getenv("SECRET_KEY")
-TESTING = "test" in sys.argv or os.getenv("TESTING")
+SECRET_KEY = Env.get("SECRET_KEY")
+TESTING = "test" in sys.argv or Env.get("TESTING")
 
 
 INSTALLED_APPS = [
@@ -88,15 +89,15 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.yandex.ru"
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
-EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+EMAIL_HOST_USER = Env.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = Env.get("EMAIL_HOST_PASSWORD")
 
 EMAIL_SERVER = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 EMAIL_ADMIN = EMAIL_HOST_USER
 
-DOMAIN = os.getenv("SITE_DOMAIN")
-SITE_NAME = os.getenv("SITE_NAME")
+DOMAIN = Env.get("SITE_DOMAIN")
+SITE_NAME = Env.get("SITE_NAME")
 
 DJOSER = {
     "LOGIN_FIELD": "email",
@@ -137,18 +138,18 @@ WSGI_APPLICATION = "core.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "HOST": os.environ.get("POSTGRES_HOST"),
-        "NAME": os.environ.get("POSTGRES_DB"),
-        "USER": os.environ.get("POSTGRES_USER"),
-        "PASSWORD": os.environ.get("POSTGRES_PASSWORD"),
-        "PORT": os.environ.get("POSTGRES_PORT"),
+        "HOST": Env.get("POSTGRES_HOST"),
+        "NAME": Env.get("POSTGRES_DB"),
+        "USER": Env.get("POSTGRES_USER"),
+        "PASSWORD": Env.get("POSTGRES_PASSWORD"),
+        "PORT": Env.get("POSTGRES_PORT"),
     }
 }
 
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": os.getenv("REDIS_CACHE_LOCATION"),
+        "LOCATION": Env.get("REDIS_CACHE_LOCATION"),
     }
 }
 
@@ -162,8 +163,8 @@ if TESTING:
     CELERY_TASK_EAGER_PROPAGATES = True
 
 
-CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
-CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
+CELERY_BROKER_URL = Env.get("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND = Env.get("CELERY_RESULT_BACKEND")
 
 
 # Password validation

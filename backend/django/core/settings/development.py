@@ -1,6 +1,4 @@
-from core.settings.base import * # noqa
-
-import sys
+from core.settings.base import *  # noqa
 
 DEBUG = True
 
