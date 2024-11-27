@@ -214,6 +214,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "user.User"
 
+PROXY_URL = Env.get("GO_PROXY_URL")
+
 # Минимум %, на сколько вакансия подходит пользователю
 MINIMUM_VACANCY_SUITABILITY = 60
 
