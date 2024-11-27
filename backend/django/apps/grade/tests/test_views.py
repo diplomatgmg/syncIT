@@ -4,14 +4,14 @@ from rest_framework import status
 
 from apps.grade.models import Grade
 from apps.grade.serializers import GradeSerializer
-from apps.grade.views import GradeListAPIView
+from apps.grade.views import GradeProxyAPIView
 from helpers.for_tests import BaseViewTestCase
 
 
 User = get_user_model()
 
 
-class GradeListAPIViewViewTestCase(BaseViewTestCase):
+class GradeProxyAPIViewTestCase(BaseViewTestCase):
     def test_list_grades(self):
         """Проверяем, что представление возвращает список всех оценок"""
         Grade.objects.create(name="Junior")
@@ -20,7 +20,7 @@ class GradeListAPIViewViewTestCase(BaseViewTestCase):
         url = reverse("grade-list")
         self.assert_unauthorized(url)
         request = self.authenticate_request(url)
-        view = GradeListAPIView.as_view()
+        view = GradeProxyAPIView.as_view()
         response = view(request)
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)

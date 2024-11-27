@@ -10,7 +10,7 @@ from helpers.for_tests import BaseViewTestCase
 User = get_user_model()
 
 
-class WorkFormatListAPIViewViewTestCase(BaseViewTestCase):
+class WorkFormatProxyAPIViewTestCase(BaseViewTestCase):
     def test_list_work_formats(self):
         """Проверяем, что представление возвращает список всех форматов работы"""
         WorkFormat.objects.create(name="Офис")
