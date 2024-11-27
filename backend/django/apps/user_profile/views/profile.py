@@ -27,7 +27,8 @@ class ProfileAPIView(RetrieveAPIView):
 
         for field_name, attr_name in fields_to_update.items():
             field_value = data.get(field_name)
-            if field_value:
+
+            if field_value is not None:
                 getattr(profile, attr_name).clear()
                 for item in field_value:
                     getattr(profile, attr_name).add(item.get("id"))
