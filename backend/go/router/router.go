@@ -10,6 +10,7 @@ func NewRouter() *mux.Router {
 
 	r.HandleFunc("/api/grades", handlers.GetGrades).Methods("GET")
 	r.HandleFunc("/api/work_formats", handlers.GetWorkFormats).Methods("GET")
+	r.HandleFunc("/api/professions", handlers.GetProfessions).Methods("GET")
 	r.HandleFunc("/api/hard_skills", handlers.GetHardSkills).Methods("GET")
 
 	return r

@@ -1,7 +1,7 @@
 from django.urls import path
 
-from apps.profession.views import ProfessionListAPIView
+from apps.profession.views import ProfessionProxyAPIView
 
 urlpatterns = [
-    path("professions/", ProfessionListAPIView.as_view(), name="profession-list"),
+    path("professions/", ProfessionProxyAPIView.as_view(), name="profession-list"),
 ]
