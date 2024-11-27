@@ -16,7 +16,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-from helpers.utils.env import Env
+from helpers.utils import Env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 load_dotenv(BASE_DIR / ".." / ".env")
 
 SECRET_KEY = Env.get("SECRET_KEY")
-TESTING = "test" in sys.argv or Env.get("TESTING")
+TESTING = "test" in sys.argv or Env.get("TESTING", False)
 
 
 INSTALLED_APPS = [
