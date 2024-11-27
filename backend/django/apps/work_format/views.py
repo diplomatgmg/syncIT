@@ -1,9 +1,9 @@
-from rest_framework import generics
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 
-from apps.work_format.models import WorkFormat
-from apps.work_format.serializers import WorkFormatSerializer
+from helpers.views import ProxyAPIView
 
 
-class WorkFormatListAPIView(generics.ListAPIView):
-    queryset = WorkFormat.objects.all()
-    serializer_class = WorkFormatSerializer
+@method_decorator(cache_page(600), name="dispatch")  # 10 Минут
+class WorkFormatProxyAPIView(ProxyAPIView):
+    proxy_path = "/api/work_formats"
