@@ -7,5 +7,6 @@ urlpatterns = [
     path(
         "is_completed/",
         ProfileIsCompletedProxyAPIView.as_view(),
+        name="profile-is-completed",
     ),
 ]
