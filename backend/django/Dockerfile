@@ -7,8 +7,8 @@ WORKDIR /project/backend/django
 
 COPY ./requirements/base.txt ./requirements/base.txt
 
-RUN apt update && \
-    apt upgrade && \
+RUN apt update -y && \
+    apt upgrade -y && \
     apt install curl -y && \
     pip install --upgrade pip && \
     pip install setuptools

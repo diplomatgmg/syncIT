@@ -25,7 +25,6 @@ services:
       target: ${BUILD_TARGET}
     volumes:
       - ./backend/django:/project/backend/django
-      - ./backend/django/venv:/project/backend/django/venv
       - static_volume:/project/backend/django/django_static/
     ports:
       - "8000:8000"

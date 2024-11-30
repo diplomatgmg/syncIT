@@ -13,11 +13,13 @@ from apps.vacancy.models import ParsedVacancy, Vacancy
 from helpers.utils import (
     clear_html,
     generate_hash,
-    normalize_currency,
     timeit,
-    normalize_grade,
+)
+from helpers.utils.normalizers import (
     normalize_hard_skill,
+    normalize_grade,
     normalize_profession,
+    normalize_currency,
 )
 from parsers.base_parser import BaseParser
 from parsers.open_ai.chat_gpt import get_chat_gpt_completion
