@@ -20,6 +20,7 @@ def find_suitable_vacancies():
 @shared_task()
 def find_suitable_vacancies_for_profile(profile_id: int):
     profile = Profile.objects.get(id=profile_id)
+    # FIXME Убрать all, использовать filter
     vacancies = Vacancy.objects.all()
 
     profile_hard_skills = profile.hard_skills.all()
@@ -53,6 +54,7 @@ def find_suitable_vacancies_for_profile(profile_id: int):
         if suitability < settings.MINIMUM_VACANCY_SUITABILITY:
             continue
 
+        # FIXME использовать bulk_update
         vacancy, created = UserVacancy.objects.get_or_create(
             user=profile.user,
             vacancy=suitable_vacancy,
