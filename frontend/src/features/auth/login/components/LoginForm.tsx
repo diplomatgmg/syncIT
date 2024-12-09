@@ -21,6 +21,8 @@ import { invalidateTags } from "@/store/api/vacancyApi.ts"
 import { setEmail, setTokens } from "@/store/slice/authSlice.ts"
 import routes from "@/routes/routes.tsx"
 import { useMediaQuery } from "@mantine/hooks"
+import { useState } from "react"
+import { LoginResponseError } from "@/types/authTypes.ts"
 
 const LoginForm = (): ReactElement => {
   const { colors } = useMantineTheme()
@@ -35,12 +37,14 @@ const LoginForm = (): ReactElement => {
       email: (val) => (/^\S+@\S+$/.test(val) ? null : "Некорректная почта"),
     },
   })
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
   const dispatch = useAppDispatch()
   const [login, { isLoading }] = useLoginMutation()
   const navigate = useNavigate()
 
   const handleSubmit = async () => {
+    setErrorMessage(null)
     try {
       const response = await login(form.values).unwrap()
       dispatch(invalidateTags(["Vacancy"]))
@@ -48,7 +52,9 @@ const LoginForm = (): ReactElement => {
       dispatch(setEmail(response))
       navigate(routes.home.path, { state: { fromLogin: true } })
     } catch (err) {
-      console.error("Ошибка входа: ", err)
+      const error = err as LoginResponseError
+      console.error(error)
+      form.setFieldError("password", error.data.detail)
     }
   }
 
@@ -84,7 +90,7 @@ const LoginForm = (): ReactElement => {
             }
             error={form.errors.email && "Некорректная почта"}
             type={"email"}
-            placeholder="example@gmail.com"
+            placeholder="mail@example.com"
             label="Почта"
             radius="md"
             required
@@ -102,9 +108,15 @@ const LoginForm = (): ReactElement => {
             radius="md"
           />
 
+          {form.errors.password && (
+            <Text size="sm" mt="md" c="red.9" ta="center">
+              {form.errors.password}
+            </Text>
+          )}
+
           <Button
             type={"submit"}
-            mt="xl"
+            mt={errorMessage ? "md" : "xl"}
             fullWidth
             radius={"md"}
             loaderProps={{

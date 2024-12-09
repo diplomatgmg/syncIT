@@ -94,9 +94,9 @@ const RegisterForm = (): ReactElement => {
             onChange={(event) =>
               form.setFieldValue("email", event.currentTarget.value)
             }
-            error={form.errors.email && form.errors.email}
+            error={form.errors.email}
             type={"email"}
-            placeholder="example@gmail.com"
+            placeholder="mail@example.com"
             label="Почта"
             radius="md"
             required
