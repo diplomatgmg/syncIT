@@ -9,7 +9,7 @@ services:
       - ./frontend:/project/frontend
       - /project/frontend/node_modules
       - frontend_dist:/project/frontend/dist
-      - static_volume:/project/django/django_static/
+      - static_volume:/project/backend/django/django_static
     ports:
       - "80:80"
       - "3000:3000"
