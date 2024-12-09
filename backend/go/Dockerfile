@@ -23,6 +23,4 @@ CMD ["air"]
 # =============================== #
 FROM base AS production
 
-RUN go build -o main .
-
-CMD ["./main"]
+CMD go build -o main . && ./main
