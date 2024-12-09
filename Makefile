@@ -4,4 +4,4 @@ DJANGO_CMD=docker compose exec django python manage.py
 	$(DJANGO_CMD) $@
 
 restart:
-	docker compose down && docker compose up --build
+	docker compose down && docker compose up --build -d
