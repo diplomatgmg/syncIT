@@ -18,7 +18,7 @@ app.conf.beat_schedule = {
         "schedule": crontab(minute="*/10"),
     },
     "find_suitable_vacancies_for_all_profiles": {
-        "task": "apps.user_profile.tasks.find_suitable_vacancies_for_all_profiles",
+        "task": "apps.user_profile.tasks.find_suitable_vacancies",
         "schedule": crontab(minute="*/10"),
     },
 }

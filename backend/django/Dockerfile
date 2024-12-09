@@ -23,6 +23,8 @@ COPY ./requirements/development.txt ./requirements/development.txt
 RUN --mount=type=cache,target=/root/.cache/pip pip install -r requirements/development.txt
 COPY . .
 
+# FIXME add ipython profile
+
 ENV DJANGO_SETTINGS_MODULE=core.settings.development
 
 CMD ["sh", "startup/development.sh"]

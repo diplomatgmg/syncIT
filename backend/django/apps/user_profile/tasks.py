@@ -14,22 +14,21 @@ def find_suitable_vacancies():
     profiles = Profile.objects.filter(is_completed=True)
 
     for profile in profiles:
-        find_suitable_vacancies_for_profile.delay(profile.id)
+        process_profile(profile)
 
 
-@shared_task()
-def find_suitable_vacancies_for_profile(profile_id: int):
-    profile = Profile.objects.get(id=profile_id)
-    # FIXME Убрать all, использовать filter
-    vacancies = Vacancy.objects.all()
-
+def process_profile(profile):
+    """
+    Обработка подходящих вакансий для одного профиля.
+    """
     profile_hard_skills = profile.hard_skills.all()
     profile_work_formats = profile.work_formats.all()
     profile_professions = profile.professions.all()
     profile_grades = profile.grades.all()
 
     suitable_vacancies = (
-        vacancies.filter(
+        Vacancy.objects.all()
+        .filter(
             work_formats__in=profile_work_formats,
             profession__in=profile_professions,
             grade__in=profile_grades,
@@ -43,8 +42,11 @@ def find_suitable_vacancies_for_profile(profile_id: int):
         .filter(hard_skill_count__gte=5)
     )
 
-    # Если пользователь изменит грейд, формат работы и тп, удалим старые вакансии
+    # Удаляем старые не просмотренные вакансии
     UserVacancy.objects.filter(user=profile.user, is_viewed=False).delete()
+
+    bulk_create_data = []
+    bulk_update_data = []
 
     for suitable_vacancy in suitable_vacancies:
         matching_skills_count = suitable_vacancy.hard_skill_count
@@ -54,13 +56,23 @@ def find_suitable_vacancies_for_profile(profile_id: int):
         if suitability < settings.MINIMUM_VACANCY_SUITABILITY:
             continue
 
-        # FIXME использовать bulk_update
-        vacancy, created = UserVacancy.objects.get_or_create(
-            user=profile.user,
-            vacancy=suitable_vacancy,
-            defaults={"suitability": suitability},
-        )
+        # Проверяем, существует ли запись
+        existing = UserVacancy.objects.filter(
+            user=profile.user, vacancy=suitable_vacancy
+        ).first()
 
-        if not created:
-            vacancy.suitability = suitability
-            vacancy.save()
+        if existing:
+            existing.suitability = suitability
+            bulk_update_data.append(existing)
+        else:
+            bulk_create_data.append(
+                UserVacancy(
+                    user=profile.user,
+                    vacancy=suitable_vacancy,
+                    suitability=suitability,
+                )
+            )
+
+    # Используем bulk операции для улучшения производительности
+    UserVacancy.objects.bulk_create(bulk_create_data, ignore_conflicts=True)
+    UserVacancy.objects.bulk_update(bulk_update_data, ["suitability"])
