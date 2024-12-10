@@ -17,6 +17,12 @@ def find_suitable_vacancies():
         process_profile(profile)
 
 
+@shared_task()
+def find_suitable_vacancies_for_profile(profile_id):
+    profile = Profile.objects.get(id=profile_id)
+    process_profile(profile)
+
+
 def process_profile(profile):
     """
     Обработка подходящих вакансий для одного профиля.
