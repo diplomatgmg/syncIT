@@ -22,7 +22,15 @@ const usePopupHandler = () => {
     if (state as LocationState) {
       switch (true) {
         case state.fromRegister:
-          popup.warn("Необходимо подтвердить почту для активации аккаунта!")
+          popup.warn(
+            <span>
+              <b>Необходимо подтвердить почту!</b>
+              <br />
+              <span style={{ fontSize: "0.9rem" }}>
+                Не забудьте проверить папку <b>спам</b> :)
+              </span>
+            </span>
+          )
           break
 
         case state.fromProtectedRoute:

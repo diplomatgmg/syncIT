@@ -1,6 +1,7 @@
 import { toast, ToastOptions, Zoom } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import "./styles.css"
+import { ReactElement } from "react"
 
 const baseConfig: ToastOptions = {
   position: "bottom-left",
@@ -13,13 +14,13 @@ const baseConfig: ToastOptions = {
 }
 
 export const popup = {
-  error: (msg: string) => {
+  error: (msg: string | ReactElement) => {
     toast.error(msg, { ...baseConfig })
   },
-  warn: (msg: string) => {
+  warn: (msg: string | ReactElement) => {
     toast.warn(msg, { ...baseConfig })
   },
-  success: (msg: string) => {
+  success: (msg: string | ReactElement) => {
     toast.success(msg, { ...baseConfig })
   },
 }
