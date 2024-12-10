@@ -4,8 +4,6 @@ from django.http import HttpResponse
 from django.urls import path, include
 from rest_framework import permissions, status
 
-
-admin.site.site_title = "(DEV)"
 admin.site.index_title = "SyncIT"
 
 
@@ -27,6 +25,8 @@ urlpatterns = [
 
 
 if settings.DEBUG and not settings.TESTING:
+    admin.site.site_title = "(DEV)"
+
     from drf_yasg.views import get_schema_view
     from drf_yasg import openapi
 
