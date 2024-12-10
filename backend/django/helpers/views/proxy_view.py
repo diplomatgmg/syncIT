@@ -4,6 +4,7 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 
 from django.conf import settings
+from rest_framework import status
 
 
 class ProxyAPIView(APIView):
@@ -40,7 +41,7 @@ class ProxyAPIView(APIView):
                     "error": "Ошибка при обращении к проксируемому API.",
                     "details": str(e),
                 },
-                status=502,
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
 
         return Response(response.json())

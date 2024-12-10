@@ -21,6 +21,11 @@ const baseQuery = fetchBaseQuery({
 const baseQueryWithReauth: BaseQueryFn = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions)
 
+  if (result.error && result.error.status !== 401) {
+    console.error(result.error)
+    return result
+  }
+
   if (!(result.error && result.error.status === 401)) {
     return result
   }
