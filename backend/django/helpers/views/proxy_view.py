@@ -14,8 +14,8 @@ class ProxyAPIView(APIView):
 
     proxy_path: str = None
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
         if not self.proxy_path:
             raise ValueError(
