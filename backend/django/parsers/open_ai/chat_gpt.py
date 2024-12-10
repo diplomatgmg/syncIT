@@ -1,6 +1,6 @@
 import re
 
-import g4f
+from g4f.client import Client
 
 
 def clear_text(text: str) -> str:
@@ -10,11 +10,12 @@ def clear_text(text: str) -> str:
 def get_chat_gpt_completion(prompt: str) -> str:
     def get_completion(_prompt: str) -> str:
         try:
-            response = g4f.ChatCompletion.create(
-                model="blackbox",
+            client = Client()
+            response = client.chat.completions.create(
+                model="blackboxai",
                 messages=[{"role": "user", "content": _prompt}],
             )
-            return clear_text(response)
+            return clear_text(response.choices[0].message.content)  # noqa
         except Exception as e:
             print("Unexpected error:", e)
             return get_completion(_prompt)
