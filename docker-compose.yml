@@ -118,11 +118,6 @@ services:
       celery:
         condition: service_healthy
     command: celery -A core.celery.app beat -l ${CELERY_LOG_LEVEL}
-    healthcheck:
-      test: "pgrep -f 'celery beat' || exit 1"
-      interval: 1s
-      timeout: 5s
-      retries: 10
     networks:
       - app-network
 
@@ -133,11 +128,6 @@ services:
     command: celery -A core.celery.app flower -l ${CELERY_LOG_LEVEL}
     env_file:
       - .env
-    healthcheck:
-      test: "curl -f http://localhost:5555"
-      interval: 1s
-      timeout: 5s
-      retries: 10
     depends_on:
       celery:
         condition: service_healthy
