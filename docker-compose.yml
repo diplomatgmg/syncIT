@@ -32,7 +32,7 @@ services:
       - .env
     healthcheck:
       test: "curl -f http://localhost:8000/health-check/"
-      interval: 1s
+      interval: 10s
       timeout: 5s
       retries: 10
     depends_on:
