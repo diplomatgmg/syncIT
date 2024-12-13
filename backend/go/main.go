@@ -1,14 +1,14 @@
 package main
 
 import (
-    "log"
-    "net/http"
-    "backend/go/router"
+	"backend/go/router"
+	"log"
+	"net/http"
 )
 
 func main() {
-    r := router.NewRouter()
+	r := router.NewRouter()
 
-    log.Println("Server started on :8080")
-    log.Fatal(http.ListenAndServe(":8080", r))
+	log.Println("Server started on :9000")
+	log.Fatal(http.ListenAndServe(":9000", r))
 }

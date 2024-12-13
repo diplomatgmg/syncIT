@@ -10,10 +10,10 @@ python manage.py collectstatic --no-input
 echo "Static files collected"
 
 echo "Loading fixtures..."
-python manage.py create_hard_skills
-python manage.py loaddata $FIXTURES_DIR/grades.json
-python manage.py loaddata $FIXTURES_DIR/professions.json
-python manage.py loaddata $FIXTURES_DIR/work_formats.json
+python manage.py create_hard_skills &
+python manage.py loaddata $FIXTURES_DIR/grades.json &
+python manage.py loaddata $FIXTURES_DIR/professions.json &
+python manage.py loaddata $FIXTURES_DIR/work_formats.json &
 echo "Fixtures loaded"
 
 

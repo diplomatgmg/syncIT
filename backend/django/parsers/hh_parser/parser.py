@@ -93,6 +93,7 @@ class HHParser(BaseParser):
                 executor.submit(callback, item): item for item in collection
             }
             for count, future in enumerate(future_to_data):
+                sleep_time = 1
                 data = None
                 while data is None:
                     try:
@@ -101,7 +102,8 @@ class HHParser(BaseParser):
                         logger.error(
                             f"TimeoutError. Повторная попытка получить данные..."
                         )
-                        pass
+                        time.sleep(sleep_time)
+                        sleep_time *= 2
 
                 result.append(data)
 

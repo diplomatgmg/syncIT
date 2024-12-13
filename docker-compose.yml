@@ -32,7 +32,7 @@ services:
       - .env
     healthcheck:
       test: "curl -f http://localhost:8000/health-check/"
-      interval: 5s
+      interval: 1s
       timeout: 5s
       retries: 10
     depends_on:
@@ -50,7 +50,7 @@ services:
     volumes:
       - ./backend/go:/project/backend/go
     ports:
-      - "8080:8080"
+      - "9000:9000"
     env_file:
       - .env
     depends_on:
@@ -71,8 +71,9 @@ services:
       - .env
     healthcheck:
       test: "pg_isready -h ${POSTGRES_HOST} -p ${POSTGRES_PORT} -d ${POSTGRES_DB}"
-      interval: 5s
+      interval: 1s
       timeout: 5s
+      retries: 10
     networks:
       - app-network
 
@@ -83,8 +84,9 @@ services:
       - "6379:6379"
     healthcheck:
       test: "redis-cli ping"
-      interval: 5s
+      interval: 1s
       timeout: 5s
+      retries: 10
     networks:
       - app-network
 
@@ -95,8 +97,9 @@ services:
     command: celery -A core.celery.app worker -l ${CELERY_LOG_LEVEL}
     healthcheck:
       test: "celery inspect ping"
-      interval: 5s
+      interval: 1s
       timeout: 5s
+      retries: 10
     depends_on:
       django:
         condition: service_healthy
@@ -115,6 +118,11 @@ services:
       celery:
         condition: service_healthy
     command: celery -A core.celery.app beat -l ${CELERY_LOG_LEVEL}
+    healthcheck:
+      test: "pgrep -f 'celery beat' || exit 1"
+      interval: 1s
+      timeout: 5s
+      retries: 10
     networks:
       - app-network
 
@@ -127,8 +135,9 @@ services:
       - .env
     healthcheck:
       test: "curl -f http://localhost:5555"
-      interval: 5s
+      interval: 1s
       timeout: 5s
+      retries: 10
     depends_on:
       celery:
         condition: service_healthy
@@ -146,10 +155,21 @@ services:
     labels:
       telegram-notifier.monitor: false
 
+  dozzle:
+    image: amir20/dozzle:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+
+
 volumes:
   static_volume:
   frontend_dist:
   postgres_data:
+
 
 networks:
   app-network:
