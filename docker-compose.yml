@@ -116,7 +116,7 @@ services:
       - .env
     command: celery -A core.celery.app beat -l ${CELERY_LOG_LEVEL}
     depends_on:
-      django:
+      celery:
         condition: service_healthy
     labels:
       telegram-notifier.monitor: false
@@ -132,6 +132,9 @@ services:
       - .env
     ports:
       - "5555:5555"
+    depends_on:
+      celery:
+        condition: service_healthy
     labels:
       telegram-notifier.monitor: false
     networks:
