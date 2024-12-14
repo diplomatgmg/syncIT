@@ -1,17 +1,6 @@
 name: syncit
 
 services:
-  dozzle:
-    image: amir20/dozzle:latest
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    ports:
-      - "8080:8080"
-    labels:
-      telegram-notifier.monitor: false
-    networks:
-      - app-network
-
   frontend:
     build:
       context: ./frontend
@@ -49,8 +38,6 @@ services:
       postgres:
         condition: service_healthy
       redis:
-        condition: service_healthy
-      go:
         condition: service_healthy
     networks:
       - app-network
@@ -156,6 +143,17 @@ services:
       - .env
     labels:
       telegram-notifier.monitor: false
+
+  dozzle:
+    image: amir20/dozzle:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "8080:8080"
+    labels:
+      telegram-notifier.monitor: false
+    networks:
+      - app-network
 
 
 volumes:
