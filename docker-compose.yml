@@ -13,6 +13,9 @@ services:
     ports:
       - "80:80"
       - "3000:3000"
+    depends_on:
+      django:
+        condition: service_healthy
     networks:
       - app-network
 
@@ -32,8 +35,12 @@ services:
       interval: 10s
       timeout: 5s
     depends_on:
-      - postgres
-      - redis
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      go:
+        condition: service_healthy
     networks:
       - app-network
 
@@ -52,7 +59,8 @@ services:
       interval: 10s
       timeout: 5s
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     networks:
       - app-network
 
@@ -93,8 +101,8 @@ services:
       interval: 10s
       timeout: 5s
     depends_on:
-      - django
-      - redis
+      django:
+        condition: service_healthy
     env_file:
       - .env
     networks:
@@ -108,8 +116,8 @@ services:
       - .env
     command: celery -A core.celery.app beat -l ${CELERY_LOG_LEVEL}
     depends_on:
-      - django
-      - redis
+      django:
+        condition: service_healthy
     labels:
       telegram-notifier.monitor: false
     networks:
