@@ -34,7 +34,6 @@ services:
       test: "curl -f http://localhost:8000/health-check/"
       interval: 10s
       timeout: 5s
-      retries: 10
     depends_on:
       postgres:
         condition: service_healthy
@@ -53,6 +52,10 @@ services:
       - "9000:9000"
     env_file:
       - .env
+    healthcheck:
+      test: "curl -f http://localhost:9000/health-check"
+      interval: 10s
+      timeout: 5s
     depends_on:
       postgres:
         condition: service_healthy
@@ -118,6 +121,8 @@ services:
       celery:
         condition: service_healthy
     command: celery -A core.celery.app beat -l ${CELERY_LOG_LEVEL}
+    labels:
+      telegram-notifier.monitor: false
     networks:
       - app-network
 
@@ -133,6 +138,8 @@ services:
         condition: service_healthy
     ports:
       - "5555:5555"
+    labels:
+      telegram-notifier.monitor: false
     networks:
       - app-network
 
@@ -151,6 +158,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - "8080:8080"
+    labels:
+      telegram-notifier.monitor: false
     networks:
       - app-network
 

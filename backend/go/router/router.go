@@ -3,10 +3,17 @@ package router
 import (
 	"backend/go/handlers"
 	"github.com/gorilla/mux"
+	"net/http"
 )
+
+func HealthCheckHandler(w http.ResponseWriter, _ *http.Request) {
+	w.WriteHeader(http.StatusNoContent)
+}
 
 func NewRouter() *mux.Router {
 	r := mux.NewRouter()
+
+	r.HandleFunc("/health-check", HealthCheckHandler).Methods("GET")
 
 	r.HandleFunc("/api/grades", handlers.GetGrades).Methods("GET")
 	r.HandleFunc("/api/work_formats", handlers.GetWorkFormats).Methods("GET")
