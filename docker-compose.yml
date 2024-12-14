@@ -34,6 +34,7 @@ services:
       test: "curl -f http://localhost:8000/health-check/"
       interval: 10s
       timeout: 5s
+      start_period: 30s
     depends_on:
       postgres:
         condition: service_healthy
@@ -56,6 +57,7 @@ services:
       test: "curl -f http://localhost:9000/health-check"
       interval: 10s
       timeout: 5s
+      start_period: 30s
     depends_on:
       postgres:
         condition: service_healthy
