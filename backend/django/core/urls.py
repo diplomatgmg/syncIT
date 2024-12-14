@@ -7,7 +7,7 @@ from rest_framework import permissions, status
 admin.site.index_title = "SyncIT"
 
 
-def health_check(request):
+def health_check(_):
     return HttpResponse(status=status.HTTP_204_NO_CONTENT)
 
 

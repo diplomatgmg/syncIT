@@ -34,7 +34,6 @@ services:
       test: "curl -f http://localhost:8000/health-check/"
       interval: 10s
       timeout: 5s
-      retries: 10
     depends_on:
       postgres:
         condition: service_healthy
@@ -57,11 +56,8 @@ services:
       test: "curl -f http://localhost:9000/health-check"
       interval: 10s
       timeout: 5s
-      retries: 10
     depends_on:
       postgres:
-        condition: service_healthy
-      django:
         condition: service_healthy
     networks:
       - app-network
@@ -76,9 +72,8 @@ services:
       - .env
     healthcheck:
       test: "pg_isready -h ${POSTGRES_HOST} -p ${POSTGRES_PORT} -d ${POSTGRES_DB}"
-      interval: 1s
+      interval: 10s
       timeout: 5s
-      retries: 10
     networks:
       - app-network
 
@@ -89,9 +84,8 @@ services:
       - "6379:6379"
     healthcheck:
       test: "redis-cli ping"
-      interval: 1s
+      interval: 10s
       timeout: 5s
-      retries: 10
     networks:
       - app-network
 
@@ -102,9 +96,8 @@ services:
     command: celery -A core.celery.app worker -l ${CELERY_LOG_LEVEL}
     healthcheck:
       test: "celery inspect ping"
-      interval: 1s
+      interval: 10s
       timeout: 5s
-      retries: 10
     depends_on:
       django:
         condition: service_healthy
