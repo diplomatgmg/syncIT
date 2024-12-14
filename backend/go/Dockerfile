@@ -2,6 +2,8 @@ FROM golang:1.23-alpine AS base
 
 WORKDIR /project/backend/go
 
+RUN apk add --no-cache curl
+
 COPY go.mod go.sum ./
 RUN go mod tidy
 
