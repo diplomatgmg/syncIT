@@ -4,4 +4,4 @@ DJANGO_CMD=docker compose exec django python manage.py
 	$(DJANGO_CMD) $@
 
 up:
-	docker compose build && docker compose up -d && docker system prune -f
+	docker compose up --build -d && docker system prune -f
