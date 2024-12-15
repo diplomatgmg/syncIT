@@ -1,71 +1,71 @@
 Языки программирования:
-  - Python
-  - Golang
-  - JavaScript
-  - TypeScript
   - C
   - C#
   - C++
+  - Golang
   - Java
-  - Swift
-  - Ruby
+  - JavaScript
   - PHP
+  - Python
+  - Ruby
+  - Swift
+  - TypeScript
 
 Backend:
+  JavaScript/TypeScript:
+    - Nest.js
+    - Node.js
+  Java:
+    - Spring Boot
+    - Spring Framework
+  PHP:
+    - Laravel
+    - Symfony
+    - Yii
   Python:
     - Django
       - Django REST Framework
     - FastAPI
     - Flask
-  JavaScript/TypeScript:
-    - Node.js
-    - Nest.js
-  Java:
-    - Spring Framework
-      - Spring Boot
-  PHP:
-    - Laravel
-    - Symfony
-    - Yii
+  Ruby:
+    - Ruby on Rails
   C#:
     - .NET
       - ASP.NET
-  Ruby:
-    - Ruby on Rails
 
 Frontend:
+  - CSS
+    - Bootstrap
+    - Less
+    - Sass
   - HTML
     - XHTML
     - XML
-  - CSS
-    - Sass
-    - Less
-    - Bootstrap
   JavaScript/TypeScript:
-    - React
-      - React Native
-      - Next.js
-    - Vue
-      - Vuex
-      - Nuxt.js
     - Angular
     - Ember.js
-    - Svelte
     - JQuery
+    - Next.js
+    - React
+      - React Native
+      - Redux
+    - Svelte
     - Vite
+    - Vue
+      - Nuxt.js
+      - Vuex
     - Webpack
-    - Redux
     - Ajax
 
 Базы данных:
-  - SQL
-    - PostgreSQL
-    - MySQL
-    - Oracle
-    - MS SQL
   - NoSQL
     - MongoDB
     - Redis
+  - SQL
+    - MS SQL
+    - MySQL
+    - Oracle
+    - PostgreSQL
 
 Тестирование:
   - Postman
@@ -80,48 +80,48 @@ Frontend:
   - Mercurial
 
 DevOps:
+  - ClickHouse
+  - CI/CD
   - Docker
     - Docker Compose
-  - Kubernetes
-  - CI/CD
-  - Jenkins
-  - Nginx
   - Elasticsearch
-  - ClickHouse
+  - Jenkins
   - Kafka
+  - Kubernetes
+  - Nginx
   - Sentry
 
 Архитектурные принципы:
-  - JSON
-  - HTTP
   - API
-    - REST API
     - GraphQL
+    - REST API
     - SOAP
-  - SOLID
-  - ООП
   - DDD
+  - HTTP
+  - JSON
+  - OOP
+  - SOLID
 
 Методологии:
   - Agile
-  - Scrum
   - Kanban
+  - Scrum
 
 Инструменты:
-  - Figma
-  - Jira
   - Confluence
-  - Slack
+  - Figma
   - Grafana
+  - Jira
   - Prometheus
-  - Zabbix
+  - Slack
   - Swagger
+  - Zabbix
 
 Операционные системы:
-  - Windows
   - Linux
     - Ubuntu
   - MacOS
+  - Windows
 
 Скриптовые языки:
   - Bash

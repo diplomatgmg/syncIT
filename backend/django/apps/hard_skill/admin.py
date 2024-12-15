@@ -12,8 +12,8 @@ class HardSkillAdmin(admin.ModelAdmin):
     search_fields = ("name",)
     ordering = ("ordering", "-parent")
 
-    def vacancies_count(self, obj):
-        return obj.vacancies.count()
+    def vacancies_count(self, obj: HardSkill):
+        return obj.vacancies.count() if obj.selectable else "-"
 
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
