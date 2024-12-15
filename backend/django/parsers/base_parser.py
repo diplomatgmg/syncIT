@@ -33,11 +33,6 @@ class BaseParser(ABC):
     def save_vacancy_to_db(self, data):
         unique_hash = data.get("unique_hash")
 
-        if Vacancy.objects.filter(unique_hash=unique_hash).exists():
-            # Иногда, таски могут запускаться параллельно (если слишком маленький интервал)
-            # Из-за этого могут парситься одинаковые вакансии
-            return
-
         name = data.get("name")
         description = data.get("description")
         salary_from = data.get("salary_from")
@@ -59,19 +54,21 @@ class BaseParser(ABC):
             UnknownProfession.objects.create(name=profession_name)
             profession_model, _ = Profession.objects.get_or_create(name="Неизвестно")
 
-        created_vacancy_model = Vacancy.objects.create(
+        created_vacancy_model = Vacancy.objects.get_or_create(
             unique_hash=unique_hash,
-            name=name,
-            description=description,
-            salary_from=salary_from,
-            salary_to=salary_to,
-            currency=currency,
-            experience=experience,
-            url=url,
-            company=company_model,
-            grade=grade_model,
-            profession=profession_model,
-            published_at=published_at,
+            defaults={
+                "name": name,
+                "description": description,
+                "salary_from": salary_from,
+                "salary_to": salary_to,
+                "currency": currency,
+                "experience": experience,
+                "url": url,
+                "company": company_model,
+                "grade": grade_model,
+                "profession": profession_model,
+                "published_at": published_at,
+            },
         )
 
         work_format_names = data.get("work_format_names")
