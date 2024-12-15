@@ -1,4 +1,5 @@
 Языки программирования:
+  - 1C
   - C
   - C#
   - C++
@@ -67,6 +68,9 @@ Frontend:
     - Oracle
     - PostgreSQL
 
+Брокеры сообщений:
+  - RabbitMQ
+
 Тестирование:
   - Postman
   Python:
@@ -80,6 +84,7 @@ Frontend:
   - Mercurial
 
 DevOps:
+  - Ansible
   - ClickHouse
   - CI/CD
   - Docker
@@ -90,6 +95,7 @@ DevOps:
   - Kubernetes
   - Nginx
   - Sentry
+  - Terraform
 
 Архитектурные принципы:
   - API
@@ -99,6 +105,7 @@ DevOps:
   - DDD
   - HTTP
   - JSON
+  - MVVM
   - OOP
   - SOLID
 
@@ -118,6 +125,8 @@ DevOps:
   - Zabbix
 
 Операционные системы:
+  - Android
+  - iOS
   - Linux
     - Ubuntu
   - MacOS

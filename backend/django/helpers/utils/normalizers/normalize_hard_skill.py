@@ -4,9 +4,12 @@ HARD_SKILL_MAPPING = {
     ".net": ".NET",
     ".net core": ".NET",
     ".net framework": ".NET",
-    "1c": "1С",
-    "1с-битрикс": "1С-Битрикс",
-    "1c-битрикс": "1С-Битрикс",
+    "1с": "1С",  # ru - ru
+    "1c": "1С",  # eng - ru
+    "1С программирование": "1С",  # ru - ru
+    "1C программирование": "1С",  # eng - ru
+    "1с-битрикс": "1С-Битрикс",  # ru - ru
+    "1c-битрикс": "1С-Битрикс",  # eng - ru
     "ajax": "Ajax",
     "api": "API",
     "agile": "Agile",
@@ -97,6 +100,7 @@ HARD_SKILL_MAPPING = {
     "jira": "Jira",
     "jest": "Jest",
     "kafka": "Kafka",
+    "apache kafka": "Kafka",  # FIXME переименовать в Apache Kafka
     "kanban": "Kanban",
     "kotlin": "Kotlin",
     "kubernetes": "Kubernetes",
@@ -190,6 +194,7 @@ HARD_SKILL_MAPPING = {
     "swagger": "Swagger",
     "soap": "SOAP",
     "soap api": "SOAP API",
+    "elk": "Elasticsearch",
     "tcp/ip": "TCP/IP",
     "tailwind": "Tailwind",
     "tailwindcss": "Tailwind",
