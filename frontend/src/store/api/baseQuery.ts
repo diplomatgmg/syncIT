@@ -30,6 +30,8 @@ const baseQueryWithReauth: BaseQueryFn = async (args, api, extraOptions) => {
     return result
   }
 
+  console.error(result)
+
   const refreshToken = (api.getState() as RootState).auth.token.refresh
 
   if (!refreshToken) {
