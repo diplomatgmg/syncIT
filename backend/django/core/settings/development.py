@@ -3,6 +3,7 @@ from core.settings.base import *  # noqa
 DEBUG = True
 
 SHELL_PLUS = "ipython"
+RUNSERVERPLUS_POLLER_RELOADER_INTERVAL = 0
 
 ALLOWED_HOSTS = ["*"]
 

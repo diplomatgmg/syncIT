@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "djoser",
     "constance",
     # Custom apps
+    "apps.tools",
     "apps.user",
     "apps.hard_skill",
     "apps.company",

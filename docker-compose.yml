@@ -95,7 +95,9 @@ services:
     build:
       context: ./backend/django
       target: ${BUILD_TARGET}
-    command: celery -A core.celery.app worker -l ${CELERY_LOG_LEVEL}
+    volumes:
+      - ./backend/django:/project/backend/django
+    command: "sh startup/celery.sh worker"
     healthcheck:
       test: "celery -A core.celery.app inspect ping"
       interval: 5s
@@ -112,9 +114,11 @@ services:
     build:
       context: ./backend/django
       target: ${BUILD_TARGET}
+    volumes:
+      - ./backend/django:/project/backend/django
+    command: "sh startup/celery.sh beat"
     env_file:
       - .env
-    command: celery -A core.celery.app beat -l ${CELERY_LOG_LEVEL}
     depends_on:
       celery:
         condition: service_healthy
@@ -123,11 +127,13 @@ services:
     networks:
       - app-network
 
-  flower:
+  celery-flower:
     build:
       context: ./backend/django
       target: ${BUILD_TARGET}
-    command: celery -A core.celery.app flower -l ${CELERY_LOG_LEVEL}
+    volumes:
+      - ./backend/django:/project/backend/django
+    command: "sh startup/celery.sh flower"
     env_file:
       - .env
     ports:

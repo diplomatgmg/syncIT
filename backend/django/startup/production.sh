@@ -1,5 +1,6 @@
-FIXTURES_DIR="__fixtures__"
+#!/bin/bash
 
+FIXTURES_DIR="__fixtures__"
 
 echo "Migrate database..."
 python manage.py migrate
