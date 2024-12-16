@@ -20,7 +20,6 @@ class HardSkill(models.Model):
 
     class Meta:
         unique_together = ("name", "parent")
-        ordering = ("ordering", "name")
 
     def __str__(self):
         return self.get_full_path()

@@ -69,6 +69,7 @@ Frontend:
     - PostgreSQL
 
 Брокеры сообщений:
+  - Apache Kafka
   - RabbitMQ
 
 Тестирование:
@@ -91,7 +92,6 @@ DevOps:
     - Docker Compose
   - Elasticsearch
   - Jenkins
-  - Kafka
   - Kubernetes
   - Nginx
   - Sentry

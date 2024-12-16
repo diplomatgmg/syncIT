@@ -11,9 +11,11 @@ load_fixtures() {
     until curl -s http://0.0.0.0:8000/health-check/ > /dev/null; do
         sleep 1
     done
+
     echo "Server is ready. Loading fixtures..."
+    python manage.py create_hard_skills &
     for fixture in $FIXTURES_DIR/*.json; do
-        python manage.py loaddata "$fixture"
+        python manage.py loaddata "$fixture" &
     done
     echo "Fixtures loaded"
     wait

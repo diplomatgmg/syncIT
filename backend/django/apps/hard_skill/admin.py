@@ -10,7 +10,7 @@ class HardSkillAdmin(admin.ModelAdmin):
     list_filter = ("selectable",)
     raw_id_fields = ("parent",)
     search_fields = ("name",)
-    ordering = ("ordering", "-parent")
+    ordering = ("ordering", "-parent", "name")
 
     def vacancies_count(self, obj: HardSkill):
         return obj.vacancies.count() if obj.selectable else "-"

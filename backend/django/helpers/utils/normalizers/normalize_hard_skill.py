@@ -99,8 +99,8 @@ HARD_SKILL_MAPPING = {
     "jenkins": "Jenkins",
     "jira": "Jira",
     "jest": "Jest",
-    "kafka": "Kafka",
-    "apache kafka": "Kafka",  # FIXME переименовать в Apache Kafka
+    "kafka": "Apache Kafka",
+    "apache kafka": "Apache Kafka",
     "kanban": "Kanban",
     "kotlin": "Kotlin",
     "kubernetes": "Kubernetes",
