@@ -21,6 +21,10 @@ app.conf.beat_schedule = {
         "task": "apps.user_profile.tasks.find_suitable_vacancies",
         "schedule": crontab(minute="*/10"),
     },
+    "delete_old_parsed_vacancies_every_day": {
+        "task": "apps.vacancy.tasks.delete_old_parsed_vacancies",
+        "schedule": crontab(minute="0", hour="0"),
+    },
 }
 
 app.conf.broker_connection_retry_on_startup = True
