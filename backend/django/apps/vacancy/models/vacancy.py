@@ -18,9 +18,6 @@ class Vacancy(BaseVacancy):
         "hard_skill.HardSkill", related_name="vacancies"
     )
     profession = models.ForeignKey("profession.Profession", on_delete=models.CASCADE)
-    created_at = models.DateTimeField(
-        auto_now_add=True
-    )  # TODO Мб поменять в парcере created_at и published_at местами
     published_at = models.DateTimeField()
 
     def __str__(self):
