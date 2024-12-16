@@ -1,5 +1,5 @@
 from celery import shared_task
-from django.conf import settings
+from constance import config
 from django.db.models import Count, Q
 
 from apps.user_profile.models import Profile
@@ -59,7 +59,7 @@ def process_profile(profile):
         total_skills = suitable_vacancy.total_hard_skills
         suitability = round((matching_skills_count / total_skills) * 100)
 
-        if suitability < settings.MINIMUM_VACANCY_SUITABILITY:
+        if suitability < config.MINIMUM_VACANCY_SUITABILITY:
             continue
 
         # Проверяем, существует ли запись

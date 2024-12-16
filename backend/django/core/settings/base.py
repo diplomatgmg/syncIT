@@ -10,12 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
 import sys
 from datetime import timedelta
 from pathlib import Path
 
 from dotenv import load_dotenv
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt.token_blacklist",
     "corsheaders",
     "djoser",
+    "constance",
     # Custom apps
     "apps.user",
     "apps.hard_skill",
@@ -130,6 +131,10 @@ TEMPLATES = [
 WSGI_APPLICATION = "core.wsgi.application"
 
 
+CONSTANCE_CONFIG = {
+    "MINIMUM_VACANCY_SUITABILITY": (60, "Минимальный % совпадения вакансии"),
+}
+
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -147,9 +152,17 @@ DATABASES = {
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": os.getenv("REDIS_CACHE_LOCATION"),
+        "LOCATION": "redis://localhost:6379",
     }
 }
+
+CONSTANCE_BACKEND = "constance.backends.redisd.RedisBackend"
+CONSTANCE_REDIS_CONNECTION = {
+    "host": "redis",
+}
+
+CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
 
 if TESTING:
     CACHES = {
@@ -159,11 +172,6 @@ if TESTING:
     }
     CELERY_TASK_ALWAYS_EAGER = True
     CELERY_TASK_EAGER_PROPAGATES = True
-
-
-CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
-CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -213,10 +221,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "user.User"
 
 PROXY_URL = os.getenv("GO_PROXY_URL")
-
-# Минимум %, на сколько вакансия подходит пользователю
-MINIMUM_VACANCY_SUITABILITY = 60
-
 
 LOGGING = {
     "version": 1,
