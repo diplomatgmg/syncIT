@@ -17,12 +17,17 @@ RUN --mount=type=cache,target=/root/.cache/pip pip install -r requirements/base.
 # ================================= #
 FROM base AS development
 
+ENV DJANGO_SETTINGS_MODULE=core.settings.development
+
 COPY ./requirements/development.txt ./requirements/development.txt
 RUN --mount=type=cache,target=/root/.cache/pip pip install -r requirements/development.txt
 
 COPY . .
 
-ENV DJANGO_SETTINGS_MODULE=core.settings.development
+# ipython hotreload
+RUN ipython profile create && \
+    echo "c.InteractiveShellApp.extensions = ['autoreload']" >> ~/.ipython/profile_default/ipython_config.py && \
+    echo "c.InteractiveShellApp.exec_lines = ['%autoreload 2']" >> ~/.ipython/profile_default/ipython_config.py
 
 CMD ["sh", "startup/development.sh"]
 
@@ -32,11 +37,11 @@ CMD ["sh", "startup/development.sh"]
 # ================================= #
 FROM base AS production
 
+ENV DJANGO_SETTINGS_MODULE=core.settings.production
+
 COPY ./requirements/production.txt ./requirements/production.txt
 RUN --mount=type=cache,target=/root/.cache/pip pip install -r requirements/production.txt
 
 COPY . .
-
-ENV DJANGO_SETTINGS_MODULE=core.settings.production
 
 CMD ["sh", "startup/production.sh"]
