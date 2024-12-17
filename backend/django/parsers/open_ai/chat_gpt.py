@@ -17,15 +17,14 @@ def get_chat_gpt_completion(prompt: str) -> str | None:
         try:
             client = g4f.client.Client()
             response = client.chat.completions.create(
-                model=g4f.models.gpt_4o,
-                provider=g4f.Provider.Mhystical,
+                model=g4f.models.gpt_35_turbo,
+                provider=g4f.Provider.ChatGptEs,
                 messages=[{"role": "user", "content": prompt}],
             )
             return clear_text(response.choices[0].message.content)  # noqa
         except Exception as e:
-            time.sleep(_attempt)
             logger.warning(
-                f"Попытка {_attempt}: Не удалось получить ответ от Blackbox: {e}",
+                f"Попытка {_attempt}: Не удалось получить ответ от провайдера: {e}",
                 exc_info=True,
             )
             return None
