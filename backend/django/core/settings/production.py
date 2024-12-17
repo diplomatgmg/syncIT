@@ -3,17 +3,17 @@ from core.settings.base import *  # noqa
 DEBUG = False
 
 ALLOWED_HOSTS = [
+    "0.0.0.0",
     "localhost",
+    "94.26.236.166",
     "syncit.space",
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "https://localhost",
     "https://syncit.space",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://localhost",
     "https://syncit.space",
 ]
 
