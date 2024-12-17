@@ -11,8 +11,8 @@ WORKDIR /project/backend/django
 
 RUN apk update &&  \
     apk upgrade && \
-    apk add --no-cache curl
-
+    apk add --no-cache curl && \
+    adduser -D -g '' celeryuser
 
 # ================================= #
 #           DEVELOPMENT             #
