@@ -1,4 +1,4 @@
-FROM oven/bun:latest AS base
+FROM oven/bun:alpine AS base
 
 WORKDIR /project/frontend
 
@@ -28,11 +28,10 @@ ENV NODE_ENV=production
 RUN bun run build
 
 
-FROM nginx:latest AS production
+FROM nginx:alpine AS production
 
 RUN rm /etc/nginx/conf.d/default.conf
 COPY ./nginx.conf /etc/nginx/conf.d
 COPY --from=build /project/frontend/dist /usr/share/nginx/html
 
 CMD ["nginx", "-g", "daemon off;"]
-
