@@ -8,7 +8,7 @@ fi
 command=$1
 
 if [ "$BUILD_TARGET" == "development" ]; then
-  python manage.py celery_autoreload "$command"
+  uv run manage.py celery_autoreload "$command"
 else
   celery -A core.celery.app "$command" -l "${CELERY_LOG_LEVEL}"
 fi
