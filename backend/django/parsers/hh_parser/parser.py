@@ -26,7 +26,7 @@ from parsers.open_ai.chat_gpt import get_chat_gpt_completion
 from parsers.open_ai.prompt import make_prompt
 from parsers.open_ai.utils import parse_vacancy
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("django")
 
 
 class HHParser(BaseParser):

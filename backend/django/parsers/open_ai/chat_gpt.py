@@ -5,7 +5,7 @@ import time
 import g4f
 import g4f.Provider
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("django")
 
 
 def clear_text(text: str) -> str:

@@ -3,7 +3,7 @@ from functools import wraps
 
 from django.core.cache import cache
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("celery")
 
 
 def singleton_task(task_name):

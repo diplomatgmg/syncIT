@@ -12,7 +12,7 @@ from apps.work_format.models import WorkFormat
 
 import logging
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("django")
 
 ModelType = Type[Model]
 ModelNameType = Literal[

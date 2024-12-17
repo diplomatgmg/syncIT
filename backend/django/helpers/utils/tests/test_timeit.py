@@ -6,7 +6,7 @@ from django.test import TestCase
 
 from helpers.utils import timeit
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("celery")
 
 
 class TimeitDecoratorTest(TestCase):
