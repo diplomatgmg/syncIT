@@ -1,7 +1,9 @@
 import logging
 import re
+import time
 
-from g4f.client import Client
+import g4f
+import g4f.Provider
 
 logger = logging.getLogger(__name__)
 
@@ -11,15 +13,17 @@ def clear_text(text: str) -> str:
 
 
 def get_chat_gpt_completion(prompt: str) -> str | None:
-    def get_completion(_prompt: str, _attempt: int) -> str | None:
+    def get_completion(_attempt: int) -> str | None:
         try:
-            client = Client()
+            client = g4f.client.Client()
             response = client.chat.completions.create(
-                model="blackboxai",
-                messages=[{"role": "user", "content": _prompt}],
+                model=g4f.models.gpt_4o,
+                provider=g4f.Provider.Mhystical,
+                messages=[{"role": "user", "content": prompt}],
             )
             return clear_text(response.choices[0].message.content)  # noqa
         except Exception as e:
+            time.sleep(_attempt)
             logger.warning(
                 f"Попытка {_attempt}: Не удалось получить ответ от Blackbox: {e}",
                 exc_info=True,
@@ -28,7 +32,7 @@ def get_chat_gpt_completion(prompt: str) -> str | None:
 
     attempt = 1
     while attempt <= 5:
-        completion = get_completion(prompt, attempt)
+        completion = get_completion(attempt)
         if completion is not None:
             return completion
         attempt += 1

@@ -92,7 +92,6 @@ services:
       - app-network
 
   celery:
-    user: celeryuser
     build:
       context: ./backend/django
       target: ${BUILD_TARGET}

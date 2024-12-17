@@ -241,7 +241,7 @@ LOGGING = {
         "warning_file": {
             "level": "WARNING",
             "class": "logging.FileHandler",
-            "filename": os.path.join(LOG_DIR, "warning.log"),
+            "filename": os.path.join(LOG_DIR, "warnings.log"),
             "formatter": "verbose",
         },
         "error_file": {
