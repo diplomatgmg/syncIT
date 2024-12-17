@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from apps.hard_skill.models import HardSkill
+from apps.hard_skill.models import HardSkill, UnknownHardSkill
 from apps.hard_skill.utils.hard_skill_parser import get_skills
 from helpers.utils.normalizers import normalize_hard_skill
 
@@ -26,6 +26,13 @@ class Command(BaseCommand):
 
         if created:
             self.stdout.write(self.style.SUCCESS(f"Создан навык: {skill.name}"))
+
+            unknown_skill = UnknownHardSkill.objects.filter(name=skill.name)
+            if unknown_skill.exists():
+                self.stdout.write(
+                    self.style.SUCCESS(f"Удален UnknownHardSkill: {skill.name}")
+                )
+            unknown_skill.delete()
 
         return skill
 
