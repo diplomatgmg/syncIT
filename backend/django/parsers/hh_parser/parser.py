@@ -99,7 +99,7 @@ class HHParser(BaseParser):
                         data = future.result(timeout=timeout)
                     except TimeoutError:
                         logger.warning(
-                            f"TimeoutError. Повторная попытка получить данные...\n"
+                            f"TimeoutError. Повторная попытка получить данные... "
                             f"Callback: {callback}"
                         )
                         time.sleep(10)
