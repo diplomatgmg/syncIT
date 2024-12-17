@@ -15,13 +15,8 @@ import sys
 from datetime import timedelta
 from pathlib import Path
 
-from dotenv import load_dotenv
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-
-# Loading environment variables
-load_dotenv(BASE_DIR / ".." / ".env")
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 TESTING = "test" in sys.argv or os.getenv("TESTING")

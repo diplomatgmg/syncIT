@@ -5,12 +5,13 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /project/backend/django
 
-RUN apk add --no-cache curl gcc musl-dev postgresql-dev
-
-RUN pip install --upgrade pip setuptools
+RUN apk update &&  \
+    apk upgrade && \
+    apk add --no-cache curl
 
 COPY ./requirements/base.txt ./requirements/base.txt
-RUN --mount=type=cache,target=/root/.cache/pip pip install -r requirements/base.txt
+RUN --mount=type=cache,target=/root/.cache/pip pip install --upgrade pip && \
+    pip install --prefer-binary -r requirements/base.txt
 
 # ================================= #
 #           DEVELOPMENT             #
@@ -20,7 +21,7 @@ FROM base AS development
 ENV DJANGO_SETTINGS_MODULE=core.settings.development
 
 COPY ./requirements/development.txt ./requirements/development.txt
-RUN --mount=type=cache,target=/root/.cache/pip pip install -r requirements/development.txt
+RUN --mount=type=cache,target=/root/.cache/pip pip install --prefer-binary -r requirements/development.txt
 
 COPY . .
 
@@ -40,7 +41,7 @@ FROM base AS production
 ENV DJANGO_SETTINGS_MODULE=core.settings.production
 
 COPY ./requirements/production.txt ./requirements/production.txt
-RUN --mount=type=cache,target=/root/.cache/pip pip install -r requirements/production.txt
+RUN --mount=type=cache,target=/root/.cache/pip pip install --prefer-binary -r requirements/production.txt
 
 COPY . .
 

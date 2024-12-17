@@ -54,7 +54,7 @@ class BaseParser(ABC):
             UnknownProfession.objects.create(name=profession_name)
             profession_model, _ = Profession.objects.get_or_create(name="Неизвестно")
 
-        created_vacancy_model = Vacancy.objects.get_or_create(
+        created_vacancy_model, _ = Vacancy.objects.get_or_create(
             unique_hash=unique_hash,
             defaults={
                 "name": name,
