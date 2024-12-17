@@ -254,13 +254,18 @@ LOGGING = {
     "loggers": {
         "django": {
             "handlers": ["console", "warning_file", "error_file"],
-            "level": "DEBUG",
-            "propagate": True,
+            "level": os.getenv("DJANGO_LOG_LEVEL"),
+            "propagate": False,
         },
         "django.request": {
-            "handlers": ["error_file"],
-            "level": "ERROR",
+            "handlers": ["console", "warning_file", "error_file"],
+            "level": os.getenv("DJANGO_LOG_LEVEL"),
             "propagate": False,
+        },
+        "celery": {
+            "handlers": ["console", "warning_file", "error_file"],
+            "level": os.getenv("CELERY_LOG_LEVEL"),
+            "propagate": True,
         },
     },
 }
