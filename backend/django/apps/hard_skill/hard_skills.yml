@@ -17,8 +17,8 @@ Backend:
     - Nest.js
     - Node.js
   Java:
-    - Spring Boot
     - Spring Framework
+      - Spring Boot
   PHP:
     - Laravel
     - Symfony
@@ -46,8 +46,8 @@ Frontend:
     - Angular
     - Ember.js
     - JQuery
-    - Next.js
     - React
+      - Next.js
       - React Native
       - Redux
     - Svelte
