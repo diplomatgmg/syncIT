@@ -156,18 +156,6 @@ services:
     labels:
       telegram-notifier.monitor: false
 
-  dozzle:
-    restart: unless-stopped
-    image: amir20/dozzle:latest
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    ports:
-      - "8080:8080"
-    labels:
-      telegram-notifier.monitor: false
-    networks:
-      - app-network
-
 
 volumes:
   static_volume:
