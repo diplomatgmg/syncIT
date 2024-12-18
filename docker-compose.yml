@@ -53,9 +53,9 @@ services:
       - .env
     healthcheck:
       test: "curl -f http://localhost:9000/health-check"
-      interval: 5s
+      interval: 10s
       timeout: 5s
-      retries: 10
+      retries: 5
     depends_on:
       - postgres
     networks:
@@ -73,6 +73,7 @@ services:
       test: "pg_isready -h ${POSTGRES_HOST} -p ${POSTGRES_PORT} -d ${POSTGRES_DB}"
       interval: 10s
       timeout: 5s
+      retries: 5
     networks:
       - app-network
 
@@ -85,6 +86,7 @@ services:
       test: "redis-cli ping"
       interval: 10s
       timeout: 5s
+      retries: 5
     networks:
       - app-network
 
@@ -97,8 +99,9 @@ services:
     command: "sh startup/celery.sh worker"
     healthcheck:
       test: "celery -A core.celery.app inspect ping"
-      interval: 5s
+      interval: 10s
       timeout: 5s
+      retries: 5
     depends_on:
       - django
     env_file:
