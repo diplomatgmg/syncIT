@@ -32,14 +32,11 @@ services:
       - .env
     healthcheck:
       test: "curl -f http://localhost:8000/health-check/"
-      interval: 5s
+      interval: 10s
       timeout: 5s
-      retries: 10
     depends_on:
-      postgres:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
+      - postgres
+      - redis
     networks:
       - app-network
 
@@ -59,8 +56,7 @@ services:
       timeout: 5s
       retries: 10
     depends_on:
-      postgres:
-        condition: service_healthy
+      - postgres
     networks:
       - app-network
 
@@ -74,7 +70,7 @@ services:
       - .env
     healthcheck:
       test: "pg_isready -h ${POSTGRES_HOST} -p ${POSTGRES_PORT} -d ${POSTGRES_DB}"
-      interval: 5s
+      interval: 10s
       timeout: 5s
     networks:
       - app-network
@@ -86,7 +82,7 @@ services:
       - "6379:6379"
     healthcheck:
       test: "redis-cli ping"
-      interval: 5s
+      interval: 10s
       timeout: 5s
     networks:
       - app-network
@@ -103,8 +99,7 @@ services:
       interval: 5s
       timeout: 5s
     depends_on:
-      django:
-        condition: service_healthy
+      - django
     env_file:
       - .env
     networks:
@@ -120,8 +115,7 @@ services:
     env_file:
       - .env
     depends_on:
-      celery:
-        condition: service_healthy
+      - celery
     labels:
       telegram-notifier.monitor: false
     networks:
@@ -139,8 +133,7 @@ services:
     ports:
       - "5555:5555"
     depends_on:
-      celery:
-        condition: service_healthy
+      - celery
     labels:
       telegram-notifier.monitor: false
     networks:
