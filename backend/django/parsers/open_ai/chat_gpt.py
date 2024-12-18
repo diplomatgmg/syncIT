@@ -34,6 +34,7 @@ def get_chat_gpt_completion(prompt: str) -> str | None:
         completion = get_completion(attempt)
         if completion is not None:
             return completion
+        time.sleep(15)
         attempt += 1
 
     logger.error(
