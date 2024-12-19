@@ -31,7 +31,7 @@ services:
     env_file:
       - .env
     healthcheck:
-      test: "curl -f http://localhost:8000/health-check/"
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health-check/"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -52,7 +52,7 @@ services:
     env_file:
       - .env
     healthcheck:
-      test: "curl -f http://localhost:9000/health-check"
+      test: ["CMD", "curl", "-f", "http://localhost:9000/health-check"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -70,7 +70,7 @@ services:
     env_file:
       - .env
     healthcheck:
-      test: "pg_isready -h ${POSTGRES_HOST} -p ${POSTGRES_PORT} -d ${POSTGRES_DB}"
+      test: ["CMD", "pg_isready", "-h", "${POSTGRES_HOST}", "-p", "${POSTGRES_PORT}", "-d", "${POSTGRES_DB}"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -83,7 +83,7 @@ services:
     ports:
       - "6379:6379"
     healthcheck:
-      test: "redis-cli ping"
+      test: ["CMD", "redis-cli", "ping"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -96,9 +96,9 @@ services:
       target: ${BUILD_TARGET}
     volumes:
       - ./backend/django:/project/backend/django
-    command: "sh startup/celery.sh worker"
+    command: ["sh", "startup/celery.sh", "worker"]
     healthcheck:
-      test: "celery -A core.celery.app inspect ping"
+      test: ["CMD", "celery", "-A", "core.celery.app", "inspect", "ping"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -115,7 +115,7 @@ services:
       target: ${BUILD_TARGET}
     volumes:
       - ./backend/django:/project/backend/django
-    command: "sh startup/celery.sh beat"
+    command: ["sh", "startup/celery.sh", "beat"]
     env_file:
       - .env
     depends_on:
@@ -131,7 +131,7 @@ services:
       target: ${BUILD_TARGET}
     volumes:
       - ./backend/django:/project/backend/django
-    command: "sh startup/celery.sh flower"
+    command: ["sh", "startup/celery.sh", "flower"]
     env_file:
       - .env
     ports:
@@ -143,9 +143,6 @@ services:
     networks:
       - app-network
 
-  # =========================== #
-  #       Single instances      #
-  # =========================== #
   notifier:
     restart: unless-stopped
     image: lorcas/docker-telegram-notifier
@@ -157,12 +154,12 @@ services:
       telegram-notifier.monitor: false
 
 
+networks:
+  app-network:
+    driver: bridge
+
+
 volumes:
   static_volume:
   frontend_dist:
   postgres_data:
-
-
-networks:
-  app-network:
-    driver: bridge
