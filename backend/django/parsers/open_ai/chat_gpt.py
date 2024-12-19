@@ -1,8 +1,7 @@
 import logging
-import os
 import re
 
-from openai import OpenAI
+from g4f import Provider, Client
 
 logger = logging.getLogger("django")
 
@@ -12,13 +11,10 @@ def clear_text(text: str) -> str:
 
 
 def get_chat_gpt_completion(prompt: str) -> str | None:
-    client = OpenAI(
-        api_key=os.getenv("GPT_API_KEY"),
-        base_url="https://api.aitunnel.ru/v1/",
-    )
+    client = Client()
     response = client.chat.completions.create(
-        messages=[{"role": "user", "content": prompt}],
         model="gpt-4o-mini",
+        provider=Provider.ChatGptEs,
+        messages=[{"role": "user", "content": prompt}],
     )
-
-    return clear_text(response.choices[0].message.content)  # noqa
+    return clear_text(response.choices[0].message.content)
