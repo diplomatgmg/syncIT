@@ -7,9 +7,8 @@ from helpers.utils import singleton_task
 from parsers.hh_parser.parser import HHParser
 
 
-# FIXME Сделать while True?
 @shared_task
-@singleton_task("find_vacancies")  # fixme убрать lock при перезапуске сервера
+@singleton_task("find_vacancies")
 def find_vacancies():
     HHParser().start()
 
@@ -20,6 +19,5 @@ def delete_old_parsed_vacancies():
     Удаляет старые вакансии из БД
     """
     ParsedVacancy.objects.filter(
-        created_at__lt=datetime.now()
-        - timedelta(days=7)  # FIXME добавить либу constance
+        created_at__lt=datetime.now() - timedelta(days=7)
     ).delete()
