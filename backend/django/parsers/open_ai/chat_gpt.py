@@ -1,7 +1,7 @@
 import logging
 import re
 
-from g4f import Provider, Client
+from g4f import Provider, Client, models
 
 logger = logging.getLogger("django")
 
@@ -11,10 +11,13 @@ def clear_text(text: str) -> str:
 
 
 def get_chat_gpt_completion(prompt: str) -> str | None:
-    client = Client()
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        provider=Provider.ChatGptEs,
-        messages=[{"role": "user", "content": prompt}],
-    )
-    return clear_text(response.choices[0].message.content)
+    try:
+        client = Client()
+        response = client.chat.completions.create(
+            model=models.gemini_pro,
+            provider=Provider.Blackbox,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        return clear_text(response.choices[0].message.content)
+    except Exception as e:
+        logger.error(f"GPT Error\n\n{e}")
