@@ -254,6 +254,7 @@ class HHParser(BaseParser):
     @timeit
     def start(self):
         last_vacancies_ids = self.get_last_vacancies_ids()
+        logger.info(f"Найдено {last_vacancies_ids} новых вакансий")
         vacancies_data = self.get_vacancies_data(last_vacancies_ids)
         vacancies_prompts = [
             self.get_prompted_vacancy(vacancy_data) for vacancy_data in vacancies_data
