@@ -178,7 +178,7 @@ class HHParser(BaseParser):
         for prompt in vacancies_prompts:
             # Получаем 3 ответа от ChatGPT для максимального сбора инфы
             vacancy_response = self.get_data_with_workers(
-                get_chat_gpt_completion, [prompt] * 3, timeout=10
+                get_chat_gpt_completion, [prompt] * 3, timeout=15
             )
 
             yield vacancy_response
