@@ -6,28 +6,33 @@ from django.core.cache import cache
 logger = logging.getLogger("celery")
 
 
-def singleton_task(task_name):
+def singleton_task():
     """
     Singleton декоратор для тасок
+
+    >>> @shared_task # noqa
+    >>> @singleton_task() # Должнен быть первым
+    >>> def func():
+    >>>     pass
     """
 
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
-            lock_id = f"{task_name}_lock"
+            lock_id = f"{func.__name__}_lock"
 
             # Добавляем в кеш на 1 день, иначе кеш может очиститься сам
             got_lock = cache.add(lock_id, "true", timeout=24 * 60 * 60)
 
             if not got_lock:
-                logger.info(f"Task {task_name} is already running")
+                logger.info(f"Task {func.__name__} is already running")
                 return
 
-            logger.info(f"Task {task_name} is starting execution")
+            logger.info(f"Task {func.__name__} is starting execution")
             try:
                 return func(*args, **kwargs)
             except Exception as e:
-                logger.error(f"Task {task_name} raised an exception: {e}")
+                logger.error(f"Task {func.__name__} raised an exception: {e}")
             finally:
                 cache.delete(lock_id)
 
