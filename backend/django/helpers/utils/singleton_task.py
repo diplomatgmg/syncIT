@@ -16,8 +16,8 @@ def singleton_task(task_name):
         def wrapper(*args, **kwargs):
             lock_id = f"{task_name}_lock"
 
-            # Добавляем в кеш на 20 минут, иначе кеш может очиститься сам
-            got_lock = cache.add(lock_id, "true", timeout=20 * 60)
+            # Добавляем в кеш на 1 день, иначе кеш может очиститься сам
+            got_lock = cache.add(lock_id, "true", timeout=24 * 60 * 60)
 
             if not got_lock:
                 logger.info(f"Task {task_name} is already running")
