@@ -162,7 +162,7 @@ const Header = () => {
     <ThemeProvider theme={{ isMenuOpen }}>
       <HeaderStyle style={{ backgroundColor: colors.dark[9] }}>
         <Group justify="space-between" h="100%">
-          <Link to={routes.home.path}>
+          <Link to={routes.home.path} onClick={handleClickLink}>
             <LogoStyle src={SyncItImg} alt="syncIT" />
           </Link>
           {matches && renderMobileMenu()}
