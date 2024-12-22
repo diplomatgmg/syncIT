@@ -24,6 +24,7 @@ import routes from "@/routes/routes.tsx"
 import { useMediaQuery } from "@mantine/hooks"
 import { LoginResponseError } from "@/types/authTypes.ts"
 import GitHubSvg from "@/assets/svg/github.svg"
+import GoogleSvg from "@/assets/svg/google.svg"
 import { API_URL } from "@/store/api/baseQuery.ts"
 
 const LoginForm = (): ReactElement => {
@@ -47,6 +48,10 @@ const LoginForm = (): ReactElement => {
 
   const handleGitHubLogin = () => {
     window.location.href = `${API_URL}/auth/login/github/`
+  }
+
+  const handleGoogleLogin = () => {
+    window.location.href = `${API_URL}/auth/login/google-oauth2/`
   }
 
   const handleSubmit = async () => {
@@ -137,7 +142,10 @@ const LoginForm = (): ReactElement => {
               Войти
             </Button>
             <Tooltip label="Войти через GitHub" position="bottom" offset={12}>
-              <GitHubIcon src={GitHubSvg} onClick={handleGitHubLogin} />
+              <SocialIcon src={GitHubSvg} onClick={handleGitHubLogin} />
+            </Tooltip>
+            <Tooltip label="Войти через Google" position="bottom" offset={12}>
+              <SocialIcon src={GoogleSvg} onClick={handleGoogleLogin} />
             </Tooltip>
           </Flex>
 
@@ -169,7 +177,7 @@ const Form = styled.form`
   align-items: center;
 `
 
-const GitHubIcon = styled.img`
+const SocialIcon = styled.img`
   width: 2.5rem;
   height: 2.5rem;
   padding: -2rem;
