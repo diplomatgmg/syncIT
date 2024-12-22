@@ -4,7 +4,9 @@ import { logout, setTokens } from "@/store/slice/authSlice.ts"
 import { LoginResponse } from "@/types/authTypes.ts"
 import { Mutex } from "async-mutex"
 
-const API_URL = import.meta.env.PROD ? "/api" : "http://localhost:8000/api"
+export const API_URL = import.meta.env.PROD
+  ? "/api"
+  : "http://localhost:8000/api"
 
 const mutex = new Mutex()
 
@@ -26,11 +28,13 @@ const baseQueryWithReauth: BaseQueryFn = async (args, api, extraOptions) => {
 
   let result = await baseQuery(args, api, extraOptions)
 
+  if (result.error) {
+    console.error(result)
+  }
+
   if (!result.error || result.error.status !== 401) {
     return result
   }
-
-  console.error(result)
 
   const refreshToken = (api.getState() as RootState).auth.token.refresh
 

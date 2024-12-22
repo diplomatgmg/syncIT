@@ -9,3 +9,4 @@ psycopg2-binary==2.9.10
 redis==5.2.1
 g4f==0.3.9.7
 flower==2.0.1
+social-auth-app-django==5.4.2

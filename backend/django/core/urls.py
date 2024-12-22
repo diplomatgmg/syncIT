@@ -14,6 +14,7 @@ def health_check(_):
 urlpatterns = [
     path("health-check/", health_check),
     path("admin/", admin.site.urls),
+    path("api/auth/", include("social_django.urls", namespace="social")),
     path("api/", include("apps.hard_skill.urls")),
     path("api/", include("apps.grade.urls")),
     path("api/", include("apps.work_format.urls")),
@@ -45,7 +46,7 @@ if settings.DEBUG and not settings.TESTING:
         path("__debug__/", include("debug_toolbar.urls")),
         path(
             "swagger/",
-            schema_view.with_ui("swagger", cache_timeout=0),
+            schema_view.with_ui("swagger", cache_timeout=0),  # type: ignore
             name="schema-swagger-ui",
         ),
     ]

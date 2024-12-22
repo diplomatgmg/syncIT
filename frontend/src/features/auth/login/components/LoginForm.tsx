@@ -1,4 +1,4 @@
-import { ReactElement } from "react"
+import { ReactElement, useState } from "react"
 import { useForm } from "@mantine/form"
 import {
   Anchor,
@@ -11,6 +11,7 @@ import {
   Text,
   TextInput,
   Title,
+  Tooltip,
   useMantineTheme,
 } from "@mantine/core"
 import styled from "styled-components"
@@ -21,8 +22,9 @@ import { invalidateTags } from "@/store/api/vacancyApi.ts"
 import { setEmail, setTokens } from "@/store/slice/authSlice.ts"
 import routes from "@/routes/routes.tsx"
 import { useMediaQuery } from "@mantine/hooks"
-import { useState } from "react"
 import { LoginResponseError } from "@/types/authTypes.ts"
+import GitHubSvg from "@/assets/svg/github.svg"
+import { API_URL } from "@/store/api/baseQuery.ts"
 
 const LoginForm = (): ReactElement => {
   const { colors } = useMantineTheme()
@@ -42,6 +44,10 @@ const LoginForm = (): ReactElement => {
   const dispatch = useAppDispatch()
   const [login, { isLoading }] = useLoginMutation()
   const navigate = useNavigate()
+
+  const handleGitHubLogin = () => {
+    window.location.href = `${API_URL}/auth/login/github/`
+  }
 
   const handleSubmit = async () => {
     setErrorMessage(null)
@@ -114,22 +120,26 @@ const LoginForm = (): ReactElement => {
             </Text>
           )}
 
-          <Button
-            type={"submit"}
-            mt={errorMessage ? "md" : "xl"}
-            fullWidth
-            radius={"md"}
-            loaderProps={{
-              children: (
-                <Flex align={"center"} gap={"xs"} pb={3}>
-                  <Loader size={"xs"} color={colors.blue[5]} />
-                  <span style={{ color: colors.blue[1] }}>Входим...</span>
-                </Flex>
-              ),
-            }}
-            loading={isLoading}>
-            Войти
-          </Button>
+          <Flex mt={errorMessage ? "md" : "xl"} align={"center"} gap={"xs"}>
+            <Button
+              type={"submit"}
+              fullWidth
+              radius={"md"}
+              loaderProps={{
+                children: (
+                  <Flex align={"center"} gap={"xs"} pb={3}>
+                    <Loader size={"xs"} color={colors.blue[5]} />
+                    <span style={{ color: colors.blue[1] }}>Входим...</span>
+                  </Flex>
+                ),
+              }}
+              loading={isLoading}>
+              Войти
+            </Button>
+            <Tooltip label="Войти через GitHub" position="bottom" offset={12}>
+              <GitHubIcon src={GitHubSvg} onClick={handleGitHubLogin} />
+            </Tooltip>
+          </Flex>
 
           {matches && (
             <Flex
@@ -157,6 +167,18 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+`
+
+const GitHubIcon = styled.img`
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: -2rem;
+  transition: 0.15s ease;
+
+  &:hover {
+    cursor: pointer;
+    scale: 1.2;
+  }
 `
 
 export default LoginForm
