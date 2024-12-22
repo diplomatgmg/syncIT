@@ -33,6 +33,7 @@ Backend:
   C#:
     - .NET
       - ASP.NET
+    - Unity
 
 Frontend:
   - CSS
@@ -88,6 +89,7 @@ DevOps:
   - Ansible
   - ClickHouse
   - CI/CD
+    - GitLab CI
   - Docker
     - Docker Compose
   - Elasticsearch

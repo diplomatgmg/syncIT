@@ -30,3 +30,4 @@ class HardSkillAdmin(admin.ModelAdmin):
 class UnknownHardSkillAdmin(admin.ModelAdmin):
     list_display = ("name", "create_count")
     ordering = ("-create_count",)
+    search_fields = ("name",)

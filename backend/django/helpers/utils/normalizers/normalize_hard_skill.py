@@ -16,6 +16,7 @@ HARD_SKILL_MAPPING = {
     "asp net": "ASP.NET",
     "aspnet": "ASP.NET",
     "asp.net": "ASP.NET",
+    "android": "Android",
     "angular": "Angular",
     "angular js": "Angular",
     "angular.js": "Angular",
@@ -80,6 +81,10 @@ HARD_SKILL_MAPPING = {
     "grails": "Grails",
     "github": "GitHub",
     "gitlab": "GitLab",
+    "gitlab ci": "GitLab CI",
+    "gitlabci": "GitLab CI",
+    "gitlab ci/cd": "GitLab CI",
+    "gitla-ci": "GitLab CI",
     "go": "Go",
     "golang": "Go",
     "go lang": "Go",
@@ -90,6 +95,7 @@ HARD_SKILL_MAPPING = {
     "html 5": "HTML",
     "haskell": "Haskell",
     "http": "HTTP",
+    "ios": "iOS",
     "jquery": "JQuery",
     "js": "JavaScript",
     "json": "JSON",
@@ -203,6 +209,8 @@ HARD_SKILL_MAPPING = {
     "typescript": "TypeScript",
     "type script": "TypeScript",
     "tensorflow": "TensorFlow",
+    "terraform": "Terraform",
+    "unity": "Unity",
     "ubuntu": "Ubuntu",
     "ui": "UI/UX",
     "ux": "UI/UX",
@@ -246,7 +254,9 @@ default = (
 
 
 def normalize_hard_skill(skill: str) -> str | None:
-    normalized_skill = HARD_SKILL_MAPPING.get(skill.lower())
+    skill = skill.lower().strip().rstrip(",")
+
+    normalized_skill = HARD_SKILL_MAPPING.get(skill)
     if normalized_skill:
         return normalized_skill
 
