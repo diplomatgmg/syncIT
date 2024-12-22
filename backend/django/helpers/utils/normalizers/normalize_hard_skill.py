@@ -236,7 +236,7 @@ HARD_SKILL_MAPPING = {
 
 # Дефотные навыкы, которые имеют selectable=false
 # Играют роль "Категории навыков"
-default = (
+DEFAULT = (
     "Backend",
     "Frontend",
     "Базы данных",
@@ -252,6 +252,15 @@ default = (
     "Скриптовые языки",
 )
 
+IGNORE = (
+    "функциональное тестирование",
+    "ручное тестирование",
+    "английский язык",
+    "регрессионное тестирование",
+    "автоматизированное тестирование",
+    "тестирование пользовательского интерфейса",
+)
+
 
 def normalize_hard_skill(skill: str) -> str | None:
     skill = skill.lower().strip().rstrip(",")
@@ -260,7 +269,7 @@ def normalize_hard_skill(skill: str) -> str | None:
     if normalized_skill:
         return normalized_skill
 
-    if skill not in default:
+    if skill not in DEFAULT and skill not in IGNORE:
         UnknownHardSkill.objects.create(name=skill)
 
     return None
