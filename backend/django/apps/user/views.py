@@ -47,6 +47,9 @@ def social_success_auth(strategy, details, user=None, *args, **kwargs):
     host = "http://localhost:3000" if settings.DEBUG else ""
 
     if user:
+        user.is_active = True
+        user.save()
+
         tokens = generate_tokens(user)
         redirect_url = f"{host}/login?access={tokens['access']}&refresh={tokens['refresh']}&email={user.email}"
         return redirect(redirect_url)
