@@ -12,6 +12,7 @@ const AppRouter = () => {
       />
       <Route path={routes.register.path} element={routes.register.element} />
       <Route path={routes.faq.path} element={routes.faq.element} />
+      <Route path={routes.notFound.path} element={routes.notFound.element} />
 
       <Route element={<ProtectedRoute />}>
         <Route path={routes.profile.path} element={routes.profile.element} />

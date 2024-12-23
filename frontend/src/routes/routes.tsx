@@ -4,6 +4,7 @@ import LoginPage from "@/pages/LoginPage.tsx"
 import RegisterPage from "@/pages/RegisterPage.tsx"
 import ProfilePage from "@/pages/ProfilePage.tsx"
 import FAQPage from "@/pages/FAQPage.tsx"
+import NotFoundPage from "@/pages/NotFoundPage.tsx"
 
 export enum RouteKeys {
   HOME = "home",
@@ -11,6 +12,7 @@ export enum RouteKeys {
   REGISTER = "register",
   PROFILE = "profile",
   FAQ = "faq",
+  NOT_FOUND = "notFound",
 }
 
 export interface Route {
@@ -42,6 +44,10 @@ const routes: Routes = {
   [RouteKeys.FAQ]: {
     path: "/faq",
     element: <FAQPage />,
+  },
+  [RouteKeys.NOT_FOUND]: {
+    path: "*",
+    element: <NotFoundPage />,
   },
 }
 
