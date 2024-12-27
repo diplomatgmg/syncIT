@@ -91,6 +91,7 @@ services:
       - app-network
 
   celery:
+    restart: always
     build:
       context: ./backend/django
       target: ${BUILD_TARGET}
