@@ -16,7 +16,7 @@ const RegisterPage = (): ReactElement => {
   }, [isAuthenticated, navigate])
 
   return (
-    <CommonPage>
+    <CommonPage title={"Регистрация"}>
       <Register />
     </CommonPage>
   )

@@ -34,7 +34,7 @@ const LoginPage = (): ReactElement => {
   }, [isAuthenticated, navigate, dispatch])
 
   return (
-    <CommonPage>
+    <CommonPage title={"Вход"}>
       <Login />
     </CommonPage>
   )

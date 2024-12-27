@@ -3,7 +3,7 @@ import CommonPage from "@/components/layout/CommonPage.tsx"
 
 const FAQPage = (): ReactElement => {
   return (
-    <CommonPage>
+    <CommonPage title={"FAQ"}>
       <h2
         style={{
           display: "flex",

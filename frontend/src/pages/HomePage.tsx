@@ -4,7 +4,7 @@ import CommonPage from "@/components/layout/CommonPage.tsx"
 
 const HomePage = (): ReactElement => {
   return (
-    <CommonPage>
+    <CommonPage title={"Вакансии"}>
       <Home />
     </CommonPage>
   )

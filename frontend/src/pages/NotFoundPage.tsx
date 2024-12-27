@@ -14,7 +14,7 @@ const NotFoundPage = (): ReactElement => {
   }
 
   return (
-    <CommonPage>
+    <CommonPage title={"404"}>
       <RootContainer>
         <Inner>
           <Image src={NotFoundSvg} />
