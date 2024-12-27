@@ -8,3 +8,6 @@ up:
 
 bash:
 	docker compose exec django sh
+
+tree:
+	tree . -I .venv -I node_modules -I tests -I __fixtures__ -I migrations -I tmp -I logs -I __init__.py
