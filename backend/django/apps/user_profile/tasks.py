@@ -1,5 +1,6 @@
 from celery import shared_task
 from constance import config
+from django.db import transaction
 from django.db.models import Count, Q
 
 from apps.user_profile.models import Profile
@@ -48,9 +49,6 @@ def process_profile(profile):
         .filter(hard_skill_count__gte=5)
     )
 
-    # Удаляем старые не просмотренные вакансии
-    UserVacancy.objects.filter(user=profile.user, is_viewed=False).delete()
-
     bulk_create_data = []
     bulk_update_data = []
 
@@ -62,7 +60,6 @@ def process_profile(profile):
         if suitability < config.MINIMUM_VACANCY_SUITABILITY:
             continue
 
-        # Проверяем, существует ли запись
         existing = UserVacancy.objects.filter(
             user=profile.user, vacancy=suitable_vacancy
         ).first()
@@ -79,6 +76,7 @@ def process_profile(profile):
                 )
             )
 
-    # Используем bulk операции для улучшения производительности
-    UserVacancy.objects.bulk_create(bulk_create_data, ignore_conflicts=True)
-    UserVacancy.objects.bulk_update(bulk_update_data, ["suitability"])
+    with transaction.atomic():
+        UserVacancy.objects.filter(user=profile.user, is_viewed=False).delete()
+        UserVacancy.objects.bulk_create(bulk_create_data, ignore_conflicts=True)
+        UserVacancy.objects.bulk_update(bulk_update_data, ["suitability"])
