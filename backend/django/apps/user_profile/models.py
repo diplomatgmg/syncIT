@@ -12,7 +12,7 @@ User = get_user_model()
 class Profile(models.Model):
     # fmt: off
     is_completed = models.BooleanField(default=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE) # FIXME one to one
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     hard_skills = models.ManyToManyField(HardSkill, related_name="profiles", blank=True)
     grades = models.ManyToManyField(Grade, related_name="profiles", blank=True)
     work_formats = models.ManyToManyField(WorkFormat, related_name="profiles", blank=True)
