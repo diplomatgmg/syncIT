@@ -33,13 +33,17 @@ def process_profile(profile):
     profile_professions = profile.professions.all()
     profile_grades = profile.grades.all()
 
+    grade_filter = Q()
+    for grade in profile_grades:
+        grade_filter |= Q(grade=grade)
+
     suitable_vacancies = (
-        Vacancy.objects.all()
-        .filter(
+        Vacancy.objects.filter(
             work_formats__in=profile_work_formats,
             profession__in=profile_professions,
             grade__in=profile_grades,
         )
+        .filter(grade_filter)
         .annotate(
             hard_skill_count=Count(
                 "hard_skills", filter=Q(hard_skills__in=profile_hard_skills)
