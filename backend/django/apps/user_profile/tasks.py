@@ -1,6 +1,5 @@
 from celery import shared_task
 from constance import config
-from django.db import transaction
 from django.db.models import Count, Q
 
 from apps.user_profile.models import Profile
@@ -23,6 +22,7 @@ def find_suitable_vacancies_for_profile(profile_id):
     process_profile(profile)
 
 
+# FIXME Оптимизировать!!!!!
 def process_profile(profile: Profile):
     """
     Обработка подходящих вакансий для одного профиля.
@@ -48,8 +48,7 @@ def process_profile(profile: Profile):
         .filter(hard_skill_count__gte=5)
     )
 
-    bulk_create_data = []
-    bulk_update_data = []
+    UserVacancy.objects.filter(user=profile.user).delete()
 
     for suitable_vacancy in suitable_vacancies:
         matching_skills_count = suitable_vacancy.hard_skill_count
@@ -59,23 +58,8 @@ def process_profile(profile: Profile):
         if suitability < config.MINIMUM_VACANCY_SUITABILITY:
             continue
 
-        existing = UserVacancy.objects.filter(
-            user=profile.user, vacancy=suitable_vacancy
-        ).first()
-
-        if existing:
-            existing.suitability = suitability
-            bulk_update_data.append(existing)
-        else:
-            bulk_create_data.append(
-                UserVacancy(
-                    user=profile.user,
-                    vacancy=suitable_vacancy,
-                    suitability=suitability,
-                )
-            )
-
-    with transaction.atomic():
-        UserVacancy.objects.filter(user=profile.user, is_viewed=False).delete()
-        UserVacancy.objects.bulk_create(bulk_create_data, ignore_conflicts=True)
-        UserVacancy.objects.bulk_update(bulk_update_data, ["suitability"])
+        UserVacancy.objects.get_or_create(
+            user=profile.user,
+            vacancy=suitable_vacancy,
+            defaults={"suitability": suitability},
+        )
