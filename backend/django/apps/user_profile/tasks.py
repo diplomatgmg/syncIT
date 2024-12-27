@@ -13,9 +13,8 @@ def find_suitable_vacancies():
     Поиск подходящих вакансий для пользователей
     """
     profiles = Profile.objects.filter(is_completed=True)
-
     for profile in profiles:
-        process_profile(profile)
+        find_suitable_vacancies_for_profile.delay(profile.id)
 
 
 @shared_task()
@@ -33,17 +32,13 @@ def process_profile(profile: Profile):
     profile_professions = profile.professions.all()
     profile_grades = profile.grades.all()
 
-    grade_filter = Q()
-    for grade in profile_grades:
-        grade_filter |= Q(grade=grade)
-
     suitable_vacancies = (
         Vacancy.objects.filter(
+            hard_skills__in=profile_hard_skills,
             work_formats__in=profile_work_formats,
             profession__in=profile_professions,
             grade__in=profile_grades,
         )
-        .filter(grade_filter)
         .annotate(
             hard_skill_count=Count(
                 "hard_skills", filter=Q(hard_skills__in=profile_hard_skills)
