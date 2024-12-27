@@ -24,7 +24,7 @@ def find_suitable_vacancies_for_profile(profile_id):
     process_profile(profile)
 
 
-def process_profile(profile):
+def process_profile(profile: Profile):
     """
     Обработка подходящих вакансий для одного профиля.
     """

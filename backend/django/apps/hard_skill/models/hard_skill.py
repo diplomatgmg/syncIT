@@ -1,6 +1,6 @@
 from django.db import models
 
-from apps.hard_skill.models.managers.hard_skill_manager import HardSkillManager
+from apps.hard_skill.models.managers import HardSkillManager
 
 
 class HardSkill(models.Model):

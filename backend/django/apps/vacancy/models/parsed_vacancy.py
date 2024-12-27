@@ -1,4 +1,4 @@
-from apps.vacancy.models.base_vacancy import BaseVacancy
+from apps.vacancy.models import BaseVacancy
 
 
 class ParsedVacancy(BaseVacancy):

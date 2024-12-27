@@ -17,3 +17,12 @@ class CountableManager(models.Manager):
 
         instance.save()
         return instance
+
+
+class CountableModelMixin(models.Model):
+    create_count = models.IntegerField(default=1)
+
+    objects = CountableManager()
+
+    class Meta:
+        abstract = True
