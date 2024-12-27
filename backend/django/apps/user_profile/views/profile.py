@@ -5,7 +5,7 @@ from rest_framework.response import Response
 
 from apps.user_profile.models import Profile
 from apps.user_profile.serializers import ProfileSerializer
-from apps.user_profile.tasks import find_suitable_vacancies_for_profile
+from apps.user_profile.tasks import find_suitable_vacancies_for_profiles
 
 
 class ProfileAPIView(RetrieveAPIView):
@@ -35,6 +35,8 @@ class ProfileAPIView(RetrieveAPIView):
                     getattr(profile, attr_name).add(item.get("id"))
 
         profile.save()
-        find_suitable_vacancies_for_profile.apply_async(args=[profile.id])
+        find_suitable_vacancies_for_profiles.apply_async(
+            kwargs={"profile_ids": [profile.id]}
+        )
 
         return Response(status=status.HTTP_204_NO_CONTENT)

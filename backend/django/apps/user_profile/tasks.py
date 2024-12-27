@@ -1,6 +1,6 @@
 from celery import shared_task
 from constance import config
-from django.db.models import Count, Q
+from django.db.models import Count, Q, F, ExpressionWrapper, FloatField
 
 from apps.user_profile.models import Profile
 from apps.vacancy.models import Vacancy, UserVacancy
@@ -11,18 +11,22 @@ def find_suitable_vacancies():
     """
     Поиск подходящих вакансий для пользователей
     """
-    profiles = Profile.objects.filter(is_completed=True)
-    for profile in profiles:
-        find_suitable_vacancies_for_profile.delay(profile.id)
+    profile_ids = Profile.objects.filter(is_completed=True).values_list("id", flat=True)
+    batch_size = 100
+    for i in range(0, len(profile_ids), batch_size):
+        batch = profile_ids[i : i + batch_size]
+        find_suitable_vacancies_for_profiles.delay(list(batch))
 
 
 @shared_task()
-def find_suitable_vacancies_for_profile(profile_id):
-    profile = Profile.objects.get(id=profile_id)
-    process_profile(profile)
+def find_suitable_vacancies_for_profiles(profile_ids: list[int]):
+    profiles = Profile.objects.filter(id__in=profile_ids).prefetch_related(
+        "hard_skills", "work_formats", "professions", "grades"
+    )
+    for profile in profiles:
+        process_profile(profile)
 
 
-# FIXME Оптимизировать!!!!!
 def process_profile(profile: Profile):
     """
     Обработка подходящих вакансий для одного профиля.
@@ -40,26 +44,34 @@ def process_profile(profile: Profile):
             grade__in=profile_grades,
         )
         .annotate(
-            hard_skill_count=Count(
+            matching_skills=Count(
                 "hard_skills", filter=Q(hard_skills__in=profile_hard_skills)
             ),
-            total_hard_skills=Count("hard_skills"),
+            total_skills=Count("hard_skills", distinct=True),
         )
-        .filter(hard_skill_count__gte=5)
+        .filter(matching_skills__gte=5)
+        .annotate(
+            suitability=ExpressionWrapper(
+                (F("matching_skills") / F("total_skills")) * 100,
+                output_field=FloatField(),
+            )
+        )
+        .filter(suitability__gte=config.MINIMUM_VACANCY_SUITABILITY)
+        .distinct()
     )
 
-    UserVacancy.objects.filter(user=profile.user).delete()
+    user_vacancies = [
+        UserVacancy(user=profile.user, vacancy=vacancy, suitability=vacancy.suitability)
+        for vacancy in suitable_vacancies
+    ]
 
-    for suitable_vacancy in suitable_vacancies:
-        matching_skills_count = suitable_vacancy.hard_skill_count
-        total_skills = suitable_vacancy.total_hard_skills
-        suitability = round((matching_skills_count / total_skills) * 100)
-
-        if suitability < config.MINIMUM_VACANCY_SUITABILITY:
-            continue
-
-        UserVacancy.objects.get_or_create(
-            user=profile.user,
-            vacancy=suitable_vacancy,
-            defaults={"suitability": suitability},
+    UserVacancy.objects.bulk_create(user_vacancies, ignore_conflicts=True)
+    existing_vacancy_ids = set(
+        UserVacancy.objects.filter(user=profile.user).values_list(
+            "vacancy_id", flat=True
         )
+    )
+    suitable_vacancy_ids = set(suitable_vacancies.values_list("id", flat=True))
+    UserVacancy.objects.filter(
+        user=profile.user, vacancy_id__in=existing_vacancy_ids - suitable_vacancy_ids
+    ).delete()
