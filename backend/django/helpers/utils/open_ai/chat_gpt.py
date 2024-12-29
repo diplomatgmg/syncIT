@@ -6,7 +6,7 @@ from g4f import Provider, Client, models
 logger = logging.getLogger("django")
 
 
-def clear_text(text: str) -> str:
+def __clear_text(text: str) -> str:
     return re.sub(r"\*+", " ", text).strip()
 
 
@@ -18,6 +18,6 @@ def get_chat_gpt_completion(prompt: str) -> str | None:
             provider=Provider.Blackbox,
             messages=[{"role": "user", "content": prompt}],
         )
-        return clear_text(response.choices[0].message.content)
+        return __clear_text(response.choices[0].message.content)  # noqa
     except Exception as e:
         logger.error(f"GPT Error\n\n{e}")
