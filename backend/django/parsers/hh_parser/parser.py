@@ -21,10 +21,10 @@ from helpers.utils.normalizers import (
     normalize_profession,
     normalize_currency,
 )
+from helpers.utils.open_ai.chat_gpt import get_chat_gpt_completion
+from helpers.utils.open_ai.prompt import make_prompt
+from helpers.utils.open_ai.utils import parse_vacancy
 from parsers.base_parser import BaseParser
-from parsers.open_ai.chat_gpt import get_chat_gpt_completion
-from parsers.open_ai.prompt import make_prompt
-from parsers.open_ai.utils import parse_vacancy
 
 logger = logging.getLogger("django")
 
