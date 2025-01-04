@@ -11,7 +11,7 @@ class UserVacancyListAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         return (
-            ProfileVacancy.objects.filter(user=self.request.user)
+            ProfileVacancy.objects.filter(profile__user=self.request.user)
             .prefetch_related(
                 "vacancy",
                 "vacancy__company",
