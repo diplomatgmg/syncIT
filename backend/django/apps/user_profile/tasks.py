@@ -49,16 +49,25 @@ def process_profile(profile: Profile):
     )
 
     filtered_vacancies = filtered_vacancies.annotate(
-        suitability=Case(
+        suitability_percent=Case(
             When(total_skills=0, then=Value(0.0)),
             default=(F("matching_skills") * 100.0 / F("total_skills")),
             output_field=FloatField(),
         )
     )
 
+    # Коэффициент, который учитывает количество совпадающих скиллов и suitability
+    filtered_vacancies = filtered_vacancies.annotate(
+        suitability=Case(
+            When(total_skills=0, then=Value(0.0)),
+            default=(F("suitability_percent") * 0.6 + F("matching_skills") * 0.4),
+            output_field=FloatField(),
+        )
+    )
+
     suitable_vacancies = filtered_vacancies.filter(
         suitability__gte=config.MINIMUM_VACANCY_SUITABILITY
-    ).order_by("-suitability", "-matching_skills")
+    )
 
     profile_vacancies = [
         ProfileVacancy(
