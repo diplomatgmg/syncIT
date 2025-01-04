@@ -13,8 +13,7 @@ class ProfileAPIView(RetrieveAPIView):
     serializer_class = ProfileSerializer
 
     def get_object(self):
-        profile = Profile.objects.get(user=self.request.user)
-        return self.queryset.get(profile=profile)
+        return self.queryset.get(user=self.request.user)
 
     def put(self, request: Request, *args, **kwargs):
         profile = self.get_object()
