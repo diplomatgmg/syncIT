@@ -1,5 +1,6 @@
 from celery import shared_task
 from constance import config
+from django.db import transaction
 from django.db.models import Count, Q, Value, Case, When, F, FloatField
 
 from apps.user_profile.models import Profile
@@ -57,7 +58,7 @@ def process_profile(profile: Profile):
 
     suitable_vacancies = filtered_vacancies.filter(
         suitability__gte=config.MINIMUM_VACANCY_SUITABILITY
-    )
+    ).order_by("-suitability", "-matching_skills")
 
     profile_vacancies = [
         ProfileVacancy(
@@ -66,14 +67,6 @@ def process_profile(profile: Profile):
         for vacancy in suitable_vacancies
     ]
 
-    ProfileVacancy.objects.bulk_create(profile_vacancies, ignore_conflicts=True)
-
-    existing_vacancy_ids = set(
-        ProfileVacancy.objects.filter(profile=profile).values_list(
-            "vacancy_id", flat=True
-        )
-    )
-    suitable_vacancy_ids = set(suitable_vacancies.values_list("id", flat=True))
-    ProfileVacancy.objects.filter(
-        profile=profile, vacancy_id__in=existing_vacancy_ids - suitable_vacancy_ids
-    ).delete()
+    with transaction.atomic():
+        ProfileVacancy.objects.filter(profile=profile).delete()
+        ProfileVacancy.objects.bulk_create(profile_vacancies)
