@@ -33,35 +33,33 @@ def process_profile(profile: Profile):
     Обработка подходящих вакансий для одного профиля.
     """
 
-    filtered_vacancies = Vacancy.objects.filter(
-        work_formats__in=profile.work_formats.all(),
-        profession__in=profile.professions.all(),
-        grade__in=profile.grades.all(),
-    )
-
-    filtered_vacancies = filtered_vacancies.annotate(
-        matching_skills=Count(
-            "hard_skills",
-            filter=Q(hard_skills__in=profile.hard_skills.all()),
-            distinct=True,
-        ),
-        total_skills=Count("hard_skills", distinct=True),
-    )
-
-    filtered_vacancies = filtered_vacancies.annotate(
-        suitability_percent=Case(
-            When(total_skills=0, then=Value(0.0)),
-            default=(F("matching_skills") * 100.0 / F("total_skills")),
-            output_field=FloatField(),
+    filtered_vacancies = (
+        Vacancy.objects.filter(
+            work_formats__in=profile.work_formats.all(),
+            profession__in=profile.professions.all(),
+            grade__in=profile.grades.all(),
         )
-    )
-
-    # Коэффициент, который учитывает количество совпадающих скиллов и suitability
-    filtered_vacancies = filtered_vacancies.annotate(
-        suitability=Case(
-            When(total_skills=0, then=Value(0.0)),
-            default=(F("suitability_percent") * 0.6 + F("matching_skills") * 0.4),
-            output_field=FloatField(),
+        .annotate(
+            matching_skills=Count(
+                "hard_skills",
+                filter=Q(hard_skills__in=profile.hard_skills.all()),
+                distinct=True,
+            ),
+            total_skills=Count("hard_skills", distinct=True),
+        )
+        .annotate(
+            suitability_percent=Case(
+                When(total_skills=0, then=Value(0.0)),
+                default=(F("matching_skills") * 100.0 / F("total_skills")),
+                output_field=FloatField(),
+            ),
+        )
+        .annotate(
+            suitability=Case(
+                When(total_skills=0, then=Value(0.0)),
+                default=(F("suitability_percent") * 0.75 + F("matching_skills") * 0.25),
+                output_field=FloatField(),
+            )
         )
     )
 
