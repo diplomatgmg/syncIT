@@ -13,7 +13,7 @@ User = get_user_model()
 class ProfileModelTests(TestCase):
     def setUp(self):
         self.user = User.objects.create(email="testuser@example.com")
-        self.profile = Profile.objects.create(user=self.user)
+        self.profile = Profile.objects.get(user=self.user)
         self.hard_skill1 = HardSkill.objects.create(name="Skill1")
         self.hard_skill2 = HardSkill.objects.create(name="Skill2")
         self.hard_skill3 = HardSkill.objects.create(name="Skill3")

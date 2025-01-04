@@ -21,13 +21,13 @@ class TestNormalizeHardSkill(TestCase):
         skills = [
             "Unknown",
             "TestSkill",
-            "Example",
+            "example",
         ]
 
         for skill in skills:
             normalized_skill = normalize_hard_skill(skill)
             self.assertIsNone(normalized_skill)
             self.assertIsInstance(
-                UnknownHardSkill.objects.filter(name=skill).first(),
+                UnknownHardSkill.objects.filter(name=skill.lower()).first(),
                 UnknownHardSkill,
             )
