@@ -3,7 +3,7 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.validators import ValidationError
 
-from apps.vacancy.models import UserVacancy
+from apps.vacancy.models import ProfileVacancy
 from apps.vacancy.serializers import UpdateUserVacancyViewStatusSerializer
 
 
@@ -22,7 +22,7 @@ class UpdateVacancyViewStatusAPIView(generics.GenericAPIView):
             raise ValidationError({"detail": "user and vacancy fields are required."})
 
         user_vacancy = get_object_or_404(
-            UserVacancy, user_id=user_id, vacancy_id=vacancy_id
+            ProfileVacancy, user_id=user_id, vacancy_id=vacancy_id
         )
 
         user_vacancy.is_viewed = True

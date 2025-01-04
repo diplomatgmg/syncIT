@@ -3,7 +3,7 @@ from constance import config
 from django.db.models import Count, Q, F, ExpressionWrapper, FloatField
 
 from apps.user_profile.models import Profile
-from apps.vacancy.models import Vacancy, UserVacancy
+from apps.vacancy.models import Vacancy, ProfileVacancy
 
 
 @shared_task()
@@ -60,18 +60,20 @@ def process_profile(profile: Profile):
         .distinct()
     )
 
-    user_vacancies = [
-        UserVacancy(user=profile.user, vacancy=vacancy, suitability=vacancy.suitability)
+    profile_vacancies = [
+        ProfileVacancy(
+            profile=profile, vacancy=vacancy, suitability=vacancy.suitability
+        )
         for vacancy in suitable_vacancies
     ]
 
-    UserVacancy.objects.bulk_create(user_vacancies, ignore_conflicts=True)
+    ProfileVacancy.objects.bulk_create(profile_vacancies, ignore_conflicts=True)
     existing_vacancy_ids = set(
-        UserVacancy.objects.filter(user=profile.user).values_list(
+        ProfileVacancy.objects.filter(profile=profile).values_list(
             "vacancy_id", flat=True
         )
     )
     suitable_vacancy_ids = set(suitable_vacancies.values_list("id", flat=True))
-    UserVacancy.objects.filter(
-        user=profile.user, vacancy_id__in=existing_vacancy_ids - suitable_vacancy_ids
+    ProfileVacancy.objects.filter(
+        profile=profile, vacancy_id__in=existing_vacancy_ids - suitable_vacancy_ids
     ).delete()

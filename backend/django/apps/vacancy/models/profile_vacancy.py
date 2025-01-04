@@ -1,17 +1,17 @@
-from django.contrib.auth import get_user_model
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
-User = get_user_model()
+from apps.user_profile.models import Profile
 
 
-class UserVacancy(models.Model):
+class ProfileVacancy(models.Model):
     """
     Релевантная вакансия для пользователя
     """
 
+    # fmt: off
     is_viewed = models.BooleanField(default=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="vacancies")
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="vacancies")
     vacancy = models.ForeignKey("vacancy.Vacancy", on_delete=models.CASCADE)
     suitability = models.IntegerField(
         validators=(
@@ -19,9 +19,10 @@ class UserVacancy(models.Model):
             MaxValueValidator(100),
         )
     )
+    # fmt: on
 
     class Meta:
-        unique_together = ("user", "vacancy")
+        unique_together = ("profile", "vacancy")
 
     def __str__(self):
-        return f"Vacancy #{self.vacancy.id} for user {self.user.email}"  # noqa
+        return f"Vacancy #{self.vacancy.id} for profile {self.profile.id}"

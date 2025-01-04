@@ -1,9 +1,9 @@
 from rest_framework import serializers
 
-from apps.vacancy.models import UserVacancy
+from apps.vacancy.models import ProfileVacancy
 
 
 class UpdateUserVacancyViewStatusSerializer(serializers.ModelSerializer):
     class Meta:
-        model = UserVacancy
+        model = ProfileVacancy
         fields = ("id", "user", "vacancy")
