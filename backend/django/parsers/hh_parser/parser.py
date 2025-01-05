@@ -220,7 +220,7 @@ class HHParser(BaseParser):
             "hard_skill_names": tuple(hard_skills),
             "work_format_names": tuple(work_formats),
             "profession_name": normalize_profession(profession),
-            "description": description,
+            "description": clear_html(description),
         }
 
     @staticmethod
