@@ -57,7 +57,7 @@ def process_profile(profile: Profile):
         .annotate(
             suitability=Case(
                 When(total_skills=0, then=Value(0.0)),
-                default=(F("suitability_percent") * 0.75 + F("matching_skills") * 0.25),
+                default=(F("suitability_percent") * 0.8 + F("matching_skills") * 0.2),
                 output_field=FloatField(),
             )
         )
