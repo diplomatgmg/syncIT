@@ -99,8 +99,9 @@ class HHParser(BaseParser):
                         data = future.result(timeout=timeout)
                     except TimeoutError:
                         logger.warning(
-                            f"TimeoutError. Повторная попытка получить данные... "
-                            f"Callback: {callback}"
+                            f"TimeoutError. Повторная попытка получить данные..."
+                            f"Callback: {callback} "
+                            f"Args: {future_to_data[future]}"
                         )
                         time.sleep(10)
 
@@ -254,7 +255,7 @@ class HHParser(BaseParser):
     @timeit
     def start(self):
         last_vacancies_ids = self.get_last_vacancies_ids()
-        logger.info(f"Найдено {last_vacancies_ids} новых вакансий")
+        logger.info(f"Найдено {len(last_vacancies_ids)} новых вакансий")
         vacancies_data = self.get_vacancies_data(last_vacancies_ids)
         vacancies_prompts = [
             self.get_prompted_vacancy(vacancy_data) for vacancy_data in vacancies_data
