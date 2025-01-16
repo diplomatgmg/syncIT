@@ -68,6 +68,7 @@ class HHParser(BaseParser):
             "per_page": self.vacancies_per_page,
             "period": self.vacancies_period,
             "page": page,
+            "order_by": "publication_time",
         }
 
         return f"{self.base_url}?{urlencode(params)}"
@@ -83,6 +84,10 @@ class HHParser(BaseParser):
                 return response.json()
             except requests.exceptions.RequestException:
                 time.sleep(2)
+        else:
+            raise requests.exceptions.RequestException(
+                f"Превышено количество попыток. args: {url}, kwargs: {kwargs}"
+            )
 
     @staticmethod
     def get_data_with_workers(callback, collection, timeout=10, max_workers=10):
