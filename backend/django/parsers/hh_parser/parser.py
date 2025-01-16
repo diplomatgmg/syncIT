@@ -31,8 +31,6 @@ logger = logging.getLogger("django")
 
 class HHParser(BaseParser):
     base_url = "https://api.hh.ru/vacancies"
-    vacancies_per_page = 100  # Максимальной кол-во вакансий на странице
-    vacancies_period = 3  # Показывать вакансии только за последние сутки
     session = requests.Session()
     headers = None
 
@@ -65,8 +63,8 @@ class HHParser(BaseParser):
 
         params = {
             "text": text,
-            "per_page": self.vacancies_per_page,
-            "period": self.vacancies_period,
+            "per_page": 100,
+            "period": 1,  # За последние сутки
             "page": page,
             "order_by": "publication_time",
         }
