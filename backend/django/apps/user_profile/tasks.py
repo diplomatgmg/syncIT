@@ -2,6 +2,7 @@ from celery import shared_task
 from constance import config
 from django.db import transaction
 from django.db.models import Count, Q, Value, Case, When, F, FloatField
+from django.db.models.functions import Least
 
 from apps.user_profile.models import Profile
 from apps.vacancy.models import Vacancy, ProfileVacancy
@@ -50,14 +51,17 @@ def process_profile(profile: Profile):
         .annotate(
             suitability_percent=Case(
                 When(total_skills=0, then=Value(0.0)),
-                default=(F("matching_skills") * 100.0 / F("total_skills")),
+                default=F("matching_skills") * 125 / (F("total_skills") * 1.15),
                 output_field=FloatField(),
             ),
         )
         .annotate(
             suitability=Case(
                 When(total_skills=0, then=Value(0.0)),
-                default=(F("suitability_percent") * 0.8 + F("matching_skills") * 0.2),
+                default=Least(
+                    (F("suitability_percent") * 1.25 + F("matching_skills") * 0.25),
+                    Value(100.0),
+                ),
                 output_field=FloatField(),
             )
         )
@@ -65,7 +69,7 @@ def process_profile(profile: Profile):
 
     suitable_vacancies = filtered_vacancies.filter(
         suitability__gte=config.MINIMUM_VACANCY_SUITABILITY
-    )
+    ).order_by("-suitability", "-matching_skills")
 
     profile_vacancies = [
         ProfileVacancy(

@@ -13,7 +13,7 @@ interface HardSkillListProps {
 const HardSkillList: FC<HardSkillListProps> = ({
   hardSkills,
 }): ReactElement => {
-  const { data: profileData } = useGetProfileDataQuery()
+  const { data: profileData, isFetching } = useGetProfileDataQuery()
   const { breakpoints } = useMantineTheme()
   const matchesSm = useMediaQuery(`(max-width: ${breakpoints.sm})`)
   const matchesXs = useMediaQuery(`(max-width: ${breakpoints.xs})`)
@@ -43,7 +43,7 @@ const HardSkillList: FC<HardSkillListProps> = ({
         <HardSkillItem
           key={id}
           skillName={name}
-          isSkillSelected={some(profileHardSkills, { name })}
+          isSkillSelected={isFetching || some(profileHardSkills, { name })}
         />
       ))}
     </Flex>

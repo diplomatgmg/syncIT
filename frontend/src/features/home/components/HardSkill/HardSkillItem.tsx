@@ -8,10 +8,8 @@ interface HardSkillItemProps {
 
 const HardSkillItem: FC<HardSkillItemProps> = ({
   skillName,
-  isSkillSelected,
+  isSkillSelected = true,
 }): ReactElement => {
-  console.log(isSkillSelected)
-
   return (
     <Tooltip
       label={!isSkillSelected && "Скилл не выбран"}
