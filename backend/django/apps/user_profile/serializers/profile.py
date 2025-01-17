@@ -1,13 +1,14 @@
+from rest_framework import serializers
+
 from apps.grade.serializers import GradeSerializer
-from apps.hard_skill.serializers import HardSkillRecursiveSerializer
+from apps.hard_skill.serializers import HardSkillSerializer
 from apps.profession.serializers import ProfessionSerializer
 from apps.user_profile.models import Profile
 from apps.work_format.serializers import WorkFormatSerializer
-from rest_framework import serializers
 
 
 class ProfileSerializer(serializers.ModelSerializer):
-    hard_skills = HardSkillRecursiveSerializer(many=True)
+    hard_skills = HardSkillSerializer(many=True)
     grades = GradeSerializer(many=True)
     work_formats = WorkFormatSerializer(many=True)
     professions = ProfessionSerializer(many=True)

@@ -34,10 +34,10 @@ const VacancyItem: FC<VacancyItemProps> = ({
   const [updateVacancyViewStatus] = useUpdateVacancyViewStatusMutation()
   const [isHidden, setIsHidden] = useState(false)
   const { colors, fontSizes } = useMantineTheme()
-  const handleOpenVacancySource = (vacancy_id: number) => async () => {
+
+  const handleHideVacancy = (vacancy_id: number) => async () => {
     try {
       setIsHidden(true)
-      setTimeout(() => setIsHidden(false), 3000)
       await updateVacancyViewStatus({ vacancy: vacancy_id }).unwrap()
     } catch (err) {
       console.error("Ошибка входа: ", err)
@@ -85,7 +85,7 @@ const VacancyItem: FC<VacancyItemProps> = ({
                 alt={"Unwatch"}
                 title={"Отметить просмотренным"}
                 src={UnWatchIcon}
-                onClick={handleOpenVacancySource(vacancy.id)}
+                onClick={handleHideVacancy(vacancy.id)}
               />
             )}
             {isViewed && <Watched>Просмотрено</Watched>}
