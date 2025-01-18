@@ -5,7 +5,7 @@ import { ReactElement } from "react"
 
 const baseConfig: ToastOptions = {
   position: "bottom-left",
-  autoClose: 5000,
+  autoClose: 3000,
   closeOnClick: true,
   pauseOnHover: false,
   theme: "dark",
