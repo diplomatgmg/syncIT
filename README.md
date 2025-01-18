@@ -4,6 +4,7 @@
     <a href="https://wakatime.com/badge/user/018edcf0-2b06-4a99-805c-3bc4df0185a4/project/76b30482-0cc2-4f62-b778-243ae5df0f3e"><img src="https://wakatime.com/badge/user/018edcf0-2b06-4a99-805c-3bc4df0185a4/project/76b30482-0cc2-4f62-b778-243ae5df0f3e.svg" alt="wakatime"></a>
 </div>
 
+# [Deploy](https://syncit.space)
 
 # Агрегатор it вакансий
 
