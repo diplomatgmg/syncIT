@@ -158,10 +158,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "core.wsgi.application"
 
-
+# fmt: off
 CONSTANCE_CONFIG = {
     "MINIMUM_VACANCY_SUITABILITY": (60, "Минимальный % совпадения вакансии"),
+    "INTERVAL_DELETE_PARSED_VACANCIES": (7, "Количество дней для удаления спарсенных вакансий"),
 }
+# fmt: on
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases

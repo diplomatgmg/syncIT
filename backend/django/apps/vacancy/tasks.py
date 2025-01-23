@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 
 from celery import shared_task
+from constance import config
 
 from apps.vacancy.models import ParsedVacancy
 from helpers.utils import singleton_task
@@ -19,5 +20,6 @@ def delete_old_parsed_vacancies():
     Удаляет старые вакансии из БД
     """
     ParsedVacancy.objects.filter(
-        created_at__lt=datetime.now() - timedelta(days=7)
+        created_at__lt=datetime.now()
+        - timedelta(days=config.INTERVAL_DELETE_PARSED_VACANCIES)
     ).delete()

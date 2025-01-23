@@ -7,6 +7,12 @@ from django.db.models.functions import Least
 from apps.user_profile.models import Profile
 from apps.vacancy.models import Vacancy, ProfileVacancy
 
+SUITABILITY_PERCENT_MULTIPLIER = 125
+SUITABILITY_PERCENT_DIVISOR = 1.15
+SUITABILITY_WEIGHT = 1.25
+MATCHING_SKILLS_WEIGHT = 0.25
+MAX_SUITABILITY = 100
+
 
 @shared_task()
 def find_suitable_vacancies():
@@ -33,7 +39,7 @@ def process_profile(profile: Profile):
     """
     Обработка подходящих вакансий для одного профиля.
     """
-
+    # fmt: off
     filtered_vacancies = (
         Vacancy.objects.filter(
             work_formats__in=profile.work_formats.all(),
@@ -51,7 +57,7 @@ def process_profile(profile: Profile):
         .annotate(
             suitability_percent=Case(
                 When(total_skills=0, then=Value(0.0)),
-                default=F("matching_skills") * 125 / (F("total_skills") * 1.15),
+                default=F("matching_skills") * SUITABILITY_PERCENT_MULTIPLIER / (F("total_skills") * SUITABILITY_PERCENT_DIVISOR),
                 output_field=FloatField(),
             ),
         )
@@ -59,13 +65,14 @@ def process_profile(profile: Profile):
             suitability=Case(
                 When(total_skills=0, then=Value(0.0)),
                 default=Least(
-                    (F("suitability_percent") * 1.25 + F("matching_skills") * 0.25),
-                    Value(100.0),
+                    (F("suitability_percent") * SUITABILITY_WEIGHT+ F("matching_skills") * MATCHING_SKILLS_WEIGHT),
+                    Value(MAX_SUITABILITY),
                 ),
                 output_field=FloatField(),
             )
         )
     )
+    # fmt: on
 
     suitable_vacancies = filtered_vacancies.filter(
         suitability__gte=config.MINIMUM_VACANCY_SUITABILITY
