@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.admin.filters import SimpleListFilter
+from django.utils.html import format_html
 
 from apps.hard_skill.models import HardSkill
 from apps.vacancy.models import Vacancy
@@ -20,7 +21,11 @@ class HardSkillFilter(SimpleListFilter):
 
 @admin.register(Vacancy)
 class VacancyAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "url")
+    list_display = ("id", "name_link")
     search_fields = ("name",)
     list_per_page = 20
     list_filter = ("profession__name", HardSkillFilter)
+
+    @admin.display(description="Название")
+    def name_link(self, obj):
+        return format_html('<a href="{}">{}</a>', obj.url, obj.name)
