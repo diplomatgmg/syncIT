@@ -14,7 +14,7 @@ def get_chat_gpt_completion(prompt: str) -> str | None:
     try:
         client = Client()
         response = client.chat.completions.create(
-            model=models.gemini_pro,
+            model=models.blackboxai,
             provider=Provider.Blackbox,
             messages=[{"role": "user", "content": prompt}],
         )
