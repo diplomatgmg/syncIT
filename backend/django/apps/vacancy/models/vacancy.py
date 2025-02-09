@@ -9,7 +9,7 @@ class Vacancy(BaseVacancy):
     salary_from = models.IntegerField(blank=True, null=True)
     salary_to = models.IntegerField(blank=True, null=True)
     currency = models.CharField(max_length=5, blank=True, null=True)  # TODO ChoiceField
-    experience = models.CharField(max_length=255)
+    experience = models.CharField(max_length=255) # TODO ChoiceField
     company = models.ForeignKey("company.Company", on_delete=models.CASCADE)
     grade = models.ForeignKey("grade.Grade", on_delete=models.CASCADE)
     work_formats = models.ManyToManyField("work_format.WorkFormat", related_name="vacancies")

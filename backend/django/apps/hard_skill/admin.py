@@ -12,6 +12,7 @@ class HardSkillAdmin(admin.ModelAdmin):
     search_fields = ("name",)
     ordering = ("ordering", "-parent", "name")
 
+    @admin.display(description="Количество вакансий", ordering="vacancies_count")
     def vacancies_count(self, obj: HardSkill):
         return obj.vacancies.count() if obj.selectable else "-"
 
@@ -22,8 +23,6 @@ class HardSkillAdmin(admin.ModelAdmin):
             .order_by("-vacancies_count")
             .prefetch_related("parent", "vacancies")
         )
-
-    vacancies_count.short_description = "Количество вакансий"
 
 
 @admin.register(UnknownHardSkill)
