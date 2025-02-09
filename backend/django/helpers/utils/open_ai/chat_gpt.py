@@ -19,7 +19,7 @@ def get_chat_gpt_completion(prompt: str) -> str | None:
         try:
             client = Client()
             response = client.chat.completions.create(
-                model=models.blackboxai,
+                model=models.deepseek_chat,
                 provider=Provider.Blackbox,
                 messages=[{"role": "user", "content": prompt}],
             )
