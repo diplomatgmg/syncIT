@@ -27,12 +27,12 @@ class Command(BaseCommand):
         if created:
             self.stdout.write(self.style.SUCCESS(f"Создан навык: {skill.name}"))
 
-            unknown_skill = UnknownHardSkill.objects.filter(name=skill.name)
-            if unknown_skill.exists():
-                self.stdout.write(
-                    self.style.SUCCESS(f"Удален UnknownHardSkill: {skill.name}")
-                )
-            unknown_skill.delete()
+        unknown_skill = UnknownHardSkill.objects.filter(name=skill.name.lower())
+        if unknown_skill.exists():
+            self.stdout.write(
+                self.style.SUCCESS(f"Удален UnknownHardSkill: {skill.name}")
+            )
+        unknown_skill.delete()
 
         return skill
 

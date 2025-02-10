@@ -1,6 +1,6 @@
 from apps.grade.models import Grade
-from apps.work_format.models import WorkFormat
 from apps.profession.models import Profession
+from apps.work_format.models import WorkFormat
 
 grades = ", ".join(Grade.objects.values_list("name", flat=True))
 work_formats = ", ".join(WorkFormat.objects.values_list("name", flat=True))
@@ -8,7 +8,7 @@ professions = ", ".join(Profession.objects.values_list("name", flat=True))
 
 SYSTEM_PROMPT = f"""
 <SYSTEM>
-Ты являешся парсером вакансий. Твоя задача собрать всю возможную информацию о вакансии.
+Ты являешься парсером вакансий. Твоя задача собрать всю возможную информацию о вакансии.
 Я дам тебе название вакансии, описание, ключевые навыки, опыт работы, зарплату. Твоя задача собрать максимальное количество информации с вакансии.
 
 Ты должен вернуть ответ в следующем формате:

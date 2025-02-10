@@ -25,7 +25,11 @@ class VacancyAdmin(admin.ModelAdmin):
     search_fields = ("name",)
     list_per_page = 20
     list_filter = ("profession__name", HardSkillFilter)
+    filter_horizontal = (
+        "work_formats",
+        "hard_skills",
+    )
 
     @admin.display(description="Название")
     def name_link(self, obj):
-        return format_html('<a href="{}">{}</a>', obj.url, obj.name)
+        return format_html('<a href="{}" target="_blank">{}</a>', obj.url, obj.name)
