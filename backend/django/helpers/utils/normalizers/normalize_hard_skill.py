@@ -1,4 +1,5 @@
 from apps.hard_skill.models import UnknownHardSkill
+from apps.hard_skill.utils import get_skills
 
 HARD_SKILL_MAPPING = {
     ".net": ".NET",
@@ -27,6 +28,7 @@ HARD_SKILL_MAPPING = {
     "babel": "Babel",
     "bootstrap": "Bootstrap",
     "bitbucket": "BitBucket",
+    "битрикс": "Битрикс24",
     "битрикс24": "Битрикс24",
     "битрикс 24": "Битрикс24",
     "bitrix24": "Битрикс24",
@@ -79,12 +81,13 @@ HARD_SKILL_MAPPING = {
     "flutter": "Flutter",
     "git": "Git",
     "grails": "Grails",
+    "grpc": "gRPC",
     "github": "GitHub",
     "gitlab": "GitLab",
     "gitlab ci": "GitLab CI",
     "gitlabci": "GitLab CI",
     "gitlab ci/cd": "GitLab CI",
-    "gitla-ci": "GitLab CI",
+    "gitlab-ci": "GitLab CI",
     "go": "Go",
     "golang": "Go",
     "go lang": "Go",
@@ -225,6 +228,7 @@ HARD_SKILL_MAPPING = {
     "vuex": "Vuex",
     "webpack": "Webpack",
     "websocket": "WebSocket",
+    "websockets": "WebSocket",
     "windows": "Windows",
     "web api": "API",
     "xhtml": "XHTML",
@@ -234,23 +238,8 @@ HARD_SKILL_MAPPING = {
     "zabbix": "Zabbix",
 }
 
-# Дефотные навыкы, которые имеют selectable=false
-# Играют роль "Категории навыков"
-DEFAULT = (
-    "Backend",
-    "Frontend",
-    "Базы данных",
-    "JavaScript/TypeScript",
-    "Языки программирования",
-    "Инструменты",
-    "Системы контроля версий",
-    "DevOps",
-    "Методологии",
-    "Операционные системы",
-    "Архитектурные принципы",
-    "Тестирование",
-    "Скриптовые языки",
-)
+# Дефолтные навыки. Играют роль "Категории навыков"
+DEFAULT = tuple(map(lambda s: s.name, get_skills()))
 
 IGNORE = (
     "функциональное тестирование",
