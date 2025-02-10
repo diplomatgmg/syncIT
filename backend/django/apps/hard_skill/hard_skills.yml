@@ -1,139 +1,102 @@
 Языки программирования:
-  - 1C
-  - C
-  - C#
-  - C++
-  - Golang
-  - Java
-  - JavaScript
-  - PHP
   - Python
-  - Ruby
-  - Swift
+  - JavaScript
   - TypeScript
+  - Go
+  - PHP
+  - Java
+  - Rust
+  - Kotlin
+  - C
+  - C++
+  - C#
 
 Backend:
-  JavaScript/TypeScript:
-    - Nest.js
-    - Node.js
-  Java:
-    - Spring Framework
-      - Spring Boot
+  Python:
+    - Django
+    - Django REST Framework
+    - FastAPI
+    - Flask
   PHP:
     - Laravel
     - Symfony
-    - Yii
-  Python:
-    - Django
-      - Django REST Framework
-    - FastAPI
-    - Flask
-  Ruby:
-    - Ruby on Rails
+  JavaScript/TypeScript:
+    - Node.js
+    - NestJS
   C#:
     - .NET
-      - ASP.NET
-    - Unity
 
 Frontend:
-  - CSS
-    - Bootstrap
-    - Less
-    - Sass
   - HTML
-    - XHTML
-    - XML
-  JavaScript/TypeScript:
-    - Angular
-    - Ember.js
-    - JQuery
-    - React
-      - Next.js
-      - React Native
-      - Redux
-    - Svelte
-    - Vite
-    - Vue
-      - Nuxt.js
-      - Vuex
-    - Webpack
-    - Ajax
+  - CSS
+    - SASS
+    - Less
+  - React
+    - Next.js
+    - React Native
+  - Redux
+  - Svelte
+  - Vue
+    - Nuxt.js
+  - Angular
+  - Webpack
+  - MobX
+  - Zustand
+  - RxJS
+  - Vite
 
-Базы данных:
-  - NoSQL
-    - MongoDB
-    - Redis
+Базы данных и СУБД:
   - SQL
-    - MS SQL
-    - MySQL
-    - Oracle
     - PostgreSQL
+    - MySQL
+    - MS SQL
+    - Oracle
+    - ClickHouse
+  - NoSQL
+    - Redis
+    - MongoDB
+    - Elasticsearch
+
 
 Брокеры сообщений:
   - Apache Kafka
   - RabbitMQ
 
 Тестирование:
-  - Postman
-  Python:
-    - Pytest
-    - Selenium
 
 Системы контроля версий:
   - Git
   - GitHub
   - GitLab
-  - Mercurial
 
 DevOps:
   - Ansible
-  - ClickHouse
+  - Docker
+  - Kubernetes
   - CI/CD
     - GitLab CI
-  - Docker
-    - Docker Compose
-  - Elasticsearch
-  - Jenkins
-  - Kubernetes
+  - Grafana
   - Nginx
-  - Sentry
-  - Terraform
 
-Архитектурные принципы:
+Архитектурные стили и API:
   - API
-    - GraphQL
     - REST API
-    - SOAP
-  - DDD
-  - HTTP
-  - JSON
-  - MVVM
-  - OOP
-  - SOLID
+    - gRPC
+    - GraphQL
+  - WebSocket
+
 
 Методологии:
-  - Agile
-  - Kanban
-  - Scrum
+  - ООП
+    - SOLID
 
 Инструменты:
-  - Confluence
-  - Figma
-  - Grafana
   - Jira
-  - Prometheus
-  - Slack
-  - Swagger
-  - Zabbix
+  - Битрикс24
+  - Confluence
 
 Операционные системы:
-  - Android
-  - iOS
   - Linux
-    - Ubuntu
-  - MacOS
-  - Windows
 
 Скриптовые языки:
   - Bash
-  - Lua

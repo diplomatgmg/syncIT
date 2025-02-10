@@ -13,7 +13,6 @@ from apps.vacancy.models import ParsedVacancy, Vacancy
 from helpers.utils import (
     clear_html,
     generate_hash,
-    timeit,
 )
 from helpers.utils.normalizers import (
     normalize_hard_skill,
@@ -255,7 +254,6 @@ class HHParser(BaseParser):
             **parsed_vacancy,
         }
 
-    @timeit
     def start(self):
         last_vacancies_ids = self.get_last_vacancies_ids()
         logger.info(f"Найдено {len(last_vacancies_ids)} новых вакансий")

@@ -121,6 +121,7 @@ HARD_SKILL_MAPPING = {
     "macos": "MacOS",
     "mariadb": "MariaDB",
     "mongodb": "MongoDB",
+    "mobx": "MobX",
     "meteor": "Meteor",
     "mercurial": "Mercurial",
     "mysql": "MySQL",
@@ -134,6 +135,7 @@ HARD_SKILL_MAPPING = {
     "next.js": "Next.js",
     "next js": "Next.js",
     "nuxtjs": "Nuxt.js",
+    "nuxt": "Nuxt.js",
     "nuxt.js": "Nuxt.js",
     "nuxt js": "Nuxt.js",
     "nestjs": "NestJS",
@@ -144,6 +146,7 @@ HARD_SKILL_MAPPING = {
     "oop": "ООП",
     "ооп": "ООП",
     "oracle": "Oracle",
+    "oracle db": "Oracle",
     "php": "PHP",
     "postgresql": "PostgreSQL",
     "postgres": "PostgreSQL",
@@ -186,6 +189,7 @@ HARD_SKILL_MAPPING = {
     "ruby": "Ruby",
     "ruby on rails": "Ruby on Rails",
     "rust": "Rust",
+    "rxjs": "RxJS",
     "solid": "SOLID",
     "svelte": "Svelte",
     "selenium": "Selenium",
@@ -218,7 +222,7 @@ HARD_SKILL_MAPPING = {
     "ui": "UI/UX",
     "ux": "UI/UX",
     "ui/ux": "UI/UX",
-    "unix": "Linux",  # Чтобы не делать 100500 скиллов
+    "unix": "Linux",
     "vite": "Vite",
     "vue": "Vue",
     "vue3": "Vue",
@@ -236,6 +240,7 @@ HARD_SKILL_MAPPING = {
     "yii": "Yii",
     "yii2": "Yii",
     "zabbix": "Zabbix",
+    "zustand": "Zustand",
 }
 
 # Дефолтные навыки. Играют роль "Категории навыков"

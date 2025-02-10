@@ -3,6 +3,7 @@ import re
 import time
 import traceback
 
+from aiohttp import ClientConnectorDNSError
 from g4f import Provider, Client, models
 
 logger = logging.getLogger("django")
@@ -24,6 +25,8 @@ def get_chat_gpt_completion(prompt: str) -> str | None:
                 messages=[{"role": "user", "content": prompt}],
             )
             return __clear_text(response.choices[0].message.content)  # noqa
+        except ClientConnectorDNSError:
+            continue
         except Exception as e:
             retries += 1
             logger.error(f"GPT Error.\n\n{e}\n\n{traceback.format_exc()}")
