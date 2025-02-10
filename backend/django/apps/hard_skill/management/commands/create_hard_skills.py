@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
-from apps.hard_skill.models import HardSkill
+from apps.hard_skill.models import HardSkill, UnknownHardSkill
 from apps.hard_skill.utils import get_skills, HardSkillModel
 
 
@@ -13,6 +13,7 @@ class Command(BaseCommand):
         self.created_skill_names = []
         self.updated_skill_names = []
         self.deleted_skill_names = []
+        self.deleted_unknown_skill_names = []
 
     def _message(self, message, level="SUCCESS"):
         style = self.style.WARNING
@@ -70,6 +71,9 @@ class Command(BaseCommand):
     def _delete_obsolete_skills(self, config_skill_names):
         existing_skill_names = set(HardSkill.objects.values_list("name", flat=True))
         skills_to_delete = existing_skill_names - config_skill_names
+        unknown_skills_to_delete = UnknownHardSkill.objects.filter(
+            name__in=config_skill_names
+        )
 
         if skills_to_delete:
             deleted_skills = HardSkill.objects.filter(name__in=skills_to_delete)
@@ -78,6 +82,12 @@ class Command(BaseCommand):
             )
             deleted_skills.delete()
 
+        if unknown_skills_to_delete:
+            self.deleted_unknown_skill_names = list(
+                unknown_skills_to_delete.values_list("name", flat=True)
+            )
+            unknown_skills_to_delete.delete()
+
     def _log_results(self):
         if self.created_skill_names:
             self._message(f"Созданы навыки: {', '.join(self.created_skill_names)}")
@@ -85,6 +95,10 @@ class Command(BaseCommand):
             self._message(f"Обновлены навыки: {', '.join(self.updated_skill_names)}")
         if self.deleted_skill_names:
             self._message(f"Удалены навыки: {', '.join(self.deleted_skill_names)}")
+        if self.deleted_unknown_skill_names:
+            self._message(
+                f"Удалены неизвестные навыки: {', '.join(self.deleted_unknown_skill_names)}"
+            )
         self._message("Синхронизация навыков завершена.")
 
     def handle(self, *args, **options):
