@@ -2,28 +2,29 @@ import re
 from typing import List, Tuple, Optional
 
 from django.conf import settings
+from pydantic import BaseModel
 
 
-def read_skills():
+def _read_skills():
     path = settings.BASE_DIR / "apps" / "hard_skill" / "hard_skills.yml"
     with open(path, "r") as file:
         return file.read()
 
 
-def clean(text: str) -> str:
+def _clean(text: str) -> str:
     return text.replace("-", "").replace(":", "").strip()
 
 
-def is_selectable(text: str) -> bool:
+def _is_selectable(text: str) -> bool:
     return text.lstrip().startswith("-")
 
 
-def parse(text: str) -> List[dict]:
+def _parse(text: str) -> List[dict]:
     lines = text.strip().split("\n")
-    return parse_lines(lines, 0)[0]
+    return _parse_lines(lines, 0)[0]
 
 
-def parse_lines(
+def _parse_lines(
     lines: List[str], level: int, parent: Optional[str] = None
 ) -> Tuple[List[dict], List[str]]:
     result = []
@@ -34,8 +35,8 @@ def parse_lines(
             break
         if indent == level:
             lines.pop(0)
-            selectable = is_selectable(line)
-            name = clean(line)
+            selectable = _is_selectable(line)
+            name = _clean(line)
 
             if not name:  # В файле скиллов могут бить отступы (пустые строки)
                 continue
@@ -49,15 +50,23 @@ def parse_lines(
 
             if lines and len(re.match(r"^\s*", lines[0]).group()) > level:
 
-                node["children"], lines = parse_lines(lines, level + 2, name)
+                node["children"], lines = _parse_lines(lines, level + 2, name)
             result.append(node)
     return result, lines
 
 
-def get_skills():
+class HardSkillModel(BaseModel):
+    name: str
+    selectable: bool
+    parent: Optional[str] = None
+    children: list["HardSkillModel"] = []
+
+
+def get_skills() -> list[HardSkillModel]:
     """
     Парсит hard skills из файла hard_skills.yml и возвращает скиллы в виде словаря
     """
-    skills_data = read_skills()
-    skills = parse(skills_data)
-    return skills
+    skills_data = _read_skills()
+    skills = _parse(skills_data)
+    skill_models = [HardSkillModel(**skill) for skill in skills]
+    return skill_models

@@ -1,56 +1,100 @@
 from django.core.management.base import BaseCommand
+from django.db import transaction
 
-from apps.hard_skill.models import HardSkill, UnknownHardSkill
-from apps.hard_skill.utils.hard_skill_parser import get_skills
-from helpers.utils.normalizers import normalize_hard_skill
+from apps.hard_skill.models import HardSkill
+from apps.hard_skill.utils import get_skills, HardSkillModel
 
 
 class Command(BaseCommand):
-    help = "Создание всех навыков из файла hard_skills.yml"
+    help = "Синхронизация навыков с файлом hard_skills.yml"
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.new_skills: list[HardSkill] = []
+        self.created_skill_names = []
+        self.updated_skill_names = []
+        self.deleted_skill_names = []
 
-    def create_skill(self, skill_data, parent=None):
-        # Если skill non selectable - вернется None
-        normalized_name = normalize_hard_skill(skill_data["name"]) or skill_data["name"]
+    def _message(self, message, level="SUCCESS"):
+        style = self.style.WARNING
 
+        match level:
+            case "SUCCESS":
+                style = self.style.SUCCESS
+            case "WARNING":
+                style = self.style.WARNING
+            case "ERROR":
+                style = self.style.ERROR
+
+        self.stdout.write(style(message))
+
+    @staticmethod
+    def _get_all_skill_names(skills: list[HardSkillModel]) -> set[str]:
+        skill_names = set()
+
+        def collect_names(node):
+            skill_names.add(node.name)
+            for child in node.children:
+                collect_names(child)
+
+        for root in skills:
+            collect_names(root)
+        return skill_names
+
+    @staticmethod
+    def _create_or_update_skill(node_data, parent=None) -> tuple[HardSkill, bool, bool]:
         skill, created = HardSkill.objects.get_or_create(
-            name=normalized_name,
+            name=node_data.name,
             parent=parent,
-            selectable=skill_data["selectable"],
+            defaults={"selectable": node_data.selectable},
         )
+        updated = False
 
-        self.new_skills.append(skill)
+        if not created and skill.selectable != node_data.selectable:
+            skill.selectable = node_data.selectable
+            skill.save(update_fields=("selectable",))
+            updated = True
+
+        return skill, created, updated
+
+    def _process_node(self, node_data, parent=None):
+        skill, created, updated = self._create_or_update_skill(node_data, parent)
 
         if created:
-            self.stdout.write(self.style.SUCCESS(f"Создан навык: {skill.name}"))
+            self.created_skill_names.append(node_data.name)
+        elif updated:
+            self.updated_skill_names.append(node_data.name)
 
-        unknown_skill = UnknownHardSkill.objects.filter(name=skill.name.lower())
-        if unknown_skill.exists():
-            self.stdout.write(
-                self.style.SUCCESS(f"Удален UnknownHardSkill: {skill.name}")
+        for child_data in node_data.children:
+            self._process_node(child_data, skill)
+
+    def _delete_obsolete_skills(self, config_skill_names):
+        existing_skill_names = set(HardSkill.objects.values_list("name", flat=True))
+        skills_to_delete = existing_skill_names - config_skill_names
+
+        if skills_to_delete:
+            deleted_skills = HardSkill.objects.filter(name__in=skills_to_delete)
+            self.deleted_skill_names = list(
+                deleted_skills.values_list("name", flat=True)
             )
-        unknown_skill.delete()
+            deleted_skills.delete()
 
-        return skill
+    def _log_results(self):
+        if self.created_skill_names:
+            self._message(f"Созданы навыки: {', '.join(self.created_skill_names)}")
+        if self.updated_skill_names:
+            self._message(f"Обновлены навыки: {', '.join(self.updated_skill_names)}")
+        if self.deleted_skill_names:
+            self._message(f"Удалены навыки: {', '.join(self.deleted_skill_names)}")
+        self._message("Синхронизация навыков завершена.")
 
-    def process_skills(self, skills, parent=None):
-        for skill_data in skills:
-            skill = self.create_skill(skill_data, parent)
-            self.process_skills(skill_data.get("children", []), parent=skill)
+    def handle(self, *args, **options):
+        skills = get_skills()
+        config_skill_names = self._get_all_skill_names(skills)
 
-    def handle(self, *args, **kwargs):
-        skills_dict = get_skills()
-        self.process_skills(skills_dict)
+        with transaction.atomic():
+            for root_data in skills:
+                self._process_node(root_data)
 
-        old_skills = HardSkill.objects.exclude(
-            name__in=[skill.name for skill in self.new_skills]
-        )
+            self._delete_obsolete_skills(config_skill_names)
 
-        for old_skill in old_skills:
-            self.stdout.write(self.style.ERROR(f"Удален навык: {old_skill.name}"))
-            old_skill.delete()
-
-        self.stdout.write(self.style.SUCCESS("Скиллы успешно импортированы"))
+        self._log_results()
