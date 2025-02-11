@@ -1,5 +1,5 @@
-from django.contrib.auth import get_user_model
 from django.contrib import admin
+from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
@@ -25,5 +25,7 @@ class UserAdmin(admin.ModelAdmin):
         "updated_at",
     )
     date_hierarchy = "created_at"
-    # FIXME Пароль не хешируется при изменении через админку
-    readonly_fields = ("password",)
+
+    def save_model(self, request, obj, form, change):
+        obj.set_password(form.cleaned_data["password"])
+        obj.save(update_fields=("password",))
