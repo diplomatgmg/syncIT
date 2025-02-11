@@ -2,6 +2,7 @@ from helpers.utils.normalizers.normalize_currency import normalize_currency
 from helpers.utils.normalizers.normalize_grade import normalize_grade
 from helpers.utils.normalizers.normalize_hard_skill import (
     normalize_hard_skill,
+    HARD_SKILL_MAPPING,
     DEFAULT_SKILLS,
     IGNORE_SKILLS,
 )

@@ -11,6 +11,8 @@
   - C++
   - C#
   - 1C
+  Скриптовые языки:
+    - Bash
 
 Backend:
   Python:
@@ -58,12 +60,12 @@ Frontend:
     - MongoDB
     - Elasticsearch
     - Cassandra
-
-Брокеры сообщений:
-  - Apache Kafka
-  - RabbitMQ
+  Брокеры сообщений:
+    - Apache Kafka
+    - RabbitMQ
 
 Тестирование:
+  - Postman
 
 Системы контроля версий:
   - Git
@@ -73,30 +75,36 @@ Frontend:
 DevOps:
   - Ansible
   - Docker
+  - Prometheus
+  - Terraform
   - CI/CD
     - GitLab CI
+    - Jenkins
+  - Kubernetes
+    - Helm
+    - OpenShift
   - Grafana
   - Zabbix
 
 Сервера и облачные платформы:
+  - Azure
+  - AWS
+  - VMware
   Web-сервера:
     - Nginx
     - Apache
-  Оркестрация контейнеров:
-    - Kubernetes
-      - Helm
-      - OpenShift
-  Облачные платформы:
-    - AWS
 
 Архитектурные стили и API:
   - HTTP
   - API
+    - JSON
     - REST API
     - gRPC
     - GraphQL
     - OpenAPI
     - Swagger
+  - XML
+    - SOAP
   - WebSocket
 
 Методологии:
@@ -113,9 +121,7 @@ DevOps:
     - Битрикс24
   - Confluence
   - Gradle
+  - Maven
 
 Операционные системы:
   - Linux
-
-Скриптовые языки:
-  - Bash

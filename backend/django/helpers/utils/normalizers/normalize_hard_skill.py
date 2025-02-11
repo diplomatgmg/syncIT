@@ -13,7 +13,9 @@ HARD_SKILL_MAPPING = {
     "1C программирование": "1С",  # eng - ru
     "1с-битрикс": "1С-Битрикс",  # ru - ru
     "1c-битрикс": "1С-Битрикс",  # eng - ru
+    "azure": "Azure",
     "atlassian confluence": "Confluence",
+    "atlassian jira": "Jira",
     "apache": "Apache",
     "ajax": "Ajax",
     "api": "API",
@@ -108,6 +110,7 @@ HARD_SKILL_MAPPING = {
     "html 5": "HTML",
     "haskell": "Haskell",
     "http": "HTTP",
+    "https": "HTTP",
     "ios": "iOS",
     "jquery": "JQuery",
     "js": "JavaScript",
@@ -116,7 +119,6 @@ HARD_SKILL_MAPPING = {
     "java script": "JavaScript",
     "java": "Java",
     "jenkins": "Jenkins",
-    "atlassian jira": "Jira",
     "jira": "Jira",
     "jest": "Jest",
     "kafka": "Apache Kafka",
