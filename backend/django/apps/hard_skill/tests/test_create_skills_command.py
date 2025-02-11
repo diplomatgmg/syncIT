@@ -1,13 +1,15 @@
+from io import StringIO
+
 from django.core.management import call_command
 from django.test import TestCase
+
 from apps.hard_skill.models import HardSkill
-from io import StringIO
 
 
 class ImportSkillsCommandTest(TestCase):
     def test_import_skills(self):
         out = StringIO()
-        call_command("create_hard_skills", stdout=out)
+        call_command("create_skills", stdout=out)
         output = out.getvalue()
 
         # Позитивные тесты

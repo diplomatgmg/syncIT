@@ -13,7 +13,7 @@ load_fixtures() {
     done
 
     echo "Loading fixtures..."
-    uv run manage.py create_hard_skills &
+    uv run manage.py create_skills &
     for fixture in $FIXTURES_DIR/*.json; do
         uv run manage.py loaddata "$fixture" &
     done

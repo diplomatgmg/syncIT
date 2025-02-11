@@ -2,8 +2,7 @@ from django.core.management.base import BaseCommand
 from django.db import transaction
 
 from apps.hard_skill.models import HardSkill, UnknownHardSkill
-from apps.hard_skill.utils import get_skills, HardSkillModel
-from helpers.utils.normalizers.normalize_hard_skill import IGNORE_SKILLS
+from apps.hard_skill.utils import HardSkillModel, get_skills
 
 
 class Command(BaseCommand):
@@ -70,8 +69,12 @@ class Command(BaseCommand):
             self._process_node(child_data, skill)
 
     def _delete_obsolete_skills(self, config_skill_names):
+        # infinity loading if global
+        from helpers.utils.normalizers import IGNORE_SKILLS
+
         existing_skill_names = set(HardSkill.objects.values_list("name", flat=True))
         skills_to_delete = existing_skill_names - config_skill_names
+
         unknown_skills_to_delete = UnknownHardSkill.objects.filter(
             name__in=[
                 *config_skill_names,
