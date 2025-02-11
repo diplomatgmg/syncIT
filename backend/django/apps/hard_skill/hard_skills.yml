@@ -79,15 +79,15 @@ DevOps:
   - Zabbix
 
 Сервера и облачные платформы:
-  - Web-сервера:
-      - Nginx
-      - Apache
-  - Оркестрация контейнеров:
-      - Kubernetes
-        - Helm
-        - OpenShift
-  - Облачные платформы:
-      - AWS
+  Web-сервера:
+    - Nginx
+    - Apache
+  Оркестрация контейнеров:
+    - Kubernetes
+      - Helm
+      - OpenShift
+  Облачные платформы:
+    - AWS
 
 Архитектурные стили и API:
   - HTTP
