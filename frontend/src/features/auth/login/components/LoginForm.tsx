@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "react"
+import { ReactElement } from "react"
 import { useForm } from "@mantine/form"
 import {
   Anchor,
@@ -40,7 +40,6 @@ const LoginForm = (): ReactElement => {
       email: (val) => (/^\S+@\S+$/.test(val) ? null : "Некорректная почта"),
     },
   })
-  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
   const dispatch = useAppDispatch()
   const [login, { isLoading }] = useLoginMutation()
@@ -55,7 +54,6 @@ const LoginForm = (): ReactElement => {
   }
 
   const handleSubmit = async () => {
-    setErrorMessage(null)
     try {
       const response = await login(form.values).unwrap()
       dispatch(invalidateTags(["Vacancy"]))
@@ -77,7 +75,11 @@ const LoginForm = (): ReactElement => {
             <Title size={24}>Добро пожаловать!</Title>
             <Text size="sm" mt={5}>
               Нет аккаунта?&nbsp;
-              <Anchor size="sm" component={Link} to={routes.register.path}>
+              <Anchor
+                size="sm"
+                component={Link}
+                to={routes.register.path}
+                fw={"bold"}>
                 Создать Аккаунт
               </Anchor>
             </Text>
@@ -125,7 +127,7 @@ const LoginForm = (): ReactElement => {
             </Text>
           )}
 
-          <Flex mt={errorMessage ? "md" : "xl"} align={"center"} gap={"xs"}>
+          <Flex mt={"md"} align={"center"} gap={"xs"}>
             <Button
               type={"submit"}
               fullWidth
@@ -156,12 +158,14 @@ const LoginForm = (): ReactElement => {
               align={"center"}
               gap={"xs"}
               wrap={"wrap"}>
+              <Text>Нет аккаунта?</Text>
               <Anchor
                 size="sm"
                 component={Link}
                 to={routes.register.path}
-                style={{ textAlign: "center" }}>
-                Создать Аккаунт
+                style={{ textAlign: "center" }}
+                fw={"bold"}>
+                Создать
               </Anchor>
             </Flex>
           )}
@@ -180,12 +184,16 @@ const Form = styled.form`
 const SocialIcon = styled.img`
   width: 2.5rem;
   height: 2.5rem;
-  padding: -2rem;
   transition: 0.15s ease;
+  margin: 0.5rem;
 
   &:hover {
     cursor: pointer;
     scale: 1.2;
+  }
+
+  &:last-child {
+    margin: 0;
   }
 `
 
