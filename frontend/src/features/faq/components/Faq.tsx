@@ -37,6 +37,18 @@ const Faq = (): ReactElement => {
           </Accordion.Panel>
         </Accordion.Item>
 
+        <Accordion.Item value="bad-skill">
+          <Accordion.Control>
+            Нет нужного навыка или не та категория?
+          </Accordion.Control>
+          <Accordion.Panel>
+            Навыки периодически пополняются на основе популярности среди
+            вакансий. <br />
+            Если вы считаете, что нужного навыка нет, или он привязан не к той
+            категории - свяжитесь со мной.
+          </Accordion.Panel>
+        </Accordion.Item>
+
         <Accordion.Item value="contact">
           <Accordion.Control>Контакты</Accordion.Control>
           <Accordion.Panel>
