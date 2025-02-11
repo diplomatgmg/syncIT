@@ -106,6 +106,9 @@ DJOSER = {
     "SEND_EMAIL_CONFIRMATION": True,
     "SEND_ACTIVATION_EMAIL": True,
     "ACTIVATION_URL": "login/{uid}/{token}",
+    "EMAIL": {
+        "activation": "apps.tools.views.ActivationEmail",
+    },
     "SERIALIZERS": {
         "user_create": "apps.user.serializers.UserCreateSerializer",
         "user": "apps.user.serializers.UserCreateSerializer",
@@ -136,7 +139,6 @@ SOCIAL_AUTH_JSONFIELD_ENABLED = True
 SOCIAL_AUTH_GITHUB_SCOPE = ["user:email"]
 SOCIAL_AUTH_GITHUB_KEY = os.getenv("SOCIAL_AUTH_GITHUB_KEY")
 SOCIAL_AUTH_GITHUB_SECRET = os.getenv("SOCIAL_AUTH_GITHUB_SECRET")
-
 
 ROOT_URLCONF = "core.urls"
 

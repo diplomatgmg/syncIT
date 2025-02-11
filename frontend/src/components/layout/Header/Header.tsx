@@ -1,6 +1,6 @@
 import styled, { ThemeProvider } from "styled-components"
 import { Button, Flex, Group, useMantineTheme } from "@mantine/core"
-import SyncItImg from "@/assets/img/syncIt.png"
+import SiteLogo from "@/assets/img/logo.png"
 import { Link, useNavigate } from "react-router-dom"
 import routes from "@/routes/routes.tsx"
 import useAuth from "@/store/hooks/useAuth.ts"
@@ -163,7 +163,7 @@ const Header = () => {
       <HeaderStyle style={{ backgroundColor: colors.dark[9] }}>
         <Group justify="space-between" h="100%">
           <Link to={routes.home.path} onClick={handleClickLink}>
-            <LogoStyle src={SyncItImg} alt="syncIT" />
+            <LogoStyle src={SiteLogo} alt="syncIT" />
           </Link>
           {matches && renderMobileMenu()}
           {!matches && renderDesktopMenu()}

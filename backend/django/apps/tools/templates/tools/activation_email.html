@@ -1,0 +1,70 @@
+{% load static %}
+
+{% block subject %}
+    Подтверждение регистрации {{ site_name }}
+{% endblock subject %}
+
+{% block text_body %}
+    Добро пожаловать на {{ site_name }}!
+
+    Здравствуйте, {{ user }}!
+
+    Благодарим вас за регистрацию. Для завершения процесса подтверждения email, перейдите по ссылке:
+    {{ url }}
+
+    С уважением,
+    Команда {{ site_name }}
+
+    ——————————————————
+    Это автоматическое сообщение. Пожалуйста, не отвечайте на него.
+{% endblock text_body %}
+
+{% block html_body %}
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td align="center" style="padding: 20px 0;">
+                <img src="{% static 'images/logo.png' %}" alt="Логотип сайта" style="max-width: 200px; height: auto;">
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <table width="600" cellpadding="0" cellspacing="0" border="0"
+                       style="background-color: #ffffff; padding: 40px 30px; border-radius: 8px;">
+                    <tr>
+                        <td>
+                            <h1 style="color: #1a1a1a; margin-top: 0;">Добро пожаловать!</h1>
+                            <p style="line-height: 1.6;">Здравствуйте, {{ user }}!</p>
+                            <p style="line-height: 1.6;">
+                                Благодарим вас за регистрацию на нашем сайте. <br>
+                                Для завершения регистрации, пожалуйста, нажмите на кнопку ниже:
+                            </p>
+
+                            <div style="text-align: center; margin: 40px 0;">
+                                <a href="{{ url }}"
+                                   style="background-color: #007bff; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">Подтвердить
+                                    Email</a>
+                            </div>
+
+                            <p style="line-height: 1.6; color: #666666;">
+                                Если кнопка не работает, скопируйте эту ссылку в браузер:<br>
+                                <span style="word-break: break-all; color: #007bff;">{{ url }}</span>
+                            </p>
+
+                            <p style="line-height: 1.6; margin-top: 30px;">
+                                С уважением,<br>
+                                Команда {{ site_name }}
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td align="center" style="padding: 20px 0; color: #666666;">
+                <p style="font-size: 12px;">
+                    Это письмо отправлено автоматически. Пожалуйста, не отвечайте на него.
+                </p>
+            </td>
+        </tr>
+    </table>
+{% endblock html_body %}
