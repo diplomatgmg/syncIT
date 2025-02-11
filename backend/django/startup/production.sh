@@ -9,9 +9,6 @@ echo "Database migrated"
 echo "Collecting static files..."
 uv run manage.py collectstatic --no-input &
 
-echo "Creating skills..."
-uv run manage.py create_skills &
-
 echo "Loading fixtures..."
 uv run manage.py create_skills &
 uv run manage.py loaddata $FIXTURES_DIR/grades.json &
