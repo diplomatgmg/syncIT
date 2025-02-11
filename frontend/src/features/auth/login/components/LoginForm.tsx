@@ -23,8 +23,8 @@ import { setEmail, setTokens } from "@/store/slice/authSlice.ts"
 import routes from "@/routes/routes.tsx"
 import { useMediaQuery } from "@mantine/hooks"
 import { LoginResponseError } from "@/types/authTypes.ts"
-import GitHubSvg from "@/assets/svg/github.svg"
-import GoogleSvg from "@/assets/svg/google.svg"
+import GitHubSvg from "@/assets/svg/socials/github.svg"
+import GoogleSvg from "@/assets/svg/socials/google.svg"
 import { API_URL } from "@/store/api/baseQuery.ts"
 
 const LoginForm = (): ReactElement => {
