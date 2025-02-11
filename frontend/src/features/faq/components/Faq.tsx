@@ -1,4 +1,4 @@
-import { type ReactElement } from "react"
+import { Fragment, type ReactElement } from "react"
 import { Accordion as _Accordion, Anchor, Container, Flex } from "@mantine/core"
 import styled from "styled-components"
 
@@ -7,77 +7,80 @@ import GitHubSvg from "@/assets/svg/socials/github.svg"
 
 const Faq = (): ReactElement => {
   return (
-    <WrappedContainer size="sm">
-      <Accordion variant="separated">
-        <Accordion.Item value="about">
-          <Accordion.Control>Что это за проект?</Accordion.Control>
-          <Accordion.Panel>
-            Это сайт, который анализирует вакансии с различных источников и
-            приводит их к единому формату. <br />
-            Он помогает разработчикам и другим IT-специалистам находить
-            вакансии, наиболее подходящие под их стек технологий и предпочтения.
-          </Accordion.Panel>
-        </Accordion.Item>
+    <Container size="sm" pt="xl" pb="xl" style={{ minHeight: 650 }}>
+      <StyledAccordion variant="separated">
+        {faqData.map(({ value, title, content }) => (
+          <_Accordion.Item key={value} value={value}>
+            <_Accordion.Control>{title}</_Accordion.Control>
+            <_Accordion.Panel>
+              {content.split("\n").map((line, index) => (
+                <Fragment key={index}>
+                  <Details>{line}</Details>
+                </Fragment>
+              ))}
+            </_Accordion.Panel>
+          </_Accordion.Item>
+        ))}
 
-        <Accordion.Item value="sources">
-          <Accordion.Control>
-            Какие источники вакансий используются?
-          </Accordion.Control>
-          <Accordion.Panel>
-            На данный момент используется API hh.ru. <br />В будущем будут
-            добавлены и другие источники, например, телеграм-каналы.
-          </Accordion.Panel>
-        </Accordion.Item>
-
-        <Accordion.Item value="vacancy-filter">
-          <Accordion.Control>Можно ли фильтровать вакансии?</Accordion.Control>
-          <Accordion.Panel>
-            На данный момент нельзя. В будущем будет добавлена отдельная
-            страница для поиска вакансий с возможностью фильтрации.
-          </Accordion.Panel>
-        </Accordion.Item>
-
-        <Accordion.Item value="bad-skill">
-          <Accordion.Control>
-            Нет нужного навыка или не та категория?
-          </Accordion.Control>
-          <Accordion.Panel>
-            Навыки периодически пополняются на основе популярности среди
-            вакансий. <br />
-            Если вы считаете, что нужного навыка нет, или он привязан не к той
-            категории - свяжитесь со мной.
-          </Accordion.Panel>
-        </Accordion.Item>
-
-        <Accordion.Item value="contact">
-          <Accordion.Control>Контакты</Accordion.Control>
-          <Accordion.Panel>
+        <_Accordion.Item value="contact">
+          <_Accordion.Control>Контакты</_Accordion.Control>
+          <_Accordion.Panel>
             <Flex justify={"center"} gap={"md"}>
-              <Anchor href="https://t.me/diplomatgmg" target={"_blank"}>
-                <Flex align={"center"} gap={"xs"}>
-                  <SocialIcon src={TelegramSvg} />
-                </Flex>
-              </Anchor>
-              <Anchor href="https://github.com/diplomatgmg" target={"_blank"}>
-                <Flex align={"center"} gap={"xs"}>
-                  <SocialIcon src={GitHubSvg} />
-                </Flex>
-              </Anchor>
+              {socialLinks.map(({ href, src, alt }) => (
+                <Anchor key={href} href={href} target="_blank">
+                  <Flex align="center" gap="xs">
+                    <SocialIcon src={src} alt={alt} />
+                  </Flex>
+                </Anchor>
+              ))}
             </Flex>
-          </Accordion.Panel>
-        </Accordion.Item>
-      </Accordion>
-    </WrappedContainer>
+          </_Accordion.Panel>
+        </_Accordion.Item>
+      </StyledAccordion>
+    </Container>
   )
 }
+const faqData = [
+  {
+    value: "about",
+    title: "Что это за проект?",
+    content:
+      "Это сайт, который анализирует вакансии с различных источников и приводит их к единому формату.\nОн помогает разработчикам и другим IT-специалистам находить вакансии, наиболее подходящие под их стек технологий и предпочтения.",
+  },
+  {
+    value: "sources",
+    title: "Какие источники вакансий используются?",
+    content:
+      "На данный момент используется API hh.ru.\nВ будущем будут добавлены и другие источники, например, телеграм-каналы.",
+  },
+  {
+    value: "vacancy-filter",
+    title: "Можно ли фильтровать вакансии?",
+    content:
+      "На данный момент нельзя. В будущем будет добавлена отдельная страница для поиска вакансий с возможностью фильтрации.",
+  },
+  {
+    value: "bad-skill",
+    title: "Нет нужного навыка или профессии?",
+    content:
+      "Я регулярно расширяю базу данных навыков и профессий, ориентируясь на их популярность среди вакансий, чтобы сделать поиск релевантных вакансий максимально удобным и точным.\nЕсли вы не нашли нужный навык или он привязан к некорректной категории – свяжитесь со мной.",
+  },
+]
 
-const WrappedContainer = styled(Container)`
-  padding-top: calc(var(--mantine-spacing-xl) * 2);
-  padding-bottom: calc(var(--mantine-spacing-xl) * 2);
-  min-height: 650px;
-`
+const socialLinks = [
+  {
+    href: "https://t.me/diplomatgmg",
+    src: TelegramSvg,
+    alt: "Telegram",
+  },
+  {
+    href: "https://github.com/diplomatgmg",
+    src: GitHubSvg,
+    alt: "GitHub",
+  },
+]
 
-const Accordion = styled(_Accordion)`
+const StyledAccordion = styled(_Accordion)`
   border-radius: var(--mantine-radius-md);
   margin-bottom: var(--mantine-spacing-lg);
   font-size: 1.15rem;
@@ -90,7 +93,16 @@ const SocialIcon = styled.img`
 
   &:hover {
     cursor: pointer;
-    scale: 1.2;
+    transform: scale(1.2);
+  }
+`
+
+const Details = styled.p`
+  &:first-child {
+    margin-top: 0;
+  }
+  &:last-child {
+    margin-bottom: 0;
   }
 `
 
