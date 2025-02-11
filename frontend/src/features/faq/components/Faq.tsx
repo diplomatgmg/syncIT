@@ -1,30 +1,38 @@
 import { Fragment, type ReactElement } from "react"
-import { Accordion as _Accordion, Anchor, Container, Flex } from "@mantine/core"
+import {
+  Accordion,
+  Anchor,
+  Container,
+  Flex,
+  useMantineTheme,
+} from "@mantine/core"
 import styled from "styled-components"
 
 import TelegramSvg from "@/assets/svg/socials/telegram.svg"
 import GitHubSvg from "@/assets/svg/socials/github.svg"
 
 const Faq = (): ReactElement => {
+  const { colors } = useMantineTheme()
+
   return (
     <Container size="sm" pt="xl" pb="xl" style={{ minHeight: 650 }}>
       <StyledAccordion variant="separated">
         {faqData.map(({ value, title, content }) => (
-          <_Accordion.Item key={value} value={value}>
-            <_Accordion.Control>{title}</_Accordion.Control>
-            <_Accordion.Panel>
+          <Accordion.Item key={value} value={value} bg={colors.dark[9]}>
+            <Accordion.Control bg={colors.dark[8]}>{title}</Accordion.Control>
+            <Accordion.Panel>
               {content.split("\n").map((line, index) => (
                 <Fragment key={index}>
                   <Details>{line}</Details>
                 </Fragment>
               ))}
-            </_Accordion.Panel>
-          </_Accordion.Item>
+            </Accordion.Panel>
+          </Accordion.Item>
         ))}
 
-        <_Accordion.Item value="contact">
-          <_Accordion.Control>Контакты</_Accordion.Control>
-          <_Accordion.Panel>
+        <Accordion.Item value="contact" bg={colors.dark[9]}>
+          <Accordion.Control bg={colors.dark[8]}>Контакты</Accordion.Control>
+          <Accordion.Panel>
             <Flex justify={"center"} gap={"md"}>
               {socialLinks.map(({ href, src, alt }) => (
                 <Anchor key={href} href={href} target="_blank">
@@ -34,8 +42,8 @@ const Faq = (): ReactElement => {
                 </Anchor>
               ))}
             </Flex>
-          </_Accordion.Panel>
-        </_Accordion.Item>
+          </Accordion.Panel>
+        </Accordion.Item>
       </StyledAccordion>
     </Container>
   )
@@ -57,7 +65,7 @@ const faqData = [
     value: "vacancy-filter",
     title: "Можно ли фильтровать вакансии?",
     content:
-      "На данный момент нельзя. В будущем будет добавлена отдельная страница для поиска вакансий с возможностью фильтрации.",
+      "На данный момент нельзя.\nВ будущем будет добавлена отдельная страница для поиска вакансий с возможностью фильтрации.",
   },
   {
     value: "bad-skill",
@@ -80,13 +88,13 @@ const socialLinks = [
   },
 ]
 
-const StyledAccordion = styled(_Accordion)`
-  border-radius: var(--mantine-radius-md);
+const StyledAccordion = styled(Accordion)`
   margin-bottom: var(--mantine-spacing-lg);
   font-size: 1.15rem;
 `
 
 const SocialIcon = styled.img`
+  margin-top: 0.5rem;
   width: 2.5rem;
   height: 2.5rem;
   transition: 0.15s ease;
@@ -99,7 +107,7 @@ const SocialIcon = styled.img`
 
 const Details = styled.p`
   &:first-child {
-    margin-top: 0;
+    margin-top: 0.5rem;
   }
   &:last-child {
     margin-bottom: 0;
