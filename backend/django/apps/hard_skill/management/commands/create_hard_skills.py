@@ -3,6 +3,7 @@ from django.db import transaction
 
 from apps.hard_skill.models import HardSkill, UnknownHardSkill
 from apps.hard_skill.utils import get_skills, HardSkillModel
+from helpers.utils.normalizers.normalize_hard_skill import IGNORE_SKILLS
 
 
 class Command(BaseCommand):
@@ -72,7 +73,11 @@ class Command(BaseCommand):
         existing_skill_names = set(HardSkill.objects.values_list("name", flat=True))
         skills_to_delete = existing_skill_names - config_skill_names
         unknown_skills_to_delete = UnknownHardSkill.objects.filter(
-            name__in=[*config_skill_names, *(s.lower() for s in config_skill_names)]
+            name__in=[
+                *config_skill_names,
+                *(s.lower() for s in config_skill_names),
+                IGNORE_SKILLS,
+            ]
         )
 
         if skills_to_delete:

@@ -7,10 +7,14 @@ HARD_SKILL_MAPPING = {
     ".net framework": ".NET",
     "1с": "1С",  # ru - ru
     "1c": "1С",  # eng - ru
+    "1с программирование": "1С",  # ru - ru
+    "1c программирование": "1С",  # eng - ru
     "1С программирование": "1С",  # ru - ru
     "1C программирование": "1С",  # eng - ru
     "1с-битрикс": "1С-Битрикс",  # ru - ru
     "1c-битрикс": "1С-Битрикс",  # eng - ru
+    "atlassian confluence": "Confluence",
+    "apache": "Apache",
     "ajax": "Ajax",
     "api": "API",
     "agile": "Agile",
@@ -24,6 +28,7 @@ HARD_SKILL_MAPPING = {
     "ansible": "Ansible",
     "assembly": "Assembly",
     "aws": "AWS",
+    "bpmn": "BPMN",
     "bash": "Bash",
     "babel": "Babel",
     "bootstrap": "Bootstrap",
@@ -33,9 +38,11 @@ HARD_SKILL_MAPPING = {
     "битрикс 24": "Битрикс24",
     "bitrix24": "Битрикс24",
     "bitrix 24": "Битрикс24",
+    "cassandra": "Cassandra",
     "css": "CSS",
     "css3": "CSS",
     "css 3": "CSS",
+    "crm": "CRM",
     "scss": "SASS",
     "sass": "SASS",
     "sentry": "Sentry",
@@ -52,6 +59,7 @@ HARD_SKILL_MAPPING = {
     "cucumber": "Cucumber",
     "ddd": "DDD",
     "delphi": "Delphi",
+    "debian": "Linux",
     "dart": "Dart",
     "devops": "DevOps",
     "django": "Django",
@@ -79,6 +87,7 @@ HARD_SKILL_MAPPING = {
     "figma": "Figma",
     "flask": "Flask",
     "flutter": "Flutter",
+    "gradle": "Gradle",
     "git": "Git",
     "grails": "Grails",
     "grpc": "gRPC",
@@ -93,6 +102,7 @@ HARD_SKILL_MAPPING = {
     "go lang": "Go",
     "graphql": "GraphQL",
     "grafana": "Grafana",
+    "helm": "Helm",
     "html": "HTML",
     "html5": "HTML",
     "html 5": "HTML",
@@ -106,6 +116,7 @@ HARD_SKILL_MAPPING = {
     "java script": "JavaScript",
     "java": "Java",
     "jenkins": "Jenkins",
+    "atlassian jira": "Jira",
     "jira": "Jira",
     "jest": "Jest",
     "kafka": "Apache Kafka",
@@ -147,6 +158,7 @@ HARD_SKILL_MAPPING = {
     "ооп": "ООП",
     "oracle": "Oracle",
     "oracle db": "Oracle",
+    "openshift": "OpenShift",
     "php": "PHP",
     "postgresql": "PostgreSQL",
     "postgres": "PostgreSQL",
@@ -218,11 +230,12 @@ HARD_SKILL_MAPPING = {
     "tensorflow": "TensorFlow",
     "terraform": "Terraform",
     "unity": "Unity",
-    "ubuntu": "Ubuntu",
+    "ubuntu": "Linux",
     "ui": "UI/UX",
     "ux": "UI/UX",
     "ui/ux": "UI/UX",
     "unix": "Linux",
+    "uml": "UML",
     "vite": "Vite",
     "vue": "Vue",
     "vue3": "Vue",
@@ -244,15 +257,26 @@ HARD_SKILL_MAPPING = {
 }
 
 # Дефолтные навыки. Играют роль "Категории навыков"
-DEFAULT = tuple(map(lambda s: s.name, get_skills()))
+DEFAULT_SKILLS = tuple(map(lambda s: s.name, get_skills()))
 
-IGNORE = (
+IGNORE_SKILLS = (
     "функциональное тестирование",
     "ручное тестирование",
     "английский язык",
     "регрессионное тестирование",
     "автоматизированное тестирование",
     "тестирование пользовательского интерфейса",
+    "кассовые чеки",
+    "обслуживание покупателей",
+    "кассовые операции",
+    "мерчандайзинг",
+    "тестирование",
+    "приемка товара",
+    "визуальный мерчандайзинг",
+    "консультативные продажи",
+    "ведение переговоров",
+    "оформление торгового зала",
+    "активные продажи",
 )
 
 
@@ -263,7 +287,7 @@ def normalize_hard_skill(skill: str) -> str | None:
     if normalized_skill:
         return normalized_skill
 
-    if skill not in DEFAULT and skill not in IGNORE:
+    if skill not in DEFAULT_SKILLS and skill not in IGNORE_SKILLS:
         UnknownHardSkill.objects.create(name=skill)
 
     return None

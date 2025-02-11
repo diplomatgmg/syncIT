@@ -10,6 +10,7 @@
   - C
   - C++
   - C#
+  - 1C
 
 Backend:
   Python:
@@ -56,7 +57,7 @@ Frontend:
     - Redis
     - MongoDB
     - Elasticsearch
-
+    - Cassandra
 
 Брокеры сообщений:
   - Apache Kafka
@@ -72,28 +73,46 @@ Frontend:
 DevOps:
   - Ansible
   - Docker
-  - Kubernetes
   - CI/CD
     - GitLab CI
   - Grafana
-  - Nginx
+  - Zabbix
+
+Сервера и облачные платформы:
+  - Web-сервера:
+      - Nginx
+      - Apache
+  - Оркестрация контейнеров:
+      - Kubernetes
+        - Helm
+        - OpenShift
+  - Облачные платформы:
+      - AWS
 
 Архитектурные стили и API:
+  - HTTP
   - API
     - REST API
     - gRPC
     - GraphQL
+    - OpenAPI
+    - Swagger
   - WebSocket
-
 
 Методологии:
   - ООП
     - SOLID
+  - Agile
+    - Scrum
+  - BPMN
+  - UML
 
 Инструменты:
   - Jira
-  - Битрикс24
+  - CRM
+    - Битрикс24
   - Confluence
+  - Gradle
 
 Операционные системы:
   - Linux
