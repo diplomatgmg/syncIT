@@ -8,7 +8,8 @@ import styled from "styled-components"
 const Login = (): ReactElement => {
   const { uid, token } = useParams()
   const navigate = useNavigate()
-  const [activateAccount, { isSuccess, isError }] = useActivateAccountMutation()
+  const [activateAccount, { isSuccess, isError, error }] =
+    useActivateAccountMutation()
 
   useEffect(() => {
     if (uid && token) {
@@ -18,11 +19,21 @@ const Login = (): ReactElement => {
 
   useEffect(() => {
     if (isSuccess || isError) {
+      const isRecentlyActivated =
+        isError &&
+        // @ts-expect-error - FIXME. djoser response 403 == Устаревший токен. Возникает как при повторной активировании почты, так и при истечении токена
+        error.status === 403
+
       navigate(routes.login.path, {
-        state: { fromActivate: true, isSuccess: isSuccess, isError: isError },
+        state: {
+          fromActivate: true,
+          isSuccess,
+          isError: isError && !isRecentlyActivated,
+          isRecentlyActivated,
+        },
       })
     }
-  }, [isSuccess, isError, navigate])
+  }, [isSuccess, isError, error, navigate])
 
   return (
     <StyledLogin>

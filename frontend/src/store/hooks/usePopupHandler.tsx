@@ -49,10 +49,13 @@ const usePopupHandler = () => {
           break
 
         case state.fromActivate:
+          console.log(state.isSuccess, state.isRecentlyActivated)
           if (state.isSuccess) {
-            popup.success("Аккаунт успешно активирован!")
+            popup.success("Аккаунт активирован! Авторизуйтесь.")
           } else if (state.isError) {
             popup.error("Не удалось активировать аккаунт!")
+          } else if (state.isRecentlyActivated) {
+            popup.warn("Аккаунт уже активирован! Авторизуйтесь.")
           }
           break
 

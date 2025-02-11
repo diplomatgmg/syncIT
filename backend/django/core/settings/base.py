@@ -105,10 +105,11 @@ DJOSER = {
     "LOGIN_FIELD": "email",
     "SEND_EMAIL_CONFIRMATION": True,
     "SEND_ACTIVATION_EMAIL": True,
-    "ACTIVATION_URL": "login/{uid}/{token}",
+    "ACTIVATION_URL": "{protocol}://{domain}/login/{uid}/{token}",
     "EMAIL": {
         "activation": "apps.tools.views.ActivationEmail",
     },
+    "EMAIL_FRONTEND_DOMAIN": DOMAIN,
     "SERIALIZERS": {
         "user_create": "apps.user.serializers.UserCreateSerializer",
         "user": "apps.user.serializers.UserCreateSerializer",
@@ -242,7 +243,10 @@ USE_TZ = True
 FIXTURE_DIR = BASE_DIR / "__fixtures__"
 
 STATIC_URL = "/django_static/"
-STATIC_ROOT = BASE_DIR / "django_static"
+STATIC_ROOT = BASE_DIR / "static"
+STATICFILES_DIRS = [
+    BASE_DIR / "django_static",
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
