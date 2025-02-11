@@ -5,7 +5,7 @@ import { ReactElement } from "react"
 
 const baseConfig: ToastOptions = {
   position: "bottom-left",
-  autoClose: 3000,
+  autoClose: 4000,
   closeOnClick: true,
   pauseOnHover: false,
   theme: "dark",
@@ -14,13 +14,13 @@ const baseConfig: ToastOptions = {
 }
 
 export const popup = {
-  error: (msg: string | ReactElement) => {
-    toast.error(msg, { ...baseConfig })
+  error: (msg: string | ReactElement, config?: ToastOptions) => {
+    toast.error(msg, { ...baseConfig, ...config })
   },
-  warn: (msg: string | ReactElement) => {
-    toast.warn(msg, { ...baseConfig })
+  warn: (msg: string | ReactElement, config?: ToastOptions) => {
+    toast.warn(msg, { ...baseConfig, ...config })
   },
-  success: (msg: string | ReactElement) => {
-    toast.success(msg, { ...baseConfig })
+  success: (msg: string | ReactElement, config?: ToastOptions) => {
+    toast.success(msg, { ...baseConfig, ...config })
   },
 }

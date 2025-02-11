@@ -29,7 +29,10 @@ const usePopupHandler = () => {
               <span style={{ fontSize: "0.9rem" }}>
                 Не забудьте проверить папку <b>спам</b>
               </span>
-            </span>
+            </span>,
+            {
+              autoClose: 10000,
+            }
           )
           break
 
