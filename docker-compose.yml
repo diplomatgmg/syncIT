@@ -63,7 +63,7 @@ services:
       - app-network
 
   postgres:
-    image: postgres:16.3-alpine
+    image: postgres:16.6-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
@@ -78,7 +78,7 @@ services:
       - app-network
 
   redis:
-    image: redis:7.2.5-alpine
+    image: redis:7.4.2-alpine
     hostname: redis
     ports:
       - "6379:6379"
