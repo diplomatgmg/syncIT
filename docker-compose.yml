@@ -32,8 +32,8 @@ services:
       - .env
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health-check/"]
-      interval: 1s
-      retries: 50
+      interval: 10s
+      start_period: 15s
     depends_on:
       postgres:
         condition: service_healthy
@@ -54,8 +54,8 @@ services:
       - .env
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9000/health-check"]
-      interval: 1s
-      retries: 50
+      interval: 10s
+      start_period: 10s
     depends_on:
       postgres:
         condition: service_healthy
@@ -72,8 +72,8 @@ services:
       - .env
     healthcheck:
       test: ["CMD", "pg_isready", "-h", "${POSTGRES_HOST}", "-p", "${POSTGRES_PORT}", "-d", "${POSTGRES_DB}"]
-      interval: 1s
-      retries: 50
+      interval: 10s
+      start_period: 5s
     networks:
       - app-network
 
@@ -84,8 +84,8 @@ services:
       - "6379:6379"
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
-      interval: 1s
-      retries: 50
+      interval: 10s
+      start_period: 5s
     networks:
       - app-network
 
@@ -99,8 +99,8 @@ services:
     command: ["sh", "startup/celery.sh", "worker"]
     healthcheck:
       test: ["CMD", "celery", "-A", "core.celery.app", "inspect", "ping"]
-      interval: 1s
-      retries: 50
+      interval: 10s
+      start_period: 20s
     depends_on:
       django:
         condition: service_healthy
