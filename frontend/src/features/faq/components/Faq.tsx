@@ -18,8 +18,8 @@ const Faq = (): ReactElement => {
     <Container size="sm" pt="xl" pb="xl" style={{ minHeight: 650 }}>
       <StyledAccordion variant="separated">
         {faqData.map(({ value, title, content }) => (
-          <Accordion.Item key={value} value={value} bg={colors.dark[9]}>
-            <Accordion.Control bg={colors.dark[8]}>{title}</Accordion.Control>
+          <AccordionItem key={value} value={value} bg={colors.dark[9]}>
+            <AccordionControl bg={colors.dark[8]}>{title}</AccordionControl>
             <Accordion.Panel>
               {content.split("\n").map((line, index) => (
                 <Fragment key={index}>
@@ -27,11 +27,11 @@ const Faq = (): ReactElement => {
                 </Fragment>
               ))}
             </Accordion.Panel>
-          </Accordion.Item>
+          </AccordionItem>
         ))}
 
-        <Accordion.Item value="contact" bg={colors.dark[9]}>
-          <Accordion.Control bg={colors.dark[8]}>Контакты</Accordion.Control>
+        <AccordionItem value="contact" bg={colors.dark[9]}>
+          <AccordionControl bg={colors.dark[8]}>Контакты</AccordionControl>
           <Accordion.Panel>
             <Flex justify={"center"} gap={"md"}>
               {socialLinks.map(({ href, src, alt }) => (
@@ -43,7 +43,7 @@ const Faq = (): ReactElement => {
               ))}
             </Flex>
           </Accordion.Panel>
-        </Accordion.Item>
+        </AccordionItem>
       </StyledAccordion>
     </Container>
   )
@@ -103,6 +103,14 @@ const SocialIcon = styled.img`
     cursor: pointer;
     transform: scale(1.2);
   }
+`
+
+const AccordionItem = styled(Accordion.Item)`
+  border-radius: 4px;
+`
+
+const AccordionControl = styled(Accordion.Control)`
+  border-radius: 4px;
 `
 
 const Details = styled.p`

@@ -7,6 +7,7 @@ const formatCurrency = (amount: number | null, currency: string): string => {
   return `${formattedAmount}${currency}`
 }
 
+// FIXME. Сделать: От <money><currency>. ИЛИ До <money><currency>. ИЛИ <money><currency> - <money><currency>
 // Возвращает зарплату в виде: Неизвестно или <От><Валюта> - <До><Валюта>
 const getSalary = (
   currency: string | null,
