@@ -9,7 +9,7 @@ services:
       - ./frontend:/project/frontend
       - /project/frontend/node_modules
       - frontend_dist:/project/frontend/dist
-      - static_volume:/project/backend/django/django_static
+      - static_volume:/project/backend/django/static
     ports:
       - "80:80"
       - "3000:3000"
@@ -25,7 +25,7 @@ services:
       target: ${BUILD_TARGET}
     volumes:
       - ./backend/django:/project/backend/django
-      - static_volume:/project/backend/django/django_static/
+      - static_volume:/project/backend/django/static/
     ports:
       - "8000:8000"
     env_file:

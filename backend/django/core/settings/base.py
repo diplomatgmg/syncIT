@@ -242,7 +242,7 @@ USE_TZ = True
 
 FIXTURE_DIR = BASE_DIR / "__fixtures__"
 
-STATIC_URL = "/django_static/"
+STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "static"
 STATICFILES_DIRS = [
     BASE_DIR / "django_static",
