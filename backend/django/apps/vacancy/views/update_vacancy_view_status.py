@@ -22,7 +22,7 @@ class UpdateVacancyViewStatusAPIView(generics.GenericAPIView):
             raise ValidationError({"detail": "user and vacancy fields are required."})
 
         user_vacancy = get_object_or_404(
-            ProfileVacancy, user_id=user_id, vacancy_id=vacancy_id
+            ProfileVacancy, profile__user_id=user_id, vacancy_id=vacancy_id
         )
 
         user_vacancy.is_viewed = True
