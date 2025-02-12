@@ -43,6 +43,7 @@ const Vacancy = (): ReactElement => {
             style={{ margin: "0 auto" }}
           />
         )}
+        {/*FIXME Изменить. Всего - <total> вакансий. Скрытых - <hidden> вакансий*/}
         {!isLoading && <Text fz={"xl"}>Всего - {data!.count} вакансий</Text>}
       </Flex>
       <InfiniteScroll
