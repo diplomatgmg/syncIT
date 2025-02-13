@@ -69,11 +69,26 @@ class HardSkillModel(BaseModel):
     children: list["HardSkillModel"] = []
 
 
-def get_skills() -> list[HardSkillModel]:
+def flatten_skills(skills: List[HardSkillModel]) -> List[HardSkillModel]:
+    flat_list = []
+
+    def traverse(skill_inner: HardSkillModel):
+        flat_list.append(skill_inner)
+        for child in skill_inner.children:
+            traverse(child)
+
+    for skill in skills:
+        traverse(skill)
+
+    return flat_list
+
+
+def get_skills(*, flat=False) -> list[HardSkillModel]:
     """
     Парсит hard skills из файла hard_skills.yml и возвращает скиллы в виде словаря
     """
     skills_data = _read_skills()
     skills = _parse(skills_data)
     skill_models = [HardSkillModel(**skill) for skill in skills]
-    return skill_models
+
+    return skill_models if not flat else flatten_skills(skill_models)

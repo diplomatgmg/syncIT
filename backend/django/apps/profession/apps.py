@@ -4,3 +4,6 @@ from django.apps import AppConfig
 class ProfessionConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
     name = "apps.profession"
+
+    def ready(self):
+        import apps.profession.signals  # noqa

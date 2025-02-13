@@ -1,5 +1,7 @@
 from apps.hard_skill.models import UnknownHardSkill
-from apps.hard_skill.utils import get_skills
+from helpers.utils import normalize_value
+from helpers.utils.constants import IGNORE_HARD_SKILLS, HARD_SKILLS
+
 
 HARD_SKILL_MAPPING = {
     ".net": ".NET",
@@ -258,38 +260,11 @@ HARD_SKILL_MAPPING = {
     "zustand": "Zustand",
 }
 
-# Дефолтные навыки. Играют роль "Категории навыков"
-DEFAULT_SKILLS = tuple(map(lambda s: s.name, get_skills()))
-
-IGNORE_SKILLS = (
-    "функциональное тестирование",
-    "ручное тестирование",
-    "английский язык",
-    "регрессионное тестирование",
-    "автоматизированное тестирование",
-    "тестирование пользовательского интерфейса",
-    "кассовые чеки",
-    "обслуживание покупателей",
-    "кассовые операции",
-    "мерчандайзинг",
-    "тестирование",
-    "приемка товара",
-    "визуальный мерчандайзинг",
-    "консультативные продажи",
-    "ведение переговоров",
-    "оформление торгового зала",
-    "активные продажи",
-)
-
 
 def normalize_hard_skill(skill: str) -> str | None:
-    skill = skill.lower().strip().rstrip(",")
-
-    normalized_skill = HARD_SKILL_MAPPING.get(skill)
-    if normalized_skill:
-        return normalized_skill
-
-    if skill not in DEFAULT_SKILLS and skill not in IGNORE_SKILLS:
-        UnknownHardSkill.objects.create(name=skill)
-
-    return None
+    return normalize_value(
+        skill,
+        HARD_SKILL_MAPPING,
+        HARD_SKILLS + IGNORE_HARD_SKILLS,
+        lambda s: UnknownHardSkill.objects.create(name=s),
+    )

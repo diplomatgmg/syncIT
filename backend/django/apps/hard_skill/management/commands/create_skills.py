@@ -3,7 +3,8 @@ from django.db import transaction
 
 from apps.hard_skill.models import HardSkill, UnknownHardSkill
 from apps.hard_skill.utils import HardSkillModel, get_skills
-from helpers.utils.normalizers import IGNORE_SKILLS, HARD_SKILL_MAPPING
+from helpers.utils.constants import IGNORE_HARD_SKILLS
+from helpers.utils.normalizers import HARD_SKILL_MAPPING
 
 
 class Command(BaseCommand):
@@ -77,7 +78,7 @@ class Command(BaseCommand):
             name__in=[
                 *config_skill_names,
                 *(s.lower() for s in config_skill_names),
-                *IGNORE_SKILLS,
+                *IGNORE_HARD_SKILLS,
                 *HARD_SKILL_MAPPING.keys(),
             ]
         )

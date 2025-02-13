@@ -11,4 +11,4 @@ def normalize_currency(currency: str) -> str:
         "USD": "$",  # Доллары
         "UZS": "so'm",  # Узбекский сум
     }
-    return currency_symbols.get(currency, currency)
+    return currency_symbols.get(currency.upper(), currency)
