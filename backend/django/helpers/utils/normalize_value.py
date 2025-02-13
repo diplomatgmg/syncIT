@@ -3,7 +3,7 @@ def normalize_value(
     mapping: dict[str, str],
     ignore_set: tuple[str, ...],
     create_unknown: callable,
-) -> str | None:
+) -> str:
     """
     Универсальная функция нормализации значений.
 
@@ -23,4 +23,4 @@ def normalize_value(
     if value not in ignore_set:
         create_unknown(value)
 
-    return None
+    return value

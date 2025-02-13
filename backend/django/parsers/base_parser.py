@@ -7,7 +7,7 @@ from django.db.models import Model
 from apps.company.models import Company
 from apps.grade.models import Grade
 from apps.hard_skill.models import HardSkill, UnknownHardSkill
-from apps.profession.models import Profession, UnknownProfession
+from apps.profession.models import Profession
 from apps.vacancy.models import Vacancy
 from apps.work_format.models import WorkFormat
 
@@ -45,13 +45,10 @@ class BaseParser(ABC):
         company_model, _ = Company.objects.get_or_create(name=company_name)
 
         grade_name = data.get("grade_name")
-        grade_model = self.get_or_default(Grade, grade_name, "Неизвестно")
+        grade_model = self.get_or_default(Grade, grade_name)
 
         profession_name = data.get("profession_name")
-        profession_model = self.get_or_none(Profession, name=profession_name)
-        if profession_model is None:
-            UnknownProfession.objects.create(name=profession_name.lower())
-            profession_model, _ = Profession.objects.get(name="Неизвестно")
+        profession_model = self.get_or_default(Profession, profession_name)
 
         created_vacancy_model, _ = Vacancy.objects.get_or_create(
             unique_hash=unique_hash,
@@ -101,7 +98,9 @@ class BaseParser(ABC):
         except model.DoesNotExist:
             return None
 
-    def get_or_default(self, model: ModelType, name: str, default: str) -> ModelType:
+    def get_or_default(
+        self, model: ModelType, name: str, default: str = "Неизвестно"
+    ) -> ModelType:
         obj = self.get_or_none(model, name=name)
 
         if not obj:
