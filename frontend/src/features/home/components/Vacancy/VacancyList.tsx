@@ -1,11 +1,11 @@
 import { FC, type ReactElement } from "react"
 import { UserVacancyResult } from "@/types/vacancyTypes.ts"
-import VacancyItem from "@/features/home/components/Vacancy/VacancyItem.tsx"
 import uniqueId from "lodash/uniqueId"
 import { Flex, useMantineTheme } from "@mantine/core"
 import CustomSkeleton from "@/components/common/CustomSkeleton/CustomSkeleton.tsx"
 import range from "lodash/range"
 import { useMediaQuery } from "@mantine/hooks"
+import VacancyItem from "@/features/home/components/Vacancy/VacancyItem.tsx"
 
 interface VacancyListProps {
   vacancies: UserVacancyResult[]
@@ -21,7 +21,7 @@ const VacancyList: FC<VacancyListProps> = ({
   const matchesXs = useMediaQuery(`(max-width: ${breakpoints.xs})`)
 
   return (
-    <Flex direction={"column"} align={"center"} gap={"4rem"} mb={"4rem"}>
+    <Flex direction={"column"} align={"center"} gap={"4rem"}>
       {isLoading && (
         <Flex direction={"column"} gap={"4rem"}>
           {range(4).map(() => (

@@ -57,7 +57,6 @@ const VacancyItem: FC<VacancyItemProps> = ({
         p={"md"}
         w={"100%"}
         gap={"xs"}
-        mt={"0.4rem"}
         direction={"column"}
         bg={colors.dark[9]}
         style={{

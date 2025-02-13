@@ -35,7 +35,7 @@ const Vacancy = (): ReactElement => {
 
   return (
     <Flex direction={"column"} gap={"lg"}>
-      <Flex justify={"center"}>
+      <Flex justify={"center"} h={40}>
         {isLoading && (
           <CustomSkeleton
             width={"15rem"}
