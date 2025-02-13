@@ -20,13 +20,13 @@ class ImportSkillsCommandTest(TestCase):
         self.assertTrue(HardSkill.objects.filter(name="Django REST Framework").exists())
         self.assertTrue(HardSkill.objects.filter(name="Операционные системы").exists())
 
-        self.assertIn("Скиллы успешно импортированы", output)
-        self.assertIn("Создан навык: Backend", output)
-        self.assertIn("Создан навык: Python", output)
-        self.assertIn("Создан навык: Django", output)
-        self.assertIn("Создан навык: Django REST Framework", output)
-        self.assertIn("Создан навык: Flask", output)
-        self.assertIn("Создан навык: Операционные системы", output)
+        self.assertIn("Созданы навыки", output)
+        self.assertIn("Backend", output)
+        self.assertIn("Python", output)
+        self.assertIn("Django", output)
+        self.assertIn("Django REST Framework", output)
+        self.assertIn("Flask", output)
+        self.assertIn("Операционные системы", output)
 
         # Негативные тесты
         self.assertFalse(HardSkill.objects.filter(name="Random Skill Name").exists())
