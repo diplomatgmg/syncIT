@@ -1,3 +1,4 @@
+import logging
 from abc import ABC, abstractmethod
 from typing import Literal, Type, Optional
 
@@ -9,8 +10,6 @@ from apps.hard_skill.models import HardSkill, UnknownHardSkill
 from apps.profession.models import Profession, UnknownProfession
 from apps.vacancy.models import Vacancy
 from apps.work_format.models import WorkFormat
-
-import logging
 
 logger = logging.getLogger("django")
 
@@ -51,8 +50,8 @@ class BaseParser(ABC):
         profession_name = data.get("profession_name")
         profession_model = self.get_or_none(Profession, name=profession_name)
         if profession_model is None:
-            UnknownProfession.objects.create(name=profession_name)
-            profession_model, _ = Profession.objects.get_or_create(name="Неизвестно")
+            UnknownProfession.objects.create(name=profession_name.lower())
+            profession_model, _ = Profession.objects.get(name="Неизвестно")
 
         created_vacancy_model, _ = Vacancy.objects.get_or_create(
             unique_hash=unique_hash,
@@ -95,7 +94,7 @@ class BaseParser(ABC):
         try:
             models = model.objects.filter(**kwargs)
             if models.count() > 1:
-                logger.error(
+                logger.critical(
                     f"Найдено более одного объекта в модели {model}, kwargs: {kwargs}"
                 )
             return models.first()

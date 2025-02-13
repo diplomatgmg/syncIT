@@ -3,6 +3,7 @@ from typing import Iterable, Type
 
 from django.apps import AppConfig
 from django.db.models import Model
+from django.db.models.functions import Lower
 
 logger = logging.getLogger("django")
 
@@ -12,6 +13,7 @@ def sync_records(
     model: Type[Model],
     default_values: Iterable,
     create_func: callable,
+    unknown_model: Type[Model] | None = None,
 ):
     """
     Универсальная функция для создания недостающих записей в базе данных после миграций.
@@ -20,6 +22,7 @@ def sync_records(
     :param model: Модель, для которой нужно создавать недостающие записи.
     :param default_values: Список значений, которые должны быть в модели.
     :param create_func: Функция для создания модели.
+    :param unknown_model: Неизвестная модель, которую необходимо удалить после актуализации default_values
     """
     if not sender.name == f"apps.{model._meta.app_label}":
         return
@@ -41,5 +44,16 @@ def sync_records(
     if extra_records.exists():
         deleted_count, _ = extra_records.delete()
         logger.info(f"Удалено {deleted_count} {model.__name__}.")
+
+    # Записи типа ModelUnknown, которые необходимо удалить
+    if unknown_model:
+        lower_default_values = (value.lower() for value in default_values)
+        deleted_count, _ = (
+            unknown_model.objects.annotate(name_lower=Lower("name"))
+            .filter(name_lower__in=lower_default_values)
+            .delete()
+        )
+
+        logger.info(f"Удалено {deleted_count} {unknown_model.__name__}.")
 
     logger.info(f"Записи для модели {model.__name__} обновлены")

@@ -1,4 +1,5 @@
 PROFESSIONS: tuple[str, ...] = (
+    "Неизвестно",
     "Frontend-разработчик",
     "Backend-разработчик",
     "Fullstack-разработчик",
@@ -6,7 +7,7 @@ PROFESSIONS: tuple[str, ...] = (
     "DevOps",
     "Мобильный разработчик",
     "Системный аналитик",
-    "Неизвестно",
+    "Системный IT-аналитик",
 )
 
 IGNORE_PROFESSIONS: tuple[str, ...] = ()
