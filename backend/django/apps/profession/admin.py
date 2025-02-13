@@ -13,3 +13,4 @@ class ProfessionAdmin(admin.ModelAdmin):
 class UnknownProfessionAdmin(admin.ModelAdmin):
     list_display = ("id", "name", "create_count")
     search_fields = ("name",)
+    ordering = ("-create_count",)

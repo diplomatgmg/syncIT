@@ -16,11 +16,12 @@ def normalize_value(
     :param create_unknown: Функция создания объекта в случае неизвестного значения.
     """
     value = value.strip().lower()
+    lower_ignore_set = [item.strip().lower() for item in ignore_set]
 
     if value in mapping:
         return mapping[value]
 
-    if value not in ignore_set:
+    if value not in lower_ignore_set:
         create_unknown(value)
 
     return value
