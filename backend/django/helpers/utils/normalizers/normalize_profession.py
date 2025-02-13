@@ -1,7 +1,6 @@
 from apps.profession.models import UnknownProfession
+from helpers.constants import IGNORE_PROFESSIONS, PROFESSIONS
 from helpers.utils import normalize_value
-from helpers.utils.constants import IGNORE_PROFESSIONS, PROFESSIONS
-
 
 PROFESSION_MAPPING = {
     "devops": "DevOps",

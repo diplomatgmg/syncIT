@@ -3,8 +3,8 @@ from django.dispatch import receiver
 
 from apps.grade.apps import GradeConfig
 from apps.grade.models import Grade
+from helpers.constants.grade import GRADES
 from helpers.utils import sync_records
-from helpers.utils.constants.grade import GRADES
 
 
 @receiver(post_migrate)
@@ -18,6 +18,3 @@ def create_grades(sender: GradeConfig, **_):
         GRADES,
         lambda name: Grade(name=name),
     )
-
-
-# FIXME. Теперь делай для word_formats и создай Unknown

@@ -1,7 +1,6 @@
 from apps.hard_skill.models import UnknownHardSkill
+from helpers.constants import IGNORE_HARD_SKILLS, HARD_SKILLS
 from helpers.utils import normalize_value
-from helpers.utils.constants import IGNORE_HARD_SKILLS, HARD_SKILLS
-
 
 HARD_SKILL_MAPPING = {
     ".net": ".NET",

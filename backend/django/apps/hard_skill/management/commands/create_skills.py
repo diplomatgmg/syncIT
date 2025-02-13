@@ -3,7 +3,7 @@ from django.db import transaction
 
 from apps.hard_skill.models import HardSkill, UnknownHardSkill
 from apps.hard_skill.utils import HardSkillModel, get_skills
-from helpers.utils.constants import IGNORE_HARD_SKILLS
+from helpers.constants import IGNORE_HARD_SKILLS
 from helpers.utils.normalizers import HARD_SKILL_MAPPING
 
 

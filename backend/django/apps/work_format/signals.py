@@ -3,8 +3,8 @@ from django.dispatch import receiver
 
 from apps.work_format.apps import WorkFormatConfig
 from apps.work_format.models import WorkFormat
+from helpers.constants import WORK_FORMATS
 from helpers.utils import sync_records
-from helpers.utils.constants import WORK_FORMATS
 
 
 @receiver(post_migrate)

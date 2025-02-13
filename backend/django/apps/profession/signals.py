@@ -3,8 +3,8 @@ from django.dispatch import receiver
 
 from apps.profession.apps import ProfessionConfig
 from apps.profession.models import Profession
+from helpers.constants.profession import PROFESSIONS, IGNORE_PROFESSIONS
 from helpers.utils import sync_records
-from helpers.utils.constants.profession import PROFESSIONS, IGNORE_PROFESSIONS
 
 
 @receiver(post_migrate)
