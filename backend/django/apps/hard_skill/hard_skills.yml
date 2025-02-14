@@ -75,6 +75,7 @@ Frontend:
 DevOps:
   - Ansible
   - Docker
+    - Docker Compose
   - Prometheus
   - Terraform
   - CI/CD
