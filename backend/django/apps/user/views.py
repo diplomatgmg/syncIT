@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.shortcuts import redirect
+from django.utils.timezone import now
 from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -44,14 +45,17 @@ def social_success_auth(strategy, details, user=None, *args, **kwargs):
     """
     Обрабатывает успешный вход через Social, генерируя токены для аутентифицированного пользователя.
     """
-    host = "http://localhost:3000" if settings.DEBUG else ""
+    domain = "http" if settings.DEBUG else "https"
+    host = settings.DOMAIN
+    url = f"{domain}://{host}"
 
     if user:
         user.is_active = True
-        user.save()
+        user.last_login = now()
+        user.save(update_fields=("is_active", "last_login"))
 
         tokens = generate_tokens(user)
-        redirect_url = f"{host}/login?access={tokens['access']}&refresh={tokens['refresh']}&email={user.email}"
+        redirect_url = f"{url}/login?access={tokens['access']}&refresh={tokens['refresh']}&email={user.email}"
         return redirect(redirect_url)
 
-    return redirect(host)
+    return redirect(url)
