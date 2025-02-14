@@ -5,8 +5,11 @@ import CustomSkeleton from "@/components/common/CustomSkeleton/CustomSkeleton.ts
 import InfiniteScroll from "react-infinite-scroll-component"
 import { UserVacancyResult } from "@/types/vacancyTypes.ts"
 import { Flex, Text } from "@mantine/core"
+import { useGetProfileStatusQuery } from "@/store/api/profileApi.ts"
 
 const Vacancy = (): ReactElement => {
+  const { data: profileStatus } = useGetProfileStatusQuery()
+
   const [page, setPage] = useReducer((state) => state + 1, 1)
   const [vacancies, setVacancies] = useReducer(
     (state: UserVacancyResult[], action: UserVacancyResult[]) => [
@@ -15,7 +18,9 @@ const Vacancy = (): ReactElement => {
     ],
     []
   )
-  const { data, isLoading, isFetching } = useGetVacanciesQuery({ page })
+  const { data, isLoading, isFetching } = useGetVacanciesQuery({
+    page,
+  })
 
   useEffect(() => {
     if (data?.results) {
@@ -29,8 +34,13 @@ const Vacancy = (): ReactElement => {
     }
   }, [isFetching, data?.next])
 
-  if (!data && !isLoading) {
-    return <h1 style={{ textAlign: "center" }}>Вакансий нет.</h1>
+  if (profileStatus?.isCompleted === false) {
+    return (
+      <h3 style={{ textAlign: "center", marginTop: "0" }}>
+        Заполните профиль <br />
+        чтобы увидеть вакансии.
+      </h3>
+    )
   }
 
   return (
@@ -44,7 +54,12 @@ const Vacancy = (): ReactElement => {
           />
         )}
         {/*FIXME Изменить. Всего - <total> вакансий. Скрытых - <hidden> вакансий*/}
-        {!isLoading && <Text fz={"xl"}>Всего - {data!.count} вакансий</Text>}
+        {(!isFetching || !isLoading) && (
+          <Text fz={"xl"} style={{ textAlign: "center" }}>
+            Не найдено подходящих вакансий. <br />
+            Укажите больше навыков в профиле или зайдите позже.
+          </Text>
+        )}
       </Flex>
       <InfiniteScroll
         scrollThreshold={0.5}
