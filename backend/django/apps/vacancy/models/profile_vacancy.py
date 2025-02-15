@@ -23,6 +23,7 @@ class ProfileVacancy(models.Model):
 
     class Meta:
         unique_together = ("profile", "vacancy")
+        indexes = (models.Index(fields=("profile",)),)
 
     def __str__(self):
         return f"Vacancy #{self.vacancy.id} for profile {self.profile.id}"

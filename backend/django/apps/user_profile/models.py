@@ -19,5 +19,8 @@ class Profile(models.Model):
     professions = models.ManyToManyField(Profession, related_name="profiles", blank=True)
     # fmt: on
 
+    class Meta:
+        indexes = (models.Index(fields=("user",)),)
+
     def __str__(self):
         return f"Profile of user {self.user}"
