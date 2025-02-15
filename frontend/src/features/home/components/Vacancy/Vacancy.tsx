@@ -54,11 +54,16 @@ const Vacancy = (): ReactElement => {
           />
         )}
         {/*FIXME Изменить. Всего - <total> вакансий. Скрытых - <hidden> вакансий*/}
-        {(!isFetching || !isLoading) && (
+        {(!isFetching || !isLoading) && !data?.count && profileStatus && (
           <Text fz={"xl"} style={{ textAlign: "center" }}>
             Не найдено подходящих вакансий. <br />
             Укажите больше навыков в профиле или зайдите позже.
           </Text>
+        )}
+        {(!isFetching || !isLoading) && data?.count !== 0 && (
+          <Flex justify={"center"} h={40}>
+            <Text fz={"xl"}>Всего - {data!.count} вакансий</Text>
+          </Flex>
         )}
       </Flex>
       <InfiniteScroll
