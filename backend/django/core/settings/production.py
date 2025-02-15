@@ -10,6 +10,7 @@ ALLOWED_HOSTS = [
     "localhost",
     "94.26.236.166",
     "syncit.space",
+    "www.syncit.space",
 ]
 
 CORS_ALLOWED_ORIGINS = [
