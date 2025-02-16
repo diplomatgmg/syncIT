@@ -4,6 +4,6 @@ from django.views.decorators.cache import cache_page
 from helpers.views import ProxyAPIView
 
 
-@method_decorator(cache_page(600), name="dispatch")  # 10 Минут
+@method_decorator(cache_page(24 * 60 * 60), name="dispatch")
 class WorkFormatProxyAPIView(ProxyAPIView):
     proxy_path = "/api/work_formats"
