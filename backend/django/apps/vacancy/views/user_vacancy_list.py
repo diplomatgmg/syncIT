@@ -1,8 +1,9 @@
 import logging
 
+from django.core.cache import cache
 from rest_framework import generics
 
-from apps.vacancy.models import ProfileVacancy
+from apps.vacancy.models import ProfileVacancy, Vacancy
 from apps.vacancy.pagination import UserVacancyPagination
 from apps.vacancy.serializers import UserVacancyPreviewSerializer
 
@@ -24,5 +25,21 @@ class UserVacancyListAPIView(generics.ListAPIView):
                 "vacancy__work_formats",
             )
             .order_by("is_viewed", "-suitability", "id")
-            # Без id меняется порядок вакансий при повторном запросе
         )
+
+    @staticmethod
+    def get_total_vacancies():
+        cache_key = "total_vacancies_count"
+        total_vacancies = cache.get(cache_key)
+
+        if total_vacancies is None:
+            total_vacancies = Vacancy.objects.count()
+            cache.set(cache_key, total_vacancies, timeout=60 * 15)
+
+        return total_vacancies
+
+    def list(self, request, *args, **kwargs):
+        response = super().list(request, *args, **kwargs)
+        response.data["total_vacancies"] = self.get_total_vacancies()
+
+        return response

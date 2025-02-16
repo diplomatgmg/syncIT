@@ -32,6 +32,7 @@ export interface UserVacancy {
   previous: string | null
   next: string | null
   results: UserVacancyResult[]
+  totalVacancies: number
 }
 
 export interface UpdateVacancyViewStatusRequest {

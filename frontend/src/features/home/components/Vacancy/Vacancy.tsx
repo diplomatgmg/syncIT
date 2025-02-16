@@ -6,6 +6,7 @@ import InfiniteScroll from "react-infinite-scroll-component"
 import { UserVacancyResult } from "@/types/vacancyTypes.ts"
 import { Flex, Text } from "@mantine/core"
 import { useGetProfileStatusQuery } from "@/store/api/profileApi.ts"
+import declineVacancy from "@/features/home/utils/declineVacancy.ts"
 
 const Vacancy = (): ReactElement => {
   const { data: profileStatus } = useGetProfileStatusQuery()
@@ -62,7 +63,10 @@ const Vacancy = (): ReactElement => {
         )}
         {(!isFetching || !isLoading) && data?.count !== 0 && (
           <Flex justify={"center"} h={40}>
-            <Text fz={"xl"}>Всего - {data!.count} вакансий</Text>
+            <Text fz={"xl"}>
+              Из {data!.totalVacancies} {declineVacancy(data!.totalVacancies)} в
+              базе вам подходят {data!.count}.
+            </Text>
           </Flex>
         )}
       </Flex>

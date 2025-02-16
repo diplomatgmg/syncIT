@@ -1,6 +1,9 @@
 import { useEffect } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { popup } from "@/utils/popup/popup.tsx"
+import useAppSelector from "@/store/hooks/useAppSelector.ts"
+import useAppDispatch from "@/store/hooks/useAppDispatch.ts"
+import { setIsFirstLogin } from "@/store/slice/authSlice.ts"
 
 type LocationState = {
   fromRegister?: boolean
@@ -16,8 +19,24 @@ type LocationState = {
 const usePopupHandler = () => {
   const location = useLocation()
   const navigate = useNavigate()
+  const { isAuthenticated, isFirstLogin } = useAppSelector(
+    (state) => state.auth
+  )
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
+    if (isAuthenticated && isFirstLogin) {
+      popup.error(
+        <span>
+          <b>Обязательно прочитайте FAQ!</b>
+        </span>,
+        {
+          autoClose: 15000,
+        }
+      )
+      dispatch(setIsFirstLogin(false))
+    }
+
     const { state, pathname } = location
     if (state as LocationState) {
       switch (true) {
@@ -69,7 +88,7 @@ const usePopupHandler = () => {
 
       navigate(pathname, { replace: true, state: {} })
     }
-  }, [location, navigate])
+  }, [location, navigate, dispatch, isAuthenticated, isFirstLogin])
 }
 
 export default usePopupHandler

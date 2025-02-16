@@ -6,6 +6,7 @@ import {
 } from "@/types/authTypes.ts"
 
 interface AuthState {
+  isFirstLogin: boolean | null
   isAuthenticated: boolean
   email: string | null
   token: {
@@ -15,6 +16,10 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
+  isFirstLogin:
+    localStorage.getItem("isFirstLogin") !== null
+      ? localStorage.getItem("isFirstLogin") === "true"
+      : null,
   isAuthenticated: localStorage.getItem("accessToken") !== null,
   email: localStorage.getItem("email"),
   token: {
@@ -27,14 +32,20 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    setIsFirstLogin: (state, action: PayloadAction<boolean>) => {
+      state.isFirstLogin = action.payload
+      localStorage.setItem("isFirstLogin", action.payload.toString())
+    },
     setTokens: (
       state,
       action: PayloadAction<LoginResponse | TokenRefreshResponse>
     ) => {
       const { token } = action.payload
       state.isAuthenticated = true
+      state.isFirstLogin = localStorage.getItem("isFirstLogin") === null
       state.token.access = token.access
       state.token.refresh = token.refresh
+      localStorage.setItem("isFirstLogin", state.isFirstLogin.toString())
       localStorage.setItem("accessToken", token.access)
       localStorage.setItem("refreshToken", token.refresh)
     },
@@ -58,5 +69,6 @@ const authSlice = createSlice({
   },
 })
 
-export const { setTokens, setEmail, logout } = authSlice.actions
+export const { setIsFirstLogin, setTokens, setEmail, logout } =
+  authSlice.actions
 export default authSlice.reducer
