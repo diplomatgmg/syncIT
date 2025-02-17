@@ -5,8 +5,14 @@ import (
 	"backend/go/models"
 )
 
-func GetProfile(userID int) (models.Profile, error) {
+func GetProfile(profileID int) (models.Profile, error) {
 	var profile models.Profile
-	err := db.DB.Where("user_id = ?", userID).First(&profile).Error
+	err := db.DB.
+		Preload("Grades").
+		Preload("Professions").
+		Preload("HardSkills").
+		Preload("WorkFormats").
+		Where("id = ?", profileID).
+		First(&profile).Error
 	return profile, err
 }

@@ -20,7 +20,10 @@ class Profile(models.Model):
     # fmt: on
 
     class Meta:
-        indexes = (models.Index(fields=("user",)),)
+        indexes = (
+            models.Index(fields=("user",)),
+            models.Index(fields=("is_completed",)),
+        )
 
     def __str__(self):
         return f"Profile of user {self.user}"

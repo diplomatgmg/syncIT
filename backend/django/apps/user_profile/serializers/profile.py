@@ -16,7 +16,6 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = (
-            "is_completed",
             "hard_skills",
             "grades",
             "work_formats",

@@ -1,14 +1,21 @@
 from rest_framework import status
 from rest_framework.generics import RetrieveUpdateAPIView
+from rest_framework.request import Request
 from rest_framework.response import Response
 
 from apps.user_profile.models import Profile
 from apps.user_profile.serializers import ProfileSerializer
 from apps.user_profile.tasks import find_suitable_vacancies_for_profiles
+from helpers.views import ProxyAPIView
 
 
-class ProfileAPIView(RetrieveUpdateAPIView):
+class ProfileAPIView(ProxyAPIView, RetrieveUpdateAPIView):
     serializer_class = ProfileSerializer
+    proxy_path = "/api/profile/{}"
+
+    def get(self, request: Request, *args, **kwargs) -> Response:
+        self.proxy_path = self.proxy_path.format(request.user.profile.id)
+        return super().get(request, *args, **kwargs)
 
     def get_object(self):
         return self.get_queryset().get(user=self.request.user)

@@ -11,4 +11,5 @@ pydantic==2.10.6
 redis==5.2.1
 g4f==0.4.5.5
 flower==2.0.1
+httpx==0.28.1
 social-auth-app-django==5.4.2

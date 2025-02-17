@@ -1,10 +1,9 @@
-import requests
-from rest_framework.views import APIView
-from rest_framework.request import Request
-from rest_framework.response import Response
-
+import httpx
 from django.conf import settings
 from rest_framework import status
+from rest_framework.request import Request
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 
 class ProxyAPIView(APIView):
@@ -33,13 +32,14 @@ class ProxyAPIView(APIView):
         url = self.get_full_url()
 
         try:
-            response = requests.get(url)
+            response = httpx.get(url)
             response.raise_for_status()
-        except requests.RequestException as e:
+        except httpx.RequestError as e:
             return Response(
                 {
-                    "error": "Ошибка при обращении к проксируемому API.",
                     "details": str(e),
+                    "error": "Ошибка при обращении к проксируемому API.",
+                    "url": str(e.request.url),
                 },
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )

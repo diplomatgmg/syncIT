@@ -8,26 +8,26 @@ import (
 	"strconv"
 )
 
-func GetProfileIsCompleted(w http.ResponseWriter, r *http.Request) {
+func GetProfile(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	userIDStr, ok := vars["user_id"]
+	profileIDStr, ok := vars["profile_id"]
 	if !ok {
-		http.Error(w, "user_id parameter is missing", http.StatusBadRequest)
+		http.Error(w, "profile_id parameter is missing", http.StatusBadRequest)
 		return
 	}
 
-	userID, err := strconv.Atoi(userIDStr)
+	profileID, err := strconv.Atoi(profileIDStr)
 	if err != nil {
-		http.Error(w, "Invalid user_id parameter", http.StatusBadRequest)
+		http.Error(w, "Invalid profile_id parameter", http.StatusBadRequest)
 		return
 	}
 
-	profiles, err := services.GetProfile(userID)
+	profile, err := services.GetProfile(profileID)
 	if err != nil {
 		http.Error(w, "Failed to fetch profiles", http.StatusInternalServerError)
 		return
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(profiles)
+	json.NewEncoder(w).Encode(profile)
 }

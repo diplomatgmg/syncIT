@@ -6,7 +6,7 @@ from apps.user_profile.models import Profile
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ("user", "is_completed")
+    list_display = ("id", "user", "is_completed")
     list_filter = ("is_completed", "user")
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):

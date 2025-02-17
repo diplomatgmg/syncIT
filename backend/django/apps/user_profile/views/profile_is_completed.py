@@ -1,12 +1,8 @@
+from rest_framework.generics import GenericAPIView
 from rest_framework.request import Request
 from rest_framework.response import Response
 
-from helpers.views import ProxyAPIView
 
-
-class ProfileIsCompletedProxyAPIView(ProxyAPIView):
-    proxy_path = "api/profile/{}/is_completed"
-
+class ProfileIsCompletedProxyAPIView(GenericAPIView):
     def get(self, request: Request, *args, **kwargs) -> Response:
-        self.proxy_path = self.proxy_path.format(request.user.id)
-        return super().get(request, *args, **kwargs)
+        return Response({"is_completed": request.user.profile.is_completed})

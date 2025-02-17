@@ -19,7 +19,7 @@ func NewRouter() *mux.Router {
 	r.HandleFunc("/api/work_formats", handlers.GetWorkFormats).Methods("GET")
 	r.HandleFunc("/api/professions", handlers.GetProfessions).Methods("GET")
 	r.HandleFunc("/api/hard_skills", handlers.GetHardSkills).Methods("GET")
-	r.HandleFunc("/api/profile/{user_id}/is_completed", handlers.GetProfileIsCompleted).Methods("GET")
+	r.HandleFunc("/api/profile/{profile_id}", handlers.GetProfile).Methods("GET")
 
 	return r
 }
