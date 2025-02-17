@@ -2,7 +2,7 @@ import { FC, type ReactElement, useId, useState } from "react"
 import { Vacancy } from "@/types/vacancyTypes.ts"
 import { useUpdateVacancyViewStatusMutation } from "@/store/api/vacancyApi.ts"
 import HardSkillList from "@/features/home/components/HardSkill/HardSkillList.tsx"
-import { ThemeProvider } from "styled-components"
+import styled, { ThemeProvider } from "styled-components"
 import UnWatchIcon from "@/assets/svg/unwatch.svg"
 import getSalary from "@/features/home/utils/getSalary.ts"
 import {
@@ -33,7 +33,7 @@ const VacancyItem: FC<VacancyItemProps> = ({
   const id = useId()
   const [updateVacancyViewStatus] = useUpdateVacancyViewStatusMutation()
   const [isHidden, setIsHidden] = useState(false)
-  const { colors, fontSizes } = useMantineTheme()
+  const { colors } = useMantineTheme()
 
   const handleHideVacancy = (vacancy_id: number) => async () => {
     try {
@@ -53,16 +53,13 @@ const VacancyItem: FC<VacancyItemProps> = ({
 
   return (
     <ThemeProvider theme={{ isViewed }}>
-      <Flex
+      {/* @ts-expect-error no overload: лень фиксить */}
+      <Item
         p={"md"}
         w={"100%"}
         gap={"xs"}
         direction={"column"}
-        bg={colors.dark[9]}
-        style={{
-          maxWidth: "1200px",
-          borderRadius: fontSizes.xs,
-        }}>
+        bg={colors.dark[9]}>
         <Flex
           align={"center"}
           justify={"space-between"}
@@ -149,9 +146,18 @@ const VacancyItem: FC<VacancyItemProps> = ({
         <JobDescription>
           <pre>{vacancy.description}</pre>
         </JobDescription>
-      </Flex>
+      </Item>
     </ThemeProvider>
   )
 }
+
+const Item = styled(Flex)`
+  max-width: 1200px;
+  border-radius: 1rem;
+
+  &:last-child {
+    margin-bottom: 4rem;
+  }
+`
 
 export default VacancyItem
