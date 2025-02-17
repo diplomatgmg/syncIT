@@ -6,10 +6,10 @@ from rest_framework.response import Response
 from apps.user_profile.models import Profile
 from apps.user_profile.serializers import ProfileSerializer
 from apps.user_profile.tasks import find_suitable_vacancies_for_profiles
-from helpers.views import ProxyAPIView
+from helpers.mixins.views import ProxyAPIMixin
 
 
-class ProfileAPIView(ProxyAPIView, RetrieveUpdateAPIView):
+class ProfileAPIView(ProxyAPIMixin, RetrieveUpdateAPIView):
     serializer_class = ProfileSerializer
     proxy_path = "/api/profile/{}"
 

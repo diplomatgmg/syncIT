@@ -3,10 +3,9 @@ from django.conf import settings
 from rest_framework import status
 from rest_framework.request import Request
 from rest_framework.response import Response
-from rest_framework.views import APIView
 
 
-class ProxyAPIView(APIView):
+class ProxyAPIMixin:
     """
     Миксин для работы с проксирующими запросами (go).
     """
@@ -21,7 +20,7 @@ class ProxyAPIView(APIView):
                 f"proxy_path не переопределен в классе {self.__class__.__name__}."
             )
 
-    def get_full_url(self) -> str:
+    def _get_full_url(self) -> str:
         """
         Формирует полный URL на основе базового URL и относительного пути.
         """
@@ -29,7 +28,7 @@ class ProxyAPIView(APIView):
         return f"{settings.PROXY_URL.rstrip('/')}/{self.proxy_path.strip('/')}"
 
     def get(self, request: Request, *args, **kwargs) -> Response:
-        url = self.get_full_url()
+        url = self._get_full_url()
 
         try:
             response = httpx.get(url)
