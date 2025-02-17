@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"backend/go/models"
 	"backend/go/services"
 	"encoding/json"
 	"github.com/gorilla/mux"
@@ -30,4 +31,19 @@ func GetProfile(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(profile)
+}
+
+func GetProfileReference(w http.ResponseWriter, r *http.Request) {
+	grades, _ := services.GetAllGrades()
+	workFormats, _ := services.GetAllWorkFormats()
+	professions, _ := services.GetAllProfessions()
+	hardSkills, _ := services.GetHardSkills()
+
+	response := models.ProfileReference{
+		Grades:      grades,
+		WorkFormats: workFormats,
+		Professions: professions,
+		HardSkills:  hardSkills,
+	}
+	json.NewEncoder(w).Encode(response)
 }

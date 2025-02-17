@@ -1,24 +1,26 @@
 import { type ReactElement } from "react"
-import { useGetProfileDataQuery } from "@/store/api/profileApi.ts"
-import { useGetProfessionsQuery } from "@/store/api/professionApi.ts"
+import {
+  useGetProfileDataQuery,
+  useGetProfileReferenceDataQuery,
+} from "@/store/api/profileApi.ts"
 import ProfessionList from "@/features/profile/components/Profession/ProfessionList.tsx"
 import styled from "styled-components"
 import CustomSkeleton from "@/components/common/CustomSkeleton/CustomSkeleton.tsx"
 
 const Profession = (): ReactElement => {
-  const { data: professions, isLoading: professionsIsLoading } =
-    useGetProfessionsQuery()
+  const { data: profileReference, isLoading: profileReferenceIsLoading } =
+    useGetProfileReferenceDataQuery()
   const { data: profileData, isLoading: profileIsLoading } =
     useGetProfileDataQuery()
 
-  if (professionsIsLoading || profileIsLoading) {
+  if (profileReferenceIsLoading || profileIsLoading) {
     return <CustomSkeleton />
   }
 
   return (
     <Container>
       <ProfessionList
-        professions={professions ?? []}
+        professions={profileReference?.professions ?? []}
         userProfessions={profileData?.professions ?? []}
       />
     </Container>

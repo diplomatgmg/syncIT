@@ -1,24 +1,26 @@
 import { type ReactElement } from "react"
 import WorkFormatList from "@/features/profile/components/WorkFormat/WorkFormatList.tsx"
-import { useGetWorkFormatsQuery } from "@/store/api/workFormatApi.ts"
-import { useGetProfileDataQuery } from "@/store/api/profileApi.ts"
+import {
+  useGetProfileDataQuery,
+  useGetProfileReferenceDataQuery,
+} from "@/store/api/profileApi.ts"
 import styled from "styled-components"
 import CustomSkeleton from "@/components/common/CustomSkeleton/CustomSkeleton.tsx"
 
 const WorkFormat = (): ReactElement => {
-  const { data: workFormats, isLoading: workFormatIsLoading } =
-    useGetWorkFormatsQuery()
+  const { data: profileReference, isLoading: profileReferenceIsLoading } =
+    useGetProfileReferenceDataQuery()
   const { data: profileData, isLoading: profileIsLoading } =
     useGetProfileDataQuery()
 
-  if (workFormatIsLoading || profileIsLoading) {
+  if (profileReferenceIsLoading || profileIsLoading) {
     return <CustomSkeleton />
   }
 
   return (
     <Container>
       <WorkFormatList
-        workFormats={workFormats ?? []}
+        workFormats={profileReference?.workFormats ?? []}
         userWorkFormats={profileData?.workFormats ?? []}
       />
     </Container>

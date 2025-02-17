@@ -1,6 +1,10 @@
 import { createApi } from "@reduxjs/toolkit/query/react"
 import baseQuery from "@/store/api/baseQuery.ts"
-import { Profile, ProfileStatus } from "@/types/profileTypes.ts"
+import {
+  Profile,
+  ProfileReference,
+  ProfileStatus,
+} from "@/types/profileTypes.ts"
 import { ProfileState } from "@/store/slice/profileSlice.ts"
 
 const profileApi = createApi({
@@ -10,10 +14,13 @@ const profileApi = createApi({
   endpoints: (builder) => ({
     getProfileData: builder.query<Profile, void>({
       query: () => "profile/",
-      providesTags: ["Profile"],
+    }),
+    getProfileReferenceData: builder.query<ProfileReference, void>({
+      query: () => "profile/reference/",
     }),
     getProfileStatus: builder.query<ProfileStatus, void>({
       query: () => "profile/is_completed/",
+      providesTags: ["Profile"],
     }),
     setProfileData: builder.mutation<void, ProfileState>({
       query: (data) => ({
@@ -28,6 +35,7 @@ const profileApi = createApi({
 
 export const {
   useGetProfileDataQuery,
+  useGetProfileReferenceDataQuery,
   useGetProfileStatusQuery,
   useSetProfileDataMutation,
 } = profileApi

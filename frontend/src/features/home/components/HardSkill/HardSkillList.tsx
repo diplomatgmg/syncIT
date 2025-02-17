@@ -3,8 +3,8 @@ import { HardSkill } from "@/types/hardSkillTypes.ts"
 import HardSkillItem from "@/features/home/components/HardSkill/HardSkillItem.tsx"
 import { Flex, useMantineTheme } from "@mantine/core"
 import { useMediaQuery } from "@mantine/hooks"
-import { useGetProfileDataQuery } from "@/store/api/profileApi.ts"
 import some from "lodash/some"
+import { useGetProfileDataQuery } from "@/store/api/profileApi.ts"
 
 interface HardSkillListProps {
   hardSkills: HardSkill[]

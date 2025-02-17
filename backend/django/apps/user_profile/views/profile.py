@@ -1,4 +1,3 @@
-from rest_framework import status
 from rest_framework.generics import RetrieveUpdateAPIView
 from rest_framework.request import Request
 from rest_framework.response import Response
@@ -45,4 +44,7 @@ class ProfileAPIView(ProxyAPIMixin, RetrieveUpdateAPIView):
             kwargs={"profile_ids": [profile.id]}
         )
 
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        profile = self.get_object()
+        serializer = self.get_serializer(profile)
+
+        return Response(serializer.data)

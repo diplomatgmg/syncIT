@@ -1,22 +1,28 @@
 import { type ReactElement } from "react"
-import GradeList from "@/features/profile/components/Grade/GradeList.tsx"
-import { useGetGradesQuery } from "@/store/api/gradeApi.ts"
-import { useGetProfileDataQuery } from "@/store/api/profileApi.ts"
+import {
+  useGetProfileDataQuery,
+  useGetProfileReferenceDataQuery,
+} from "@/store/api/profileApi.ts"
 import styled from "styled-components"
 import CustomSkeleton from "@/components/common/CustomSkeleton/CustomSkeleton.tsx"
+import GradeList from "@/features/profile/components/Grade/GradeList.tsx"
 
 const Grade = (): ReactElement => {
-  const { data: grades, isLoading: gradesIsLoading } = useGetGradesQuery()
+  const { data: profileReference, isLoading: profileReferenceIsLoading } =
+    useGetProfileReferenceDataQuery()
   const { data: profileData, isLoading: profileIsLoading } =
     useGetProfileDataQuery()
 
-  if (gradesIsLoading || profileIsLoading) {
+  if (profileReferenceIsLoading || profileIsLoading) {
     return <CustomSkeleton />
   }
 
   return (
     <Container>
-      <GradeList grades={grades ?? []} userGrades={profileData?.grades ?? []} />
+      <GradeList
+        grades={profileReference?.grades ?? []}
+        userGrades={profileData?.grades ?? []}
+      />
     </Container>
   )
 }

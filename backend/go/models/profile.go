@@ -18,6 +18,13 @@ type Profile struct {
 	WorkFormats []Workformat `json:"workFormats" gorm:"many2many:user_profile_profile_work_formats"`
 }
 
+type ProfileReference struct {
+	Grades      []Grade      `json:"grades"`
+	WorkFormats []WorkFormat `json:"workFormats"`
+	Professions []Profession `json:"professions"`
+	HardSkills  []HardSkill  `json:"hardSkills"`
+}
+
 func (Profile) TableName() string {
 	return "user_profile_profile"
 }

@@ -15,3 +15,10 @@ export interface Profile {
   workFormats: WorkFormat[]
   professions: Profession[]
 }
+
+export interface ProfileReference {
+  hardSkills: HardSkill[]
+  grades: Grade[]
+  workFormats: WorkFormat[]
+  professions: Profession[]
+}
