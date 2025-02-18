@@ -1,13 +1,15 @@
 from celery import shared_task
-from constance import config
 from django.db import transaction
-from django.db.models import Count, Q, F
+from django.db.models import Count, Q, F, Value, Case, When
+from django.db.models.fields import FloatField, IntegerField
+from django.db.models.functions import Cast
 
 from apps.user_profile.models import Profile
 from apps.vacancy.models import Vacancy, ProfileVacancy
 
 SUITABILITY_PERCENT_MULTIPLIER = 60
 SKILL_COEFFICIENT = 3
+from constance import config
 
 
 @shared_task()
@@ -34,49 +36,50 @@ def find_suitable_vacancies_for_profiles(profile_ids: list[int]):
 def process_profile(profile: Profile):
     """
     Обработка подходящих вакансий для одного профиля.
-    """  # fmt: off
+    """
+    # fmt: off
+    FloatCast = lambda value: Cast(value, FloatField()) # noqa
+
     filtered_vacancies = (
         Vacancy.objects.filter(
             work_formats__in=profile.work_formats.all(),
             profession__in=profile.professions.all(),
             grade__in=profile.grades.all(),
         )
-        .annotate(
-            matching_skills=Count(
-                "hard_skills",
-                filter=Q(hard_skills__in=profile.hard_skills.all()),
-                distinct=True,
-            ),
-            total_skills=Count("hard_skills", distinct=True),
+        .only('id')
+        .annotate(total_skills=Count("hard_skills"))
+        .filter(total_skills__gte=config.MIN_VACANCY_SKILLS)
+        .annotate(matching_skills=Count("hard_skills", filter=Q(hard_skills__in=profile.hard_skills.all())))
+        .annotate(denominator=Case(
+            When(matching_skills__gt=config.MAX_MATCHING_SKILLS, then=F('matching_skills')),
+            default=Value(config.MAX_MATCHING_SKILLS),
+            output_field=IntegerField()
+            )
         )
-        .annotate(skill_diff=F("total_skills") - F("matching_skills"))
-        .filter(skill_diff__lte=3, total_skills__gt=0)
-        .annotate(
-            suitability_percent=F("matching_skills")
-            * SUITABILITY_PERCENT_MULTIPLIER
-            / F("total_skills")
-        )
-        .annotate(
-            suitability=F("suitability_percent")
-            + (F("total_skills") * SKILL_COEFFICIENT)
-        )
-        .filter(suitability__gte=config.MINIMUM_VACANCY_SUITABILITY)
-        .order_by("-suitability", "-matching_skills")
+        .annotate(suitability_percent=FloatCast("matching_skills") / FloatCast("total_skills") * Value(100))
+        .annotate(coefficient = Value(1) * F('matching_skills') / F('denominator'))
+        .annotate(suitability=F("coefficient") * F("suitability_percent"))
+        .filter(suitability__gte=config.MIN_VACANCY_SUITABILITY)
     )
     # fmt: on
 
-    profile_vacancies = [
+    profile_vacancies = (
         ProfileVacancy(
             profile=profile,
             vacancy=vacancy,
-            suitability=min(100, vacancy.suitability),  # type: ignore
+            suitability=vacancy.suitability,  # type: ignore
         )
         for vacancy in filtered_vacancies
-    ]
+    )
 
     with transaction.atomic():
         ProfileVacancy.objects.filter(profile=profile, is_viewed=False).delete()
-        ProfileVacancy.objects.bulk_create(profile_vacancies, ignore_conflicts=True)
+        ProfileVacancy.objects.bulk_create(
+            profile_vacancies,
+            update_conflicts=True,
+            unique_fields=("profile", "vacancy"),
+            update_fields=("suitability",),
+        )
 
 
 r"""

@@ -6,4 +6,4 @@ from apps.vacancy.models import ProfileVacancy
 class UpdateUserVacancyViewStatusSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProfileVacancy
-        fields = ("id", "user", "vacancy")
+        fields = ("id", "profile", "vacancy")

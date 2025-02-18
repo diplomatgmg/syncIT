@@ -163,7 +163,9 @@ WSGI_APPLICATION = "core.wsgi.application"
 
 # fmt: off
 CONSTANCE_CONFIG = {
-    "MINIMUM_VACANCY_SUITABILITY": (60, "Минимальный % совпадения вакансии"),
+    "MIN_VACANCY_SUITABILITY": (60, "Минимальный % совпадения вакансии"),
+    "MIN_VACANCY_SKILLS": (5, "Минимальное количество скиллов в вакансии"),
+    "MAX_MATCHING_SKILLS": (10, "Максимальное количество совпадающих скиллов в вакансии"),
     "INTERVAL_DELETE_PARSED_VACANCIES": (7, "Количество дней для удаления спарсенных вакансий"),
 }
 # fmt: on
