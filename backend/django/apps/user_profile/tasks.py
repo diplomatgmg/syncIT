@@ -76,7 +76,7 @@ def process_profile(profile: Profile):
 
     with transaction.atomic():
         ProfileVacancy.objects.filter(profile=profile, is_viewed=False).delete()
-        ProfileVacancy.objects.bulk_create(profile_vacancies)
+        ProfileVacancy.objects.bulk_create(profile_vacancies, ignore_conflicts=True)
 
 
 r"""
