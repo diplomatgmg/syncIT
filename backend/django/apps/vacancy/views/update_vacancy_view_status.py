@@ -1,5 +1,6 @@
 from rest_framework import generics
 from rest_framework.generics import get_object_or_404
+from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.validators import ValidationError
 
@@ -14,18 +15,20 @@ class UpdateVacancyViewStatusAPIView(generics.GenericAPIView):
 
     serializer_class = UpdateUserVacancyViewStatusSerializer
 
-    def post(self, request, *args, **kwargs):
-        user_id = self.request.user.id
+    def post(self, request: Request, *args, **kwargs):
+        profile_id = self.request.user.profile.id
         vacancy_id = request.data.get("vacancy")
 
-        if not user_id or not vacancy_id:
-            raise ValidationError({"detail": "user and vacancy fields are required."})
+        if not profile_id or not vacancy_id:
+            raise ValidationError(
+                {"detail": "profile_id and vacancy_id fields are required."}
+            )
 
-        user_vacancy = get_object_or_404(
-            ProfileVacancy, profile__user_id=user_id, vacancy_id=vacancy_id
+        profile_vacancy = get_object_or_404(
+            ProfileVacancy, profile_id=profile_id, vacancy_id=vacancy_id
         )
 
-        user_vacancy.is_viewed = True
-        user_vacancy.save()
+        profile_vacancy.is_viewed = True
+        profile_vacancy.save(update_fields=("is_viewed",))
 
         return Response({"status": "success"})
