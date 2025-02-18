@@ -56,13 +56,13 @@ const Vacancy = (): ReactElement => {
         )}
         {/*FIXME Изменить. Всего - <total> вакансий. Скрытых - <hidden> вакансий*/}
         {(!isFetching || !isLoading) && !data?.count && profileStatus && (
-          <Text fz={"xl"} style={{ textAlign: "center" }}>
+          <Text fz={"xl"} style={{ textAlign: "center" }} mx={"md"}>
             Не найдено подходящих вакансий. <br />
             Укажите больше навыков в профиле или зайдите позже.
           </Text>
         )}
         {(!isFetching || !isLoading) && data?.count !== 0 && (
-          <Flex justify={"center"} h={40}>
+          <Flex justify={"center"} align={"center"} mx={"md"} ta={"center"}>
             <Text fz={"xl"}>
               Из {data!.totalVacancies} {declineVacancy(data!.totalVacancies)} в
               базе вам подходят {data!.count}.
