@@ -15,15 +15,19 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     "parse_vacancies": {
         "task": "apps.vacancy.tasks.find_vacancies",
-        "schedule": crontab(minute="*/10"),
+        "schedule": crontab(minute="0,20,40"),
     },
     "find_suitable_vacancies_for_all_profiles": {
         "task": "apps.user_profile.tasks.find_suitable_vacancies",
-        "schedule": crontab(minute="*/10"),
+        "schedule": crontab(minute="10,30,50"),
     },
     "delete_old_parsed_vacancies_every_day": {
         "task": "apps.vacancy.tasks.delete_old_parsed_vacancies",
-        "schedule": crontab(minute="0", hour="0"),
+        "schedule": crontab(minute="0", hour="4"),
+    },
+    "delete_duplicated_vacancies_every_day": {
+        "task": "apps.vacancy.tasks.delete_duplicated_vacancies",
+        "schedule": crontab(minute="0", hour="5"),
     },
 }
 
