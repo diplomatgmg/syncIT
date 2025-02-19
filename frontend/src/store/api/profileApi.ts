@@ -14,13 +14,13 @@ const profileApi = createApi({
   endpoints: (builder) => ({
     getProfileData: builder.query<Profile, void>({
       query: () => "profile/",
+      providesTags: ["Profile"],
     }),
     getProfileReferenceData: builder.query<ProfileReference, void>({
       query: () => "profile/reference/",
     }),
     getProfileStatus: builder.query<ProfileStatus, void>({
       query: () => "profile/is_completed/",
-      providesTags: ["Profile"],
     }),
     setProfileData: builder.mutation<void, ProfileState>({
       query: (data) => ({

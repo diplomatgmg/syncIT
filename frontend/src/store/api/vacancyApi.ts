@@ -14,6 +14,7 @@ const vacancyApi = createApi({
     getVacancies: builder.query<UserVacancy, { page: number }>({
       query: ({ page }) => `vacancies/?page=${page}`,
       providesTags: ["Vacancy"],
+      keepUnusedDataFor: 0,
     }),
     updateVacancyViewStatus: builder.mutation<
       UpdateVacancyViewStatusResponse,
