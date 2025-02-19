@@ -3,7 +3,7 @@ from constance import config
 from django.db import transaction
 from django.db.models import Count, Q, F, Value, ExpressionWrapper
 from django.db.models.fields import FloatField
-from django.db.models.functions import Greatest
+from django.db.models.functions import Least
 
 from apps.user_profile.models import Profile
 from apps.vacancy.models import Vacancy, ProfileVacancy
@@ -55,7 +55,7 @@ def process_profile(profile: Profile):
         )
         .filter(total_skills__gte=config.MIN_VACANCY_SKILLS)
         .annotate(
-            denominator=Greatest(
+            denominator=Least(
                 F("matching_skills"),
                 Value(config.MAX_MATCHING_SKILLS),
             ),
