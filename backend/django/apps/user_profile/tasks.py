@@ -8,9 +8,6 @@ from django.db.models.functions import Greatest
 from apps.user_profile.models import Profile
 from apps.vacancy.models import Vacancy, ProfileVacancy
 
-PERCENTAGE_MULTIPLIER = 50
-TOTAL_SKILLS_MULTIPLIER = 50
-
 
 @shared_task()
 def find_suitable_vacancies():
@@ -63,13 +60,13 @@ def process_profile(profile: Profile):
                 Value(config.MAX_MATCHING_SKILLS),
             ),
             suitability_percent=ExpressionWrapper(
-                F("matching_skills") * PERCENTAGE_MULTIPLIER / F("total_skills"),
+                F("matching_skills") * config.PERCENTAGE_MULTIPLIER / F("total_skills"),
                 output_field=FloatField()
             )
         )
         .annotate(
             coefficient=ExpressionWrapper(
-                 F("matching_skills") * TOTAL_SKILLS_MULTIPLIER / F("denominator") ,
+                 F("matching_skills") * config.COEFFICIENT_MULTIPLIER / F("denominator") ,
                 output_field=FloatField()
             ),
             suitability=ExpressionWrapper(

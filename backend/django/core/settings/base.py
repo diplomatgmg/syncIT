@@ -166,6 +166,9 @@ CONSTANCE_CONFIG = {
     "MIN_VACANCY_SUITABILITY": (60, "Минимальный % совпадения вакансии"),
     "MIN_VACANCY_SKILLS": (5, "Минимальное количество скиллов в вакансии"),
     "MAX_MATCHING_SKILLS": (15, "Максимальное количество совпадающих скиллов в вакансии"),
+    "PERCENTAGE_MULTIPLIER": (50, "Множитель для релевантности по suitability_percent"),
+    "COEFFICIENT_MULTIPLIER": (50, "Множитель для релевантности coefficient"),
+
     "INTERVAL_DELETE_PARSED_VACANCIES": (7, "Количество дней для удаления спарсенных вакансий"),
 }
 # fmt: on
