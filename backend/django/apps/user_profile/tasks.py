@@ -75,19 +75,18 @@ def process_profile(profile: Profile):
             )
         )
         .filter(suitability__gte=config.MIN_VACANCY_SUITABILITY)
-        .order_by("-suitability", "-matching_skills")
         .values_list("id", "suitability")
     )
     # fmt: on
 
-    profile_vacancies = [
+    profile_vacancies = (
         ProfileVacancy(
             profile=profile,
             vacancy_id=vacancy_id,
             suitability=suitability,
         )
         for vacancy_id, suitability in filtered_vacancies
-    ]
+    )
 
     with transaction.atomic():
         ProfileVacancy.objects.filter(profile=profile, is_viewed=False).delete()

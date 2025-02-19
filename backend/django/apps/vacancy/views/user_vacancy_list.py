@@ -1,6 +1,7 @@
 import logging
 
 from django.core.cache import cache
+from django.db.models import Count
 from rest_framework import generics
 
 from apps.vacancy.models import ProfileVacancy, Vacancy
@@ -24,7 +25,8 @@ class UserVacancyListAPIView(generics.ListAPIView):
                 "vacancy__hard_skills",
                 "vacancy__work_formats",
             )
-            .order_by("is_viewed", "-suitability", "id")
+            .annotate(count_skills=Count("vacancy__hard_skills"))
+            .order_by("is_viewed", "-suitability", "-count_skills", "id")
         )
 
     @staticmethod
