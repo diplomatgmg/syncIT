@@ -63,17 +63,17 @@ def process_profile(profile: Profile):
                 Value(config.MAX_MATCHING_SKILLS),
             ),
             suitability_percent=ExpressionWrapper(
-                F("matching_skills") * 100.0 / F("total_skills"),
+                F("matching_skills") * 60 / F("total_skills"),
                 output_field=FloatField()
             )
         )
         .annotate(
             coefficient=ExpressionWrapper(
-                Value(1.0) * F("matching_skills") / F("denominator"),
+                Value(40) * F("matching_skills") / F("denominator"),
                 output_field=FloatField()
             ),
             suitability=ExpressionWrapper(
-                F("coefficient") * F("suitability_percent"),
+                F("coefficient") + F("suitability_percent"),
                 output_field=FloatField()
             )
         )
