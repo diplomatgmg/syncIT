@@ -91,9 +91,7 @@ DevOps:
   - Azure
   - AWS
   - VMware
-  Web-сервера:
-    - Nginx
-    - Apache
+  - Nginx
 
 Архитектурные стили и API:
   - HTTP
