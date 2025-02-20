@@ -10,7 +10,7 @@
   - C
   - C++
   - C#
-  - 1C
+  - 1С
   Скриптовые языки:
     - Bash
 
@@ -49,6 +49,7 @@ Frontend:
   - Vite
 
 Базы данных и СУБД:
+  - Apache Spark
   - SQL
     - PostgreSQL
     - MySQL
@@ -73,6 +74,7 @@ Frontend:
   - GitLab
 
 DevOps:
+  - Apache Airflow
   - Ansible
   - Docker
     - Docker Compose
@@ -90,8 +92,8 @@ DevOps:
 Сервера и облачные платформы:
   - Azure
   - AWS
-  - VMware
   - Nginx
+
 
 Архитектурные стили и API:
   - HTTP
@@ -100,7 +102,6 @@ DevOps:
     - REST API
     - gRPC
     - GraphQL
-    - OpenAPI
     - Swagger
   - XML
     - SOAP
