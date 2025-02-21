@@ -1,12 +1,16 @@
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.shortcuts import redirect
 from django.utils.timezone import now
 from rest_framework.generics import CreateAPIView
+from rest_framework.request import Request
 from rest_framework.response import Response
-from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from apps.user.serializers import UserCreateSerializer
+
+User = get_user_model()
 
 
 def generate_tokens(user):
@@ -31,12 +35,22 @@ class CustomTokenObtainPairView(TokenObtainPairView):
         response = super().post(request, *args, **kwargs)
         email = request.data.get("email")
 
+        user = User.objects.get(email=email)
+        user.last_login = now()
+        user.save(update_fields=("last_login",))
+
         return Response({"email": email, "token": response.data})
 
 
 class CustomTokenRefreshView(TokenRefreshView):
-    def post(self, *args, **kwargs) -> Response:
-        response = super().post(*args, **kwargs)
+    def post(self, request: Request, *args, **kwargs) -> Response:
+        response = super().post(request, *args, **kwargs)
+
+        token = AccessToken(response.data["access"])
+        user_id = token.payload["user_id"]
+        user = User.objects.get(id=user_id)
+        user.last_login = now()
+        user.save(update_fields=("last_login",))
 
         return Response({"token": response.data})
 
