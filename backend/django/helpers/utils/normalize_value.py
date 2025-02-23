@@ -24,5 +24,3 @@ def normalize_value(
 
     if value not in lower_ignore_set:
         create_unknown(value)
-
-    return value
