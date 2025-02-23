@@ -2,8 +2,8 @@ from django.db.models.signals import post_migrate
 from django.dispatch import receiver
 
 from apps.grade.apps import GradeConfig
+from apps.grade.constants import GRADES
 from apps.grade.models import Grade
-from helpers.constants.grade import GRADES
 from helpers.utils import sync_records
 
 

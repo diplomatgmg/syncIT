@@ -9,18 +9,15 @@ from urllib.parse import urlencode
 import requests
 from django.db.models import Count
 
+from apps.grade.utils import normalize_grade
 from apps.profession.models import Profession
+from apps.profession.utils import normalize_profession
 from apps.skill.models import Skill
+from apps.skill.utils import normalize_skill
 from apps.vacancy.models import ParsedVacancy, Vacancy
 from helpers.utils import (
     clear_html,
     generate_hash,
-)
-from helpers.utils.normalizers import (
-    normalize_skill,
-    normalize_grade,
-    normalize_profession,
-    normalize_currency,
 )
 from helpers.utils.open_ai.chat_gpt import get_chat_gpt_completion
 from helpers.utils.open_ai.prompt import make_prompt
@@ -230,7 +227,22 @@ class HHParser(BaseParser):
         }
 
     @staticmethod
-    def get_vacancy_result(vacancy_data, parsed_vacancy):
+    def normalize_currency(currency: str) -> str:
+        currency_symbols = {
+            "AZN": "₼",  # Манаты
+            "BYR": "Br",  # Белорусские рубли
+            "EUR": "€",  # Евро
+            "GEL": "₾",  # Грузинский лари
+            "KGS": "сом",  # Кыргызский сом
+            "KZT": "₸",  # Тенге
+            "RUR": "₽",  # Рубли
+            "UAH": "₴",  # Гривны
+            "USD": "$",  # Доллары
+            "UZS": "so'm",  # Узбекский сум
+        }
+        return currency_symbols.get(currency.upper(), currency)
+
+    def get_vacancy_result(self, vacancy_data, parsed_vacancy):
         salary = vacancy_data["salary"]
         if salary:
             salary_from = salary["from"]
@@ -249,7 +261,7 @@ class HHParser(BaseParser):
             "name": vacancy_data["name"],
             "salary_from": salary_from,
             "salary_to": salary_to,
-            "currency": normalize_currency(salary["currency"]) if salary else None,
+            "currency": self.normalize_currency(salary["currency"]) if salary else None,
             "experience": vacancy_data["experience"]["name"],
             "url": vacancy_data["alternate_url"],
             "company_name": vacancy_data["employer"]["name"],

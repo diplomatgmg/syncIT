@@ -1,0 +1,1 @@
+from apps.profession.utils.normalize_profession import normalize_profession

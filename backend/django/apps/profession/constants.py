@@ -1,6 +1,16 @@
-from apps.profession.models import UnknownProfession
-from helpers.constants import IGNORE_PROFESSIONS, PROFESSIONS
-from helpers.utils import normalize_value
+PROFESSIONS: tuple[str, ...] = (
+    "Неизвестно",
+    "Frontend-разработчик",
+    "Backend-разработчик",
+    "Fullstack-разработчик",
+    "Тестировщик",
+    "DevOps",
+    "Мобильный разработчик",
+    "Системный аналитик",
+)
+
+IGNORE_PROFESSIONS: tuple[str, ...] = ()
+
 
 PROFESSION_MAPPING = {
     "devops": "DevOps",
@@ -22,12 +32,3 @@ PROFESSION_MAPPING = {
     "it project manager": "Project Manager",
     "data scientist": "Data Scientist",
 }
-
-
-def normalize_profession(profession: str) -> str | None:
-    return normalize_value(
-        profession,
-        PROFESSION_MAPPING,
-        PROFESSIONS + IGNORE_PROFESSIONS,
-        lambda p: UnknownProfession.objects.create(name=p),
-    )

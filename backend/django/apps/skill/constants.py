@@ -1,6 +1,36 @@
-from apps.skill.models import UnknownSkill
-from helpers.constants import IGNORE_SKILLS, SKILLS
-from helpers.utils import normalize_value
+from apps.skill.utils import parse_skills
+
+
+SKILLS: tuple[str, ...] = tuple(map(lambda s: s.name, parse_skills(flat=True)))
+
+IGNORE_SKILLS: tuple[str, ...] = (
+    "функциональное тестирование",
+    "ручное тестирование",
+    "английский язык",
+    "регрессионное тестирование",
+    "автоматизированное тестирование",
+    "тестирование пользовательского интерфейса",
+    "кассовые чеки",
+    "обслуживание покупателей",
+    "кассовые операции",
+    "мерчандайзинг",
+    "тестирование",
+    "приемка товара",
+    "визуальный мерчандайзинг",
+    "консультативные продажи",
+    "ведение переговоров",
+    "оформление торгового зала",
+    "активные продажи",
+    "системный анализ",
+    "бизнес-анализ",
+    "аналитическое мышление",
+    "постановка задач разработчикам",
+    "разработка технических заданий",
+    "управление проектами",
+    "выкладка товаров",
+    "заказ товара",
+)
+
 
 SKILL_MAPPING = {
     ".net": ".NET",
@@ -21,7 +51,6 @@ SKILL_MAPPING = {
     "apache airflow": "Apache Airflow",
     "airflow": "Apache Airflow",
     "apache spark": "Apache Spark",
-    "airflow": "Apache Airflow",
     "ajax": "Ajax",
     "api": "API",
     "agile": "Agile",
@@ -263,12 +292,3 @@ SKILL_MAPPING = {
     "zabbix": "Zabbix",
     "zustand": "Zustand",
 }
-
-
-def normalize_skill(skill: str) -> str | None:
-    return normalize_value(
-        skill,
-        SKILL_MAPPING,
-        SKILLS + IGNORE_SKILLS,
-        lambda s: UnknownSkill.objects.create(name=s),
-    )

@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from helpers.utils.normalizers import normalize_profession
+from apps.profession.utils import normalize_profession
 
 
 class TestNormalizeProfession(TestCase):

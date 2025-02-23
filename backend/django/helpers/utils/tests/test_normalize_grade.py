@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from helpers.utils.normalizers import normalize_grade
+from apps.grade.utils import normalize_grade
 
 
 class NormalizeGradeTest(TestCase):
