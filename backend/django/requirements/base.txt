@@ -1,6 +1,7 @@
 argon2-cffi==23.1.0
 django==5.1.6
 celery==5.4.0
+django-redis==5.4.0
 djangorestframework==3.15.2
 djangorestframework-simplejwt==5.3.1
 django-cors-headers==4.6.0

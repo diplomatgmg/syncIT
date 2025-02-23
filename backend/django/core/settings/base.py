@@ -189,7 +189,7 @@ DATABASES = {
 
 CACHES = {
     "default": {
-        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "BACKEND": "django_redis.cache.RedisCache",
         "LOCATION": os.getenv("REDIS_CACHE_LOCATION"),
     }
 }
@@ -197,6 +197,7 @@ CACHES = {
 CONSTANCE_BACKEND = "constance.backends.redisd.RedisBackend"
 CONSTANCE_REDIS_CONNECTION = {
     "host": "redis",
+    "db": "2",
 }
 
 CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
