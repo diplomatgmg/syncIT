@@ -6,5 +6,5 @@ class Command(BaseCommand):
     help = "Clear the redis cache"
 
     def handle(self, *args, **options):
-        cache.clear()
+        cache.clear() # FIXME DONT WORK
         self.stdout.write(self.style.SUCCESS("Кеш redis очищен"))
