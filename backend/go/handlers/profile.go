@@ -37,13 +37,13 @@ func GetProfileReference(w http.ResponseWriter, r *http.Request) {
 	grades, _ := services.GetAllGrades()
 	workFormats, _ := services.GetAllWorkFormats()
 	professions, _ := services.GetAllProfessions()
-	hardSkills, _ := services.GetHardSkills()
+	skills, _ := services.GetSkills()
 
 	response := models.ProfileReference{
 		Grades:      grades,
 		WorkFormats: workFormats,
 		Professions: professions,
-		HardSkills:  hardSkills,
+		Skills:      skills,
 	}
 	json.NewEncoder(w).Encode(response)
 }

@@ -24,7 +24,7 @@ def find_suitable_vacancies():
 @shared_task()
 def find_suitable_vacancies_for_profiles(profile_ids: list[int]):
     profiles = Profile.objects.filter(id__in=profile_ids).prefetch_related(
-        "hard_skills", "work_formats", "professions", "grades"
+        "skills", "work_formats", "professions", "grades"
     )
     for profile in profiles:
         process_profile(profile)
@@ -38,7 +38,7 @@ def process_profile(profile: Profile):
     work_formats = profile.work_formats.all()
     professions = profile.professions.all()
     grades = profile.grades.all()
-    hard_skills = profile.hard_skills.all()
+    skills = profile.skills.all()
 
     filtered_vacancies = (
         Vacancy.objects.filter(
@@ -47,10 +47,10 @@ def process_profile(profile: Profile):
             grade__in=grades,
         )
         .annotate(
-            total_skills=Count("hard_skills"),
+            total_skills=Count("skills"),
             matching_skills=Count(
-                "hard_skills",
-                filter=Q(hard_skills__in=hard_skills)
+                "skills",
+                filter=Q(skills__in=skills)
             )
         )
         .filter(total_skills__gte=config.MIN_VACANCY_SKILLS)

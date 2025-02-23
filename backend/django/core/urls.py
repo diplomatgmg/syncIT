@@ -19,7 +19,7 @@ urlpatterns = [
     path("robots.txt", TemplateView.as_view(template_name="tools/robots.txt", content_type="text/plain"),),
     path("admin/", admin.site.urls),
     path("api/auth/", include("social_django.urls", namespace="social")),
-    path("api/", include("apps.hard_skill.urls")),
+    path("api/", include("apps.skill.urls")),
     path("api/", include("apps.grade.urls")),
     path("api/", include("apps.work_format.urls")),
     path("api/", include("apps.profession.urls")),

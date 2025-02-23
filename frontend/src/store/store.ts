@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit"
 import authApi from "@/store/api/authApi.ts"
 import profileApi from "@/store/api/profileApi.ts"
 import gradeApi from "@/store/api/gradeApi.ts"
-import hardSkillApi from "@/store/api/hardSkillApi.ts"
+import skillApi from "@/store/api/skillApi.ts"
 import workFormatApi from "@/store/api/workFormatApi.ts"
 import professionApi from "@/store/api/professionApi.ts"
 import authReducer from "@/store/slice/authSlice.ts"
@@ -14,7 +14,7 @@ const store = configureStore({
     [authApi.reducerPath]: authApi.reducer,
     [profileApi.reducerPath]: profileApi.reducer,
     [gradeApi.reducerPath]: gradeApi.reducer,
-    [hardSkillApi.reducerPath]: hardSkillApi.reducer,
+    [skillApi.reducerPath]: skillApi.reducer,
     [workFormatApi.reducerPath]: workFormatApi.reducer,
     [professionApi.reducerPath]: professionApi.reducer,
     [vacancyApi.reducerPath]: vacancyApi.reducer,
@@ -26,7 +26,7 @@ const store = configureStore({
       authApi.middleware,
       profileApi.middleware,
       gradeApi.middleware,
-      hardSkillApi.middleware,
+      skillApi.middleware,
       workFormatApi.middleware,
       professionApi.middleware,
       vacancyApi.middleware

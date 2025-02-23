@@ -16,5 +16,5 @@ class VacancyCreateSerializer(serializers.ModelSerializer):
             "grade",
             "profession",
             "work_formats",
-            "hard_skills",
+            "skills",
         )

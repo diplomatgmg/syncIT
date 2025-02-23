@@ -2,14 +2,14 @@ import { Container, Grid, Group, useMantineTheme } from "@mantine/core"
 import Profession from "@/features/profile/components/Profession/Profession.tsx"
 import WorkFormat from "@/features/profile/components/WorkFormat/WorkFormat.tsx"
 import Grade from "@/features/profile/components/Grade/Grade.tsx"
-import HardSkill from "@/features/profile/components/HardSkill/HardSkill.tsx"
+import Skill from "@/features/profile/components/Skill/Skill.tsx"
 import { useMediaQuery } from "@mantine/hooks"
 import { useGetProfileDataQuery } from "@/store/api/profileApi.ts"
 import useAppDispatch from "@/store/hooks/useAppDispatch.ts"
 import {
   setGrades,
-  setHardSkills,
   setProfessions,
+  setSkills,
   setWorkFormats,
 } from "@/store/slice/profileSlice.ts"
 import { useEffect } from "react"
@@ -38,7 +38,7 @@ const Profile = () => {
     dispatch(setProfessions(profileData?.professions ?? []))
     dispatch(setWorkFormats(profileData?.workFormats ?? []))
     dispatch(setGrades(profileData?.grades ?? []))
-    dispatch(setHardSkills(profileData?.hardSkills ?? []))
+    dispatch(setSkills(profileData?.skills ?? []))
   }, [dispatch, profileData])
 
   return (
@@ -77,7 +77,7 @@ const Profile = () => {
           <Group
             h={PRIMARY_COL_HEIGHT}
             style={{ ...bgStyle, overflowY: "auto" }}>
-            <HardSkill />
+            <Skill />
           </Group>
         </Grid.Col>
       </Grid>

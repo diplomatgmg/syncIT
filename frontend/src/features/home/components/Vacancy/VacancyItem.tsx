@@ -1,7 +1,6 @@
 import { FC, type ReactElement, useId, useState } from "react"
 import { Vacancy } from "@/types/vacancyTypes.ts"
 import { useUpdateVacancyViewStatusMutation } from "@/store/api/vacancyApi.ts"
-import HardSkillList from "@/features/home/components/HardSkill/HardSkillList.tsx"
 import styled, { ThemeProvider } from "styled-components"
 import UnWatchIcon from "@/assets/svg/unwatch.svg"
 import getSalary from "@/features/home/utils/getSalary.ts"
@@ -13,6 +12,7 @@ import {
   Watched,
 } from "@/features/home/components/Vacancy/VacancyItemStyles.ts"
 import { Anchor, Flex, Text, Title, useMantineTheme } from "@mantine/core"
+import SkillList from "@/features/home/components/Skill/SkillList.tsx"
 
 interface VacancyItemProps {
   isViewed: boolean
@@ -132,7 +132,7 @@ const VacancyItem: FC<VacancyItemProps> = ({
           <Flex
             justify={matchesXs ? "start" : matchesSm ? "end" : "start"}
             mt={matchesSm ? "xs" : "md"}>
-            <HardSkillList hardSkills={vacancy.hardSkills} />
+            <SkillList skills={vacancy.skills} />
           </Flex>
         </Flex>
 

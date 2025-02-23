@@ -1,4 +1,4 @@
-import { HardSkill } from "@/types/hardSkillTypes.ts"
+import { Skill } from "@/types/skillTypes.ts"
 import { Grade } from "@/types/gradeTypes.ts"
 import { WorkFormat } from "@/types/workFormatTypes.ts"
 import { Profession } from "@/types/professionTypes.ts"
@@ -10,14 +10,14 @@ export interface ProfileStatus {
 
 export interface Profile {
   isCompleted: boolean
-  hardSkills: HardSkill[]
+  skills: Skill[]
   grades: Grade[]
   workFormats: WorkFormat[]
   professions: Profession[]
 }
 
 export interface ProfileReference {
-  hardSkills: HardSkill[]
+  skills: Skill[]
   grades: Grade[]
   workFormats: WorkFormat[]
   professions: Profession[]

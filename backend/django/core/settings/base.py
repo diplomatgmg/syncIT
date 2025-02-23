@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     # Custom apps
     "apps.tools",
     "apps.user",
-    "apps.hard_skill",
+    "apps.skill",
     "apps.company",
     "apps.grade",
     "apps.work_format",

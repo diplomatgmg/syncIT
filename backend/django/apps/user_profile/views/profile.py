@@ -21,7 +21,7 @@ class ProfileAPIView(ProxyAPIMixin, RetrieveUpdateAPIView):
 
     def get_queryset(self):
         return Profile.objects.all().prefetch_related(
-            "hard_skills", "grades", "work_formats", "professions"
+            "skills", "grades", "work_formats", "professions"
         )
 
     def update(self, request, *args, **kwargs):
@@ -32,7 +32,7 @@ class ProfileAPIView(ProxyAPIMixin, RetrieveUpdateAPIView):
             "professions": profile.professions,
             "workFormats": profile.work_formats,
             "grades": profile.grades,
-            "hardSkills": profile.hard_skills,
+            "skills": profile.skills,
         }
 
         for field_name, related_manager in fields_to_update.items():

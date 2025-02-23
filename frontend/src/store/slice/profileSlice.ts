@@ -2,14 +2,14 @@ import { Profession } from "@/types/professionTypes.ts"
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { WorkFormat } from "@/types/workFormatTypes.ts"
 import { Grade } from "@/types/gradeTypes.ts"
-import { HardSkill } from "@/types/hardSkillTypes.ts"
+import { Skill } from "@/types/skillTypes.ts"
 
 export interface ProfileState {
   isChanged: boolean
   professions: Profession[]
   workFormats: WorkFormat[]
   grades: Grade[]
-  hardSkills: Omit<HardSkill, "children" | "selectable">[]
+  skills: Omit<Skill, "children" | "selectable">[]
 }
 
 const initialState: ProfileState = {
@@ -17,7 +17,7 @@ const initialState: ProfileState = {
   professions: [],
   workFormats: [],
   grades: [],
-  hardSkills: [],
+  skills: [],
 }
 
 const profileSlice = createSlice({
@@ -39,11 +39,8 @@ const profileSlice = createSlice({
     setGrades: (state, action: PayloadAction<ProfileState["grades"]>) => {
       state.grades = action.payload
     },
-    setHardSkills: (
-      state,
-      action: PayloadAction<ProfileState["hardSkills"]>
-    ) => {
-      state.hardSkills = action.payload
+    setSkills: (state, action: PayloadAction<ProfileState["skills"]>) => {
+      state.skills = action.payload
     },
     setProfileIsChanged: (state, action: PayloadAction<boolean>) => {
       state.isChanged = action.payload
@@ -55,7 +52,7 @@ export const {
   setProfessions,
   setWorkFormats,
   setGrades,
-  setHardSkills,
+  setSkills,
   setProfileIsChanged,
 } = profileSlice.actions
 export default profileSlice.reducer
