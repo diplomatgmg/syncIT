@@ -22,10 +22,10 @@ class UserVacancyListAPIView(generics.ListAPIView):
                 "vacancy", "vacancy__profession", "vacancy__grade", "vacancy__company"
             )
             .prefetch_related(
-                "vacancy__hard_skills",
+                "vacancy__skills",
                 "vacancy__work_formats",
             )
-            .annotate(count_skills=Count("vacancy__hard_skills"))
+            .annotate(count_skills=Count("vacancy__skills"))
             .order_by("is_viewed", "-suitability", "-count_skills", "id")
         )
 

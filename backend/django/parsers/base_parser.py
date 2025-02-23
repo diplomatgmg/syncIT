@@ -6,8 +6,8 @@ from django.db.models import Model
 
 from apps.company.models import Company
 from apps.grade.models import Grade
-from apps.hard_skill.models import HardSkill, UnknownHardSkill
 from apps.profession.models import Profession
+from apps.skill.models import Skill, UnknownSkill
 from apps.vacancy.models import Vacancy
 from apps.work_format.models import WorkFormat
 
@@ -18,7 +18,7 @@ ModelNameType = Literal[
     "vacancy",
     "company",
     "grade",
-    "hard_skill",
+    "skill",
     "work_format",
     "profession",
 ]
@@ -71,20 +71,16 @@ class BaseParser(ABC):
         work_format_models = WorkFormat.objects.filter(name__in=work_format_names)
         created_vacancy_model.work_formats.add(*work_format_models)
 
-        hard_skill_names = data.get("hard_skill_names")
-        for hard_skill_name in hard_skill_names:
-            hard_skill_model = self.get_or_none(
-                HardSkill, name=hard_skill_name, selectable=True
-            )
+        skill_names = data.get("skill_names")
+        for skill_name in skill_names:
+            skill_model = self.get_or_none(Skill, name=skill_name, selectable=True)
 
-            if not hard_skill_model:
-                UnknownHardSkill.objects.create(name=hard_skill_name)
+            if not skill_model:
+                UnknownSkill.objects.create(name=skill_name)
 
-        hard_skill_models = HardSkill.objects.filter(
-            name__in=hard_skill_names, selectable=True
-        )
+        skill_models = Skill.objects.filter(name__in=skill_names, selectable=True)
 
-        created_vacancy_model.hard_skills.add(*hard_skill_models)
+        created_vacancy_model.skills.add(*skill_models)
 
     @staticmethod
     def get_or_none(model: ModelType, **kwargs) -> Optional[ModelType]:

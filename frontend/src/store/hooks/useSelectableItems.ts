@@ -3,15 +3,15 @@ import xorBy from "lodash/xorBy"
 import useAppDispatch from "@/store/hooks/useAppDispatch.ts"
 import {
   setGrades,
-  setHardSkills,
   setProfessions,
   setProfileIsChanged,
+  setSkills,
   setWorkFormats,
 } from "@/store/slice/profileSlice.ts"
 
 const useSelectableItems = <T extends { id: number; name: string }>(
   initialItems: T[],
-  itemsName: "profession" | "workFormat" | "grade" | "hardSkill"
+  itemsName: "profession" | "workFormat" | "grade" | "skill"
 ) => {
   const dispatch = useAppDispatch()
   const [selectedItems, setSelectedItems] = useState(initialItems)
@@ -31,8 +31,8 @@ const useSelectableItems = <T extends { id: number; name: string }>(
       case "grade":
         dispatch(setGrades(updatedItems))
         break
-      case "hardSkill":
-        dispatch(setHardSkills(updatedItems))
+      case "skill":
+        dispatch(setSkills(updatedItems))
         break
       default:
         break

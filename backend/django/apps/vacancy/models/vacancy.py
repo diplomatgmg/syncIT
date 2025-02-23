@@ -13,7 +13,7 @@ class Vacancy(BaseVacancy):
     company = models.ForeignKey("company.Company", on_delete=models.CASCADE)
     grade = models.ForeignKey("grade.Grade", on_delete=models.CASCADE)
     work_formats = models.ManyToManyField("work_format.WorkFormat", related_name="vacancies")
-    hard_skills = models.ManyToManyField("hard_skill.HardSkill", related_name="vacancies")
+    skills = models.ManyToManyField("skill.Skill", related_name="vacancies")
     profession = models.ForeignKey("profession.Profession", on_delete=models.CASCADE)
     published_at = models.DateTimeField()
     # fmt: on

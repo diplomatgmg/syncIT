@@ -1,4 +1,4 @@
-import { HardSkill } from "@/types/hardSkillTypes.ts"
+import { Skill } from "@/types/skillTypes.ts"
 import { Company } from "@/types/companyTypes.ts"
 import { Grade } from "@/types/gradeTypes.ts"
 import { Profession } from "@/types/professionTypes.ts"
@@ -16,7 +16,7 @@ export interface Vacancy {
   grade: Grade
   profession: Profession
   workFormats: WorkFormat[]
-  hardSkills: HardSkill[]
+  skills: Skill[]
   description: string
 }
 

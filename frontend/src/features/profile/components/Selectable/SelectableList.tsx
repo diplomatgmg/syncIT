@@ -6,7 +6,7 @@ import Checkbox from "@/components/common/Checkbox.tsx"
 interface SelectableListProps<T> {
   items: T[]
   userItems: T[]
-  itemsName: "profession" | "workFormat" | "grade" | "hardSkill"
+  itemsName: "profession" | "workFormat" | "grade" | "skill"
 }
 
 const SelectableList = <T extends { id: number; name: string }>({

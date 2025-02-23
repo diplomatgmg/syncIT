@@ -2,20 +2,20 @@ from django.contrib import admin
 from django.contrib.admin.filters import SimpleListFilter
 from django.utils.html import format_html
 
-from apps.hard_skill.models import HardSkill
+from apps.skill.models import Skill
 from apps.vacancy.models import Vacancy
 
 
-class HardSkillFilter(SimpleListFilter):
-    title = "Hard Skills"
-    parameter_name = "hard_skills"
+class SkillFilter(SimpleListFilter):
+    title = "Skills"
+    parameter_name = "skills"
 
     def lookups(self, request, model_admin):
-        return [(skill.id, skill.name) for skill in HardSkill.objects.all()]
+        return [(skill.id, skill.name) for skill in Skill.objects.all()]
 
     def queryset(self, request, queryset):
         if self.value():
-            return queryset.filter(hard_skills__id=self.value())
+            return queryset.filter(skills__id=self.value())
         return queryset
 
 
@@ -24,10 +24,10 @@ class VacancyAdmin(admin.ModelAdmin):
     list_display = ("id", "name_link")
     search_fields = ("name",)
     list_per_page = 20
-    list_filter = ("profession__name", HardSkillFilter)
+    list_filter = ("profession__name", SkillFilter)
     filter_horizontal = (
         "work_formats",
-        "hard_skills",
+        "skills",
     )
 
     @admin.display(description="Название")

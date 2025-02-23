@@ -5,5 +5,5 @@ from apps.vacancy.serializers import VacancyCreateSerializer
 
 
 class VacancyCreateAPIView(generics.CreateAPIView):
-    queryset = Vacancy.objects.all().select_related("hard_skills")
+    queryset = Vacancy.objects.all().select_related("skills")
     serializer_class = VacancyCreateSerializer

@@ -10,7 +10,7 @@ func GetProfile(profileID int) (models.Profile, error) {
 	err := db.DB.
 		Preload("Grades").
 		Preload("Professions").
-		Preload("HardSkills").
+		Preload("Skills").
 		Preload("WorkFormats").
 		Where("id = ?", profileID).
 		First(&profile).Error

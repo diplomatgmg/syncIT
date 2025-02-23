@@ -15,7 +15,7 @@ from helpers.utils import (
     generate_hash,
 )
 from helpers.utils.normalizers import (
-    normalize_hard_skill,
+    normalize_skill,
     normalize_grade,
     normalize_profession,
     normalize_currency,
@@ -201,13 +201,11 @@ class HHParser(BaseParser):
             else "Неизвестно"
         )
 
-        hard_skills = set()
+        skills = set()
         for item in data:
-            hard_skill_names = item["hard_skill_names"]
-            normalized_hard_skills = filter(
-                lambda x: x, map(normalize_hard_skill, hard_skill_names)
-            )
-            hard_skills.update(normalized_hard_skills)
+            skill_names = item["skill_names"]
+            normalized_skills = filter(lambda x: x, map(normalize_skill, skill_names))
+            skills.update(normalized_skills)
 
         work_formats = set()
         for item in data:
@@ -220,7 +218,7 @@ class HHParser(BaseParser):
 
         return {
             "grade_name": normalize_grade(grade),
-            "hard_skill_names": tuple(hard_skills),
+            "skill_names": tuple(skills),
             "work_format_names": tuple(work_formats),
             "profession_name": normalize_profession(profession),
             "description": clear_html(description),
@@ -278,7 +276,7 @@ class HHParser(BaseParser):
                 url=vacancy_data["alternate_url"],
             )
 
-            vacancy_skills = parsed_vacancy["hard_skill_names"]
+            vacancy_skills = parsed_vacancy["skill_names"]
             if len(vacancy_skills) < 4:
                 vacancy_url = vacancy_data["alternate_url"]
                 logger.debug(

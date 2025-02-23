@@ -23,7 +23,7 @@ def parse_vacancy(text: str) -> Optional[dict[str, str | list[str]]]:
     base_pattern = r"\s*(.*\S)"
     patterns = {
         "grade_name": rf"(Position|Позиция):{base_pattern}",
-        "hard_skill_names": rf"(Навыки|Skills):{base_pattern}",
+        "skill_names": rf"(Навыки|Skills):{base_pattern}",
         "work_format_names": rf"(Формат работы|Format of work):{base_pattern}",
         "profession": rf"(Профессия|Profession):{base_pattern}",
         "description": r"(Описание|Description):\s*(.*)",

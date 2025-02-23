@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 
 from apps.grade.models import Grade
-from apps.hard_skill.models import HardSkill
+from apps.skill.models import Skill
 from apps.profession.models import Profession
 from apps.work_format.models import WorkFormat
 
@@ -13,7 +13,7 @@ class Profile(models.Model):
     # fmt: off
     is_completed = models.BooleanField(default=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    hard_skills = models.ManyToManyField(HardSkill, related_name="profiles", blank=True)
+    skills = models.ManyToManyField(Skill, related_name="profiles", blank=True)
     grades = models.ManyToManyField(Grade, related_name="profiles", blank=True)
     work_formats = models.ManyToManyField(WorkFormat, related_name="profiles", blank=True)
     professions = models.ManyToManyField(Profession, related_name="profiles", blank=True)
