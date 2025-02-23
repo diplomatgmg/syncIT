@@ -1,5 +1,69 @@
 Языки программирования:
   ! Python:
+    ! asyncio:
   ! JavaScript:
   ! TypeScript:
+  ! PHP:
+  ! Java:
+  ! 1С:
+  ! C:
+  ! C++:
+  ! C#:
 
+Backend:
+  JavaScript/TypeScript:
+    ! Node.js:
+
+Frontend:
+  ! HTML:
+  ! CSS:
+  ! React:
+  ! Vue:
+
+Тестирование и разработка:
+  ! Postman:
+
+Системы контроля версий:
+  ! Git:
+    ! GitHub:
+    ! GitLab:
+
+DevOps:
+  ! Ansible:
+  ! CI/CD:
+    ! Jenkins:
+  ! Docker:
+    ! Docker Compose:
+  ! Kubernetes:
+
+
+Базы данных и брокеры:
+  ! SQL:
+    ! ClickHouse:
+    ! PostgreSQL:
+    ! MySQL:
+  ! NoSQL:
+    ! Elasticsearch:
+    ! Redis:
+    ! MongoDB:
+  Брокеры:
+    ! Apache Kafka:
+    ! RabbitMQ:
+
+Архитектурные паттерны:
+  ! API:
+    ! REST API:
+  ! XML:
+  ! ООП:
+    ! SOLID:
+  ! UML:
+  ! BPMN:
+
+Управление проектом:
+  ! Jira:
+  ! Confluence:
+
+
+ОС:
+  ! Linux:
+    ! Bash:

@@ -7,8 +7,10 @@ from typing import Any
 from urllib.parse import urlencode
 
 import requests
+from django.db.models import Count
 
 from apps.profession.models import Profession
+from apps.skill.models import Skill
 from apps.vacancy.models import ParsedVacancy, Vacancy
 from helpers.utils import (
     clear_html,
@@ -50,15 +52,18 @@ class HHParser(BaseParser):
             "Accept": "application/json",
         }
 
-    @staticmethod
-    def _join_url_params(*params) -> str:
-        return " OR ".join(params)
-
     def _build_parse_url(self, page=0) -> str:
         profession_names = Profession.objects.exclude(name="Неизвестно").values_list(
             "name", flat=True
         )
-        text = self._join_url_params(*profession_names)
+        top_skills = (
+            Skill.objects.filter(selectable=True)
+            .annotate(vacancy_count=Count("vacancies"))
+            .order_by("-vacancy_count")
+            .values_list("name", flat=True)[:100]
+        )
+
+        text = " OR ".join(*profession_names, *top_skills)
 
         params = {
             "text": text,

@@ -15,6 +15,7 @@ SKILL_MAPPING = {
     "1с-битрикс": "1С-Битрикс",  # ru - ru
     "1c-битрикс": "1С-Битрикс",  # eng - ru
     "azure": "Azure",
+    "asyncio": "Asyncio",
     "atlassian confluence": "Confluence",
     "atlassian jira": "Jira",
     "apache airflow": "Apache Airflow",
