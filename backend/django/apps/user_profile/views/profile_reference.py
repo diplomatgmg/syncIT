@@ -17,6 +17,6 @@ class ProfileReferenceAPIView(ProxyAPIMixin, APIView):
             return Response(cached_data)
 
         response = super().get(request, *args, **kwargs)
-        cache.set(cache_key, response.data, 60 * 15)
+        cache.set(cache_key, response.data, 60 * 60)
 
         return response
