@@ -60,7 +60,7 @@ class HHParser(BaseParser):
             .values_list("name", flat=True)[:100]
         )
 
-        text = " OR ".join(*profession_names, *top_skills)
+        text = " OR ".join((*profession_names, *top_skills))
 
         params = {
             "text": text,
