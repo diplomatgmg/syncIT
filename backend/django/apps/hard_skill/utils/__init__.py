@@ -1,1 +1,1 @@
-from apps.hard_skill.utils.hard_skill_parser import get_skills, HardSkillModel
+from apps.hard_skill.utils.parse_skills import parse_skills, SkillModel

@@ -1,25 +1,22 @@
 import re
-from typing import List, Tuple, Optional
+from typing import List, Tuple
 
 from django.conf import settings
 from pydantic import BaseModel
 
 
 def _read_skills():
-    path = settings.BASE_DIR / "apps" / "hard_skill" / "hard_skills.yml"
+    path = settings.BASE_DIR / "apps" / "skill" / "skills.yml"
     with open(path, "r") as file:
         return file.read()
 
 
 def _clean(text: str) -> str:
-    return text.lstrip("-").rstrip(":").strip()
+    return text.lstrip("!").rstrip(":").strip()
 
 
 def _is_selectable(text: str) -> bool:
-    if text.startswith("-") and text.endswith(":"):
-        raise SyntaxError(f'Некорректный синтаксис для навыка "{text}"')
-
-    return text.startswith("-")
+    return text.startswith("!")
 
 
 def _parse(text: str) -> List[dict]:
@@ -27,9 +24,7 @@ def _parse(text: str) -> List[dict]:
     return _parse_lines(lines, 0)[0]
 
 
-def _parse_lines(
-    lines: List[str], level: int, parent: Optional[str] = None
-) -> Tuple[List[dict], List[str]]:
+def _parse_lines(lines: List[str], level: int) -> Tuple[List[dict], List[str]]:
     result = []
     while lines:
         line = lines[0]
@@ -51,28 +46,26 @@ def _parse_lines(
             node = {
                 "name": name,
                 "selectable": _is_selectable(line),
-                "parent": parent,
                 "children": [],
             }
 
             if lines and len(re.match(r"^\s*", lines[0]).group()) > level:
+                node["children"], lines = _parse_lines(lines, level + 2)
 
-                node["children"], lines = _parse_lines(lines, level + 2, name)
             result.append(node)
     return result, lines
 
 
-class HardSkillModel(BaseModel):
+class SkillModel(BaseModel):
     name: str
     selectable: bool
-    parent: Optional[str] = None
-    children: list["HardSkillModel"] = []
+    children: list["SkillModel"] = []
 
 
-def flatten_skills(skills: List[HardSkillModel]) -> List[HardSkillModel]:
+def flatten_skills(skills: List[SkillModel]) -> List[SkillModel]:
     flat_list = []
 
-    def traverse(skill_inner: HardSkillModel):
+    def traverse(skill_inner: SkillModel):
         flat_list.append(skill_inner)
         for child in skill_inner.children:
             traverse(child)
@@ -83,12 +76,12 @@ def flatten_skills(skills: List[HardSkillModel]) -> List[HardSkillModel]:
     return flat_list
 
 
-def get_skills(*, flat=False) -> list[HardSkillModel]:
+def parse_skills(*, flat=False) -> list[SkillModel]:
     """
     Парсит hard skills из файла hard_skills.yml и возвращает скиллы в виде словаря
     """
     skills_data = _read_skills()
     skills = _parse(skills_data)
-    skill_models = [HardSkillModel(**skill) for skill in skills]
+    skill_models = [SkillModel(**skill) for skill in skills]
 
     return skill_models if not flat else flatten_skills(skill_models)

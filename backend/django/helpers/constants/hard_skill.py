@@ -1,7 +1,7 @@
-from apps.hard_skill.utils import get_skills
+from apps.hard_skill.utils import parse_skills
 
 
-HARD_SKILLS: tuple[str, ...] = tuple(map(lambda s: s.name, get_skills(flat=True)))
+HARD_SKILLS: tuple[str, ...] = tuple(map(lambda s: s.name, parse_skills(flat=True)))
 
 IGNORE_HARD_SKILLS: tuple[str, ...] = (
     "функциональное тестирование",
