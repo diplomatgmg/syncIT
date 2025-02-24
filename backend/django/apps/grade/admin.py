@@ -5,5 +5,5 @@ from apps.grade.models import Grade
 
 @admin.register(Grade)
 class GradeAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "order")
-    ordering = ("order",)
+    list_display = ("id", "name", "ordering")
+    ordering = ("ordering",)

@@ -5,8 +5,8 @@ from apps.profession.models import Profession, UnknownProfession
 
 @admin.register(Profession)
 class ProfessionAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "order")
-    ordering = ("order",)
+    list_display = ("id", "name", "ordering")
+    ordering = ("ordering",)
     search_fields = ("name",)
     search_help_text = "Поиск по name"
 

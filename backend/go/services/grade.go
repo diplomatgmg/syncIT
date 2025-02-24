@@ -7,6 +7,6 @@ import (
 
 func GetAllGrades() ([]models.Grade, error) {
 	var grades []models.Grade
-	err := db.DB.Find(&grades).Order("order").Error
+	err := db.DB.Order("ordering").Find(&grades).Error
 	return grades, err
 }

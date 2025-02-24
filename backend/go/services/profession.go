@@ -7,6 +7,6 @@ import (
 
 func GetAllProfessions() ([]models.Profession, error) {
 	var professions []models.Profession
-	err := db.DB.Find(&professions).Order("order").Error
+	err := db.DB.Order("ordering").Find(&professions).Error
 	return professions, err
 }
