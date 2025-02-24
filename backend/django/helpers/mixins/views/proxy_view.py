@@ -11,6 +11,8 @@ class ProxyAPIMixin:
     Миксин для работы с проксирующими запросами (go).
     """
 
+    need_cache = False
+
     proxy_path: str = None
 
     def __init__(self, **kwargs):
@@ -29,18 +31,20 @@ class ProxyAPIMixin:
         return f"{settings.PROXY_URL.rstrip('/')}/{self.proxy_path.strip('/')}"
 
     def get(self, request: Request, *args, **kwargs) -> Response:
-        cache_key = self.__class__.__name__
-        cached_data = cache.get(cache_key)
+        if self.need_cache:
+            cache_key = self.__class__.__name__
+            cached_data = cache.get(cache_key)
 
-        if cached_data is not None:
-            return Response(cached_data)
+            if cached_data is not None:
+                return Response(cached_data)
 
         url = self._get_full_url()
 
         try:
             response = httpx.get(url)
             response.raise_for_status()
-            cache.set(cache_key, response.json(), 60 * 60)
+            if self.need_cache:
+                cache.set(cache_key, response.json(), 60 * 60)  # noqa
         except httpx.RequestError as e:
             return Response(
                 {

@@ -5,3 +5,4 @@ from helpers.mixins.views import ProxyAPIMixin
 
 class ProfessionProxyAPIView(ProxyAPIMixin, APIView):
     proxy_path = "/api/professions"
+    need_cache = True

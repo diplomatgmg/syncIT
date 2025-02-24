@@ -32,7 +32,7 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 
 
-SIMPLE_JWT["ACCESS_TOKEN_LIFETIME"] = timedelta(days=365)
+SIMPLE_JWT["ACCESS_TOKEN_LIFETIME"] = timedelta(seconds=3)
 #
 # CACHES = {
 #     "default": {

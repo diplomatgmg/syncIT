@@ -46,7 +46,7 @@ class CustomTokenRefreshView(TokenRefreshView):
     def post(self, request: Request, *args, **kwargs) -> Response:
         response = super().post(request, *args, **kwargs)
 
-        token = AccessToken(response.data["access"])
+        token = RefreshToken(response.data["refresh"])
         user_id = token.payload["user_id"]
         user = User.objects.get(id=user_id)
         user.last_login = now()
