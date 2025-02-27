@@ -14,7 +14,7 @@ from apps.profession.models import Profession
 from apps.profession.utils import normalize_profession
 from apps.skill.models import Skill
 from apps.skill.utils import normalize_skill
-from apps.vacancy.models import ParsedVacancy, Vacancy
+from apps.vacancy.models import ParsedVacancy
 from helpers.utils import (
     clear_html,
     generate_hash,
