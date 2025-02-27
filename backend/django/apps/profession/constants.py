@@ -7,6 +7,9 @@ PROFESSIONS: tuple[str, ...] = (
     "DevOps",
     "Мобильный разработчик",
     "Системный аналитик",
+    "Системный администратор",
+    "Data Engineer",
+    "SEO-специалист",
 )
 
 IGNORE_PROFESSIONS: tuple[str, ...] = ()
@@ -31,4 +34,10 @@ PROFESSION_MAPPING = {
     "project manager": "Project Manager",
     "it project manager": "Project Manager",
     "data scientist": "Data Scientist",
+    "data engineer": "Data Engineer",
+    "data инженер": "Data Engineer",
+    "data-инженер": "Data Engineer",
+    "системный администратор": "Системный администратор",
+    "seo-специалист": "SEO-специалист",
+    "seo специалист": "SEO-специалист",
 }
