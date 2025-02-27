@@ -1,43 +1,32 @@
-PROFESSIONS: tuple[str, ...] = (
-    "Неизвестно",
-    "Frontend-разработчик",
-    "Backend-разработчик",
-    "Fullstack-разработчик",
-    "Тестировщик",
-    "DevOps",
-    "Мобильный разработчик",
-    "Системный аналитик",
-    "Системный администратор",
-    "Data Engineer",
-    "SEO-специалист",
-)
+# fmt: off
+_PROFESSION_GROUPS = {
+    "DevOps": ("devops",),
+    "Backend-разработчик": ("бэкенд-разработчик", "бэкенд разработчик", "backend-разработчик",),
+    "Системный аналитик": ("бизнес/системный аналитик", "системный it-аналитик", "системный аналитик",),
+    "Тестировщик": ("qa automation engineer", "qa-инженер", "тестировщик"),
+    "Мобильный разработчик": ("мобильный разработчик", "mobile-разработчик"),
+    "Неизвестно": ("неизвестно",),
+    "Frontend-разработчик": ("frontend-разработчик",),
+    "Fullstack-разработчик": ("fullstack-разработчик",),
+    "Project Manager": ("project manager", "it project manager"),
+    "Data Scientist": ("data scientist",),
+    "Data Engineer": ("data engineer", "data инженер", "data-инженер"),
+    "Системный администратор": ("системный администратор",),
+    "SEO-специалист": ("seo-специалист", "seo специалист"),
+}
+# fmt: on
+
 
 IGNORE_PROFESSIONS: tuple[str, ...] = ()
 
+PROFESSIONS: tuple[str, ...] = tuple(_PROFESSION_GROUPS.keys())
 
+# {
+#    "devops": "DevOps",
+#    "бэкенд-разработчик": "Backend-разработчик",
+#    "backend-разработчик": "Backend-разработчик",
+#    "бизнес/системный аналитик": "Системный аналитик",
+# }
 PROFESSION_MAPPING = {
-    "devops": "DevOps",
-    "бэкенд-разработчик": "Backend-разработчик",
-    "бэкенд разработчик": "Backend-разработчик",
-    "backend-разработчик": "Backend-разработчик",
-    "бизнес/системный аналитик": "Системный аналитик",
-    "системный it-аналитик": "Системный аналитик",
-    "системный аналитик": "Системный аналитик",
-    "qa automation engineer": "Тестировщик",
-    "qa-инженер": "Тестировщик",
-    "мобильный разработчик": "Мобильный разработчик",
-    "неизвестно": "Неизвестно",
-    "тестировщик": "Тестировщик",
-    "frontend-разработчик": "Frontend-разработчик",
-    "fullstack-разработчик": "Fullstack-разработчик",
-    "mobile-разработчик": "Мобильный разработчик",
-    "project manager": "Project Manager",
-    "it project manager": "Project Manager",
-    "data scientist": "Data Scientist",
-    "data engineer": "Data Engineer",
-    "data инженер": "Data Engineer",
-    "data-инженер": "Data Engineer",
-    "системный администратор": "Системный администратор",
-    "seo-специалист": "SEO-специалист",
-    "seo специалист": "SEO-специалист",
+    key: profession for profession, keys in _PROFESSION_GROUPS.items() for key in keys
 }

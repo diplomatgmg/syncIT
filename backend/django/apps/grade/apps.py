@@ -6,4 +6,5 @@ class GradeConfig(AppConfig):
     name = "apps.grade"
 
     def ready(self):
+        import apps.grade.constants  # noqa Для hotreload
         import apps.grade.signals  # noqa

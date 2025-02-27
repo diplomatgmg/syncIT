@@ -6,4 +6,5 @@ class WorkFormatConfig(AppConfig):
     name = "apps.work_format"
 
     def ready(self):
+        import apps.work_format.constants  # noqa Для hotreload
         import apps.work_format.signals  # noqa

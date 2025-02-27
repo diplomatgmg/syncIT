@@ -6,4 +6,5 @@ class ProfessionConfig(AppConfig):
     name = "apps.profession"
 
     def ready(self):
+        import apps.profession.constants  # noqa Для hotreload
         import apps.profession.signals  # noqa
