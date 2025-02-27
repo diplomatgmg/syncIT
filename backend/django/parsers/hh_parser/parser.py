@@ -131,7 +131,6 @@ class HHParser(BaseParser):
         http_data = self._get_http_data(url)
 
         pages: int = http_data["pages"]
-        # Парсим только первые 100 вакансий для поддержки актуальности новых вакансий.
         vacancy_ids = self.get_vacancy_ids_from_pages(pages)
 
         vacancies_hashes = {
