@@ -23,6 +23,7 @@ from helpers.utils.open_ai.chat_gpt import get_chat_gpt_completion
 from helpers.utils.open_ai.prompt import make_prompt
 from helpers.utils.open_ai.utils import parse_vacancy
 from parsers.base_parser import BaseParser
+from constance import config
 
 logger = logging.getLogger("django")
 
@@ -57,8 +58,8 @@ class HHParser(BaseParser):
             Skill.objects.filter(selectable=True)
             .annotate(vacancy_count=Count("vacancies"))
             .order_by("-vacancy_count")
-            .values_list("name", flat=True)[:30]
-        )
+            .values_list("name", flat=True)
+        )[: config.LIMIT_TOP_SKILLS_VACANCIES]
 
         text = " OR ".join((*profession_names, *top_skills))
 
@@ -110,7 +111,7 @@ class HHParser(BaseParser):
 
         return result
 
-    def get_vacancies_ids_from_pages(self, page_count: int) -> tuple[str, ...]:
+    def get_vacancy_ids_from_pages(self, page_count: int) -> tuple[str, ...]:
         vacancies_ids = set()
         # Range от 0 до len(page_count - 1). Документация api.hh
         page_urls = [self._build_parse_url(page=page) for page in range(page_count)]
@@ -123,7 +124,7 @@ class HHParser(BaseParser):
                 vacancy_id: str = vacancy.get("id")
                 vacancies_ids.add(vacancy_id)
 
-        return tuple(vacancies_ids)
+        return tuple(vacancies_ids)[: config.LIMIT_PARSED_VACANCIES]
 
     def get_last_vacancies_ids(self) -> set[str]:
         url = self._build_parse_url()
@@ -131,10 +132,10 @@ class HHParser(BaseParser):
 
         pages: int = http_data["pages"]
         # Парсим только первые 100 вакансий для поддержки актуальности новых вакансий.
-        vacancies_ids = self.get_vacancies_ids_from_pages(pages)[:100]
+        vacancy_ids = self.get_vacancy_ids_from_pages(pages)
 
         vacancies_hashes = {
-            generate_hash(vacancy_id): vacancy_id for vacancy_id in vacancies_ids
+            generate_hash(vacancy_id): vacancy_id for vacancy_id in vacancy_ids
         }
 
         existing_hashes = set(
