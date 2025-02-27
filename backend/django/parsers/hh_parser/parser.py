@@ -113,7 +113,7 @@ class HHParser(BaseParser):
 
         return result
 
-    def get_vacancies_ids_from_pages(self, page_count: int) -> set[str]:
+    def get_vacancies_ids_from_pages(self, page_count: int) -> tuple[str, ...]:
         vacancies_ids = set()
         # Range от 0 до len(page_count - 1). Документация api.hh
         page_urls = [self._build_parse_url(page=page) for page in range(page_count)]
@@ -126,14 +126,16 @@ class HHParser(BaseParser):
                 vacancy_id: str = vacancy.get("id")
                 vacancies_ids.add(vacancy_id)
 
-        return vacancies_ids
+        return tuple(vacancies_ids)
 
     def get_last_vacancies_ids(self) -> set[str]:
         url = self._build_parse_url()
         http_data = self._get_http_data(url)
 
         pages: int = http_data["pages"]
-        vacancies_ids = self.get_vacancies_ids_from_pages(pages)
+        # Парсим только первые 100 вакансий для поддержки актуальности новых вакансий.
+        vacancies_ids = self.get_vacancies_ids_from_pages(pages)[:100]
+
         vacancies_hashes = {
             generate_hash(vacancy_id): vacancy_id for vacancy_id in vacancies_ids
         }
@@ -142,17 +144,15 @@ class HHParser(BaseParser):
             ParsedVacancy.objects.filter(
                 unique_hash__in=vacancies_hashes.keys()
             ).values_list("unique_hash", flat=True)
-        ) | set(
-            Vacancy.objects.filter(unique_hash__in=vacancies_hashes.keys()).values_list(
-                "unique_hash", flat=True
-            )
         )
 
-        return {
+        new_vacancies = {
             vacancy_id
             for vacancy_hash, vacancy_id in vacancies_hashes.items()
             if vacancy_hash not in existing_hashes
         }
+
+        return new_vacancies
 
     def get_vacancies_data(self, vacancies_ids: set[str]) -> list[dict[str, Any]]:
         vacancies_urls = [
