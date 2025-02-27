@@ -4,9 +4,6 @@
 echo "Migrate database..."
 uv run manage.py migrate
 
-echo "Clear cache..."
-uv run manage.py clear_cache
-
 echo "Create superuser..."
 uv run manage.py createsuperuser --noinput &
 

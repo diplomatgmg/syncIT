@@ -71,6 +71,7 @@ class Command(BaseCommand):
         if obsolete_skill_ids:
             obsolete_values_list = Skill.objects.filter(id__in=obsolete_skill_ids).values_list("id", "name")
             formatted_skills = ", ".join(f"[{i}] {n}" for i, n in obsolete_values_list)
+            # FIXME Подозрение, что не все навыки устарели. Где-то ошибка в коде
             self._message(f"Устаревшие навыки: {formatted_skills}", "ERROR")
 
         # fmt: on

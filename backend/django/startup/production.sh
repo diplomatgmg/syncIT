@@ -4,9 +4,6 @@
 echo "Migrate database..."
 uv run manage.py migrate
 
-echo "Clear cache..."
-uv run manage.py clear_cache
-
 echo "Creating skills..."
 uv run manage.py create_skills &
 
