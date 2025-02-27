@@ -57,7 +57,7 @@ class HHParser(BaseParser):
             Skill.objects.filter(selectable=True)
             .annotate(vacancy_count=Count("vacancies"))
             .order_by("-vacancy_count")
-            .values_list("name", flat=True)[:100]
+            .values_list("name", flat=True)[:30]
         )
 
         text = " OR ".join((*profession_names, *top_skills))
@@ -71,9 +71,6 @@ class HHParser(BaseParser):
         }
 
         return f"{self.base_url}?{urlencode(params)}"
-
-    def _build_vacancy_detail_url(self, url: str) -> str:
-        return f"{self.base_url}/{url}"
 
     def _get_http_data(self, url: str, **kwargs) -> dict[str, Any]:
         for _ in range(10):
@@ -156,7 +153,7 @@ class HHParser(BaseParser):
 
     def get_vacancies_data(self, vacancies_ids: set[str]) -> list[dict[str, Any]]:
         vacancies_urls = [
-            self._build_vacancy_detail_url(vacancy_id) for vacancy_id in vacancies_ids
+            f"{self.base_url}/{vacancy_id}" for vacancy_id in vacancies_ids
         ]
 
         return self.get_data_with_workers(self._get_http_data, vacancies_urls)
