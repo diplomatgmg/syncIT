@@ -189,7 +189,7 @@ class HHParser(BaseParser):
             yield vacancy_response
 
     @staticmethod
-    def parse_gpt_responses(gpt_responses):
+    def parse_gpt_responses(gpt_responses) -> dict | None:
         data = tuple(filter(lambda x: x is not None, map(parse_vacancy, gpt_responses)))
 
         grades = [item["grade_name"] for item in data]
@@ -197,11 +197,14 @@ class HHParser(BaseParser):
         # Получаем самый частый грейд на основе ответов chatGPT. Аналогично дальше
 
         professions = [item["profession"] for item in data]
-        profession = (
+        profession = normalize_profession(
             max(set(professions), key=professions.count)
             if professions
             else "Неизвестно"
         )
+
+        if profession == "Неизвестно":
+            return None
 
         skills = set()
         for item in data:
@@ -222,7 +225,7 @@ class HHParser(BaseParser):
             "grade_name": normalize_grade(grade),
             "skill_names": tuple(skills),
             "work_format_names": tuple(work_formats),
-            "profession_name": normalize_profession(profession),
+            "profession_name": profession,
             "description": clear_html(description),
         }
 
@@ -292,6 +295,9 @@ class HHParser(BaseParser):
                 name=vacancy_data["name"],
                 url=vacancy_data["alternate_url"],
             )
+
+            if parsed_vacancy is None:
+                continue
 
             vacancy_skills = parsed_vacancy["skill_names"]
             if len(vacancy_skills) < 4:

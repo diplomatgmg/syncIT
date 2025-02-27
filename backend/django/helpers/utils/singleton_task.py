@@ -21,7 +21,7 @@ def singleton_task():
         def wrapper(*args, **kwargs):
             lock_id = f"{func.__name__}_lock"
 
-            # Добавляем в кеш на 24 часов
+            # Добавляем в кеш на 24 часа
             got_lock = cache.add(lock_id, "true", timeout=24 * 60 * 60)
 
             if not got_lock:

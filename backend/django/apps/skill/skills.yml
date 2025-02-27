@@ -6,6 +6,7 @@
   ! PHP:
   ! Java:
   ! 1С:
+    ! 1С ERP:
   ! C:
   ! C++:
   ! C#:
@@ -33,9 +34,8 @@ DevOps:
   ! CI/CD:
     ! Jenkins:
   ! Docker:
-    ! Docker Compose:
   ! Kubernetes:
-
+  ! VMware:
 
 Базы данных и брокеры:
   ! SQL:
@@ -50,7 +50,7 @@ DevOps:
     ! Apache Kafka:
     ! RabbitMQ:
 
-Архитектурные паттерны:
+Архитектурные паттерны и сетевые технологии:
   ! API:
     ! REST API:
   ! XML:
@@ -58,12 +58,21 @@ DevOps:
     ! SOLID:
   ! UML:
   ! BPMN:
+  ! DNS:
+  ! DHCP:
+
 
 Управление проектом:
   ! Jira:
   ! Confluence:
 
-
 ОС:
   ! Linux:
     ! Bash:
+  ! Windows:
+    ! Windows Server:
+
+Офисные приложения:
+  ! Microsoft Office:
+    ! Excel:
+    ! Word:
