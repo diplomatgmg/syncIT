@@ -1,58 +1,98 @@
 Языки программирования:
   ! Python:
-    ! asyncio:
+    ! aiohttp:
+    ! numpy:
+    ! Selenium:
+    ! Pandas:
   ! JavaScript:
   ! TypeScript:
+  ! Go:
   ! PHP:
   ! Java:
+  ! Kotlin:
   ! 1С:
-    ! 1С ERP:
+    ! 1С Битрикс:
+    ! 1С Предприятие:
+    ! 1С Управление торговлей:
+    ! 1С Бухгалтерия:
+    ! 1С Зарплата и управление персоналом:
+    ! 1С Документооборот:
   ! C:
   ! C++:
   ! C#:
 
 Backend:
+  Python:
+    ! Django:
+      ! Django REST Framework:
+    ! FastAPI:
   JavaScript/TypeScript:
     ! Node.js:
+  PHP:
+    ! Laravel:
+  Java:
+    ! Spring Framework:
+      ! Spring Boot:
+  .NET:
+    ! ASP.NET:
 
 Frontend:
   ! HTML:
   ! CSS:
   ! React:
+    ! React Native:
   ! Vue:
+  ! Angular:
 
 Тестирование и разработка:
+  ! Allure:
   ! Postman:
+  ! Playwright:
+  ! Cypress:
 
 Системы контроля версий:
   ! Git:
-    ! GitHub:
-    ! GitLab:
+
 
 DevOps:
   ! Ansible:
+  ! Azure:
+  ! AWS:
   ! CI/CD:
+    ! GitLab CI:
     ! Jenkins:
+    ! TeamCity:
   ! Docker:
   ! Kubernetes:
   ! VMware:
+  ! Terraform:
+  !	Proxmox:
+  !	Veeam:
+  !	WSUS:
 
 Базы данных и брокеры:
   ! SQL:
     ! ClickHouse:
     ! PostgreSQL:
     ! MySQL:
+    ! Oracle:
+    ! Greenplum:
   ! NoSQL:
     ! Elasticsearch:
     ! Redis:
     ! MongoDB:
+  ! Gig Data:
+    ! Hadoop:
   Брокеры:
     ! Apache Kafka:
     ! RabbitMQ:
 
+
 Архитектурные паттерны и сетевые технологии:
-  ! API:
-    ! REST API:
+  ! gRPC:
+  ! HTTP:
+    ! API:
+      ! REST API:
   ! XML:
   ! ООП:
     ! SOLID:
@@ -60,11 +100,27 @@ DevOps:
   ! BPMN:
   ! DNS:
   ! DHCP:
+  ! VPN:
+  ! MVVM:
+  ! JSON:
+  ! TCP/IP:
+  ! UDP:
+  ! FTP:
+  ! SMTP:
+  ! SSH:
+  ! RDP:
 
 
 Управление проектом:
+  ! Битрикс24:
   ! Jira:
   ! Confluence:
+  ! MS Project:
+  ! Miro:
+  ! Notion:
+  ! Trello:
+  ! PMBOK:
+  ! MS Visio:
 
 ОС:
   ! Linux:
@@ -72,7 +128,69 @@ DevOps:
   ! Windows:
     ! Windows Server:
 
+
 Офисные приложения:
   ! Microsoft Office:
     ! Excel:
     ! Word:
+
+Сетевые технологии:
+  ! Mikrotik:
+  ! Cisco:
+  ! VLAN:
+  ! BGP:
+  ! OSPF:
+  ! IPsec:
+  ! NAT:
+  ! Ethernet:
+  ! SNMP:
+  ! NGFW:
+  ! Juniper:
+  ! CAN:
+
+Аналитика данных:
+  ! Power BI:
+  ! Tableau:
+  ! Scikit-learn:
+  ! ML:
+  ! ETL:
+  ! Power Query:
+
+Веб-разработка и SEO:
+  ! Google Analytics:
+  ! Яндекс.Метрика:
+  ! WordPress:
+  ! Bitrix:
+    ! Bitrix24:
+  ! Tilda:
+  ! Screaming Frog:
+  ! Ahrefs:
+  ! Google Search Console:
+  ! Apache Airflow:
+
+
+Системное администрирование:
+  ! Active Directory:
+  ! Hyper-V:
+  ! Zabbix:
+  ! Grafana:
+  ! Prometheus:
+  ! Graylog:
+  ! Kibana:
+  ! Asterisk:
+  ! Exchange:
+  ! IIS:
+  ! Nginx:
+  ! HAProxy:
+  ! Shell:
+
+Дизайн и UX/UI:
+  ! Adobe Photoshop:
+  ! Figma:
+  ! UX/UI:
+
+Мобильная разработка:
+  ! Android SDK:
+
+Другие инструменты и технологии:
+  ! Firebase:
