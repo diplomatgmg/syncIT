@@ -57,7 +57,7 @@ class HHParser(BaseParser):
         top_skills = (
             Skill.objects.filter(selectable=True)
             .annotate(vacancy_count=Count("vacancies"))
-            .order_by("-vacancy_count")
+            .order_by("vacancy_count")
             .values_list("name", flat=True)
         )[: config.LIMIT_TOP_SKILLS_VACANCIES]
 
