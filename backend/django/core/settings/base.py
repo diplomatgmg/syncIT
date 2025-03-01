@@ -169,7 +169,7 @@ CONSTANCE_CONFIG = {
     "PERCENTAGE_MULTIPLIER": (50, "Множитель для релевантности по suitability_percent"),
     "COEFFICIENT_MULTIPLIER": (50, "Множитель для релевантности coefficient"),
 
-    "LIMIT_PARSED_VACANCIES": (100, "Лимит для количества обрабатываемых вакансий (Макс. 2000)"),
+    "LIMIT_PARSED_VACANCIES": (2000, "Лимит для количества обрабатываемых вакансий (Макс. 2000)"),
     "LIMIT_TOP_SKILLS_VACANCIES": (30, "Лимит по топ-скиллам для поиска вакансий"),
     "INTERVAL_DELETE_PARSED_VACANCIES": (7, "Количество дней для удаления спарсенных вакансий"),
 }
