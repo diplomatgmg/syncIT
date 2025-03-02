@@ -1,7 +1,7 @@
 Языки программирования:
   ! Python:
-    ! aiohttp:
     ! numpy:
+    ! aiohttp:
     ! Selenium:
     ! Pandas:
   ! JavaScript:
@@ -24,8 +24,8 @@
 Backend:
   Python:
     ! Django:
-      ! Django REST Framework:
     ! FastAPI:
+    ! Flask:
   JavaScript/TypeScript:
     ! Node.js:
   PHP:
@@ -45,7 +45,6 @@ Frontend:
   ! Angular:
 
 Тестирование и разработка:
-  ! Allure:
   ! Postman:
   ! Playwright:
   ! Cypress:
@@ -81,7 +80,7 @@ DevOps:
     ! Elasticsearch:
     ! Redis:
     ! MongoDB:
-  ! Gig Data:
+  ! Big Data:
     ! Hadoop:
   Брокеры:
     ! Apache Kafka:
@@ -124,7 +123,6 @@ DevOps:
 
 ОС:
   ! Linux:
-    ! Bash:
   ! Windows:
     ! Windows Server:
 
@@ -146,7 +144,6 @@ DevOps:
   ! SNMP:
   ! NGFW:
   ! Juniper:
-  ! CAN:
 
 Аналитика данных:
   ! Power BI:
@@ -161,7 +158,6 @@ DevOps:
   ! Яндекс.Метрика:
   ! WordPress:
   ! Bitrix:
-    ! Bitrix24:
   ! Tilda:
   ! Screaming Frog:
   ! Ahrefs:
@@ -181,16 +177,11 @@ DevOps:
   ! Exchange:
   ! IIS:
   ! Nginx:
-  ! HAProxy:
-  ! Shell:
 
 Дизайн и UX/UI:
-  ! Adobe Photoshop:
   ! Figma:
   ! UX/UI:
 
 Мобильная разработка:
   ! Android SDK:
 
-Другие инструменты и технологии:
-  ! Firebase:

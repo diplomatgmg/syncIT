@@ -57,12 +57,13 @@ class HHParser(BaseParser):
         top_skills = (
             Skill.objects.filter(selectable=True)
             .annotate(vacancy_count=Count("vacancies"))
-            # FIXME!!! Поменять на -vacancy_count. Текущая реализация для поиска наименее эффективных скиллов
+            # FIXME! Поменять на -vacancy_count. Текущая реализация для поиска наименее эффективных скиллов
             .order_by("vacancy_count")
             .values_list("name", flat=True)
         )[: config.LIMIT_TOP_SKILLS_VACANCIES]
 
-        text = " OR ".join((*profession_names, *top_skills))
+        # text = " OR ".join((*profession_names, *top_skills)) FIXME
+        text = " OR ".join(profession_names)
 
         params = {
             "text": text,
