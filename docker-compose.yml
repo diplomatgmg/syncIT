@@ -121,8 +121,6 @@ services:
     depends_on:
       celery:
         condition: service_healthy
-    labels:
-      telegram-notifier.monitor: false
     networks:
       - app-network
 
@@ -140,21 +138,8 @@ services:
     depends_on:
       celery:
         condition: service_healthy
-    labels:
-      telegram-notifier.monitor: false
     networks:
       - app-network
-
-  notifier:
-    restart: unless-stopped
-    image: lorcas/docker-telegram-notifier
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    env_file:
-      - .env
-    labels:
-      telegram-notifier.monitor: false
-
 
 networks:
   app-network:
