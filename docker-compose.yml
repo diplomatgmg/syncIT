@@ -80,6 +80,8 @@ services:
   redis:
     image: redis:7.4.2-alpine
     hostname: redis
+    volumes:
+      - redis_data:/data
     ports:
       - "6379:6379"
     healthcheck:
@@ -150,3 +152,4 @@ volumes:
   static_volume:
   frontend_dist:
   postgres_data:
+  redis_data:
