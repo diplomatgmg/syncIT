@@ -287,24 +287,27 @@ class HHParser(BaseParser):
         for vacancy_number, (vacancy_data, gpt_responses) in enumerate(
             vacancies_gpt_responses, start=1
         ):
-            logger.info(f"Парсим вакансию {vacancy_number} из {len(vacancies_data)}")
-            parsed_vacancy = self.parse_gpt_responses(gpt_responses)
-            ParsedVacancy.objects.get_or_create(
-                unique_hash=generate_hash(vacancy_data["id"]),
-                name=vacancy_data["name"],
-                url=vacancy_data["alternate_url"],
-            )
-
-            if parsed_vacancy is None:
-                continue
-
-            vacancy_skills = parsed_vacancy["skill_names"]
-            if len(vacancy_skills) < 4:
-                vacancy_url = vacancy_data["alternate_url"]
-                logger.debug(
-                    f"Пропустили вакансию {vacancy_url} - мало скиллов. {vacancy_skills}"
+            try:
+                logger.info(f"Парсим вакансию {vacancy_number} из {len(vacancies_data)}")
+                parsed_vacancy = self.parse_gpt_responses(gpt_responses)
+                ParsedVacancy.objects.get_or_create(
+                    unique_hash=generate_hash(vacancy_data["id"]),
+                    name=vacancy_data["name"],
+                    url=vacancy_data["alternate_url"],
                 )
-                continue
 
-            vacancy_result = self.get_vacancy_result(vacancy_data, parsed_vacancy)
-            self.save_vacancy_to_db(vacancy_result)
+                if parsed_vacancy is None:
+                    continue
+
+                vacancy_skills = parsed_vacancy["skill_names"]
+                if len(vacancy_skills) < 4:
+                    vacancy_url = vacancy_data["alternate_url"]
+                    logger.debug(
+                        f"Пропустили вакансию {vacancy_url} - мало скиллов. {vacancy_skills}"
+                    )
+                    continue
+
+                vacancy_result = self.get_vacancy_result(vacancy_data, parsed_vacancy)
+                self.save_vacancy_to_db(vacancy_result)
+            except Exception as e:
+                logger.exception("Failed to parse vacancy", exc_info=e)
